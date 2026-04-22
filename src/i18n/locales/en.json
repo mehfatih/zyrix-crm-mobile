@@ -28,7 +28,10 @@
     "loginSubtitle": "Sign in to manage your customers and pipeline.",
     "invalidEmail": "Please enter a valid email address",
     "passwordTooShort": "Password must be at least 6 characters",
-    "required": "This field is required"
+    "required": "This field is required",
+    "loginFailedTitle": "Login failed",
+    "loginFailedBody": "Unknown email or password. Try one of the demo accounts below.",
+    "demoAccountsTitle": "Demo accounts"
   },
   "language": {
     "select": "Select your language",
@@ -37,5 +40,74 @@
     "english": "English",
     "turkish": "Türkçe",
     "change": "Change language"
+  },
+  "navigation": {
+    "dashboard": "Dashboard",
+    "sales": "Sales",
+    "ai": "AI Tools",
+    "growth": "Growth",
+    "more": "More",
+    "menu": "Menu",
+    "customers": "Customers",
+    "customerDetail": "Customer",
+    "deals": "Deals",
+    "pipeline": "Pipeline",
+    "quotes": "Quotes",
+    "contracts": "Contracts",
+    "commissions": "Commissions",
+    "settings": "Settings",
+    "profile": "Profile",
+    "logout": "Sign out",
+    "adminDashboard": "Admin Dashboard",
+    "companies": "Companies",
+    "users": "Users",
+    "featureFlags": "Feature Flags",
+    "auditLog": "Audit Log",
+    "security": "Security",
+    "plans": "Plans",
+    "operations": "Operations",
+    "compliance": "Compliance",
+    "reports": "Reports",
+    "integrations": "Integrations",
+    "aiCfo": "AI CFO",
+    "aiWorkflows": "AI Workflows",
+    "leadScoring": "Lead Scoring",
+    "conversationIntel": "Conversation Intel",
+    "meetingIntel": "Meeting Intel",
+    "loyalty": "Loyalty",
+    "campaigns": "Campaigns",
+    "automation": "Automation",
+    "customerHome": "Home",
+    "customerDocuments": "Documents",
+    "customerPayments": "Payments",
+    "customerSupport": "Support",
+    "customerProfile": "Profile"
+  },
+  "dashboard": {
+    "welcomeBack": "Welcome back",
+    "welcomeName": "Welcome, {{name}}!",
+    "quickStats": "Quick stats",
+    "customers": "Customers",
+    "deals": "Deals",
+    "revenue": "Revenue",
+    "tasks": "Tasks",
+    "viewAll": "View all"
+  },
+  "roles": {
+    "superAdmin": "Super Admin",
+    "admin": "Admin",
+    "merchantOwner": "Owner",
+    "merchantAdmin": "Merchant Admin",
+    "merchantManager": "Manager",
+    "merchantEmployee": "Employee",
+    "customer": "Customer"
+  },
+  "placeholders": {
+    "comingInSprint": "Coming in Sprint {{sprint}}",
+    "backToHome": "Back to home"
+  },
+  "customer": {
+    "yourCompany": "Your company",
+    "noCompany": "Personal account"
   }
 }

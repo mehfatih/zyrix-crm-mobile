@@ -28,7 +28,10 @@
     "loginSubtitle": "Müşterilerinizi ve satış hattınızı yönetmek için giriş yapın.",
     "invalidEmail": "Lütfen geçerli bir e-posta girin",
     "passwordTooShort": "Şifre en az 6 karakter olmalıdır",
-    "required": "Bu alan zorunludur"
+    "required": "Bu alan zorunludur",
+    "loginFailedTitle": "Giriş başarısız",
+    "loginFailedBody": "Bilinmeyen e-posta veya şifre. Aşağıdaki demo hesaplardan birini deneyin.",
+    "demoAccountsTitle": "Demo hesaplar"
   },
   "language": {
     "select": "Dilinizi seçin",
@@ -37,5 +40,74 @@
     "english": "English",
     "turkish": "Türkçe",
     "change": "Dili değiştir"
+  },
+  "navigation": {
+    "dashboard": "Panel",
+    "sales": "Satış",
+    "ai": "AI Araçları",
+    "growth": "Büyüme",
+    "more": "Daha fazla",
+    "menu": "Menü",
+    "customers": "Müşteriler",
+    "customerDetail": "Müşteri",
+    "deals": "Anlaşmalar",
+    "pipeline": "Satış Hattı",
+    "quotes": "Teklifler",
+    "contracts": "Sözleşmeler",
+    "commissions": "Komisyonlar",
+    "settings": "Ayarlar",
+    "profile": "Profil",
+    "logout": "Çıkış yap",
+    "adminDashboard": "Yönetim Paneli",
+    "companies": "Şirketler",
+    "users": "Kullanıcılar",
+    "featureFlags": "Özellik Bayrakları",
+    "auditLog": "Denetim Günlüğü",
+    "security": "Güvenlik",
+    "plans": "Planlar",
+    "operations": "Operasyonlar",
+    "compliance": "Uyum",
+    "reports": "Raporlar",
+    "integrations": "Entegrasyonlar",
+    "aiCfo": "AI CFO",
+    "aiWorkflows": "AI İş Akışları",
+    "leadScoring": "Potansiyel Müşteri Puanı",
+    "conversationIntel": "Konuşma Analizi",
+    "meetingIntel": "Toplantı Analizi",
+    "loyalty": "Sadakat",
+    "campaigns": "Kampanyalar",
+    "automation": "Otomasyon",
+    "customerHome": "Ana Sayfa",
+    "customerDocuments": "Belgeler",
+    "customerPayments": "Ödemeler",
+    "customerSupport": "Destek",
+    "customerProfile": "Profil"
+  },
+  "dashboard": {
+    "welcomeBack": "Tekrar hoş geldin",
+    "welcomeName": "Hoş geldin, {{name}}!",
+    "quickStats": "Hızlı istatistikler",
+    "customers": "Müşteriler",
+    "deals": "Anlaşmalar",
+    "revenue": "Gelir",
+    "tasks": "Görevler",
+    "viewAll": "Tümünü gör"
+  },
+  "roles": {
+    "superAdmin": "Süper Yönetici",
+    "admin": "Yönetici",
+    "merchantOwner": "Sahip",
+    "merchantAdmin": "Satıcı Yöneticisi",
+    "merchantManager": "Müdür",
+    "merchantEmployee": "Çalışan",
+    "customer": "Müşteri"
+  },
+  "placeholders": {
+    "comingInSprint": "{{sprint}}. Sprint'te geliyor",
+    "backToHome": "Ana sayfaya dön"
+  },
+  "customer": {
+    "yourCompany": "Şirketiniz",
+    "noCompany": "Kişisel hesap"
   }
 }

@@ -28,7 +28,10 @@
     "loginSubtitle": "سجّل الدخول لإدارة عملائك وفرص المبيعات.",
     "invalidEmail": "يرجى إدخال بريد إلكتروني صالح",
     "passwordTooShort": "يجب أن تتكون كلمة المرور من 6 أحرف على الأقل",
-    "required": "هذا الحقل مطلوب"
+    "required": "هذا الحقل مطلوب",
+    "loginFailedTitle": "فشل تسجيل الدخول",
+    "loginFailedBody": "بريد إلكتروني أو كلمة مرور غير معروفة. جرّب أحد الحسابات التجريبية أدناه.",
+    "demoAccountsTitle": "حسابات تجريبية"
   },
   "language": {
     "select": "اختر لغتك",
@@ -37,5 +40,74 @@
     "english": "English",
     "turkish": "Türkçe",
     "change": "تغيير اللغة"
+  },
+  "navigation": {
+    "dashboard": "لوحة التحكم",
+    "sales": "المبيعات",
+    "ai": "أدوات الذكاء الاصطناعي",
+    "growth": "النمو",
+    "more": "المزيد",
+    "menu": "القائمة",
+    "customers": "العملاء",
+    "customerDetail": "العميل",
+    "deals": "الصفقات",
+    "pipeline": "خط الصفقات",
+    "quotes": "عروض الأسعار",
+    "contracts": "العقود",
+    "commissions": "العمولات",
+    "settings": "الإعدادات",
+    "profile": "الملف الشخصي",
+    "logout": "تسجيل الخروج",
+    "adminDashboard": "لوحة المشرف",
+    "companies": "الشركات",
+    "users": "المستخدمون",
+    "featureFlags": "مفاتيح الميزات",
+    "auditLog": "سجل التدقيق",
+    "security": "الأمان",
+    "plans": "الباقات",
+    "operations": "العمليات",
+    "compliance": "الامتثال",
+    "reports": "التقارير",
+    "integrations": "التكاملات",
+    "aiCfo": "المدير المالي الذكي",
+    "aiWorkflows": "سير العمل الذكي",
+    "leadScoring": "تقييم العملاء المحتملين",
+    "conversationIntel": "تحليل المحادثات",
+    "meetingIntel": "تحليل الاجتماعات",
+    "loyalty": "الولاء",
+    "campaigns": "الحملات",
+    "automation": "الأتمتة",
+    "customerHome": "الرئيسية",
+    "customerDocuments": "المستندات",
+    "customerPayments": "المدفوعات",
+    "customerSupport": "الدعم",
+    "customerProfile": "الملف الشخصي"
+  },
+  "dashboard": {
+    "welcomeBack": "مرحبًا بعودتك",
+    "welcomeName": "مرحبًا، {{name}}!",
+    "quickStats": "إحصاءات سريعة",
+    "customers": "العملاء",
+    "deals": "الصفقات",
+    "revenue": "الإيرادات",
+    "tasks": "المهام",
+    "viewAll": "عرض الكل"
+  },
+  "roles": {
+    "superAdmin": "مشرف عام",
+    "admin": "مشرف",
+    "merchantOwner": "المالك",
+    "merchantAdmin": "مشرف التاجر",
+    "merchantManager": "مدير",
+    "merchantEmployee": "موظف",
+    "customer": "عميل"
+  },
+  "placeholders": {
+    "comingInSprint": "قادم في المرحلة {{sprint}}",
+    "backToHome": "العودة إلى الرئيسية"
+  },
+  "customer": {
+    "yourCompany": "شركتك",
+    "noCompany": "حساب شخصي"
   }
 }

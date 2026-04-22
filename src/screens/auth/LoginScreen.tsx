@@ -1,5 +1,11 @@
 /**
  * LoginScreen — email + password form with react-hook-form + zod.
+ *
+ * For Sprint 2 the backend isn't wired up yet, so the form accepts a
+ * small set of mock credentials that map to different roles. A
+ * successful login writes to both `authStore` (token/session) and
+ * `userStore` (profile + permissions); the RootNavigator then picks
+ * the correct post-login navigator based on that role.
  */
 
 import React, { useMemo, useState } from 'react';
@@ -27,11 +33,59 @@ import { LanguageSwitcher } from '../../components/common/LanguageSwitcher';
 import { colors } from '../../constants/colors';
 import { radius, shadows, spacing } from '../../constants/spacing';
 import { textStyles } from '../../constants/typography';
+import { useAuthStore } from '../../store/authStore';
+import { useUiStore } from '../../store/uiStore';
+import { useUserStore } from '../../store/userStore';
+import {
+  getPermissionsForRole,
+  type AuthUser,
+  type User,
+  type UserRole,
+} from '../../types/auth';
 
 type LoginFormValues = {
   email: string;
   password: string;
 };
+
+interface MockIdentity {
+  email: string;
+  password: string;
+  role: UserRole;
+  name: string;
+  companyId: string | null;
+}
+
+const MOCK_USERS: readonly MockIdentity[] = [
+  {
+    email: 'admin@zyrix.co',
+    password: 'password',
+    role: 'super_admin',
+    name: 'Platform Admin',
+    companyId: null,
+  },
+  {
+    email: 'owner@company.com',
+    password: 'password',
+    role: 'merchant_owner',
+    name: 'Omar Owner',
+    companyId: 'demo-co',
+  },
+  {
+    email: 'employee@company.com',
+    password: 'password',
+    role: 'merchant_employee',
+    name: 'Elif Employee',
+    companyId: 'demo-co',
+  },
+  {
+    email: 'customer@email.com',
+    password: 'password',
+    role: 'customer',
+    name: 'Carol Customer',
+    companyId: 'demo-co',
+  },
+];
 
 const buildSchema = (t: (k: string) => string) =>
   z.object({
@@ -45,8 +99,17 @@ const buildSchema = (t: (k: string) => string) =>
       .min(6, t('auth.passwordTooShort')),
   });
 
+const mockTokenFor = (email: string): string => {
+  const slug = email.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
+  return `mock-${slug}-${Date.now()}`;
+};
+
 export const LoginScreen: React.FC = () => {
   const { t } = useTranslation();
+  const language = useUiStore((s) => s.language);
+  const loginAuth = useAuthStore((s) => s.login);
+  const setUser = useUserStore((s) => s.setUser);
+
   const [showPassword, setShowPassword] = useState(false);
   const [submitting, setSubmitting] = useState(false);
 
@@ -65,10 +128,45 @@ export const LoginScreen: React.FC = () => {
   const onSubmit = async (values: LoginFormValues): Promise<void> => {
     setSubmitting(true);
     try {
-      // Sprint 1 does not wire a real API yet. Surface the intent visibly
-      // so the screen is testable end-to-end.
-      await new Promise((resolve) => setTimeout(resolve, 600));
-      Alert.alert(t('auth.login'), `${t('auth.email')}: ${values.email}`);
+      // Faux network latency so the loading indicator is visible.
+      await new Promise((resolve) => setTimeout(resolve, 450));
+
+      const normalizedEmail = values.email.trim().toLowerCase();
+      const identity = MOCK_USERS.find(
+        (mock) =>
+          mock.email === normalizedEmail && mock.password === values.password
+      );
+
+      if (!identity) {
+        Alert.alert(t('auth.loginFailedTitle'), t('auth.loginFailedBody'));
+        return;
+      }
+
+      const userId = `mock-${identity.role}-${normalizedEmail}`;
+      const fullUser: User = {
+        id: userId,
+        email: identity.email,
+        name: identity.name,
+        role: identity.role,
+        companyId: identity.companyId,
+        avatar: null,
+        phone: null,
+        country: null,
+        language,
+        permissions: getPermissionsForRole(identity.role),
+      };
+
+      const authUser: AuthUser = {
+        id: userId,
+        email: identity.email,
+        name: identity.name,
+        role: identity.role,
+        avatarUrl: null,
+        locale: language,
+      };
+
+      await setUser(fullUser);
+      await loginAuth({ user: authUser, token: mockTokenFor(identity.email) });
     } finally {
       setSubmitting(false);
     }
@@ -178,6 +276,15 @@ export const LoginScreen: React.FC = () => {
               </View>
             </View>
 
+            <View style={styles.hintCard}>
+              <Text style={styles.hintTitle}>{t('auth.demoAccountsTitle')}</Text>
+              {MOCK_USERS.map((user) => (
+                <Text key={user.email} style={styles.hintLine}>
+                  • {user.email} / {user.password}
+                </Text>
+              ))}
+            </View>
+
             <View style={styles.footer}>
               <LanguageSwitcher />
             </View>
@@ -272,9 +379,26 @@ const styles = StyleSheet.create({
     marginStart: spacing.xs,
     color: colors.primary,
   },
+  hintCard: {
+    marginTop: spacing.lg,
+    padding: spacing.base,
+    borderRadius: radius.lg,
+    backgroundColor: colors.primarySoft,
+    borderWidth: 1,
+    borderColor: colors.divider,
+  },
+  hintTitle: {
+    ...textStyles.label,
+    color: colors.primaryDark,
+    marginBottom: spacing.xs,
+  },
+  hintLine: {
+    ...textStyles.caption,
+    color: colors.textSecondary,
+  },
   footer: {
     alignItems: 'center',
-    marginTop: spacing.xxl,
+    marginTop: spacing.xl,
   },
 });
 
