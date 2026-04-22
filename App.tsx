@@ -19,6 +19,7 @@ import {
 import * as SplashScreen from 'expo-splash-screen';
 
 import './src/i18n';
+import { Toast } from './src/components/common/Toast';
 import { colors } from './src/constants/colors';
 import { RootNavigator } from './src/navigation/RootNavigator';
 
@@ -98,6 +99,7 @@ export default function App(): React.ReactElement {
             <NavigationContainer theme={navigationTheme}>
               <StatusBar style="dark" backgroundColor={colors.background} />
               <RootNavigator />
+              <Toast />
             </NavigationContainer>
           </PaperProvider>
         </QueryClientProvider>

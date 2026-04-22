@@ -108,6 +108,14 @@
     "welcomeMessage": "مرحبًا {{name}}!",
     "welcomeName": "مرحبًا {{name}}!",
     "quickStats": "إحصاءات سريعة",
+    "quickActions": "إجراءات سريعة",
+    "addCustomer": "إضافة عميل",
+    "createQuote": "إنشاء عرض سعر",
+    "newDeal": "صفقة جديدة",
+    "viewReports": "عرض التقارير",
+    "revenueTrend": "اتجاه الإيرادات",
+    "dealsByStage": "الصفقات حسب المرحلة",
+    "last6Months": "آخر 6 أشهر",
     "customers": "العملاء",
     "totalCustomers": "العملاء",
     "deals": "الصفقات",
@@ -249,5 +257,120 @@
     "country": "الدولة",
     "language": "اللغة",
     "businessType": "نوع النشاط"
+  },
+  "customers": {
+    "title": "العملاء",
+    "searchCustomers": "ابحث عن عميل",
+    "noCustomers": "لا يوجد عملاء بعد",
+    "addFirstCustomer": "أضف أول عميل لك",
+    "totalRevenue": "إجمالي الإيرادات",
+    "memberSince": "عضو منذ",
+    "healthScore": "مؤشر الصحة",
+    "contactInfo": "بيانات التواصل",
+    "tags": "الوسوم",
+    "addTag": "أضف وسمًا"
+  },
+  "customerTabs": {
+    "overview": "نظرة عامة",
+    "deals": "الصفقات",
+    "quotes": "عروض الأسعار",
+    "invoices": "الفواتير",
+    "activities": "النشاطات",
+    "notes": "الملاحظات"
+  },
+  "deals": {
+    "title": "الصفقات",
+    "pipeline": "خط الصفقات",
+    "stage": "المرحلة",
+    "probability": "الاحتمالية",
+    "expectedClose": "تاريخ الإغلاق المتوقع",
+    "assignedTo": "المُسند إلى",
+    "moveToNextStage": "انقل إلى المرحلة التالية",
+    "markAsWon": "حدد كرابحة",
+    "markAsLost": "حدد كخاسرة",
+    "newDeal": "صفقة جديدة"
+  },
+  "stages": {
+    "lead": "عميل محتمل",
+    "qualified": "مؤهل",
+    "proposal": "عرض",
+    "negotiation": "تفاوض",
+    "won": "رابحة",
+    "lost": "خاسرة"
+  },
+  "growth": {
+    "loyalty": "الولاء",
+    "members": "الأعضاء",
+    "tiers": "المستويات",
+    "rewards": "المكافآت",
+    "activity": "النشاط",
+    "campaigns": "الحملات",
+    "automation": "الأتمتة",
+    "totalMembers": "الأعضاء",
+    "pointsIssued": "النقاط الممنوحة",
+    "redemptions": "الاستبدالات"
+  },
+  "loyalty": {
+    "bronze": "برونزي",
+    "silver": "فضي",
+    "gold": "ذهبي",
+    "platinum": "بلاتيني",
+    "points": "نقطة",
+    "redeem": "استبدال"
+  },
+  "commissions": {
+    "thisMonth": "هذا الشهر",
+    "lastMonth": "الشهر الماضي",
+    "quarter": "الربع",
+    "custom": "مخصص",
+    "totalEarned": "الإجمالي المكتسب هذه الفترة",
+    "rep": "لكل مندوب",
+    "dealsClosed": "صفقة مُغلقة",
+    "commissionRate": "النسبة",
+    "earned": "العمولة المكتسبة"
+  },
+  "territories": {
+    "mapView": "عرض الخريطة",
+    "listView": "عرض القائمة",
+    "newTerritory": "منطقة جديدة",
+    "assignedReps": "المندوبون المُسندون",
+    "customerCount": "العملاء"
+  },
+  "quotas": {
+    "target": "الهدف",
+    "actual": "الفعلي",
+    "projected": "المتوقع (AI)",
+    "attainment": "نسبة التحقيق",
+    "forecast": "التنبؤ",
+    "quarterToDate": "منذ بداية الربع",
+    "yearToDate": "منذ بداية السنة"
+  },
+  "healthScores": {
+    "atRisk": "في خطر",
+    "healthy": "صحي",
+    "riskReason": "سبب الخطر",
+    "missedPayments": "تأخر 3 دفعات أو أكثر",
+    "noContact": "لا تواصل منذ 60 يومًا"
+  },
+  "activities": {
+    "recentActivities": "آخر النشاطات",
+    "noActivities": "لا توجد نشاطات بعد",
+    "callMade": "مكالمة صادرة",
+    "emailSent": "بريد إلكتروني أُرسل",
+    "meetingScheduled": "اجتماع مجدول",
+    "dealWon": "صفقة رابحة",
+    "paymentReceived": "دفعة مستلمة"
+  },
+  "campaignStatus": {
+    "draft": "مسودة",
+    "scheduled": "مجدولة",
+    "active": "نشطة",
+    "completed": "مكتملة"
+  },
+  "automation": {
+    "triggers": "المحفزات",
+    "emailsSent": "رسائل",
+    "conversions": "تحويلات",
+    "actions": "إجراء"
   }
 }

@@ -1,81 +1,35 @@
 /**
  * MerchantSalesStack — stack for the "Sales" tab.
  *
- * All screens are placeholders for Sprint 2; real implementations
- * arrive in Sprint 4. The stack exists so deep-linking + nested
- * navigation (e.g. Customers → CustomerDetail) is already in place.
+ * Sprint 4 wires real screens for Customers, CustomerDetail, Deals,
+ * DealDetail, Pipeline, Commissions, Territories, QuotasForecast, and
+ * HealthScores. Quotes/Contracts stay as placeholders pending Sprint 5.
  */
 
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useTranslation } from 'react-i18next';
 
+import { CommissionsScreen } from '../screens/merchant/sales/CommissionsScreen';
+import { CustomerDetailScreen } from '../screens/merchant/sales/CustomerDetailScreen';
+import { CustomersScreen } from '../screens/merchant/sales/CustomersScreen';
+import { DealDetailScreen } from '../screens/merchant/sales/DealDetailScreen';
+import { DealsScreen } from '../screens/merchant/sales/DealsScreen';
+import { HealthScoresScreen } from '../screens/merchant/sales/HealthScoresScreen';
+import { PipelineScreen } from '../screens/merchant/sales/PipelineScreen';
 import { PlaceholderScreen } from '../screens/common/PlaceholderScreen';
+import { QuotasForecastScreen } from '../screens/merchant/sales/QuotasForecastScreen';
+import { TerritoriesScreen } from '../screens/merchant/sales/TerritoriesScreen';
 import type { MerchantSalesStackParamList } from './types';
 
 const Stack = createNativeStackNavigator<MerchantSalesStackParamList>();
-
-const CustomersScreen: React.FC = () => {
-  const { t } = useTranslation();
-  return (
-    <PlaceholderScreen
-      title={t('navigation.customers')}
-      sprintNumber={4}
-      icon="people-outline"
-    />
-  );
-};
-
-const CustomerDetailScreen: React.FC = () => {
-  const { t } = useTranslation();
-  return (
-    <PlaceholderScreen
-      title={t('navigation.customerDetail')}
-      sprintNumber={4}
-      icon="person-outline"
-    />
-  );
-};
-
-const DealsScreen: React.FC = () => {
-  const { t } = useTranslation();
-  return (
-    <PlaceholderScreen
-      title={t('navigation.deals')}
-      sprintNumber={4}
-      icon="briefcase-outline"
-    />
-  );
-};
-
-const DealDetailScreen: React.FC = () => {
-  const { t } = useTranslation();
-  return (
-    <PlaceholderScreen
-      title={t('navigation.dealDetail')}
-      sprintNumber={4}
-      icon="pricetag-outline"
-    />
-  );
-};
-
-const PipelineScreen: React.FC = () => {
-  const { t } = useTranslation();
-  return (
-    <PlaceholderScreen
-      title={t('navigation.pipeline')}
-      sprintNumber={4}
-      icon="git-branch-outline"
-    />
-  );
-};
 
 const QuotesScreen: React.FC = () => {
   const { t } = useTranslation();
   return (
     <PlaceholderScreen
       title={t('navigation.quotes')}
-      sprintNumber={4}
+      sprintNumber={5}
       icon="document-attach-outline"
     />
   );
@@ -86,41 +40,8 @@ const ContractsScreen: React.FC = () => {
   return (
     <PlaceholderScreen
       title={t('navigation.contracts')}
-      sprintNumber={4}
+      sprintNumber={5}
       icon="document-text-outline"
-    />
-  );
-};
-
-const CommissionsScreen: React.FC = () => {
-  const { t } = useTranslation();
-  return (
-    <PlaceholderScreen
-      title={t('navigation.commissions')}
-      sprintNumber={4}
-      icon="cash-outline"
-    />
-  );
-};
-
-const TerritoriesScreen: React.FC = () => {
-  const { t } = useTranslation();
-  return (
-    <PlaceholderScreen
-      title={t('navigation.territories')}
-      sprintNumber={4}
-      icon="map-outline"
-    />
-  );
-};
-
-const QuotasForecastScreen: React.FC = () => {
-  const { t } = useTranslation();
-  return (
-    <PlaceholderScreen
-      title={t('navigation.quotasForecast')}
-      sprintNumber={4}
-      icon="trending-up-outline"
     />
   );
 };
@@ -140,6 +61,7 @@ export const MerchantSalesStack: React.FC = () => (
     <Stack.Screen name="Commissions" component={CommissionsScreen} />
     <Stack.Screen name="Territories" component={TerritoriesScreen} />
     <Stack.Screen name="QuotasForecast" component={QuotasForecastScreen} />
+    <Stack.Screen name="HealthScores" component={HealthScoresScreen} />
   </Stack.Navigator>
 );
 

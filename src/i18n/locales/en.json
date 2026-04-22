@@ -108,6 +108,14 @@
     "welcomeMessage": "Welcome, {{name}}!",
     "welcomeName": "Welcome, {{name}}!",
     "quickStats": "Quick stats",
+    "quickActions": "Quick actions",
+    "addCustomer": "Add Customer",
+    "createQuote": "Create Quote",
+    "newDeal": "New Deal",
+    "viewReports": "View Reports",
+    "revenueTrend": "Revenue trend",
+    "dealsByStage": "Deals by stage",
+    "last6Months": "last 6 months",
     "customers": "Customers",
     "totalCustomers": "Customers",
     "deals": "Deals",
@@ -249,5 +257,120 @@
     "country": "Country",
     "language": "Language",
     "businessType": "Business Type"
+  },
+  "customers": {
+    "title": "Customers",
+    "searchCustomers": "Search customers",
+    "noCustomers": "No customers yet",
+    "addFirstCustomer": "Add your first customer",
+    "totalRevenue": "Total revenue",
+    "memberSince": "Member since",
+    "healthScore": "Health score",
+    "contactInfo": "Contact info",
+    "tags": "Tags",
+    "addTag": "Add tag"
+  },
+  "customerTabs": {
+    "overview": "Overview",
+    "deals": "Deals",
+    "quotes": "Quotes",
+    "invoices": "Invoices",
+    "activities": "Activities",
+    "notes": "Notes"
+  },
+  "deals": {
+    "title": "Deals",
+    "pipeline": "Pipeline",
+    "stage": "Stage",
+    "probability": "Probability",
+    "expectedClose": "Expected close",
+    "assignedTo": "Assigned to",
+    "moveToNextStage": "Move to next stage",
+    "markAsWon": "Mark as won",
+    "markAsLost": "Mark as lost",
+    "newDeal": "New deal"
+  },
+  "stages": {
+    "lead": "Lead",
+    "qualified": "Qualified",
+    "proposal": "Proposal",
+    "negotiation": "Negotiation",
+    "won": "Won",
+    "lost": "Lost"
+  },
+  "growth": {
+    "loyalty": "Loyalty",
+    "members": "Members",
+    "tiers": "Tiers",
+    "rewards": "Rewards",
+    "activity": "Activity",
+    "campaigns": "Campaigns",
+    "automation": "Automation",
+    "totalMembers": "Members",
+    "pointsIssued": "Points issued",
+    "redemptions": "Redemptions"
+  },
+  "loyalty": {
+    "bronze": "Bronze",
+    "silver": "Silver",
+    "gold": "Gold",
+    "platinum": "Platinum",
+    "points": "pts",
+    "redeem": "Redeem"
+  },
+  "commissions": {
+    "thisMonth": "This month",
+    "lastMonth": "Last month",
+    "quarter": "Quarter",
+    "custom": "Custom",
+    "totalEarned": "Total earned this period",
+    "rep": "Per rep",
+    "dealsClosed": "deals closed",
+    "commissionRate": "Rate",
+    "earned": "Commission earned"
+  },
+  "territories": {
+    "mapView": "Map view",
+    "listView": "List view",
+    "newTerritory": "New territory",
+    "assignedReps": "Assigned reps",
+    "customerCount": "Customers"
+  },
+  "quotas": {
+    "target": "Target",
+    "actual": "Actual",
+    "projected": "Projected (AI)",
+    "attainment": "Attainment",
+    "forecast": "Forecast",
+    "quarterToDate": "Quarter to date",
+    "yearToDate": "Year to date"
+  },
+  "healthScores": {
+    "atRisk": "At risk",
+    "healthy": "Healthy",
+    "riskReason": "Risk reason",
+    "missedPayments": "Missed 3+ payments",
+    "noContact": "No contact for 60+ days"
+  },
+  "activities": {
+    "recentActivities": "Recent activities",
+    "noActivities": "No activities yet",
+    "callMade": "Call made",
+    "emailSent": "Email sent",
+    "meetingScheduled": "Meeting scheduled",
+    "dealWon": "Deal won",
+    "paymentReceived": "Payment received"
+  },
+  "campaignStatus": {
+    "draft": "Draft",
+    "scheduled": "Scheduled",
+    "active": "Active",
+    "completed": "Completed"
+  },
+  "automation": {
+    "triggers": "Triggers",
+    "emailsSent": "Emails",
+    "conversions": "Conversions",
+    "actions": "actions"
   }
 }

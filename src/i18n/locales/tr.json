@@ -108,6 +108,14 @@
     "welcomeMessage": "Hoş geldin, {{name}}!",
     "welcomeName": "Hoş geldin, {{name}}!",
     "quickStats": "Hızlı istatistikler",
+    "quickActions": "Hızlı işlemler",
+    "addCustomer": "Müşteri ekle",
+    "createQuote": "Teklif oluştur",
+    "newDeal": "Yeni anlaşma",
+    "viewReports": "Raporları gör",
+    "revenueTrend": "Gelir trendi",
+    "dealsByStage": "Aşamaya göre anlaşmalar",
+    "last6Months": "son 6 ay",
     "customers": "Müşteriler",
     "totalCustomers": "Müşteriler",
     "deals": "Anlaşmalar",
@@ -249,5 +257,120 @@
     "country": "Ülke",
     "language": "Dil",
     "businessType": "İşletme Türü"
+  },
+  "customers": {
+    "title": "Müşteriler",
+    "searchCustomers": "Müşteri ara",
+    "noCustomers": "Henüz müşteri yok",
+    "addFirstCustomer": "İlk müşterinizi ekleyin",
+    "totalRevenue": "Toplam gelir",
+    "memberSince": "Üyelik başlangıcı",
+    "healthScore": "Sağlık skoru",
+    "contactInfo": "İletişim bilgileri",
+    "tags": "Etiketler",
+    "addTag": "Etiket ekle"
+  },
+  "customerTabs": {
+    "overview": "Genel bakış",
+    "deals": "Anlaşmalar",
+    "quotes": "Teklifler",
+    "invoices": "Faturalar",
+    "activities": "Etkinlikler",
+    "notes": "Notlar"
+  },
+  "deals": {
+    "title": "Anlaşmalar",
+    "pipeline": "Satış hattı",
+    "stage": "Aşama",
+    "probability": "Olasılık",
+    "expectedClose": "Beklenen kapanış",
+    "assignedTo": "Atanan",
+    "moveToNextStage": "Sonraki aşamaya taşı",
+    "markAsWon": "Kazanıldı olarak işaretle",
+    "markAsLost": "Kaybedildi olarak işaretle",
+    "newDeal": "Yeni anlaşma"
+  },
+  "stages": {
+    "lead": "Potansiyel",
+    "qualified": "Nitelikli",
+    "proposal": "Teklif",
+    "negotiation": "Müzakere",
+    "won": "Kazanıldı",
+    "lost": "Kaybedildi"
+  },
+  "growth": {
+    "loyalty": "Sadakat",
+    "members": "Üyeler",
+    "tiers": "Seviyeler",
+    "rewards": "Ödüller",
+    "activity": "Aktivite",
+    "campaigns": "Kampanyalar",
+    "automation": "Otomasyon",
+    "totalMembers": "Üyeler",
+    "pointsIssued": "Verilen puan",
+    "redemptions": "Kullanımlar"
+  },
+  "loyalty": {
+    "bronze": "Bronz",
+    "silver": "Gümüş",
+    "gold": "Altın",
+    "platinum": "Platin",
+    "points": "pts",
+    "redeem": "Kullan"
+  },
+  "commissions": {
+    "thisMonth": "Bu ay",
+    "lastMonth": "Geçen ay",
+    "quarter": "Çeyrek",
+    "custom": "Özel",
+    "totalEarned": "Bu dönem toplam kazanç",
+    "rep": "Temsilci bazında",
+    "dealsClosed": "kapanan anlaşma",
+    "commissionRate": "Oran",
+    "earned": "Komisyon kazancı"
+  },
+  "territories": {
+    "mapView": "Harita görünümü",
+    "listView": "Liste görünümü",
+    "newTerritory": "Yeni bölge",
+    "assignedReps": "Atanan temsilciler",
+    "customerCount": "Müşteriler"
+  },
+  "quotas": {
+    "target": "Hedef",
+    "actual": "Gerçekleşen",
+    "projected": "Tahmini (AI)",
+    "attainment": "Ulaşım",
+    "forecast": "Tahmin",
+    "quarterToDate": "Çeyrek başından",
+    "yearToDate": "Yıl başından"
+  },
+  "healthScores": {
+    "atRisk": "Riskli",
+    "healthy": "Sağlıklı",
+    "riskReason": "Risk nedeni",
+    "missedPayments": "3+ ödeme gecikmesi",
+    "noContact": "60+ gün iletişim yok"
+  },
+  "activities": {
+    "recentActivities": "Son etkinlikler",
+    "noActivities": "Henüz etkinlik yok",
+    "callMade": "Arama yapıldı",
+    "emailSent": "E-posta gönderildi",
+    "meetingScheduled": "Toplantı planlandı",
+    "dealWon": "Anlaşma kazanıldı",
+    "paymentReceived": "Ödeme alındı"
+  },
+  "campaignStatus": {
+    "draft": "Taslak",
+    "scheduled": "Planlı",
+    "active": "Aktif",
+    "completed": "Tamamlandı"
+  },
+  "automation": {
+    "triggers": "Tetikler",
+    "emailsSent": "E-posta",
+    "conversions": "Dönüşüm",
+    "actions": "işlem"
   }
 }

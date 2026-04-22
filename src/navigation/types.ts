@@ -40,6 +40,7 @@ export type MerchantSalesStackParamList = {
   Commissions: undefined;
   Territories: undefined;
   QuotasForecast: undefined;
+  HealthScores: undefined;
 };
 
 export type MerchantAIStackParamList = {
