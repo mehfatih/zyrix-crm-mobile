@@ -33,7 +33,9 @@
     },
     "owner": "journaliste",
     "plugins": [
-      "expo-font"
+      "expo-font",
+      "expo-secure-store",
+      "expo-localization"
     ]
   }
 }

@@ -1,0 +1,41 @@
+{
+  "common": {
+    "appName": "Zyrix CRM",
+    "loading": "Yükleniyor...",
+    "error": "Bir şeyler ters gitti",
+    "success": "Başarılı",
+    "cancel": "İptal",
+    "save": "Kaydet",
+    "delete": "Sil",
+    "edit": "Düzenle",
+    "back": "Geri",
+    "next": "İleri",
+    "continue": "Devam"
+  },
+  "auth": {
+    "welcome": "Zyrix'e hoş geldiniz",
+    "login": "Giriş yap",
+    "register": "Hesap oluştur",
+    "email": "E-posta adresi",
+    "emailPlaceholder": "ornek@zyrix.co",
+    "password": "Şifre",
+    "passwordPlaceholder": "Şifrenizi girin",
+    "forgotPassword": "Şifrenizi mi unuttunuz?",
+    "loginButton": "Giriş yap",
+    "logout": "Çıkış yap",
+    "noAccount": "Hesabınız yok mu?",
+    "registerCta": "Kayıt ol",
+    "loginSubtitle": "Müşterilerinizi ve satış hattınızı yönetmek için giriş yapın.",
+    "invalidEmail": "Lütfen geçerli bir e-posta girin",
+    "passwordTooShort": "Şifre en az 6 karakter olmalıdır",
+    "required": "Bu alan zorunludur"
+  },
+  "language": {
+    "select": "Dilinizi seçin",
+    "selectSubtitle": "Bunu daha sonra ayarlardan değiştirebilirsiniz.",
+    "arabic": "العربية",
+    "english": "English",
+    "turkish": "Türkçe",
+    "change": "Dili değiştir"
+  }
+}

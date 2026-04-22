@@ -1,0 +1,41 @@
+{
+  "common": {
+    "appName": "Zyrix CRM",
+    "loading": "Loading...",
+    "error": "Something went wrong",
+    "success": "Success",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "back": "Back",
+    "next": "Next",
+    "continue": "Continue"
+  },
+  "auth": {
+    "welcome": "Welcome to Zyrix",
+    "login": "Sign in",
+    "register": "Create account",
+    "email": "Email address",
+    "emailPlaceholder": "you@example.com",
+    "password": "Password",
+    "passwordPlaceholder": "Enter your password",
+    "forgotPassword": "Forgot password?",
+    "loginButton": "Sign in",
+    "logout": "Sign out",
+    "noAccount": "Don't have an account?",
+    "registerCta": "Register",
+    "loginSubtitle": "Sign in to manage your customers and pipeline.",
+    "invalidEmail": "Please enter a valid email address",
+    "passwordTooShort": "Password must be at least 6 characters",
+    "required": "This field is required"
+  },
+  "language": {
+    "select": "Select your language",
+    "selectSubtitle": "You can change this later from settings.",
+    "arabic": "العربية",
+    "english": "English",
+    "turkish": "Türkçe",
+    "change": "Change language"
+  }
+}
