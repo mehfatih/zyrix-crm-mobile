@@ -30,7 +30,10 @@
     "creating": "Creating...",
     "updating": "Updating...",
     "deleting": "Deleting...",
-    "confirm": "Confirm"
+    "confirm": "Confirm",
+    "takeAction": "Take action",
+    "tryAgain": "Try again",
+    "learnMore": "Learn more"
   },
   "auth": {
     "welcome": "Welcome to Zyrix",
@@ -565,5 +568,108 @@
     "italic": "Italic",
     "list": "List",
     "hint": "Use **bold**, *italic*, - lists"
+  },
+  "ai": {
+    "askMeAnything": "Ask me anything",
+    "suggestedQuestions": "Suggested questions",
+    "analyzing": "Analyzing...",
+    "thinking": "Thinking...",
+    "noInsightsYet": "No insights yet",
+    "refreshInsights": "Refresh insights",
+    "attachFile": "Attach file",
+    "voiceInput": "Voice input",
+    "clearChat": "Clear chat",
+    "aiCFO": "AI CFO",
+    "aiWorkflows": "AI Workflows",
+    "aiBuilder": "AI Builder",
+    "leadScoring": "Predictive Lead Scoring",
+    "conversationIntel": "Conversation Intelligence",
+    "meetingIntel": "Meeting Intelligence",
+    "duplicateDetection": "Smart Duplicate Detection"
+  },
+  "aiCFO": {
+    "welcomeMessage": "Hello {{name}}! Ask me about cash flow, late-paying customers, or this quarter's forecast.",
+    "sampleQuestions": "Sample questions",
+    "cashFlow": "Cash flow",
+    "latePayments": "Late payments",
+    "risks": "Risks",
+    "opportunities": "Opportunities"
+  },
+  "aiWorkflows": {
+    "createWithAI": "Create with AI",
+    "describeWorkflow": "Describe the workflow you want to automate",
+    "workflowCreated": "Workflow created",
+    "refine": "Refine",
+    "activate": "Activate"
+  },
+  "aiBuilder": {
+    "architect": "Architect",
+    "builder": "Builder",
+    "reports": "Reports",
+    "architectIntro": "Describe your business and I'll configure your CRM optimally.",
+    "builderIntro": "What do you want me to build? Templates, sequences, reports — just ask.",
+    "reportsIntro": "Ask me anything about your data. I'll pull the slice and annotate trends."
+  },
+  "leadScoring": {
+    "hot": "Hot (>70)",
+    "warm": "Warm (40–70)",
+    "cold": "Cold (<40)",
+    "score": "Score",
+    "factors": "Factors",
+    "suggestedAction": "Suggested action",
+    "rescoreAll": "Re-score all",
+    "takeAction": "Take action",
+    "call": "Call",
+    "email": "Email",
+    "schedule": "Schedule",
+    "qualify": "Qualify"
+  },
+  "conversationIntel": {
+    "conversations": "Conversations",
+    "channels": "Channels",
+    "sentiments": "Sentiment timeline",
+    "intents": "Detected intents",
+    "hotSignals": "Hot signal",
+    "buyingSignal": "Buying signal",
+    "priceObjection": "Price objection",
+    "supportNeed": "Support need",
+    "complaint": "Complaint",
+    "upgradeInterest": "Upgrade interest",
+    "nextAction": "Next best action",
+    "summary": "AI Summary"
+  },
+  "sentiment": {
+    "positive": "Positive",
+    "neutral": "Neutral",
+    "negative": "Negative"
+  },
+  "duplicates": {
+    "scan": "Scan for duplicates",
+    "groups": "Groups",
+    "matchStrength": "Match strength",
+    "mergeAll": "Merge all",
+    "keepSeparate": "Keep separate",
+    "reviewIndividually": "Review individually",
+    "fieldsComparison": "Field comparison",
+    "smartSuggestion": "Smart suggestion",
+    "customer": "Customers",
+    "contact": "Contacts",
+    "company": "Companies",
+    "arabicVariants": "Arabic variants",
+    "winner": "Master record"
+  },
+  "meetings": {
+    "upcoming": "Upcoming",
+    "recent": "Recent",
+    "all": "All",
+    "uploadRecording": "Upload recording",
+    "processing": "AI is analyzing your meeting...",
+    "summary": "Summary",
+    "transcript": "Transcript",
+    "actionItems": "Action items",
+    "keyDecisions": "Key decisions",
+    "topics": "Topics",
+    "downloadTranscript": "Download transcript",
+    "shareSummary": "Share summary"
   }
 }

@@ -30,7 +30,10 @@
     "creating": "Oluşturuluyor...",
     "updating": "Güncelleniyor...",
     "deleting": "Siliniyor...",
-    "confirm": "Onayla"
+    "confirm": "Onayla",
+    "takeAction": "Harekete geç",
+    "tryAgain": "Tekrar dene",
+    "learnMore": "Daha fazla bilgi"
   },
   "auth": {
     "welcome": "Zyrix'e hoş geldiniz",
@@ -544,5 +547,108 @@
     "italic": "İtalik",
     "list": "Liste",
     "hint": "**kalın**, *italik*, - liste kullanın"
+  },
+  "ai": {
+    "askMeAnything": "Bana istediğini sor",
+    "suggestedQuestions": "Önerilen sorular",
+    "analyzing": "Analiz ediliyor...",
+    "thinking": "Düşünüyorum...",
+    "noInsightsYet": "Henüz içgörü yok",
+    "refreshInsights": "İçgörüleri yenile",
+    "attachFile": "Dosya ekle",
+    "voiceInput": "Sesli giriş",
+    "clearChat": "Sohbeti temizle",
+    "aiCFO": "AI CFO",
+    "aiWorkflows": "AI İş Akışları",
+    "aiBuilder": "AI Oluşturucu",
+    "leadScoring": "Tahminsel Müşteri Adayı Puanı",
+    "conversationIntel": "Konuşma Zekâsı",
+    "meetingIntel": "Toplantı Zekâsı",
+    "duplicateDetection": "Akıllı Yinelenen Tespiti"
+  },
+  "aiCFO": {
+    "welcomeMessage": "Merhaba {{name}}! Nakit akışı, geciken ödemeler veya çeyrek tahmini hakkında sorabilirsin.",
+    "sampleQuestions": "Örnek sorular",
+    "cashFlow": "Nakit akışı",
+    "latePayments": "Geciken ödemeler",
+    "risks": "Riskler",
+    "opportunities": "Fırsatlar"
+  },
+  "aiWorkflows": {
+    "createWithAI": "AI ile oluştur",
+    "describeWorkflow": "Otomatikleştirmek istediğin iş akışını anlat.",
+    "workflowCreated": "İş akışı oluşturuldu",
+    "refine": "İyileştir",
+    "activate": "Aktifleştir"
+  },
+  "aiBuilder": {
+    "architect": "Mimar",
+    "builder": "Oluşturucu",
+    "reports": "Raporlar",
+    "architectIntro": "İşini anlat, CRM'ini en uygun biçimde ayarlayayım.",
+    "builderIntro": "Ne oluşturmamı istersin? Şablonlar, diziler, raporlar — sor yeter.",
+    "reportsIntro": "Verilerin hakkında sor, ben eğilim notlarıyla birlikte getireyim."
+  },
+  "leadScoring": {
+    "hot": "Sıcak (>70)",
+    "warm": "Ilık (40-70)",
+    "cold": "Soğuk (<40)",
+    "score": "Puan",
+    "factors": "Faktörler",
+    "suggestedAction": "Önerilen eylem",
+    "rescoreAll": "Yeniden puanla",
+    "takeAction": "Harekete geç",
+    "call": "Ara",
+    "email": "E-posta",
+    "schedule": "Planla",
+    "qualify": "Nitele"
+  },
+  "conversationIntel": {
+    "conversations": "Konuşmalar",
+    "channels": "Kanallar",
+    "sentiments": "Duygu çizgisi",
+    "intents": "Tespit edilen niyetler",
+    "hotSignals": "Sıcak sinyal",
+    "buyingSignal": "Satın alma sinyali",
+    "priceObjection": "Fiyat itirazı",
+    "supportNeed": "Destek ihtiyacı",
+    "complaint": "Şikayet",
+    "upgradeInterest": "Yükseltme ilgisi",
+    "nextAction": "Sonraki en iyi eylem",
+    "summary": "AI Özeti"
+  },
+  "sentiment": {
+    "positive": "Olumlu",
+    "neutral": "Nötr",
+    "negative": "Olumsuz"
+  },
+  "duplicates": {
+    "scan": "Yinelenenleri tara",
+    "groups": "Gruplar",
+    "matchStrength": "Eşleşme gücü",
+    "mergeAll": "Hepsini birleştir",
+    "keepSeparate": "Ayrı tut",
+    "reviewIndividually": "Tek tek incele",
+    "fieldsComparison": "Alan karşılaştırma",
+    "smartSuggestion": "Akıllı öneri",
+    "customer": "Müşteriler",
+    "contact": "Kişiler",
+    "company": "Şirketler",
+    "arabicVariants": "Arapça varyantlar",
+    "winner": "Ana kayıt"
+  },
+  "meetings": {
+    "upcoming": "Yaklaşan",
+    "recent": "Son",
+    "all": "Tümü",
+    "uploadRecording": "Kayıt yükle",
+    "processing": "Yapay zekâ toplantıyı analiz ediyor...",
+    "summary": "Özet",
+    "transcript": "Döküm",
+    "actionItems": "Eylem maddeleri",
+    "keyDecisions": "Anahtar kararlar",
+    "topics": "Konular",
+    "downloadTranscript": "Dökümü indir",
+    "shareSummary": "Özeti paylaş"
   }
 }

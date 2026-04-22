@@ -63,10 +63,17 @@ export type MerchantGrowthStackParamList = {
 export type MerchantAIStackParamList = {
   AICFO: undefined;
   AIWorkflows: undefined;
+  AIWorkflowBuilder: undefined;
   AIBuilder: undefined;
   LeadScoring: undefined;
+  LeadScoreDetail: { leadId: string };
   ConversationIntel: undefined;
+  ConversationAnalysis: { conversationId: string };
+  DuplicateDetection: undefined;
+  DuplicateReview: { groupId: string };
   MeetingIntel: undefined;
+  MeetingDetail: { meetingId: string };
+  UploadMeeting: undefined;
 };
 
 export type MerchantMoreDrawerParamList = {

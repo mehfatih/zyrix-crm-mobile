@@ -30,7 +30,10 @@
     "creating": "جارٍ الإنشاء...",
     "updating": "جارٍ التحديث...",
     "deleting": "جارٍ الحذف...",
-    "confirm": "تأكيد"
+    "confirm": "تأكيد",
+    "takeAction": "خذ إجراءً",
+    "tryAgain": "حاول مجددًا",
+    "learnMore": "اعرف المزيد"
   },
   "auth": {
     "welcome": "مرحبًا بك في زيريكس",
@@ -544,5 +547,108 @@
     "italic": "مائل",
     "list": "قائمة",
     "hint": "استخدم **عريض** و *مائل* و - قوائم"
+  },
+  "ai": {
+    "askMeAnything": "اسألني أي شيء",
+    "suggestedQuestions": "أسئلة مقترحة",
+    "analyzing": "جارٍ التحليل...",
+    "thinking": "أفكّر...",
+    "noInsightsYet": "لا توجد رؤى بعد",
+    "refreshInsights": "تحديث الرؤى",
+    "attachFile": "إرفاق ملف",
+    "voiceInput": "إدخال صوتي",
+    "clearChat": "مسح المحادثة",
+    "aiCFO": "المدير المالي الذكي",
+    "aiWorkflows": "سير العمل الذكي",
+    "aiBuilder": "منشئ الذكاء الاصطناعي",
+    "leadScoring": "تقييم العملاء المحتملين",
+    "conversationIntel": "تحليل المحادثات",
+    "meetingIntel": "تحليل الاجتماعات",
+    "duplicateDetection": "كشف التكرارات الذكي"
+  },
+  "aiCFO": {
+    "welcomeMessage": "مرحبًا {{name}}! اسألني عن التدفق النقدي أو العملاء المتأخرين أو توقعات هذا الربع.",
+    "sampleQuestions": "أسئلة مقترحة",
+    "cashFlow": "التدفق النقدي",
+    "latePayments": "المدفوعات المتأخرة",
+    "risks": "المخاطر",
+    "opportunities": "الفرص"
+  },
+  "aiWorkflows": {
+    "createWithAI": "أنشئ مع الذكاء الاصطناعي",
+    "describeWorkflow": "صِف الأتمتة التي تريدها بالعربية.",
+    "workflowCreated": "تم إنشاء سير العمل",
+    "refine": "تعديل",
+    "activate": "تفعيل"
+  },
+  "aiBuilder": {
+    "architect": "مخطط",
+    "builder": "منشئ",
+    "reports": "تقارير",
+    "architectIntro": "صِف عملك وسأهيّئ لك النظام بالشكل الأمثل.",
+    "builderIntro": "ماذا تريدني أن أبني؟ قوالب، رسائل، تقارير — فقط اطلب.",
+    "reportsIntro": "اسألني أي شيء عن بياناتك، وسأحضر لك الشريحة مع ملاحظات على الاتجاهات."
+  },
+  "leadScoring": {
+    "hot": "ساخن (>70)",
+    "warm": "دافئ (40-70)",
+    "cold": "بارد (<40)",
+    "score": "النتيجة",
+    "factors": "العوامل",
+    "suggestedAction": "إجراء مقترح",
+    "rescoreAll": "إعادة التقييم",
+    "takeAction": "خذ إجراءً",
+    "call": "اتصل",
+    "email": "بريد",
+    "schedule": "جدولة",
+    "qualify": "تأهيل"
+  },
+  "conversationIntel": {
+    "conversations": "المحادثات",
+    "channels": "القنوات",
+    "sentiments": "مسار المشاعر",
+    "intents": "النوايا المُكتشفة",
+    "hotSignals": "إشارة ساخنة",
+    "buyingSignal": "نية شراء",
+    "priceObjection": "اعتراض سعري",
+    "supportNeed": "حاجة للدعم",
+    "complaint": "شكوى",
+    "upgradeInterest": "اهتمام بالترقية",
+    "nextAction": "أفضل إجراء قادم",
+    "summary": "ملخص ذكي"
+  },
+  "sentiment": {
+    "positive": "إيجابي",
+    "neutral": "محايد",
+    "negative": "سلبي"
+  },
+  "duplicates": {
+    "scan": "فحص التكرارات",
+    "groups": "المجموعات",
+    "matchStrength": "قوة المطابقة",
+    "mergeAll": "دمج الكل",
+    "keepSeparate": "إبقاؤهما منفصلين",
+    "reviewIndividually": "مراجعة فردية",
+    "fieldsComparison": "مقارنة الحقول",
+    "smartSuggestion": "اقتراح ذكي",
+    "customer": "العملاء",
+    "contact": "جهات الاتصال",
+    "company": "الشركات",
+    "arabicVariants": "تباينات عربية",
+    "winner": "السجل الأساسي"
+  },
+  "meetings": {
+    "upcoming": "القادمة",
+    "recent": "الأخيرة",
+    "all": "الكل",
+    "uploadRecording": "رفع تسجيل",
+    "processing": "الذكاء الاصطناعي يحلل اجتماعك...",
+    "summary": "الملخص",
+    "transcript": "النسخ",
+    "actionItems": "بنود العمل",
+    "keyDecisions": "القرارات الرئيسية",
+    "topics": "المواضيع",
+    "downloadTranscript": "تنزيل النسخ",
+    "shareSummary": "مشاركة الملخص"
   }
 }
