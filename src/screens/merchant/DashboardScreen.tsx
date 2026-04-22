@@ -1,7 +1,8 @@
 /**
- * DashboardScreen — merchant home. For Sprint 2 this is a placeholder
- * that shows a welcome card + four quick-stat tiles. The real charts
- * and pipeline breakdown arrive in Sprint 4.
+ * DashboardScreen — merchant home. Sprint 3 adds a small country badge
+ * (flag + localized country name) to the welcome card so the user can
+ * see their selected market at a glance, and swaps one placeholder stat
+ * value for a `CurrencyDisplay` so the configured currency is visible.
  */
 
 import React from 'react';
@@ -9,11 +10,15 @@ import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTranslation } from 'react-i18next';
 
+import { CurrencyDisplay } from '../../components/forms/CurrencyDisplay';
 import { Header } from '../../components/common/Header';
 import { Icon, type AnyIconName } from '../../components/common/Icon';
 import { colors } from '../../constants/colors';
 import { radius, shadows, spacing } from '../../constants/spacing';
 import { textStyles } from '../../constants/typography';
+import { useCountryConfig } from '../../hooks/useCountryConfig';
+import type { SupportedLanguage } from '../../i18n';
+import { useUiStore } from '../../store/uiStore';
 import { useUserStore } from '../../store/userStore';
 
 interface StatTile {
@@ -33,6 +38,8 @@ export const DashboardScreen: React.FC = () => {
   const { t } = useTranslation();
   const currentUser = useUserStore((s) => s.currentUser);
   const displayName = currentUser?.name?.split(' ')[0] ?? t('common.appName');
+  const language = useUiStore((s) => s.language) as SupportedLanguage;
+  const { config } = useCountryConfig();
 
   return (
     <SafeAreaView edges={['bottom']} style={styles.safe}>
@@ -42,6 +49,12 @@ export const DashboardScreen: React.FC = () => {
         showsVerticalScrollIndicator={false}
       >
         <View style={styles.welcomeCard}>
+          <View style={styles.countryRow}>
+            <Text style={styles.countryFlag}>{config.flag}</Text>
+            <Text style={styles.countryName} numberOfLines={1}>
+              {config.name[language]}
+            </Text>
+          </View>
           <Text style={styles.welcomeEyebrow}>
             {t('dashboard.welcomeBack')}
           </Text>
@@ -66,7 +79,11 @@ export const DashboardScreen: React.FC = () => {
               >
                 <Icon name={tile.icon} size={24} color={tile.tint} />
               </View>
-              <Text style={styles.statValue}>—</Text>
+              {tile.key === 'revenue' ? (
+                <CurrencyDisplay amount={0} size="large" />
+              ) : (
+                <Text style={styles.statValue}>—</Text>
+              )}
               <Text style={styles.statLabel}>
                 {t(`dashboard.${tile.key}`)}
               </Text>
@@ -107,6 +124,23 @@ const styles = StyleSheet.create({
     borderRadius: radius.xl,
     padding: spacing.xl,
     ...shadows.sm,
+  },
+  countryRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    columnGap: spacing.xs,
+    alignSelf: 'flex-start',
+    backgroundColor: colors.primarySoft,
+    borderRadius: radius.pill,
+    paddingHorizontal: spacing.sm,
+    paddingVertical: 2,
+    marginBottom: spacing.sm,
+  },
+  countryFlag: { fontSize: 16 },
+  countryName: {
+    ...textStyles.caption,
+    color: colors.primaryDark,
+    fontWeight: '600',
   },
   welcomeEyebrow: {
     ...textStyles.overline,

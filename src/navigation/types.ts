@@ -13,6 +13,8 @@ export type AuthStackParamList = {
   Splash: undefined;
   LanguageSelection: undefined;
   Login: undefined;
+  Register: undefined;
+  Onboarding: undefined;
 };
 
 /** Admin drawer — super_admin / admin. */

@@ -1,11 +1,11 @@
 /**
  * LoginScreen — email + password form with react-hook-form + zod.
  *
- * For Sprint 2 the backend isn't wired up yet, so the form accepts a
- * small set of mock credentials that map to different roles. A
- * successful login writes to both `authStore` (token/session) and
- * `userStore` (profile + permissions); the RootNavigator then picks
- * the correct post-login navigator based on that role.
+ * Sprint 3 keeps the Sprint 2 mock-login behaviour (so existing test
+ * accounts continue to work) but removes the visible "test accounts"
+ * hint card — that's demo-mode copy which the spec forbids — and turns
+ * the "Create Free Account" link into a real navigation to
+ * `RegisterScreen`.
  */
 
 import React, { useMemo, useState } from 'react';
@@ -25,6 +25,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Controller, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslation } from 'react-i18next';
+import { useNavigation } from '@react-navigation/native';
+import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { z } from 'zod';
 
 import { Button } from '../../components/common/Button';
@@ -42,6 +44,7 @@ import {
   type User,
   type UserRole,
 } from '../../types/auth';
+import type { AuthStackParamList } from '../../navigation/types';
 
 type LoginFormValues = {
   email: string;
@@ -101,10 +104,11 @@ const MOCK_USERS: readonly MockIdentity[] = [
  */
 const fallbackIdentityFor = (email: string): MockIdentity => {
   const local = email.split('@')[0] ?? 'Owner';
-  const name = local
-    .replace(/[._-]+/g, ' ')
-    .replace(/\b\w/g, (c) => c.toUpperCase())
-    .trim() || 'Test Owner';
+  const name =
+    local
+      .replace(/[._-]+/g, ' ')
+      .replace(/\b\w/g, (c) => c.toUpperCase())
+      .trim() || 'Test Owner';
   return {
     email,
     password: '',
@@ -116,10 +120,7 @@ const fallbackIdentityFor = (email: string): MockIdentity => {
 
 const buildSchema = (t: (k: string) => string) =>
   z.object({
-    email: z
-      .string()
-      .min(1, t('auth.required'))
-      .email(t('auth.invalidEmail')),
+    email: z.string().min(1, t('auth.required')).email(t('auth.invalidEmail')),
     password: z
       .string()
       .min(1, t('auth.required'))
@@ -131,8 +132,11 @@ const mockTokenFor = (email: string): string => {
   return `mock-${slug}-${Date.now()}`;
 };
 
+type Navigation = NativeStackNavigationProp<AuthStackParamList, 'Login'>;
+
 export const LoginScreen: React.FC = () => {
   const { t } = useTranslation();
+  const navigation = useNavigation<Navigation>();
   const language = useUiStore((s) => s.language);
   const loginAuth = useAuthStore((s) => s.login);
   const setUser = useUserStore((s) => s.setUser);
@@ -163,7 +167,6 @@ export const LoginScreen: React.FC = () => {
         (mock) =>
           mock.email === normalizedEmail && mock.password === values.password
       );
-      // Known mock → use it. Unknown email → spec §22 fallback: merchant_owner.
       const identity = matched ?? fallbackIdentityFor(normalizedEmail);
 
       const userId = `mock-${identity.role}-${normalizedEmail}`;
@@ -201,7 +204,7 @@ export const LoginScreen: React.FC = () => {
   };
 
   const onRegister = (): void => {
-    Alert.alert(t('auth.register'));
+    navigation.navigate('Register');
   };
 
   return (
@@ -290,23 +293,14 @@ export const LoginScreen: React.FC = () => {
                 style={styles.submitButton}
               />
 
-              <View style={styles.registerRow}>
+              <View style={styles.registerCtaBlock}>
                 <Text style={styles.registerText}>{t('auth.noAccount')}</Text>
-                <Pressable onPress={onRegister} hitSlop={6}>
-                  <Text style={[styles.linkText, styles.registerCta]}>
+                <Pressable onPress={onRegister} hitSlop={8}>
+                  <Text style={styles.registerCta}>
                     {t('auth.registerCta')}
                   </Text>
                 </Pressable>
               </View>
-            </View>
-
-            <View style={styles.hintCard}>
-              <Text style={styles.hintTitle}>{t('auth.testAccountsTitle')}</Text>
-              {MOCK_USERS.map((user) => (
-                <Text key={user.email} style={styles.hintLine}>
-                  • {user.email} / {user.password}
-                </Text>
-              ))}
             </View>
 
             <View style={styles.footer}>
@@ -388,37 +382,19 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     marginTop: spacing.md,
   },
-  registerRow: {
-    flexDirection: 'row',
-    justifyContent: 'center',
+  registerCtaBlock: {
     alignItems: 'center',
-    marginTop: spacing.lg,
-    columnGap: spacing.xs,
+    marginTop: spacing.xl,
+    rowGap: spacing.xs,
   },
   registerText: {
     ...textStyles.body,
     color: colors.textMuted,
   },
   registerCta: {
-    marginStart: spacing.xs,
+    ...textStyles.h4,
     color: colors.primary,
-  },
-  hintCard: {
-    marginTop: spacing.lg,
-    padding: spacing.base,
-    borderRadius: radius.lg,
-    backgroundColor: colors.primarySoft,
-    borderWidth: 1,
-    borderColor: colors.divider,
-  },
-  hintTitle: {
-    ...textStyles.label,
-    color: colors.primaryDark,
-    marginBottom: spacing.xs,
-  },
-  hintLine: {
-    ...textStyles.caption,
-    color: colors.textSecondary,
+    fontWeight: '700',
   },
   footer: {
     alignItems: 'center',

@@ -23,6 +23,7 @@ import { MerchantNavigator } from './MerchantNavigator';
 import { LoadingScreen } from '../screens/common/LoadingScreen';
 import { SplashScreen } from '../screens/auth/SplashScreen';
 import { useAuthStore } from '../store/authStore';
+import { useCountryConfigStore } from '../store/countryConfigStore';
 import { useUiStore } from '../store/uiStore';
 import { useUserStore } from '../store/userStore';
 import type { UserRole } from '../types/auth';
@@ -48,20 +49,28 @@ export const RootNavigator: React.FC = () => {
   const authHasHydrated = useAuthStore((s) => s.hasHydrated);
   const uiHasHydrated = useUiStore((s) => s.hasHydrated);
   const userHasHydrated = useUserStore((s) => s.hasHydrated);
+  const countryHasHydrated = useCountryConfigStore((s) => s.hasHydrated);
   const isAuthenticated = useAuthStore((s) => s.isAuthenticated);
   const currentUser = useUserStore((s) => s.currentUser);
 
   const hydrateAuth = useAuthStore((s) => s.hydrate);
   const hydrateUi = useUiStore((s) => s.hydrate);
   const hydrateUser = useUserStore((s) => s.hydrate);
+  const hydrateCountry = useCountryConfigStore((s) => s.hydrate);
 
   useEffect(() => {
     void hydrateAuth();
     void hydrateUi();
     void hydrateUser();
-  }, [hydrateAuth, hydrateUi, hydrateUser]);
+    void hydrateCountry();
+  }, [hydrateAuth, hydrateUi, hydrateUser, hydrateCountry]);
 
-  if (!authHasHydrated || !uiHasHydrated || !userHasHydrated) {
+  if (
+    !authHasHydrated ||
+    !uiHasHydrated ||
+    !userHasHydrated ||
+    !countryHasHydrated
+  ) {
     return <SplashScreen />;
   }
 
