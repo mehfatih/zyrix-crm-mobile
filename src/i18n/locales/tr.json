@@ -21,7 +21,16 @@
     "hello": "Merhaba",
     "goodMorning": "Günaydın",
     "goodAfternoon": "Tünaydın",
-    "goodEvening": "İyi akşamlar"
+    "goodEvening": "İyi akşamlar",
+    "step": "Adım",
+    "of": "/",
+    "saveAndContinue": "Kaydet ve devam et",
+    "skip": "Atla",
+    "finish": "Bitir",
+    "creating": "Oluşturuluyor...",
+    "updating": "Güncelleniyor...",
+    "deleting": "Siliniyor...",
+    "confirm": "Onayla"
   },
   "auth": {
     "welcome": "Zyrix'e hoş geldiniz",
@@ -218,7 +227,16 @@
     "agreeTerms": "Hizmet Şartları ve Gizlilik Politikası'nı kabul ediyorum",
     "createAccount": "Ücretsiz Hesap Oluştur",
     "alreadyHaveAccount": "Zaten hesabınız var mı?",
-    "signIn": "Giriş yap"
+    "signIn": "Giriş yap",
+    "addItem": "Kalem ekle",
+    "removeItem": "Kaldır",
+    "quantity": "Adet",
+    "unitPrice": "Birim fiyatı",
+    "discount": "İndirim",
+    "lineTotal": "Satır toplamı",
+    "subtotal": "Ara toplam",
+    "noItemsYet": "Henüz kalem yok",
+    "addYourFirstItem": "İlk kaleminizi ekleyin"
   },
   "currency": {
     "total": "Toplam",
@@ -316,7 +334,20 @@
     "gold": "Altın",
     "platinum": "Platin",
     "points": "pts",
-    "redeem": "Kullan"
+    "redeem": "Kullan",
+    "rules": "Sadakat kuralları",
+    "pointsRatio": "Puan kazanma oranı",
+    "bonusMultipliers": "Bonus çarpanları",
+    "tierThresholds": "Seviye eşikleri",
+    "benefits": "Ücretsiz kargo",
+    "newReward": "Yeni ödül",
+    "rewardName": "Ödül adı",
+    "pointCost": "Puan maliyeti",
+    "category": "Kategori",
+    "stock": "Stok sınırlı",
+    "limited": "Sınırlı stok",
+    "unlimited": "Sınırsız stok",
+    "eligibleTiers": "Uygun seviyeler"
   },
   "commissions": {
     "thisMonth": "Bu ay",
@@ -371,6 +402,147 @@
     "triggers": "Tetikler",
     "emailsSent": "E-posta",
     "conversions": "Dönüşüm",
-    "actions": "işlem"
+    "actions": "işlem",
+    "automationName": "Otomasyon adı",
+    "trigger": "Tetikleyici",
+    "action": "Eylem",
+    "condition": "Koşul",
+    "newCustomer": "Yeni müşteri eklendiğinde",
+    "dealStageChanged": "Anlaşma aşaması değiştiğinde",
+    "quoteAccepted": "Teklif kabul edildiğinde",
+    "invoiceOverdue": "Fatura gecikmiş olduğunda",
+    "customerInactive": "Müşteri aktif olmadığında",
+    "scheduledDate": "Belirli bir tarihte",
+    "sendEmail": "E-posta gönder",
+    "sendWhatsApp": "WhatsApp gönder",
+    "sendSMS": "SMS gönder",
+    "createTask": "Görev oluştur",
+    "addTag": "Etiket ekle",
+    "moveToStage": "Aşamaya taşı",
+    "notifyUser": "Kullanıcıyı bilgilendir",
+    "customerCountry": "Müşteri ülkesi",
+    "dealValue": "Anlaşma değeri",
+    "customerTag": "Müşteri etiketi",
+    "testMode": "Test çalıştırma",
+    "activate": "Aktif"
+  },
+  "quoteBuilder": {
+    "customer": "Müşteri",
+    "quoteDetails": "Teklif detayları",
+    "items": "Kalemler",
+    "discountAndTax": "İndirim ve vergi",
+    "totals": "Toplamlar",
+    "notes": "Notlar",
+    "customerNotes": "Müşteri notları (teklifte görünür)",
+    "internalNotes": "İç notlar",
+    "terms": "Şartlar",
+    "useTemplate": "Standart şablon",
+    "saveAsTemplate": "Özel şablon",
+    "saveDraft": "Taslağı kaydet",
+    "sendNow": "Hemen gönder",
+    "unsavedChanges": "Kaydedilmemiş değişiklikler",
+    "confirmDiscard": "Bu taslak silinsin mi?"
+  },
+  "quoteStatus": {
+    "draft": "Taslak",
+    "sent": "Gönderildi",
+    "viewed": "Görüldü",
+    "accepted": "Kabul edildi",
+    "expired": "Süresi doldu",
+    "rejected": "Reddedildi"
+  },
+  "quoteSort": {
+    "newest": "En yeni",
+    "largest": "En büyük",
+    "closingSoon": "Yakında biten"
+  },
+  "contracts": {
+    "type": "Tür",
+    "serviceContract": "Hizmet sözleşmesi",
+    "salesContract": "Satış sözleşmesi",
+    "nda": "Gizlilik sözleşmesi",
+    "lease": "Kira",
+    "partnership": "Ortaklık",
+    "other": "Diğer",
+    "dates": "Tarihler",
+    "financial": "Finansal",
+    "template": "Şablon",
+    "review": "Gözden geçir",
+    "createContract": "Sözleşme oluştur",
+    "renew": "Yenile",
+    "terminate": "Sonlandır",
+    "amendments": "Değişiklikler"
+  },
+  "contractStatus": {
+    "draft": "Taslak",
+    "active": "Aktif",
+    "expired": "Süresi doldu",
+    "terminated": "Sonlandırıldı"
+  },
+  "contractBuckets": {
+    "all": "Tümü",
+    "active": "Aktif",
+    "expiring": "Yakında bitiyor",
+    "expired": "Süresi doldu",
+    "terminated": "İptal"
+  },
+  "contractTypes": {
+    "service": "Hizmet",
+    "subscription": "Abonelik",
+    "one_time": "Tek seferlik"
+  },
+  "paymentTerms": {
+    "upfront": "Peşin",
+    "monthly": "Aylık",
+    "quarterly": "Üç aylık"
+  },
+  "campaigns": {
+    "campaignName": "Kampanya adı",
+    "audience": "Kitle",
+    "allCustomers": "Tüm müşteriler",
+    "segment": "Segment",
+    "tags": "Etiketler",
+    "individualList": "Bireysel liste",
+    "estimatedReach": "Tahmini erişim",
+    "content": "İçerik",
+    "subject": "Konu",
+    "message": "Mesaj",
+    "preview": "Önizleme",
+    "insertVariable": "Değişken ekle",
+    "schedule": "Zamanlama",
+    "sendImmediately": "Hemen gönder",
+    "scheduleForLater": "Sonraya planla",
+    "recurring": "Tekrarlayan",
+    "reviewAndSend": "Gözden geçir ve gönder",
+    "sendSMS": "SMS",
+    "sendWhatsApp": "WhatsApp"
+  },
+  "dealSources": {
+    "website": "Web sitesi",
+    "referral": "Tavsiye",
+    "coldCall": "Soğuk arama",
+    "email": "E-posta",
+    "social": "Sosyal medya",
+    "other": "Diğer"
+  },
+  "loyaltyCategories": {
+    "product": "Ürün",
+    "service": "Hizmet",
+    "discount": "İndirim",
+    "experience": "Deneyim"
+  },
+  "files": {
+    "tapToUpload": "Yüklemek için dokun veya sürükle-bırak",
+    "acceptedTypes": "Kabul edilen türler",
+    "maxSize": "Maks. boyut",
+    "uploading": "Yükleniyor...",
+    "uploadFailed": "Yükleme başarısız",
+    "remove": "Kaldır"
+  },
+  "richText": {
+    "bold": "Kalın",
+    "italic": "İtalik",
+    "list": "Liste",
+    "hint": "**kalın**, *italik*, - liste kullanın"
   }
 }

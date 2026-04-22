@@ -21,7 +21,16 @@
     "hello": "أهلًا",
     "goodMorning": "صباح الخير",
     "goodAfternoon": "مساء الخير",
-    "goodEvening": "مساء الخير"
+    "goodEvening": "مساء الخير",
+    "step": "خطوة",
+    "of": "من",
+    "saveAndContinue": "حفظ ومتابعة",
+    "skip": "تخطٍّ",
+    "finish": "إنهاء",
+    "creating": "جارٍ الإنشاء...",
+    "updating": "جارٍ التحديث...",
+    "deleting": "جارٍ الحذف...",
+    "confirm": "تأكيد"
   },
   "auth": {
     "welcome": "مرحبًا بك في زيريكس",
@@ -218,7 +227,16 @@
     "agreeTerms": "أوافق على شروط الخدمة وسياسة الخصوصية",
     "createAccount": "إنشاء حساب مجاني",
     "alreadyHaveAccount": "لديك حساب بالفعل؟",
-    "signIn": "تسجيل الدخول"
+    "signIn": "تسجيل الدخول",
+    "addItem": "إضافة بند",
+    "removeItem": "إزالة",
+    "quantity": "الكمية",
+    "unitPrice": "سعر الوحدة",
+    "discount": "الخصم",
+    "lineTotal": "إجمالي السطر",
+    "subtotal": "المجموع الفرعي",
+    "noItemsYet": "لا توجد بنود بعد",
+    "addYourFirstItem": "أضف أول بند لك"
   },
   "currency": {
     "total": "الإجمالي",
@@ -316,7 +334,20 @@
     "gold": "ذهبي",
     "platinum": "بلاتيني",
     "points": "نقطة",
-    "redeem": "استبدال"
+    "redeem": "استبدال",
+    "rules": "قواعد الولاء",
+    "pointsRatio": "نسبة كسب النقاط",
+    "bonusMultipliers": "مضاعفات المكافأة",
+    "tierThresholds": "حدود المستويات",
+    "benefits": "شحن مجاني",
+    "newReward": "مكافأة جديدة",
+    "rewardName": "اسم المكافأة",
+    "pointCost": "تكلفة النقاط",
+    "category": "الفئة",
+    "stock": "تحديد المخزون",
+    "limited": "مخزون محدود",
+    "unlimited": "مخزون غير محدود",
+    "eligibleTiers": "المستويات المؤهّلة"
   },
   "commissions": {
     "thisMonth": "هذا الشهر",
@@ -371,6 +402,147 @@
     "triggers": "المحفزات",
     "emailsSent": "رسائل",
     "conversions": "تحويلات",
-    "actions": "إجراء"
+    "actions": "إجراء",
+    "automationName": "اسم الأتمتة",
+    "trigger": "المحفّز",
+    "action": "الإجراء",
+    "condition": "الشرط",
+    "newCustomer": "عند إضافة عميل جديد",
+    "dealStageChanged": "عند تغيّر مرحلة الصفقة",
+    "quoteAccepted": "عند قبول عرض سعر",
+    "invoiceOverdue": "عند تأخّر فاتورة",
+    "customerInactive": "عند خمول عميل",
+    "scheduledDate": "في تاريخ محدد",
+    "sendEmail": "إرسال بريد",
+    "sendWhatsApp": "إرسال واتساب",
+    "sendSMS": "إرسال رسالة نصية",
+    "createTask": "إنشاء مهمة",
+    "addTag": "إضافة وسم",
+    "moveToStage": "نقل إلى مرحلة",
+    "notifyUser": "تنبيه مستخدم",
+    "customerCountry": "دولة العميل",
+    "dealValue": "قيمة الصفقة",
+    "customerTag": "وسم العميل",
+    "testMode": "تشغيل تجريبي",
+    "activate": "مفعّلة"
+  },
+  "quoteBuilder": {
+    "customer": "العميل",
+    "quoteDetails": "تفاصيل العرض",
+    "items": "البنود",
+    "discountAndTax": "الخصم والضريبة",
+    "totals": "الإجماليات",
+    "notes": "الملاحظات",
+    "customerNotes": "ملاحظات للعميل (تظهر في العرض)",
+    "internalNotes": "ملاحظات داخلية",
+    "terms": "الشروط",
+    "useTemplate": "قالب قياسي",
+    "saveAsTemplate": "قالب مخصص",
+    "saveDraft": "حفظ كمسودة",
+    "sendNow": "إرسال الآن",
+    "unsavedChanges": "تغييرات غير محفوظة",
+    "confirmDiscard": "تجاهل المسودة؟"
+  },
+  "quoteStatus": {
+    "draft": "مسودة",
+    "sent": "أُرسل",
+    "viewed": "مفتوح",
+    "accepted": "مقبول",
+    "expired": "منتهٍ",
+    "rejected": "مرفوض"
+  },
+  "quoteSort": {
+    "newest": "الأحدث",
+    "largest": "الأكبر قيمة",
+    "closingSoon": "قرب انتهاؤه"
+  },
+  "contracts": {
+    "type": "النوع",
+    "serviceContract": "عقد خدمة",
+    "salesContract": "عقد بيع",
+    "nda": "اتفاقية سرية",
+    "lease": "إيجار",
+    "partnership": "شراكة",
+    "other": "أخرى",
+    "dates": "التواريخ",
+    "financial": "المالي",
+    "template": "القالب",
+    "review": "المراجعة",
+    "createContract": "إنشاء العقد",
+    "renew": "تجديد",
+    "terminate": "إنهاء",
+    "amendments": "التعديلات"
+  },
+  "contractStatus": {
+    "draft": "مسودة",
+    "active": "نشط",
+    "expired": "منتهٍ",
+    "terminated": "مُنهى"
+  },
+  "contractBuckets": {
+    "all": "الكل",
+    "active": "نشط",
+    "expiring": "قارب الانتهاء",
+    "expired": "منتهٍ",
+    "terminated": "ملغى"
+  },
+  "contractTypes": {
+    "service": "خدمة",
+    "subscription": "اشتراك",
+    "one_time": "لمرة واحدة"
+  },
+  "paymentTerms": {
+    "upfront": "مقدمًا",
+    "monthly": "شهريًا",
+    "quarterly": "كل ربع"
+  },
+  "campaigns": {
+    "campaignName": "اسم الحملة",
+    "audience": "الجمهور",
+    "allCustomers": "جميع العملاء",
+    "segment": "شريحة",
+    "tags": "وسوم",
+    "individualList": "قائمة أفراد",
+    "estimatedReach": "الوصول المتوقع",
+    "content": "المحتوى",
+    "subject": "الموضوع",
+    "message": "الرسالة",
+    "preview": "معاينة",
+    "insertVariable": "إدراج متغيّر",
+    "schedule": "الجدولة",
+    "sendImmediately": "إرسال فوري",
+    "scheduleForLater": "جدولة لاحقة",
+    "recurring": "متكرّر",
+    "reviewAndSend": "مراجعة وإرسال",
+    "sendSMS": "SMS",
+    "sendWhatsApp": "واتساب"
+  },
+  "dealSources": {
+    "website": "الموقع الإلكتروني",
+    "referral": "إحالة",
+    "coldCall": "اتصال مباشر",
+    "email": "بريد",
+    "social": "تواصل اجتماعي",
+    "other": "أخرى"
+  },
+  "loyaltyCategories": {
+    "product": "منتج",
+    "service": "خدمة",
+    "discount": "خصم",
+    "experience": "تجربة"
+  },
+  "files": {
+    "tapToUpload": "اضغط للرفع أو اسحب وأفلت",
+    "acceptedTypes": "الأنواع المسموح بها",
+    "maxSize": "الحد الأقصى",
+    "uploading": "جارٍ الرفع...",
+    "uploadFailed": "فشل الرفع",
+    "remove": "إزالة"
+  },
+  "richText": {
+    "bold": "عريض",
+    "italic": "مائل",
+    "list": "قائمة",
+    "hint": "استخدم **عريض** و *مائل* و - قوائم"
   }
 }

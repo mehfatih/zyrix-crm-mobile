@@ -32,15 +32,32 @@ export type AdminDrawerParamList = {
 export type MerchantSalesStackParamList = {
   Customers: undefined;
   CustomerDetail: { customerId: string } | undefined;
+  NewCustomer: undefined;
+  EditCustomer: { customerId: string };
   Deals: undefined;
   DealDetail: { dealId: string } | undefined;
+  NewDeal: undefined;
   Pipeline: undefined;
   Quotes: undefined;
+  QuoteDetail: { quoteId: string };
+  QuoteBuilder: { quoteId?: string } | undefined;
   Contracts: undefined;
+  ContractDetail: { contractId: string };
+  ContractBuilder: { contractId?: string } | undefined;
   Commissions: undefined;
   Territories: undefined;
   QuotasForecast: undefined;
   HealthScores: undefined;
+};
+
+export type MerchantGrowthStackParamList = {
+  Loyalty: undefined;
+  LoyaltyRules: undefined;
+  NewLoyaltyReward: undefined;
+  Campaigns: undefined;
+  NewCampaign: undefined;
+  Automation: undefined;
+  NewAutomation: undefined;
 };
 
 export type MerchantAIStackParamList = {
@@ -50,12 +67,6 @@ export type MerchantAIStackParamList = {
   LeadScoring: undefined;
   ConversationIntel: undefined;
   MeetingIntel: undefined;
-};
-
-export type MerchantGrowthStackParamList = {
-  Loyalty: undefined;
-  Campaigns: undefined;
-  Automation: undefined;
 };
 
 export type MerchantMoreDrawerParamList = {
