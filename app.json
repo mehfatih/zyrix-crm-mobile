@@ -25,6 +25,15 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "20f8ba49-975c-4f3b-a5f5-1bf7f09c2d1c"
+      }
+    },
+    "owner": "journaliste",
+    "plugins": [
+      "expo-font"
+    ]
   }
 }
