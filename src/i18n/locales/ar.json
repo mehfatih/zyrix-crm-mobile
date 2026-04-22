@@ -10,7 +10,18 @@
     "edit": "تعديل",
     "back": "رجوع",
     "next": "التالي",
-    "continue": "متابعة"
+    "continue": "متابعة",
+    "signIn": "تسجيل الدخول",
+    "signOut": "تسجيل الخروج",
+    "createAccount": "إنشاء حساب مجاني",
+    "freeAccount": "حساب مجاني دائمًا",
+    "forgotPassword": "هل نسيت كلمة المرور؟",
+    "or": "أو",
+    "welcome": "مرحبًا",
+    "hello": "أهلًا",
+    "goodMorning": "صباح الخير",
+    "goodAfternoon": "مساء الخير",
+    "goodEvening": "مساء الخير"
   },
   "auth": {
     "welcome": "مرحبًا بك في زيريكس",
@@ -24,14 +35,14 @@
     "loginButton": "تسجيل الدخول",
     "logout": "تسجيل الخروج",
     "noAccount": "ليس لديك حساب؟",
-    "registerCta": "سجّل الآن",
+    "registerCta": "أنشئ حسابًا مجانيًا",
     "loginSubtitle": "سجّل الدخول لإدارة عملائك وفرص المبيعات.",
     "invalidEmail": "يرجى إدخال بريد إلكتروني صالح",
     "passwordTooShort": "يجب أن تتكون كلمة المرور من 6 أحرف على الأقل",
     "required": "هذا الحقل مطلوب",
     "loginFailedTitle": "فشل تسجيل الدخول",
     "loginFailedBody": "بريد إلكتروني أو كلمة مرور غير معروفة. جرّب أحد الحسابات التجريبية أدناه.",
-    "demoAccountsTitle": "حسابات تجريبية"
+    "testAccountsTitle": "حسابات تجريبية"
   },
   "language": {
     "select": "اختر لغتك",
@@ -45,16 +56,21 @@
     "dashboard": "لوحة التحكم",
     "sales": "المبيعات",
     "ai": "أدوات الذكاء الاصطناعي",
+    "aiTools": "أدوات الذكاء الاصطناعي",
     "growth": "النمو",
     "more": "المزيد",
     "menu": "القائمة",
+    "home": "الرئيسية",
     "customers": "العملاء",
     "customerDetail": "العميل",
     "deals": "الصفقات",
+    "dealDetail": "الصفقة",
     "pipeline": "خط الصفقات",
     "quotes": "عروض الأسعار",
     "contracts": "العقود",
     "commissions": "العمولات",
+    "territories": "المناطق",
+    "quotasForecast": "الحصص والتوقعات",
     "settings": "الإعدادات",
     "profile": "الملف الشخصي",
     "logout": "تسجيل الخروج",
@@ -71,12 +87,16 @@
     "integrations": "التكاملات",
     "aiCfo": "المدير المالي الذكي",
     "aiWorkflows": "سير العمل الذكي",
+    "aiBuilder": "منشئ الذكاء الاصطناعي",
     "leadScoring": "تقييم العملاء المحتملين",
     "conversationIntel": "تحليل المحادثات",
     "meetingIntel": "تحليل الاجتماعات",
     "loyalty": "الولاء",
     "campaigns": "الحملات",
     "automation": "الأتمتة",
+    "documents": "المستندات",
+    "payments": "المدفوعات",
+    "support": "الدعم",
     "customerHome": "الرئيسية",
     "customerDocuments": "المستندات",
     "customerPayments": "المدفوعات",
@@ -85,13 +105,21 @@
   },
   "dashboard": {
     "welcomeBack": "مرحبًا بعودتك",
-    "welcomeName": "مرحبًا، {{name}}!",
+    "welcomeMessage": "مرحبًا {{name}}!",
+    "welcomeName": "مرحبًا {{name}}!",
     "quickStats": "إحصاءات سريعة",
     "customers": "العملاء",
+    "totalCustomers": "العملاء",
     "deals": "الصفقات",
+    "activeDeals": "الصفقات النشطة",
     "revenue": "الإيرادات",
+    "monthRevenue": "هذا الشهر",
     "tasks": "المهام",
-    "viewAll": "عرض الكل"
+    "pendingTasks": "المهام",
+    "viewAll": "عرض الكل",
+    "recentActivity": "آخر النشاطات",
+    "noActivity": "لا توجد نشاطات بعد",
+    "comingSoon": "لوحة التحكم الكاملة قادمة في المرحلة 4"
   },
   "roles": {
     "superAdmin": "مشرف عام",
@@ -100,14 +128,25 @@
     "merchantAdmin": "مشرف التاجر",
     "merchantManager": "مدير",
     "merchantEmployee": "موظف",
-    "customer": "عميل"
+    "customer": "عميل",
+    "yourRole": "دورك"
   },
   "placeholders": {
     "comingInSprint": "قادم في المرحلة {{sprint}}",
-    "backToHome": "العودة إلى الرئيسية"
+    "featureNotReady": "هذه الميزة غير جاهزة بعد",
+    "backToHome": "العودة إلى الرئيسية",
+    "workInProgress": "قيد التطوير"
+  },
+  "customerPortal": {
+    "myAccount": "حسابي",
+    "myCompany": "شركتي",
+    "myInvoices": "فواتيري",
+    "myQuotes": "عروض الأسعار الخاصة بي",
+    "loyaltyPoints": "نقاط الولاء",
+    "recentActivity": "النشاطات الأخيرة"
   },
   "customer": {
-    "yourCompany": "شركتك",
+    "yourCompany": "مزوّد الخدمة",
     "noCompany": "حساب شخصي"
   }
 }

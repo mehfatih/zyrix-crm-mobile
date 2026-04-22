@@ -10,7 +10,18 @@
     "edit": "Edit",
     "back": "Back",
     "next": "Next",
-    "continue": "Continue"
+    "continue": "Continue",
+    "signIn": "Sign in",
+    "signOut": "Sign out",
+    "createAccount": "Create Free Account",
+    "freeAccount": "Free account — always",
+    "forgotPassword": "Forgot password?",
+    "or": "or",
+    "welcome": "Welcome",
+    "hello": "Hello",
+    "goodMorning": "Good morning",
+    "goodAfternoon": "Good afternoon",
+    "goodEvening": "Good evening"
   },
   "auth": {
     "welcome": "Welcome to Zyrix",
@@ -24,14 +35,14 @@
     "loginButton": "Sign in",
     "logout": "Sign out",
     "noAccount": "Don't have an account?",
-    "registerCta": "Register",
+    "registerCta": "Create Free Account",
     "loginSubtitle": "Sign in to manage your customers and pipeline.",
     "invalidEmail": "Please enter a valid email address",
     "passwordTooShort": "Password must be at least 6 characters",
     "required": "This field is required",
     "loginFailedTitle": "Login failed",
-    "loginFailedBody": "Unknown email or password. Try one of the demo accounts below.",
-    "demoAccountsTitle": "Demo accounts"
+    "loginFailedBody": "Unknown email or password. Try one of the test accounts below.",
+    "testAccountsTitle": "Test accounts"
   },
   "language": {
     "select": "Select your language",
@@ -45,16 +56,21 @@
     "dashboard": "Dashboard",
     "sales": "Sales",
     "ai": "AI Tools",
+    "aiTools": "AI Tools",
     "growth": "Growth",
     "more": "More",
     "menu": "Menu",
+    "home": "Home",
     "customers": "Customers",
     "customerDetail": "Customer",
     "deals": "Deals",
+    "dealDetail": "Deal",
     "pipeline": "Pipeline",
     "quotes": "Quotes",
     "contracts": "Contracts",
     "commissions": "Commissions",
+    "territories": "Territories",
+    "quotasForecast": "Quotas & Forecast",
     "settings": "Settings",
     "profile": "Profile",
     "logout": "Sign out",
@@ -71,12 +87,16 @@
     "integrations": "Integrations",
     "aiCfo": "AI CFO",
     "aiWorkflows": "AI Workflows",
+    "aiBuilder": "AI Builder",
     "leadScoring": "Lead Scoring",
     "conversationIntel": "Conversation Intel",
     "meetingIntel": "Meeting Intel",
     "loyalty": "Loyalty",
     "campaigns": "Campaigns",
     "automation": "Automation",
+    "documents": "Documents",
+    "payments": "Payments",
+    "support": "Support",
     "customerHome": "Home",
     "customerDocuments": "Documents",
     "customerPayments": "Payments",
@@ -85,13 +105,21 @@
   },
   "dashboard": {
     "welcomeBack": "Welcome back",
+    "welcomeMessage": "Welcome, {{name}}!",
     "welcomeName": "Welcome, {{name}}!",
     "quickStats": "Quick stats",
     "customers": "Customers",
+    "totalCustomers": "Customers",
     "deals": "Deals",
+    "activeDeals": "Active Deals",
     "revenue": "Revenue",
+    "monthRevenue": "This Month",
     "tasks": "Tasks",
-    "viewAll": "View all"
+    "pendingTasks": "Tasks",
+    "viewAll": "View all",
+    "recentActivity": "Recent activity",
+    "noActivity": "No activity yet",
+    "comingSoon": "Full dashboard coming in Sprint 4"
   },
   "roles": {
     "superAdmin": "Super Admin",
@@ -100,14 +128,25 @@
     "merchantAdmin": "Merchant Admin",
     "merchantManager": "Manager",
     "merchantEmployee": "Employee",
-    "customer": "Customer"
+    "customer": "Customer",
+    "yourRole": "Your role"
   },
   "placeholders": {
     "comingInSprint": "Coming in Sprint {{sprint}}",
-    "backToHome": "Back to home"
+    "featureNotReady": "This feature isn't ready yet",
+    "backToHome": "Back to home",
+    "workInProgress": "Work in progress"
+  },
+  "customerPortal": {
+    "myAccount": "My Account",
+    "myCompany": "My Company",
+    "myInvoices": "My Invoices",
+    "myQuotes": "My Quotes",
+    "loyaltyPoints": "Loyalty Points",
+    "recentActivity": "Recent Activity"
   },
   "customer": {
-    "yourCompany": "Your company",
+    "yourCompany": "Your provider",
     "noCompany": "Personal account"
   }
 }

@@ -11,10 +11,14 @@ import { useTranslation } from 'react-i18next';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import type { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 
-import { TabBar, type TabBarSlotResolver, type TabSlotDescriptor } from '../components/common/TabBar';
+import {
+  TabBar,
+  type TabBarSlotResolver,
+  type TabSlotDescriptor,
+} from '../components/common/TabBar';
 import { colors } from '../constants/colors';
 import { CustomerDashboardScreen } from '../screens/customer/CustomerDashboardScreen';
-import { PlaceholderCustomerScreen } from '../screens/customer/PlaceholderCustomerScreen';
+import { PlaceholderScreen } from '../screens/common/PlaceholderScreen';
 import type { CustomerTabParamList } from './types';
 
 const Tab = createBottomTabNavigator<CustomerTabParamList>();
@@ -22,10 +26,11 @@ const Tab = createBottomTabNavigator<CustomerTabParamList>();
 const DocumentsScreen: React.FC = () => {
   const { t } = useTranslation();
   return (
-    <PlaceholderCustomerScreen
+    <PlaceholderScreen
       title={t('navigation.customerDocuments')}
-      sprint={7}
+      sprintNumber={7}
       icon="folder-open-outline"
+      showBackButton={false}
     />
   );
 };
@@ -33,10 +38,11 @@ const DocumentsScreen: React.FC = () => {
 const PaymentsScreen: React.FC = () => {
   const { t } = useTranslation();
   return (
-    <PlaceholderCustomerScreen
+    <PlaceholderScreen
       title={t('navigation.customerPayments')}
-      sprint={7}
+      sprintNumber={7}
       icon="card-outline"
+      showBackButton={false}
     />
   );
 };
@@ -44,10 +50,11 @@ const PaymentsScreen: React.FC = () => {
 const SupportScreen: React.FC = () => {
   const { t } = useTranslation();
   return (
-    <PlaceholderCustomerScreen
+    <PlaceholderScreen
       title={t('navigation.customerSupport')}
-      sprint={7}
+      sprintNumber={7}
       icon="help-buoy-outline"
+      showBackButton={false}
     />
   );
 };
@@ -55,10 +62,11 @@ const SupportScreen: React.FC = () => {
 const ProfileScreen: React.FC = () => {
   const { t } = useTranslation();
   return (
-    <PlaceholderCustomerScreen
+    <PlaceholderScreen
       title={t('navigation.customerProfile')}
-      sprint={7}
+      sprintNumber={7}
       icon="person-circle-outline"
+      showBackButton={false}
     />
   );
 };

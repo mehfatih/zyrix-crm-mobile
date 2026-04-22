@@ -14,38 +14,87 @@ import type { DrawerContentComponentProps } from '@react-navigation/drawer';
 import { Drawer, type DrawerItem } from '../components/common/Drawer';
 import { colors } from '../constants/colors';
 import { AdminDashboardScreen } from '../screens/admin/AdminDashboardScreen';
-import { PlaceholderAdminScreen } from '../screens/admin/PlaceholderAdminScreen';
+import { PlaceholderScreen } from '../screens/common/PlaceholderScreen';
 import type { AdminDrawerParamList } from './types';
 
 const AdminDrawer = createDrawerNavigator<AdminDrawerParamList>();
 
 const CompaniesScreen: React.FC = () => {
   const { t } = useTranslation();
-  return <PlaceholderAdminScreen title={t('navigation.companies')} sprint={8} icon="business-outline" />;
+  return (
+    <PlaceholderScreen
+      title={t('navigation.companies')}
+      sprintNumber={8}
+      icon="business-outline"
+      showMenuButton
+    />
+  );
 };
 const UsersScreen: React.FC = () => {
   const { t } = useTranslation();
-  return <PlaceholderAdminScreen title={t('navigation.users')} sprint={8} icon="people-outline" />;
+  return (
+    <PlaceholderScreen
+      title={t('navigation.users')}
+      sprintNumber={8}
+      icon="people-outline"
+      showMenuButton
+    />
+  );
 };
 const FeatureFlagsScreen: React.FC = () => {
   const { t } = useTranslation();
-  return <PlaceholderAdminScreen title={t('navigation.featureFlags')} sprint={8} icon="flag-outline" />;
+  return (
+    <PlaceholderScreen
+      title={t('navigation.featureFlags')}
+      sprintNumber={8}
+      icon="flag-outline"
+      showMenuButton
+    />
+  );
 };
 const AuditLogScreen: React.FC = () => {
   const { t } = useTranslation();
-  return <PlaceholderAdminScreen title={t('navigation.auditLog')} sprint={8} icon="document-text-outline" />;
+  return (
+    <PlaceholderScreen
+      title={t('navigation.auditLog')}
+      sprintNumber={8}
+      icon="document-text-outline"
+      showMenuButton
+    />
+  );
 };
 const SecurityScreen: React.FC = () => {
   const { t } = useTranslation();
-  return <PlaceholderAdminScreen title={t('navigation.security')} sprint={8} icon="shield-checkmark-outline" />;
+  return (
+    <PlaceholderScreen
+      title={t('navigation.security')}
+      sprintNumber={8}
+      icon="shield-checkmark-outline"
+      showMenuButton
+    />
+  );
 };
 const PlansScreen: React.FC = () => {
   const { t } = useTranslation();
-  return <PlaceholderAdminScreen title={t('navigation.plans')} sprint={8} icon="pricetags-outline" />;
+  return (
+    <PlaceholderScreen
+      title={t('navigation.plans')}
+      sprintNumber={8}
+      icon="pricetags-outline"
+      showMenuButton
+    />
+  );
 };
 const SettingsScreen: React.FC = () => {
   const { t } = useTranslation();
-  return <PlaceholderAdminScreen title={t('navigation.settings')} sprint={8} icon="settings-outline" />;
+  return (
+    <PlaceholderScreen
+      title={t('navigation.settings')}
+      sprintNumber={8}
+      icon="settings-outline"
+      showMenuButton
+    />
+  );
 };
 
 export const AdminNavigator: React.FC = () => {

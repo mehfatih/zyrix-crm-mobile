@@ -1,5 +1,5 @@
 /**
- * MerchantMoreDrawer — drawer shown when the "More" bottom tab is
+ * MerchantMoreNavigator — drawer shown when the "More" bottom tab is
  * selected. Holds secondary destinations (Operations, Compliance,
  * Reports, Integrations, Settings, Profile) so the primary tabs can
  * stay focused on high-frequency actions.
@@ -12,7 +12,7 @@ import type { DrawerContentComponentProps } from '@react-navigation/drawer';
 
 import { Drawer, type DrawerItem } from '../components/common/Drawer';
 import { colors } from '../constants/colors';
-import { PlaceholderScreen } from '../screens/merchant/PlaceholderScreen';
+import { PlaceholderScreen } from '../screens/common/PlaceholderScreen';
 import type { MerchantMoreDrawerParamList } from './types';
 
 const MoreDrawer = createDrawerNavigator<MerchantMoreDrawerParamList>();
@@ -22,8 +22,9 @@ const OperationsScreen: React.FC = () => {
   return (
     <PlaceholderScreen
       title={t('navigation.operations')}
-      sprint={5}
+      sprintNumber={7}
       icon="construct-outline"
+      showMenuButton
     />
   );
 };
@@ -33,8 +34,9 @@ const ComplianceScreen: React.FC = () => {
   return (
     <PlaceholderScreen
       title={t('navigation.compliance')}
-      sprint={7}
-      icon="shield-outline"
+      sprintNumber={7}
+      icon="shield-checkmark-outline"
+      showMenuButton
     />
   );
 };
@@ -44,8 +46,9 @@ const ReportsScreen: React.FC = () => {
   return (
     <PlaceholderScreen
       title={t('navigation.reports')}
-      sprint={5}
-      icon="document-text-outline"
+      sprintNumber={4}
+      icon="bar-chart-outline"
+      showMenuButton
     />
   );
 };
@@ -55,8 +58,9 @@ const IntegrationsScreen: React.FC = () => {
   return (
     <PlaceholderScreen
       title={t('navigation.integrations')}
-      sprint={5}
+      sprintNumber={10}
       icon="link-outline"
+      showMenuButton
     />
   );
 };
@@ -66,8 +70,9 @@ const SettingsScreen: React.FC = () => {
   return (
     <PlaceholderScreen
       title={t('navigation.settings')}
-      sprint={3}
+      sprintNumber={3}
       icon="settings-outline"
+      showMenuButton
     />
   );
 };
@@ -77,19 +82,20 @@ const ProfileScreen: React.FC = () => {
   return (
     <PlaceholderScreen
       title={t('navigation.profile')}
-      sprint={3}
+      sprintNumber={3}
       icon="person-circle-outline"
+      showMenuButton
     />
   );
 };
 
-export const MerchantMoreDrawer: React.FC = () => {
+export const MerchantMoreNavigator: React.FC = () => {
   const { t } = useTranslation();
 
   const items: readonly DrawerItem[] = [
     { route: 'Operations', label: t('navigation.operations'), icon: 'construct-outline' },
-    { route: 'Compliance', label: t('navigation.compliance'), icon: 'shield-outline' },
-    { route: 'Reports', label: t('navigation.reports'), icon: 'document-text-outline' },
+    { route: 'Compliance', label: t('navigation.compliance'), icon: 'shield-checkmark-outline' },
+    { route: 'Reports', label: t('navigation.reports'), icon: 'bar-chart-outline' },
     { route: 'Integrations', label: t('navigation.integrations'), icon: 'link-outline' },
     { route: 'Settings', label: t('navigation.settings'), icon: 'settings-outline' },
     { route: 'Profile', label: t('navigation.profile'), icon: 'person-circle-outline' },
@@ -123,4 +129,4 @@ export const MerchantMoreDrawer: React.FC = () => {
   );
 };
 
-export default MerchantMoreDrawer;
+export default MerchantMoreNavigator;

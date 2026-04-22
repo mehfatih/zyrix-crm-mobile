@@ -9,7 +9,7 @@ import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useTranslation } from 'react-i18next';
 
-import { PlaceholderScreen } from '../screens/merchant/PlaceholderScreen';
+import { PlaceholderScreen } from '../screens/common/PlaceholderScreen';
 import type { MerchantGrowthStackParamList } from './types';
 
 const Stack = createNativeStackNavigator<MerchantGrowthStackParamList>();
@@ -19,7 +19,7 @@ const LoyaltyScreen: React.FC = () => {
   return (
     <PlaceholderScreen
       title={t('navigation.loyalty')}
-      sprint={4}
+      sprintNumber={4}
       icon="ribbon-outline"
     />
   );
@@ -30,7 +30,7 @@ const CampaignsScreen: React.FC = () => {
   return (
     <PlaceholderScreen
       title={t('navigation.campaigns')}
-      sprint={4}
+      sprintNumber={4}
       icon="megaphone-outline"
     />
   );
@@ -41,7 +41,7 @@ const AutomationScreen: React.FC = () => {
   return (
     <PlaceholderScreen
       title={t('navigation.automation')}
-      sprint={4}
+      sprintNumber={4}
       icon="git-merge-outline"
     />
   );

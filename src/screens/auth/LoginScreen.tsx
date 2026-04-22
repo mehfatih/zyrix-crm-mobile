@@ -61,31 +61,58 @@ const MOCK_USERS: readonly MockIdentity[] = [
     email: 'admin@zyrix.co',
     password: 'password',
     role: 'super_admin',
-    name: 'Platform Admin',
+    name: 'Admin User',
     companyId: null,
   },
   {
     email: 'owner@company.com',
     password: 'password',
     role: 'merchant_owner',
-    name: 'Omar Owner',
-    companyId: 'demo-co',
+    name: 'Company Owner',
+    companyId: 'comp_123',
+  },
+  {
+    email: 'manager@company.com',
+    password: 'password',
+    role: 'merchant_manager',
+    name: 'Sales Manager',
+    companyId: 'comp_123',
   },
   {
     email: 'employee@company.com',
     password: 'password',
     role: 'merchant_employee',
-    name: 'Elif Employee',
-    companyId: 'demo-co',
+    name: 'Employee',
+    companyId: 'comp_123',
   },
   {
     email: 'customer@email.com',
     password: 'password',
     role: 'customer',
-    name: 'Carol Customer',
-    companyId: 'demo-co',
+    name: 'Customer User',
+    companyId: 'comp_123',
   },
 ];
+
+/**
+ * Spec §22: unknown emails default to merchant_owner so the app is
+ * testable without hard-coded credentials. Name is synthesised from
+ * the email local-part for a friendly greeting.
+ */
+const fallbackIdentityFor = (email: string): MockIdentity => {
+  const local = email.split('@')[0] ?? 'Owner';
+  const name = local
+    .replace(/[._-]+/g, ' ')
+    .replace(/\b\w/g, (c) => c.toUpperCase())
+    .trim() || 'Test Owner';
+  return {
+    email,
+    password: '',
+    role: 'merchant_owner',
+    name,
+    companyId: 'comp_123',
+  };
+};
 
 const buildSchema = (t: (k: string) => string) =>
   z.object({
@@ -132,15 +159,12 @@ export const LoginScreen: React.FC = () => {
       await new Promise((resolve) => setTimeout(resolve, 450));
 
       const normalizedEmail = values.email.trim().toLowerCase();
-      const identity = MOCK_USERS.find(
+      const matched = MOCK_USERS.find(
         (mock) =>
           mock.email === normalizedEmail && mock.password === values.password
       );
-
-      if (!identity) {
-        Alert.alert(t('auth.loginFailedTitle'), t('auth.loginFailedBody'));
-        return;
-      }
+      // Known mock → use it. Unknown email → spec §22 fallback: merchant_owner.
+      const identity = matched ?? fallbackIdentityFor(normalizedEmail);
 
       const userId = `mock-${identity.role}-${normalizedEmail}`;
       const fullUser: User = {
@@ -277,7 +301,7 @@ export const LoginScreen: React.FC = () => {
             </View>
 
             <View style={styles.hintCard}>
-              <Text style={styles.hintTitle}>{t('auth.demoAccountsTitle')}</Text>
+              <Text style={styles.hintTitle}>{t('auth.testAccountsTitle')}</Text>
               {MOCK_USERS.map((user) => (
                 <Text key={user.email} style={styles.hintLine}>
                   • {user.email} / {user.password}

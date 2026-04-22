@@ -22,7 +22,7 @@ import { colors } from '../constants/colors';
 import { DashboardScreen } from '../screens/merchant/DashboardScreen';
 import { MerchantAIStack } from './MerchantAIStack';
 import { MerchantGrowthStack } from './MerchantGrowthStack';
-import { MerchantMoreDrawer } from './MerchantMoreDrawer';
+import { MerchantMoreNavigator } from './MerchantMoreNavigator';
 import { MerchantSalesStack } from './MerchantSalesStack';
 import type { MerchantTabParamList } from './types';
 
@@ -84,7 +84,7 @@ export const MerchantNavigator: React.FC = () => {
       <Tab.Screen name="SalesTab" component={MerchantSalesStack} />
       <Tab.Screen name="AITab" component={MerchantAIStack} />
       <Tab.Screen name="GrowthTab" component={MerchantGrowthStack} />
-      <Tab.Screen name="MoreTab" component={MerchantMoreDrawer} />
+      <Tab.Screen name="MoreTab" component={MerchantMoreNavigator} />
     </Tab.Navigator>
   );
 };

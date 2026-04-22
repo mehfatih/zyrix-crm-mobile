@@ -10,7 +10,18 @@
     "edit": "Düzenle",
     "back": "Geri",
     "next": "İleri",
-    "continue": "Devam"
+    "continue": "Devam",
+    "signIn": "Giriş yap",
+    "signOut": "Çıkış yap",
+    "createAccount": "Ücretsiz Hesap Oluştur",
+    "freeAccount": "Her zaman ücretsiz hesap",
+    "forgotPassword": "Şifrenizi mi unuttunuz?",
+    "or": "veya",
+    "welcome": "Hoş geldiniz",
+    "hello": "Merhaba",
+    "goodMorning": "Günaydın",
+    "goodAfternoon": "Tünaydın",
+    "goodEvening": "İyi akşamlar"
   },
   "auth": {
     "welcome": "Zyrix'e hoş geldiniz",
@@ -24,14 +35,14 @@
     "loginButton": "Giriş yap",
     "logout": "Çıkış yap",
     "noAccount": "Hesabınız yok mu?",
-    "registerCta": "Kayıt ol",
+    "registerCta": "Ücretsiz Hesap Oluştur",
     "loginSubtitle": "Müşterilerinizi ve satış hattınızı yönetmek için giriş yapın.",
     "invalidEmail": "Lütfen geçerli bir e-posta girin",
     "passwordTooShort": "Şifre en az 6 karakter olmalıdır",
     "required": "Bu alan zorunludur",
     "loginFailedTitle": "Giriş başarısız",
-    "loginFailedBody": "Bilinmeyen e-posta veya şifre. Aşağıdaki demo hesaplardan birini deneyin.",
-    "demoAccountsTitle": "Demo hesaplar"
+    "loginFailedBody": "Bilinmeyen e-posta veya şifre. Aşağıdaki test hesaplarından birini deneyin.",
+    "testAccountsTitle": "Test hesapları"
   },
   "language": {
     "select": "Dilinizi seçin",
@@ -45,16 +56,21 @@
     "dashboard": "Panel",
     "sales": "Satış",
     "ai": "AI Araçları",
+    "aiTools": "AI Araçları",
     "growth": "Büyüme",
     "more": "Daha fazla",
     "menu": "Menü",
+    "home": "Ana Sayfa",
     "customers": "Müşteriler",
     "customerDetail": "Müşteri",
     "deals": "Anlaşmalar",
+    "dealDetail": "Anlaşma",
     "pipeline": "Satış Hattı",
     "quotes": "Teklifler",
     "contracts": "Sözleşmeler",
     "commissions": "Komisyonlar",
+    "territories": "Bölgeler",
+    "quotasForecast": "Kotalar ve Tahmin",
     "settings": "Ayarlar",
     "profile": "Profil",
     "logout": "Çıkış yap",
@@ -71,12 +87,16 @@
     "integrations": "Entegrasyonlar",
     "aiCfo": "AI CFO",
     "aiWorkflows": "AI İş Akışları",
+    "aiBuilder": "AI Oluşturucu",
     "leadScoring": "Potansiyel Müşteri Puanı",
     "conversationIntel": "Konuşma Analizi",
     "meetingIntel": "Toplantı Analizi",
     "loyalty": "Sadakat",
     "campaigns": "Kampanyalar",
     "automation": "Otomasyon",
+    "documents": "Belgeler",
+    "payments": "Ödemeler",
+    "support": "Destek",
     "customerHome": "Ana Sayfa",
     "customerDocuments": "Belgeler",
     "customerPayments": "Ödemeler",
@@ -85,13 +105,21 @@
   },
   "dashboard": {
     "welcomeBack": "Tekrar hoş geldin",
+    "welcomeMessage": "Hoş geldin, {{name}}!",
     "welcomeName": "Hoş geldin, {{name}}!",
     "quickStats": "Hızlı istatistikler",
     "customers": "Müşteriler",
+    "totalCustomers": "Müşteriler",
     "deals": "Anlaşmalar",
+    "activeDeals": "Aktif Anlaşmalar",
     "revenue": "Gelir",
+    "monthRevenue": "Bu Ay",
     "tasks": "Görevler",
-    "viewAll": "Tümünü gör"
+    "pendingTasks": "Görevler",
+    "viewAll": "Tümünü gör",
+    "recentActivity": "Son etkinlikler",
+    "noActivity": "Henüz etkinlik yok",
+    "comingSoon": "Tam panel Sprint 4'te geliyor"
   },
   "roles": {
     "superAdmin": "Süper Yönetici",
@@ -100,14 +128,25 @@
     "merchantAdmin": "Satıcı Yöneticisi",
     "merchantManager": "Müdür",
     "merchantEmployee": "Çalışan",
-    "customer": "Müşteri"
+    "customer": "Müşteri",
+    "yourRole": "Rolünüz"
   },
   "placeholders": {
     "comingInSprint": "{{sprint}}. Sprint'te geliyor",
-    "backToHome": "Ana sayfaya dön"
+    "featureNotReady": "Bu özellik henüz hazır değil",
+    "backToHome": "Ana sayfaya dön",
+    "workInProgress": "Geliştiriliyor"
+  },
+  "customerPortal": {
+    "myAccount": "Hesabım",
+    "myCompany": "Şirketim",
+    "myInvoices": "Faturalarım",
+    "myQuotes": "Tekliflerim",
+    "loyaltyPoints": "Sadakat Puanları",
+    "recentActivity": "Son Etkinlikler"
   },
   "customer": {
-    "yourCompany": "Şirketiniz",
+    "yourCompany": "Hizmet sağlayıcınız",
     "noCompany": "Kişisel hesap"
   }
 }

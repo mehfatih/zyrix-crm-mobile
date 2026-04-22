@@ -6,15 +6,16 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { PlaceholderAdminScreen } from './PlaceholderAdminScreen';
+import { PlaceholderScreen } from '../common/PlaceholderScreen';
 
 export const AdminDashboardScreen: React.FC = () => {
   const { t } = useTranslation();
   return (
-    <PlaceholderAdminScreen
+    <PlaceholderScreen
       title={t('navigation.adminDashboard')}
-      sprint={8}
+      sprintNumber={8}
       icon="speedometer-outline"
+      showMenuButton
     />
   );
 };
