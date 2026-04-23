@@ -76,12 +76,32 @@ export type MerchantAIStackParamList = {
   UploadMeeting: undefined;
 };
 
+export type MerchantOperationsStackParamList = {
+  Payments: undefined;
+  PaymentDetail: { paymentId: string };
+  NewPaymentLink: undefined;
+  Refunds: undefined;
+  NewRefund: undefined;
+};
+
+export type MerchantComplianceStackParamList = {
+  Invoices: undefined;
+  InvoiceDetail: { invoiceId: string };
+  NewInvoice: undefined;
+  TaxInvoices: undefined;
+};
+
+export type MerchantSettingsStackParamList = {
+  SettingsHome: undefined;
+  PaymentGateways: undefined;
+};
+
 export type MerchantMoreDrawerParamList = {
-  Operations: undefined;
-  Compliance: undefined;
+  Operations: NavigatorScreenParams<MerchantOperationsStackParamList>;
+  Compliance: NavigatorScreenParams<MerchantComplianceStackParamList>;
   Reports: undefined;
   Integrations: undefined;
-  Settings: undefined;
+  Settings: NavigatorScreenParams<MerchantSettingsStackParamList>;
   Profile: undefined;
 };
 
