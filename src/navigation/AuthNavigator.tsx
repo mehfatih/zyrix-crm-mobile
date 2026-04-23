@@ -1,14 +1,9 @@
 /**
  * AuthNavigator — native stack holding the pre-login flow.
  *
- * The initial route depends on whether the user has already selected
- * a language: new installs land on `LanguageSelection`, returning users
- * jump straight to `Login`. `Splash` is only used while we hydrate.
- *
- * Sprint 3 adds `Register` and `Onboarding` to the same stack: after
- * registration we push `Onboarding`, and when onboarding completes the
- * root navigator swaps over to the authenticated stack because the
- * merchant user is already in the auth/user stores.
+ * Sprint 9 adds `TwoFactorPrompt` for the mid-login challenge that
+ * surfaces after a password-only login when the account has 2FA
+ * enabled. Initial route still depends on the language-selection flag.
  */
 
 import React from 'react';
@@ -19,6 +14,7 @@ import { LoginScreen } from '../screens/auth/LoginScreen';
 import { OnboardingScreen } from '../screens/auth/OnboardingScreen';
 import { RegisterScreen } from '../screens/auth/RegisterScreen';
 import { SplashScreen } from '../screens/auth/SplashScreen';
+import { TwoFactorPromptScreen } from '../screens/auth/TwoFactorPromptScreen';
 import { useUiStore } from '../store/uiStore';
 import type { AuthStackParamList } from './types';
 
@@ -43,6 +39,7 @@ export const AuthNavigator: React.FC = () => {
       <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen name="Register" component={RegisterScreen} />
       <Stack.Screen name="Onboarding" component={OnboardingScreen} />
+      <Stack.Screen name="TwoFactorPrompt" component={TwoFactorPromptScreen} />
     </Stack.Navigator>
   );
 };

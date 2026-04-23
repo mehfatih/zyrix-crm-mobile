@@ -1,27 +1,77 @@
 /**
- * MerchantSettingsStack — settings home + payment-gateway management.
- *
- * SettingsHome is still a placeholder pending the full settings build
- * (planned later); Sprint 7 wires the gateway management screen so the
- * country-aware payment provider config is reachable from More → Settings.
+ * MerchantSettingsStack — settings home + gateway/security sub-screens.
+ * Sprint 9 extends the stack with the security suite: biometric +
+ * session config (SecurityScreen), trusted devices, IP allowlist, 2FA,
+ * and the per-user security log.
  */
 
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useTranslation } from 'react-i18next';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { DrawerActions, useNavigation } from '@react-navigation/native';
 
+import { DeviceManagementScreen } from '../screens/merchant/settings/DeviceManagementScreen';
 import { Header } from '../components/common/Header';
-import { Icon } from '../components/common/Icon';
+import { Icon, type AnyIconName } from '../components/common/Icon';
+import { IPAllowlistScreen } from '../screens/merchant/settings/IPAllowlistScreen';
 import { PaymentGatewaysScreen } from '../screens/merchant/settings/PaymentGatewaysScreen';
+import { SecurityLogScreen } from '../screens/merchant/settings/SecurityLogScreen';
+import { SecurityScreen } from '../screens/merchant/settings/SecurityScreen';
+import { TwoFactorScreen } from '../screens/merchant/settings/TwoFactorScreen';
 import { colors } from '../constants/colors';
 import { hitSlop, radius, shadows, spacing } from '../constants/spacing';
 import { textStyles } from '../constants/typography';
 import type { MerchantSettingsStackParamList } from './types';
 
 const Stack = createNativeStackNavigator<MerchantSettingsStackParamList>();
+
+interface HomeItem {
+  route: keyof MerchantSettingsStackParamList;
+  icon: AnyIconName;
+  titleKey: string;
+  subtitleKey: string;
+}
+
+const ITEMS: readonly HomeItem[] = [
+  {
+    route: 'Security',
+    icon: 'shield-checkmark-outline',
+    titleKey: 'security.title',
+    subtitleKey: 'security.biometricLogin',
+  },
+  {
+    route: 'DeviceManagement',
+    icon: 'phone-portrait-outline',
+    titleKey: 'deviceManagement.title',
+    subtitleKey: 'security.trustedDevices',
+  },
+  {
+    route: 'IPAllowlist',
+    icon: 'globe-outline',
+    titleKey: 'admin.ipAllowlist',
+    subtitleKey: 'ipAllowlistAdmin.addRule',
+  },
+  {
+    route: 'TwoFactor',
+    icon: 'key-outline',
+    titleKey: 'security.twoFactorAuth',
+    subtitleKey: 'security.enable2FA',
+  },
+  {
+    route: 'SecurityLog',
+    icon: 'document-lock-outline',
+    titleKey: 'securityLog.title',
+    subtitleKey: 'securityLog.recentEvents',
+  },
+  {
+    route: 'PaymentGateways',
+    icon: 'wallet-outline',
+    titleKey: 'paymentGateways.title',
+    subtitleKey: 'paymentGateways.configure',
+  },
+];
 
 const SettingsHomeScreen: React.FC = () => {
   const { t } = useTranslation();
@@ -41,26 +91,31 @@ const SettingsHomeScreen: React.FC = () => {
           </Pressable>
         }
       />
-      <View style={styles.scroll}>
-        <Pressable
-          onPress={() => navigation.navigate('PaymentGateways' as never)}
-          style={({ pressed }) => [
-            styles.card,
-            pressed ? { opacity: 0.85 } : null,
-          ]}
-        >
-          <Icon name="wallet-outline" size={20} color={colors.primary} />
-          <View style={styles.cardBody}>
-            <Text style={styles.cardTitle}>
-              {t('paymentGateways.title')}
-            </Text>
-            <Text style={styles.cardSubtitle}>
-              {t('paymentGateways.configure')}
-            </Text>
-          </View>
-          <Icon name="chevron-forward" size={18} color={colors.textMuted} />
-        </Pressable>
-      </View>
+      <ScrollView contentContainerStyle={styles.scroll}>
+        {ITEMS.map((item) => (
+          <Pressable
+            key={item.route}
+            onPress={() =>
+              (navigation as unknown as {
+                navigate: (route: string) => void;
+              }).navigate(item.route)
+            }
+            style={({ pressed }) => [
+              styles.card,
+              pressed ? { opacity: 0.85 } : null,
+            ]}
+          >
+            <Icon name={item.icon} size={22} color={colors.primary} />
+            <View style={styles.cardBody}>
+              <Text style={styles.cardTitle}>{t(item.titleKey)}</Text>
+              <Text style={styles.cardSubtitle} numberOfLines={1}>
+                {t(item.subtitleKey)}
+              </Text>
+            </View>
+            <Icon name="chevron-forward" size={18} color={colors.textMuted} />
+          </Pressable>
+        ))}
+      </ScrollView>
     </SafeAreaView>
   );
 };
@@ -72,6 +127,11 @@ export const MerchantSettingsStack: React.FC = () => (
   >
     <Stack.Screen name="SettingsHome" component={SettingsHomeScreen} />
     <Stack.Screen name="PaymentGateways" component={PaymentGatewaysScreen} />
+    <Stack.Screen name="Security" component={SecurityScreen} />
+    <Stack.Screen name="DeviceManagement" component={DeviceManagementScreen} />
+    <Stack.Screen name="IPAllowlist" component={IPAllowlistScreen} />
+    <Stack.Screen name="TwoFactor" component={TwoFactorScreen} />
+    <Stack.Screen name="SecurityLog" component={SecurityLogScreen} />
   </Stack.Navigator>
 );
 
@@ -87,6 +147,7 @@ const styles = StyleSheet.create({
   },
   scroll: {
     padding: spacing.base,
+    rowGap: spacing.sm,
   },
   card: {
     flexDirection: 'row',

@@ -1,11 +1,18 @@
 /**
- * App entry. Wires up providers (SafeArea, React Query, React Native Paper),
- * initializes i18n, hides the Expo native splash once the tree has mounted,
- * and renders the RootNavigator.
+ * App entry. Sprint 9 adds security-layer plumbing on top of the
+ * Sprint 1/5 foundation:
+ *
+ *   - `InactivityTracker` wraps the navigator so every touch resets
+ *     the session timer.
+ *   - `sessionManager.startInactivityTimer` runs once on mount, and
+ *     the registered listener renders `<ReAuthScreen />` as a modal
+ *     overlay when the session expires.
+ *   - `jailbreakDetection.isCompromised()` runs before navigation
+ *     renders; if true, the tree is replaced with `<SecurityBlockScreen />`.
  */
 
 import 'react-native-gesture-handler';
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -19,8 +26,17 @@ import {
 import * as SplashScreen from 'expo-splash-screen';
 
 import './src/i18n';
+import { InactivityTracker } from './src/components/common/InactivityTracker';
+import { ReAuthScreen } from './src/screens/common/ReAuthScreen';
+import { SecurityBlockScreen } from './src/screens/common/SecurityBlockScreen';
 import { Toast } from './src/components/common/Toast';
 import { colors } from './src/constants/colors';
+import { isCompromised } from './src/utils/jailbreakDetection';
+import { logSecurityEvent } from './src/utils/securityEvents';
+import {
+  onSessionTimeout,
+  startInactivityTimer,
+} from './src/utils/sessionManager';
 import { RootNavigator } from './src/navigation/RootNavigator';
 
 void SplashScreen.preventAutoHideAsync().catch(() => {
@@ -71,10 +87,27 @@ const navigationTheme = {
 
 export default function App(): React.ReactElement {
   const [ready, setReady] = useState(false);
+  const [needsReAuth, setNeedsReAuth] = useState(false);
+
+  const compromised = useMemo(() => isCompromised(), []);
 
   useEffect(() => {
     const t = setTimeout(() => setReady(true), 0);
     return () => clearTimeout(t);
+  }, []);
+
+  useEffect(() => {
+    if (!compromised) return undefined;
+    void logSecurityEvent('jailbreak_detected', {});
+    return undefined;
+  }, [compromised]);
+
+  useEffect(() => {
+    startInactivityTimer(15);
+    const unsubscribe = onSessionTimeout(() => setNeedsReAuth(true));
+    return () => {
+      unsubscribe();
+    };
   }, []);
 
   const onLayoutRootView = useCallback(async () => {
@@ -91,6 +124,17 @@ export default function App(): React.ReactElement {
     return <View style={styles.booting} />;
   }
 
+  if (compromised) {
+    return (
+      <View style={styles.root} onLayout={onLayoutRootView}>
+        <SafeAreaProvider>
+          <StatusBar style="dark" backgroundColor={colors.background} />
+          <SecurityBlockScreen />
+        </SafeAreaProvider>
+      </View>
+    );
+  }
+
   return (
     <View style={styles.root} onLayout={onLayoutRootView}>
       <SafeAreaProvider>
@@ -98,8 +142,13 @@ export default function App(): React.ReactElement {
           <PaperProvider theme={paperTheme}>
             <NavigationContainer theme={navigationTheme}>
               <StatusBar style="dark" backgroundColor={colors.background} />
-              <RootNavigator />
+              <InactivityTracker>
+                <RootNavigator />
+              </InactivityTracker>
               <Toast />
+              {needsReAuth ? (
+                <ReAuthScreen onResume={() => setNeedsReAuth(false)} />
+              ) : null}
             </NavigationContainer>
           </PaperProvider>
         </QueryClientProvider>

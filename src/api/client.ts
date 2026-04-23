@@ -84,10 +84,54 @@ const extractApiError = (err: AxiosError<ServerErrorShape>): ApiError => {
   return { code: String(code), message: String(message), details: data?.details };
 };
 
-const onIpNotAllowed = (message: string): void => {
-  // Screen-level UI can subscribe to this via the toast hook; for now
-  // we just log so the caller can decide how loud to be.
-  console.warn('[api] IP not allowed:', message);
+type IPNotAllowedListener = (details: {
+  reason?: string;
+  currentIP?: string;
+  allowedIPs?: string[];
+  userRole?: string;
+  message: string;
+}) => void;
+
+const ipListeners = new Set<IPNotAllowedListener>();
+
+export const onIPNotAllowed = (listener: IPNotAllowedListener): (() => void) => {
+  ipListeners.add(listener);
+  return () => {
+    ipListeners.delete(listener);
+  };
+};
+
+const onIpNotAllowed = (
+  message: string,
+  details?: Record<string, unknown>
+): void => {
+  console.warn('[api] IP not allowed:', message, details);
+  const reason = typeof details?.reason === 'string' ? details.reason : undefined;
+  const currentIP =
+    typeof details?.currentIP === 'string' ? details.currentIP : undefined;
+  const userRole =
+    typeof details?.userRole === 'string' ? details.userRole : undefined;
+  const allowedIPs = Array.isArray(details?.allowedIPs)
+    ? (details.allowedIPs as string[])
+    : undefined;
+  const payload = { reason, currentIP, allowedIPs, userRole, message };
+  ipListeners.forEach((listener) => {
+    try {
+      listener(payload);
+    } catch (err) {
+      console.warn('[api] ip listener failed', err);
+    }
+  });
+  // Fire-and-forget security audit entry so the backend knows the
+  // blocked attempt happened.
+  void import('../utils/securityEvents').then(({ logSecurityEvent }) =>
+    logSecurityEvent('permission_denied', {
+      resource: 'ip_allowlist',
+      reason: reason ?? 'IP_NOT_ALLOWED',
+      ipAddress: currentIP,
+      userRole,
+    })
+  );
 };
 
 const onServerError = (message: string): void => {
@@ -115,7 +159,7 @@ client.interceptors.response.use(
     if (status === 403) {
       const normalized = extractApiError(error);
       if (normalized.code === 'IP_NOT_ALLOWED') {
-        onIpNotAllowed(normalized.message);
+        onIpNotAllowed(normalized.message, normalized.details);
       }
       return Promise.reject(normalized);
     }

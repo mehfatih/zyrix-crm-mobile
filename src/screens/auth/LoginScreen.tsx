@@ -8,7 +8,7 @@
  * `RegisterScreen`.
  */
 
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import {
   Alert,
   Keyboard,
@@ -30,12 +30,15 @@ import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { z } from 'zod';
 
 import { Button } from '../../components/common/Button';
+import { Icon } from '../../components/common/Icon';
 import { Input } from '../../components/common/Input';
 import { LanguageSwitcher } from '../../components/common/LanguageSwitcher';
 import { colors } from '../../constants/colors';
+import { logSecurityEvent } from '../../utils/securityEvents';
 import { radius, shadows, spacing } from '../../constants/spacing';
 import { textStyles } from '../../constants/typography';
 import { useAuthStore } from '../../store/authStore';
+import { useBiometric } from '../../hooks/useBiometric';
 import { useUiStore } from '../../store/uiStore';
 import { useUserStore } from '../../store/userStore';
 import {
@@ -143,8 +146,28 @@ export const LoginScreen: React.FC = () => {
 
   const [showPassword, setShowPassword] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const biometric = useBiometric();
+  const [biometricBusy, setBiometricBusy] = useState(false);
 
   const schema = useMemo(() => buildSchema(t), [t]);
+
+  const biometricLabel = useMemo(() => {
+    switch (biometric.type) {
+      case 'FaceID':
+        return t('security.useFaceID');
+      case 'TouchID':
+        return t('security.useTouchID');
+      case 'Fingerprint':
+        return t('security.useFingerprint');
+      default:
+        return t('security.biometricLogin');
+    }
+  }, [biometric.type, t]);
+
+  const biometricIcon =
+    biometric.type === 'FaceID'
+      ? 'happy-outline'
+      : 'finger-print-outline';
 
   const {
     control,
@@ -206,6 +229,51 @@ export const LoginScreen: React.FC = () => {
   const onRegister = (): void => {
     navigation.navigate('Register');
   };
+
+  const tryBiometric = async (): Promise<void> => {
+    setBiometricBusy(true);
+    try {
+      const result = await biometric.login();
+      if (!result) return;
+      await logSecurityEvent('login_success', {
+        method: 'biometric',
+      });
+      const fallback = fallbackIdentityFor('owner@company.com');
+      const userId = result.userId;
+      const fullUser: User = {
+        id: userId,
+        email: fallback.email,
+        name: fallback.name,
+        role: fallback.role,
+        companyId: fallback.companyId,
+        avatar: null,
+        phone: null,
+        country: null,
+        language,
+        permissions: getPermissionsForRole(fallback.role),
+      };
+      const authUser: AuthUser = {
+        id: userId,
+        email: fallback.email,
+        name: fallback.name,
+        role: fallback.role,
+        avatarUrl: null,
+        locale: language,
+      };
+      await setUser(fullUser);
+      await loginAuth({ user: authUser, token: result.token });
+    } finally {
+      setBiometricBusy(false);
+    }
+  };
+
+  useEffect(() => {
+    if (biometric.isAvailable && biometric.isEnabled && !biometric.isLoading) {
+      void tryBiometric();
+    }
+    // Only run after the availability check resolves.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [biometric.isAvailable, biometric.isEnabled, biometric.isLoading]);
 
   return (
     <SafeAreaView style={styles.safe} edges={['top', 'bottom']}>
@@ -292,6 +360,24 @@ export const LoginScreen: React.FC = () => {
                 onPress={handleSubmit(onSubmit)}
                 style={styles.submitButton}
               />
+
+              {biometric.isAvailable && biometric.isEnabled ? (
+                <Pressable
+                  onPress={() => void tryBiometric()}
+                  disabled={biometricBusy}
+                  style={({ pressed }) => [
+                    styles.biometricBtn,
+                    pressed ? { opacity: 0.85 } : null,
+                  ]}
+                >
+                  <Icon
+                    name={biometricIcon}
+                    size={22}
+                    color={colors.primary}
+                  />
+                  <Text style={styles.biometricLabel}>{biometricLabel}</Text>
+                </Pressable>
+              ) : null}
 
               <View style={styles.registerCtaBlock}>
                 <Text style={styles.registerText}>{t('auth.noAccount')}</Text>
@@ -381,6 +467,20 @@ const styles = StyleSheet.create({
   submitButton: {
     alignSelf: 'stretch',
     marginTop: spacing.md,
+  },
+  biometricBtn: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    columnGap: spacing.sm,
+    paddingVertical: spacing.md,
+    borderRadius: radius.pill,
+    backgroundColor: colors.primarySoft,
+    marginTop: spacing.sm,
+  },
+  biometricLabel: {
+    ...textStyles.button,
+    color: colors.primary,
   },
   registerCtaBlock: {
     alignItems: 'center',

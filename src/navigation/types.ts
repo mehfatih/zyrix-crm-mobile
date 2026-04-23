@@ -15,6 +15,7 @@ export type AuthStackParamList = {
   Login: undefined;
   Register: undefined;
   Onboarding: undefined;
+  TwoFactorPrompt: undefined;
 };
 
 export type AdminCompaniesStackParamList = {
@@ -120,6 +121,11 @@ export type MerchantComplianceStackParamList = {
 export type MerchantSettingsStackParamList = {
   SettingsHome: undefined;
   PaymentGateways: undefined;
+  Security: undefined;
+  DeviceManagement: undefined;
+  IPAllowlist: undefined;
+  TwoFactor: undefined;
+  SecurityLog: undefined;
 };
 
 export type MerchantMoreDrawerParamList = {
