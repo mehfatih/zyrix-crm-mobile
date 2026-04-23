@@ -19,22 +19,12 @@ import {
   View,
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
+import * as Sharing from 'expo-sharing';
 
 import { Icon } from '../common/Icon';
 import { colors } from '../../constants/colors';
 import { radius, shadows, spacing } from '../../constants/spacing';
 import { textStyles } from '../../constants/typography';
-
-type SharingModule = typeof import('expo-sharing');
-
-const safeRequire = <T,>(moduleId: string): T | null => {
-  try {
-    // eslint-disable-next-line @typescript-eslint/no-require-imports, global-require
-    return require(moduleId) as T;
-  } catch {
-    return null;
-  }
-};
 
 export interface PDFPreviewProps {
   url: string;
@@ -61,15 +51,15 @@ export const PDFPreview: React.FC<PDFPreviewProps> = ({
   };
 
   const shareDocument = async (): Promise<void> => {
-    const sharing = safeRequire<SharingModule>('expo-sharing');
-    if (sharing && (await sharing.isAvailableAsync())) {
+    if (await Sharing.isAvailableAsync()) {
       try {
-        await sharing.shareAsync(url, { dialogTitle: fileName ?? 'PDF' });
+        await Sharing.shareAsync(url, { dialogTitle: fileName ?? 'PDF' });
       } catch (err) {
         console.warn('[PDFPreview] share failed', err);
       }
       return;
     }
+
     await openInBrowser();
   };
 
@@ -79,6 +69,7 @@ export const PDFPreview: React.FC<PDFPreviewProps> = ({
         <View style={styles.iconWrap}>
           <Icon name="document-outline" size={36} color={colors.primary} />
         </View>
+
         <View style={styles.meta}>
           <Text style={styles.fileName} numberOfLines={1}>
             {fileName ?? 'document.pdf'}
@@ -107,6 +98,7 @@ export const PDFPreview: React.FC<PDFPreviewProps> = ({
           <Icon name="download-outline" size={18} color={colors.primary} />
           <Text style={styles.actionText}>{t('common.save')}</Text>
         </Pressable>
+
         <Pressable
           onPress={shareDocument}
           style={({ pressed }) => [
@@ -146,7 +138,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  meta: { flex: 1 },
+  meta: {
+    flex: 1,
+  },
   fileName: {
     ...textStyles.h4,
     color: colors.textPrimary,
