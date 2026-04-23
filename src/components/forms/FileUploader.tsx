@@ -21,6 +21,8 @@ import {
   View,
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
+import * as ImagePicker from 'expo-image-picker';
+import * as DocumentPicker from 'expo-document-picker';
 
 import { Icon } from '../common/Icon';
 import { colors } from '../../constants/colors';
@@ -48,19 +50,8 @@ export interface FileUploaderProps {
 
 type PickerSource = 'camera' | 'gallery' | 'files';
 
-type ImagePickerModule = typeof import('expo-image-picker');
-type DocumentPickerModule = typeof import('expo-document-picker');
-
-const safeRequire = <T,>(moduleId: string): T | null => {
-  try {
-    // eslint-disable-next-line @typescript-eslint/no-require-imports, global-require
-    return require(moduleId) as T;
-  } catch {
-    return null;
-  }
-};
-
-const genId = (): string => `f_${Date.now()}_${Math.random().toString(36).slice(2, 6)}`;
+const genId = (): string =>
+  `f_${Date.now()}_${Math.random().toString(36).slice(2, 6)}`;
 
 export const FileUploader: React.FC<FileUploaderProps> = ({
   value = [],
@@ -77,30 +68,25 @@ export const FileUploader: React.FC<FileUploaderProps> = ({
   const pick = async (source: PickerSource): Promise<void> => {
     setSheetOpen(false);
 
-    const imagePicker = safeRequire<ImagePickerModule>('expo-image-picker');
-    const documentPicker = safeRequire<DocumentPickerModule>(
-      'expo-document-picker'
-    );
-
     try {
       if (source === 'camera' || source === 'gallery') {
-        if (!imagePicker) {
-          Alert.alert(t('files.uploadFailed'), 'expo-image-picker');
-          return;
-        }
         if (source === 'camera') {
-          const permission = await imagePicker.requestCameraPermissionsAsync();
+          const permission = await ImagePicker.requestCameraPermissionsAsync();
           if (!permission.granted) {
             Alert.alert(t('files.uploadFailed'));
             return;
           }
-          const result = await imagePicker.launchCameraAsync({
-            mediaTypes: imagePicker.MediaTypeOptions.Images,
+
+          const result = await ImagePicker.launchCameraAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.Images,
             quality: 0.8,
           });
+
           if (result.canceled || result.assets.length === 0) return;
+
           const asset = result.assets[0];
           if (!asset) return;
+
           onUpload({
             id: genId(),
             name: asset.fileName ?? asset.uri.split('/').pop() ?? 'photo.jpg',
@@ -112,17 +98,21 @@ export const FileUploader: React.FC<FileUploaderProps> = ({
           return;
         }
 
-        const permission = await imagePicker.requestMediaLibraryPermissionsAsync();
+        const permission =
+          await ImagePicker.requestMediaLibraryPermissionsAsync();
         if (!permission.granted) {
           Alert.alert(t('files.uploadFailed'));
           return;
         }
-        const result = await imagePicker.launchImageLibraryAsync({
-          mediaTypes: imagePicker.MediaTypeOptions.Images,
+
+        const result = await ImagePicker.launchImageLibraryAsync({
+          mediaTypes: ImagePicker.MediaTypeOptions.Images,
           allowsMultipleSelection: multiple,
           quality: 0.8,
         });
+
         if (result.canceled) return;
+
         result.assets.forEach((asset) => {
           onUpload({
             id: genId(),
@@ -136,22 +126,22 @@ export const FileUploader: React.FC<FileUploaderProps> = ({
         return;
       }
 
-      if (!documentPicker) {
-        Alert.alert(t('files.uploadFailed'), 'expo-document-picker');
-        return;
-      }
-      const result = await documentPicker.getDocumentAsync({
+      const result = await DocumentPicker.getDocumentAsync({
         type: acceptedTypes as string[],
         multiple,
         copyToCacheDirectory: true,
       });
+
       if (result.canceled) return;
+
       const asset = result.assets[0];
       if (!asset) return;
+
       if (asset.size && asset.size > maxSizeMB * 1024 * 1024) {
         Alert.alert(t('files.uploadFailed'));
         return;
       }
+
       onUpload({
         id: genId(),
         name: asset.name,
@@ -195,9 +185,14 @@ export const FileUploader: React.FC<FileUploaderProps> = ({
                 <Image source={{ uri: file.uri }} style={styles.thumb} />
               ) : (
                 <View style={styles.docIcon}>
-                  <Icon name="document-outline" size={24} color={colors.primary} />
+                  <Icon
+                    name="document-outline"
+                    size={24}
+                    color={colors.primary}
+                  />
                 </View>
               )}
+
               <View style={styles.fileBody}>
                 <Text style={styles.fileName} numberOfLines={1}>
                   {file.name}
@@ -208,6 +203,7 @@ export const FileUploader: React.FC<FileUploaderProps> = ({
                   </Text>
                 ) : null}
               </View>
+
               <Pressable
                 onPress={() => onRemove?.(file.id)}
                 hitSlop={8}
@@ -229,6 +225,7 @@ export const FileUploader: React.FC<FileUploaderProps> = ({
         <Pressable style={styles.backdrop} onPress={() => setSheetOpen(false)}>
           <Pressable style={styles.sheet} onPress={(e) => e.stopPropagation()}>
             <Text style={styles.sheetTitle}>{t('files.tapToUpload')}</Text>
+
             <SheetOption
               icon="camera-outline"
               label="Camera"
@@ -270,11 +267,13 @@ const SheetOption: React.FC<{
 
 const styles = StyleSheet.create({
   wrapper: { width: '100%', marginBottom: spacing.md },
+
   label: {
     ...textStyles.label,
     color: colors.textSecondary,
     marginBottom: spacing.xs,
   },
+
   dropzone: {
     alignItems: 'center',
     justifyContent: 'center',
@@ -287,18 +286,22 @@ const styles = StyleSheet.create({
     backgroundColor: colors.primarySoft,
     rowGap: spacing.xs,
   },
+
   dropText: {
     ...textStyles.bodyMedium,
     color: colors.primaryDark,
   },
+
   dropMeta: {
     ...textStyles.caption,
     color: colors.textMuted,
   },
+
   list: {
     marginTop: spacing.sm,
     rowGap: spacing.sm,
   },
+
   fileRow: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -309,12 +312,14 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: colors.border,
   },
+
   thumb: {
     width: 44,
     height: 44,
     borderRadius: radius.sm,
     backgroundColor: colors.surfaceAlt,
   },
+
   docIcon: {
     width: 44,
     height: 44,
@@ -323,9 +328,19 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+
   fileBody: { flex: 1 },
-  fileName: { ...textStyles.body, color: colors.textPrimary },
-  fileMeta: { ...textStyles.caption, color: colors.textMuted },
+
+  fileName: {
+    ...textStyles.body,
+    color: colors.textPrimary,
+  },
+
+  fileMeta: {
+    ...textStyles.caption,
+    color: colors.textMuted,
+  },
+
   removeBtn: {
     width: 36,
     height: 36,
@@ -334,11 +349,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+
   backdrop: {
     flex: 1,
     backgroundColor: 'rgba(12, 74, 110, 0.45)',
     justifyContent: 'flex-end',
   },
+
   sheet: {
     backgroundColor: colors.surface,
     borderTopLeftRadius: radius.xl,
@@ -346,11 +363,13 @@ const styles = StyleSheet.create({
     padding: spacing.lg,
     rowGap: spacing.sm,
   },
+
   sheetTitle: {
     ...textStyles.h4,
     color: colors.textPrimary,
     marginBottom: spacing.xs,
   },
+
   sheetRow: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -358,6 +377,7 @@ const styles = StyleSheet.create({
     padding: spacing.base,
     borderRadius: radius.base,
   },
+
   sheetLabel: {
     ...textStyles.bodyMedium,
     color: colors.textPrimary,
