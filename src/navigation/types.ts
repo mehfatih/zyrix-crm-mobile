@@ -17,15 +17,41 @@ export type AuthStackParamList = {
   Onboarding: undefined;
 };
 
+export type AdminCompaniesStackParamList = {
+  CompaniesList: undefined;
+  CompanyDetail: { companyId: string };
+};
+
+export type AdminUsersStackParamList = {
+  UsersList: undefined;
+  UserDetail: { userId: string };
+};
+
+export type AdminPlansStackParamList = {
+  PlansList: undefined;
+  EditPlan: { planId: string | null };
+};
+
+export type AdminSecurityStackParamList = {
+  SecurityHome: undefined;
+  IPAllowlist: undefined;
+  NetworkRules: undefined;
+  SCIMTokens: undefined;
+  RetentionPolicies: undefined;
+  ComplianceExports: undefined;
+};
+
 /** Admin drawer — super_admin / admin. */
 export type AdminDrawerParamList = {
   AdminDashboard: undefined;
-  Companies: undefined;
-  Users: undefined;
+  Companies: NavigatorScreenParams<AdminCompaniesStackParamList>;
+  Users: NavigatorScreenParams<AdminUsersStackParamList>;
   FeatureFlags: undefined;
+  Plans: NavigatorScreenParams<AdminPlansStackParamList>;
   AuditLog: undefined;
-  Security: undefined;
-  Plans: undefined;
+  Security: NavigatorScreenParams<AdminSecurityStackParamList>;
+  SystemStats: undefined;
+  SystemNotifications: undefined;
   Settings: undefined;
 };
 
