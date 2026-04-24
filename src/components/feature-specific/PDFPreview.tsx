@@ -1,12 +1,6 @@
 /**
- * PDFPreview — lightweight PDF placeholder.
- *
- * Real PDF rendering needs `react-native-pdf` (native module, requires
- * a dev build) which isn't part of Zyrix's bundle yet. Sprint 5 ships
- * a minimal preview that shows the document metadata and exposes
- * download + share actions so the calling screens have the full UX
- * hooked up. When `react-native-pdf` lands we swap the placeholder for
- * the real viewer without touching callers.
+ * PDFPreview - lightweight PDF placeholder.
+ * Uses static import for expo-sharing (Metro-safe).
  */
 
 import React from 'react';
@@ -51,15 +45,15 @@ export const PDFPreview: React.FC<PDFPreviewProps> = ({
   };
 
   const shareDocument = async (): Promise<void> => {
-    if (await Sharing.isAvailableAsync()) {
-      try {
+    try {
+      const available = await Sharing.isAvailableAsync();
+      if (available) {
         await Sharing.shareAsync(url, { dialogTitle: fileName ?? 'PDF' });
-      } catch (err) {
-        console.warn('[PDFPreview] share failed', err);
+        return;
       }
-      return;
+    } catch (err) {
+      console.warn('[PDFPreview] share failed', err);
     }
-
     await openInBrowser();
   };
 
@@ -69,16 +63,15 @@ export const PDFPreview: React.FC<PDFPreviewProps> = ({
         <View style={styles.iconWrap}>
           <Icon name="document-outline" size={36} color={colors.primary} />
         </View>
-
         <View style={styles.meta}>
           <Text style={styles.fileName} numberOfLines={1}>
             {fileName ?? 'document.pdf'}
           </Text>
           <Text style={styles.detail}>
             {pageCount
-              ? `${pageCount} ${t('common.continue').toLowerCase()}`
+              ? pageCount + ' ' + t('common.continue').toLowerCase()
               : 'PDF'}
-            {size ? ` · ${size}` : ''}
+            {size ? ' . ' + size : ''}
           </Text>
         </View>
       </View>
@@ -98,7 +91,6 @@ export const PDFPreview: React.FC<PDFPreviewProps> = ({
           <Icon name="download-outline" size={18} color={colors.primary} />
           <Text style={styles.actionText}>{t('common.save')}</Text>
         </Pressable>
-
         <Pressable
           onPress={shareDocument}
           style={({ pressed }) => [
@@ -138,9 +130,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  meta: {
-    flex: 1,
-  },
+  meta: { flex: 1 },
   fileName: {
     ...textStyles.h4,
     color: colors.textPrimary,
