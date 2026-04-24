@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "zyrix-crm-mobile",
+    "name": "Zyrix CRM",
     "slug": "zyrix-crm-mobile",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -10,11 +10,11 @@
     "splash": {
       "image": "./assets/splash-icon.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#F0F9FF"
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.journaliste.zyrixcrmmobile",
+      "bundleIdentifier": "com.zyrix.crm",
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false
       }
@@ -22,26 +22,25 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#112044"
+        "backgroundColor": "#F0F9FF"
       },
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,
-      "package": "com.zyrix.crm",
-      "versionCode": 6
+      "package": "com.zyrix.crm"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "extra": {
-      "eas": {
-        "projectId": "20f8ba49-975c-4f3b-a5f5-1bf7f09c2d1c"
-      }
-    },
-    "owner": "journaliste",
     "plugins": [
       "expo-font",
       "expo-secure-store",
       "expo-localization"
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "25cbe9d1-6e06-459e-b383-7b8109f6702d"
+      }
+    },
+    "owner": "mehfatih77"
   }
 }
