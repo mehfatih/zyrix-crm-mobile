@@ -21,7 +21,6 @@ import { AuthNavigator } from './AuthNavigator';
 import { CustomerNavigator } from './CustomerNavigator';
 import { MerchantNavigator } from './MerchantNavigator';
 import { LoadingScreen } from '../screens/common/LoadingScreen';
-import { SplashScreen } from '../screens/auth/SplashScreen';
 import { useAuthStore } from '../store/authStore';
 import { useCountryConfigStore } from '../store/countryConfigStore';
 import { useUiStore } from '../store/uiStore';
@@ -71,7 +70,7 @@ export const RootNavigator: React.FC = () => {
     !userHasHydrated ||
     !countryHasHydrated
   ) {
-    return <SplashScreen />;
+    return <LoadingScreen />;
   }
 
   if (!isAuthenticated) {

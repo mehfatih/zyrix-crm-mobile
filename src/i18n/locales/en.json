@@ -62,7 +62,33 @@
     "arabic": "العربية",
     "english": "English",
     "turkish": "Türkçe",
-    "change": "Change language"
+    "change": "Change language",
+    "changed": "Language changed"
+  },
+  "notifications": {
+    "title": "Notifications",
+    "markAllRead": "Mark all read",
+    "emptyTitle": "No notifications yet",
+    "emptySubtitle": "We'll let you know when something new needs your attention."
+  },
+  "profile": {
+    "name": "Full name",
+    "country": "Country",
+    "language": "App language",
+    "changeCountry": "Change country",
+    "countryUpdated": "Country updated",
+    "countryUpdatedSubtitle": "Currency, taxes, and date formats have been refreshed.",
+    "countryHint": "{{currency}} · {{tax}}",
+    "languageHint": "Changes UI text only — does not affect currency or tax rules.",
+    "separationNote": "Your UI language and your country are independent. Switching language only translates the app. Your country controls currency, tax rules, and invoice formats."
+  },
+  "moreDrawer": {
+    "operationsDescription": "Paid, in progress, and refunded payments",
+    "complianceDescription": "Invoices, tax submissions, and e-Fatura",
+    "reportsDescription": "Performance, revenue, and custom exports",
+    "integrationsDescription": "Connect gateways, messaging, and accounting",
+    "settingsDescription": "Security, devices, and payment gateways",
+    "profileDescription": "Your details, country, and display language"
   },
   "navigation": {
     "dashboard": "Dashboard",

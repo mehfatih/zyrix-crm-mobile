@@ -21,10 +21,13 @@ import type { AuthStackParamList } from './types';
 const Stack = createNativeStackNavigator<AuthStackParamList>();
 
 export const AuthNavigator: React.FC = () => {
+  // Sprint 1 (app): the welcome Splash screen is always the first route.
+  // Users reach Login/Register from its two CTAs; the language-picker
+  // appears inline (top-right) rather than as a forced first step.
   const hasSelectedLanguage = useUiStore((s) => s.hasSelectedLanguage);
   const initialRoute: keyof AuthStackParamList = hasSelectedLanguage
-    ? 'Login'
-    : 'LanguageSelection';
+    ? 'Splash'
+    : 'Splash';
 
   return (
     <Stack.Navigator

@@ -39,6 +39,10 @@ export interface DrawerItem {
   route: string;
   /** i18n key or already-translated label. */
   label: string;
+  /** Optional secondary description (i18n key or literal). Sprint 1 (app):
+   *  drawer items expand to 88px with a 2-line description so labels like
+   *  "Paid / In Progress / Refunded" no longer clip. */
+  description?: string;
   icon: AnyIconName;
   iconFamily?: IconFamily;
   badge?: number;
@@ -160,18 +164,28 @@ export const Drawer: React.FC<DrawerProps> = ({
                 <Icon
                   name={item.icon}
                   family={item.iconFamily}
-                  size={22}
+                  size={24}
                   color={focused ? colors.primary : colors.textSecondary}
                 />
-                <Text
-                  numberOfLines={1}
-                  style={[
-                    styles.itemLabel,
-                    focused ? styles.itemLabelFocused : null,
-                  ]}
-                >
-                  {resolveLabel(item.label, t)}
-                </Text>
+                <View style={styles.itemTextWrap}>
+                  <Text
+                    numberOfLines={1}
+                    style={[
+                      styles.itemLabel,
+                      focused ? styles.itemLabelFocused : null,
+                    ]}
+                  >
+                    {resolveLabel(item.label, t)}
+                  </Text>
+                  {item.description ? (
+                    <Text
+                      numberOfLines={2}
+                      style={styles.itemDescription}
+                    >
+                      {resolveLabel(item.description, t)}
+                    </Text>
+                  ) : null}
+                </View>
                 {item.badge && item.badge > 0 ? (
                   <View style={styles.badge}>
                     <Text style={styles.badgeText}>
@@ -187,7 +201,7 @@ export const Drawer: React.FC<DrawerProps> = ({
 
       <View style={styles.footer}>
         <View style={styles.footerRow}>
-          <LanguageSwitcher variant="inline" showLabel />
+          <LanguageSwitcher variant="inline" />
         </View>
         <Button
           label={t('navigation.logout')}
@@ -265,6 +279,7 @@ const styles = StyleSheet.create({
   item: {
     flexDirection: 'row',
     alignItems: 'center',
+    minHeight: 88,
     paddingVertical: spacing.md,
     paddingHorizontal: spacing.base,
     borderRadius: radius.md,
@@ -276,14 +291,24 @@ const styles = StyleSheet.create({
   itemPressed: {
     backgroundColor: colors.overlay,
   },
-  itemLabel: {
-    ...textStyles.bodyMedium,
-    color: colors.textSecondary,
+  itemTextWrap: {
     flex: 1,
+    rowGap: 2,
+  },
+  itemLabel: {
+    fontSize: 15,
+    fontWeight: '700',
+    color: colors.primary,
+    letterSpacing: 0.1,
   },
   itemLabelFocused: {
-    color: colors.primary,
-    fontWeight: '600',
+    color: colors.primaryDark,
+    fontWeight: '700',
+  },
+  itemDescription: {
+    fontSize: 12,
+    color: colors.textMuted,
+    lineHeight: 16,
   },
   badge: {
     minWidth: 22,

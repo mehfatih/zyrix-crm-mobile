@@ -7,8 +7,9 @@
  * actions. Pull-to-refresh hits `refetch()` on the stats query.
  */
 
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import {
+  Modal,
   Pressable,
   RefreshControl,
   ScrollView,
@@ -23,7 +24,9 @@ import { useNavigation } from '@react-navigation/native';
 import { CurrencyDisplay } from '../../components/forms/CurrencyDisplay';
 import { Header } from '../../components/common/Header';
 import { Icon, type AnyIconName } from '../../components/common/Icon';
+import { LanguageSwitcher } from '../../components/common/LanguageSwitcher';
 import { LineChart, type LinePoint } from '../../components/charts/LineChart';
+import { NotificationsScreen } from './NotificationsScreen';
 import { PieChart } from '../../components/charts/PieChart';
 import { StatCard } from '../../components/common/StatCard';
 import { colors } from '../../constants/colors';
@@ -93,6 +96,8 @@ export const DashboardScreen: React.FC = () => {
   const statsQuery = useDashboardStats();
   const { data: stats, isLoading, isFetching, refetch } = statsQuery;
 
+  const [notificationsOpen, setNotificationsOpen] = useState(false);
+
   const onRefresh = useCallback((): void => {
     void refetch();
   }, [refetch]);
@@ -120,14 +125,23 @@ export const DashboardScreen: React.FC = () => {
         title={t('navigation.dashboard')}
         showBack={false}
         rightSlot={
-          <Pressable hitSlop={hitSlop.md} style={styles.bellBtn}>
-            <Icon
-              name="notifications-outline"
-              size={22}
-              color={colors.textInverse}
-            />
-            <View style={styles.bellDot} />
-          </Pressable>
+          <View style={styles.headerActions}>
+            <Pressable
+              onPress={() => setNotificationsOpen(true)}
+              hitSlop={hitSlop.md}
+              style={styles.bellBtn}
+              accessibilityRole="button"
+              accessibilityLabel={t('notifications.title')}
+            >
+              <Icon
+                name="notifications-outline"
+                size={22}
+                color={colors.textInverse}
+              />
+              <View style={styles.bellDot} />
+            </Pressable>
+            <LanguageSwitcher />
+          </View>
         }
       />
       <ScrollView
@@ -271,6 +285,15 @@ export const DashboardScreen: React.FC = () => {
           ))}
         </ScrollView>
       </ScrollView>
+
+      <Modal
+        visible={notificationsOpen}
+        animationType="slide"
+        presentationStyle="pageSheet"
+        onRequestClose={() => setNotificationsOpen(false)}
+      >
+        <NotificationsScreen onClose={() => setNotificationsOpen(false)} />
+      </Modal>
     </SafeAreaView>
   );
 };
@@ -288,6 +311,11 @@ const styles = StyleSheet.create({
     padding: spacing.base,
     paddingBottom: spacing.xxxl,
     rowGap: spacing.base,
+  },
+  headerActions: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    columnGap: spacing.xs,
   },
   bellBtn: {
     width: 40,

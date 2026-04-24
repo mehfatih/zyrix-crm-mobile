@@ -62,7 +62,33 @@
     "arabic": "العربية",
     "english": "English",
     "turkish": "Türkçe",
-    "change": "تغيير اللغة"
+    "change": "تغيير اللغة",
+    "changed": "تم تغيير اللغة"
+  },
+  "notifications": {
+    "title": "التنبيهات",
+    "markAllRead": "وضع الكل كمقروء",
+    "emptyTitle": "لا توجد تنبيهات بعد",
+    "emptySubtitle": "سنعلمك هنا عندما يستجد ما يستحق انتباهك."
+  },
+  "profile": {
+    "name": "الاسم الكامل",
+    "country": "الدولة",
+    "language": "لغة التطبيق",
+    "changeCountry": "تغيير الدولة",
+    "countryUpdated": "تم تحديث الدولة",
+    "countryUpdatedSubtitle": "تم تحديث العملة والضرائب وصيغ التواريخ.",
+    "countryHint": "{{currency}} · {{tax}}",
+    "languageHint": "تغيير اللغة يُعدّل النصوص فقط ولا يؤثر على العملة أو الضرائب.",
+    "separationNote": "اللغة والدولة مستقلتان. تبديل اللغة يُغيّر النصوص فقط، بينما تتحكم الدولة في العملة والضرائب وصيغ الفواتير."
+  },
+  "moreDrawer": {
+    "operationsDescription": "المدفوعات المدفوعة وقيد التنفيذ والمستردة",
+    "complianceDescription": "الفواتير والإقرارات الضريبية و-e-Fatura",
+    "reportsDescription": "الأداء والإيرادات والتصدير المخصص",
+    "integrationsDescription": "ربط بوابات الدفع والرسائل والمحاسبة",
+    "settingsDescription": "الأمان والأجهزة وبوابات الدفع",
+    "profileDescription": "بياناتك ودولتك ولغة العرض"
   },
   "navigation": {
     "dashboard": "لوحة التحكم",

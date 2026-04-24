@@ -62,7 +62,33 @@
     "arabic": "العربية",
     "english": "English",
     "turkish": "Türkçe",
-    "change": "Dili değiştir"
+    "change": "Dili değiştir",
+    "changed": "Dil değiştirildi"
+  },
+  "notifications": {
+    "title": "Bildirimler",
+    "markAllRead": "Tümünü okundu işaretle",
+    "emptyTitle": "Henüz bildirim yok",
+    "emptySubtitle": "Dikkat etmeniz gereken bir şey olduğunda burada göreceksiniz."
+  },
+  "profile": {
+    "name": "Ad soyad",
+    "country": "Ülke",
+    "language": "Uygulama dili",
+    "changeCountry": "Ülkeyi değiştir",
+    "countryUpdated": "Ülke güncellendi",
+    "countryUpdatedSubtitle": "Para birimi, vergi ve tarih biçimleri yenilendi.",
+    "countryHint": "{{currency}} · {{tax}}",
+    "languageHint": "Yalnızca arayüz metnini değiştirir — para birimi veya vergiyi etkilemez.",
+    "separationNote": "Uygulama dili ve ülkeniz birbirinden bağımsızdır. Dil değiştirmek yalnızca metinleri çevirir; ülke seçimi para birimini, vergi kurallarını ve fatura biçimini belirler."
+  },
+  "moreDrawer": {
+    "operationsDescription": "Ödenmiş, sürmekte ve iade edilen tahsilatlar",
+    "complianceDescription": "Faturalar, vergi gönderimleri ve e-Fatura",
+    "reportsDescription": "Performans, gelir ve özel dışa aktarımlar",
+    "integrationsDescription": "Ödeme, mesajlaşma ve muhasebe entegrasyonları",
+    "settingsDescription": "Güvenlik, cihazlar ve ödeme ağ geçitleri",
+    "profileDescription": "Bilgileriniz, ülkeniz ve görüntüleme diliniz"
   },
   "navigation": {
     "dashboard": "Panel",
