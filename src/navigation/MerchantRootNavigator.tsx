@@ -25,7 +25,7 @@ import { ConversationsScreen } from '../screens/engage/ConversationsScreen';
 import { DashboardsScreen } from '../screens/grow/DashboardsScreen';
 import { DealsScreen } from '../screens/crm/DealsScreen';
 import { FeedsScreen } from '../screens/engage/FeedsScreen';
-import { HelpScreen } from '../screens/system/HelpScreen';
+import { HelpStack } from './HelpStack';
 import { MarketingEmailScreen } from '../screens/engage/MarketingEmailScreen';
 import { MeetingLinksScreen } from '../screens/engage/MeetingLinksScreen';
 import { MerchantNavigator } from './MerchantNavigator';
@@ -93,7 +93,7 @@ export const MerchantRootNavigator: React.FC = () => {
       <RootDrawer.Screen name="Dashboards" component={DashboardsScreen} />
       <RootDrawer.Screen name="Segments" component={SegmentsScreen} />
       <RootDrawer.Screen name="Settings" component={MerchantSettingsStack} />
-      <RootDrawer.Screen name="Help" component={HelpScreen} />
+      <RootDrawer.Screen name="Help" component={HelpStack} />
       <RootDrawer.Screen name="Profile" component={ProfileScreen} />
     </RootDrawer.Navigator>
   );

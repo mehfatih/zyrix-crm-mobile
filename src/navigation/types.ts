@@ -118,6 +118,13 @@ export type MerchantComplianceStackParamList = {
   TaxInvoices: undefined;
 };
 
+export type HelpStackParamList = {
+  HelpHome: undefined;
+  HelpCategory: { categoryId: string };
+  HelpArticle: { categoryId: string; slug: string };
+  HelpSearch: undefined;
+};
+
 export type MerchantSettingsStackParamList = {
   SettingsHome: undefined;
   PaymentGateways: undefined;
