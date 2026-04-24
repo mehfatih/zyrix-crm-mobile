@@ -13,6 +13,7 @@ import {
   Alert,
   Keyboard,
   KeyboardAvoidingView,
+  Modal,
   Platform,
   Pressable,
   ScrollView,
@@ -143,22 +144,28 @@ export const LoginScreen: React.FC = () => {
   const language = useUiStore((s) => s.language);
   const loginAuth = useAuthStore((s) => s.login);
   const setUser = useUserStore((s) => s.setUser);
+  const setBiometricEnabled = useUserStore((s) => s.setBiometricEnabled);
 
   const [showPassword, setShowPassword] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const biometric = useBiometric();
   const [biometricBusy, setBiometricBusy] = useState(false);
+  const [enrollPromptOpen, setEnrollPromptOpen] = useState(false);
+  const [pendingEnroll, setPendingEnroll] = useState<{
+    token: string;
+    userId: string;
+  } | null>(null);
 
   const schema = useMemo(() => buildSchema(t), [t]);
 
   const biometricLabel = useMemo(() => {
     switch (biometric.type) {
       case 'FaceID':
-        return t('security.useFaceID');
+        return t('biometricEnroll.signInWithFaceID');
       case 'TouchID':
-        return t('security.useTouchID');
+        return t('biometricEnroll.signInWithTouchID');
       case 'Fingerprint':
-        return t('security.useFingerprint');
+        return t('biometricEnroll.signInWithFingerprint');
       default:
         return t('security.biometricLogin');
     }
@@ -215,11 +222,68 @@ export const LoginScreen: React.FC = () => {
         locale: language,
       };
 
+      const issuedToken = mockTokenFor(identity.email);
+
+      // First-time biometric enrolment: if the device supports biometrics
+      // but the user hasn't opted in yet, defer auth-store login until
+      // after they've answered the prompt — this lets us either save the
+      // token to SecureStore (with biometric requirement) or skip cleanly.
+      if (
+        biometric.isAvailable &&
+        !biometric.isEnabled &&
+        !biometric.isLoading
+      ) {
+        setPendingEnroll({ token: issuedToken, userId });
+        await setUser(fullUser);
+        // Stash the auth credentials in a closure that the modal handlers
+        // can resolve after the user picks an answer.
+        pendingAuthRef.current = { authUser, token: issuedToken };
+        setEnrollPromptOpen(true);
+        return;
+      }
+
       await setUser(fullUser);
-      await loginAuth({ user: authUser, token: mockTokenFor(identity.email) });
+      await loginAuth({ user: authUser, token: issuedToken });
     } finally {
       setSubmitting(false);
     }
+  };
+
+  // Holds the credentials surfaced to the enrolment prompt so we can
+  // finalise login regardless of which button the user taps.
+  const pendingAuthRef = React.useRef<{
+    authUser: AuthUser;
+    token: string;
+  } | null>(null);
+
+  const finishLoginAfterEnroll = async (): Promise<void> => {
+    const pending = pendingAuthRef.current;
+    pendingAuthRef.current = null;
+    setEnrollPromptOpen(false);
+    setPendingEnroll(null);
+    if (!pending) return;
+    await loginAuth({ user: pending.authUser, token: pending.token });
+  };
+
+  const onEnableBiometric = async (): Promise<void> => {
+    if (pendingEnroll) {
+      const ok = await biometric.enable(pendingEnroll.token, pendingEnroll.userId);
+      if (ok) {
+        await setBiometricEnabled(true);
+      }
+    }
+    await finishLoginAfterEnroll();
+  };
+
+  const onSkipBiometric = async (): Promise<void> => {
+    await finishLoginAfterEnroll();
+  };
+
+  const onCameraSignIn = (): void => {
+    Alert.alert(
+      t('biometricEnroll.cameraSignIn'),
+      t('biometricEnroll.cameraComingSoon')
+    );
   };
 
   const onForgotPassword = (): void => {
@@ -297,6 +361,37 @@ export const LoginScreen: React.FC = () => {
             </View>
 
             <View style={styles.card}>
+              {biometric.isAvailable && biometric.isEnabled ? (
+                <View style={styles.primaryBiometricBlock}>
+                  <Pressable
+                    onPress={() => void tryBiometric()}
+                    disabled={biometricBusy}
+                    accessibilityRole="button"
+                    accessibilityLabel={biometricLabel}
+                    style={({ pressed }) => [
+                      styles.biometricPrimary,
+                      pressed ? { opacity: 0.92 } : null,
+                    ]}
+                  >
+                    <View style={styles.biometricIconCircle}>
+                      <Icon
+                        name={biometricIcon}
+                        size={28}
+                        color={colors.white}
+                      />
+                    </View>
+                    <Text style={styles.biometricPrimaryLabel}>
+                      {biometricLabel}
+                    </Text>
+                  </Pressable>
+                  <View style={styles.dividerRow}>
+                    <View style={styles.dividerLine} />
+                    <Text style={styles.dividerText}>{t('common.or')}</Text>
+                    <View style={styles.dividerLine} />
+                  </View>
+                </View>
+              ) : null}
+
               <Controller
                 control={control}
                 name="email"
@@ -361,23 +456,24 @@ export const LoginScreen: React.FC = () => {
                 style={styles.submitButton}
               />
 
-              {biometric.isAvailable && biometric.isEnabled ? (
-                <Pressable
-                  onPress={() => void tryBiometric()}
-                  disabled={biometricBusy}
-                  style={({ pressed }) => [
-                    styles.biometricBtn,
-                    pressed ? { opacity: 0.85 } : null,
-                  ]}
-                >
-                  <Icon
-                    name={biometricIcon}
-                    size={22}
-                    color={colors.primary}
-                  />
-                  <Text style={styles.biometricLabel}>{biometricLabel}</Text>
-                </Pressable>
-              ) : null}
+              <Pressable
+                onPress={onCameraSignIn}
+                accessibilityRole="button"
+                accessibilityLabel={t('biometricEnroll.cameraSignIn')}
+                style={({ pressed }) => [
+                  styles.cameraBtn,
+                  pressed ? { opacity: 0.85 } : null,
+                ]}
+              >
+                <Icon
+                  name="camera-outline"
+                  size={20}
+                  color={colors.lavender}
+                />
+                <Text style={styles.cameraLabel}>
+                  {t('biometricEnroll.cameraSignIn')}
+                </Text>
+              </Pressable>
 
               <View style={styles.registerCtaBlock}>
                 <Text style={styles.registerText}>{t('auth.noAccount')}</Text>
@@ -395,6 +491,47 @@ export const LoginScreen: React.FC = () => {
           </ScrollView>
         </TouchableWithoutFeedback>
       </KeyboardAvoidingView>
+
+      <Modal
+        transparent
+        visible={enrollPromptOpen}
+        animationType="fade"
+        onRequestClose={() => void onSkipBiometric()}
+      >
+        <View style={styles.modalBackdrop}>
+          <View style={styles.modalCard}>
+            <View style={styles.modalIconCircle}>
+              <Icon name={biometricIcon} size={32} color={colors.primary} />
+            </View>
+            <Text style={styles.modalTitle}>{t('biometricEnroll.title')}</Text>
+            <Text style={styles.modalBody}>{t('biometricEnroll.body')}</Text>
+            <View style={styles.modalActions}>
+              <Pressable
+                onPress={() => void onSkipBiometric()}
+                style={({ pressed }) => [
+                  styles.modalSecondary,
+                  pressed ? { opacity: 0.85 } : null,
+                ]}
+              >
+                <Text style={styles.modalSecondaryLabel}>
+                  {t('biometricEnroll.later')}
+                </Text>
+              </Pressable>
+              <Pressable
+                onPress={() => void onEnableBiometric()}
+                style={({ pressed }) => [
+                  styles.modalPrimary,
+                  pressed ? { opacity: 0.92 } : null,
+                ]}
+              >
+                <Text style={styles.modalPrimaryLabel}>
+                  {t('biometricEnroll.enable')}
+                </Text>
+              </Pressable>
+            </View>
+          </View>
+        </View>
+      </Modal>
     </SafeAreaView>
   );
 };
@@ -468,19 +605,135 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     marginTop: spacing.md,
   },
-  biometricBtn: {
+  primaryBiometricBlock: {
+    rowGap: spacing.md,
+    marginBottom: spacing.md,
+  },
+  biometricPrimary: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    columnGap: spacing.md,
+    paddingVertical: spacing.md,
+    borderRadius: radius.pill,
+    backgroundColor: colors.primary,
+    ...shadows.md,
+  },
+  biometricIconCircle: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: colors.primaryDark,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  biometricPrimaryLabel: {
+    ...textStyles.button,
+    color: colors.white,
+    fontWeight: '700',
+  },
+  dividerRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    columnGap: spacing.sm,
+  },
+  dividerLine: {
+    flex: 1,
+    height: StyleSheet.hairlineWidth,
+    backgroundColor: colors.border,
+  },
+  dividerText: {
+    ...textStyles.caption,
+    color: colors.textMuted,
+    fontWeight: '600',
+    textTransform: 'uppercase',
+    letterSpacing: 1,
+  },
+  cameraBtn: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
     columnGap: spacing.sm,
-    paddingVertical: spacing.md,
+    paddingVertical: spacing.sm,
     borderRadius: radius.pill,
-    backgroundColor: colors.primarySoft,
+    borderWidth: 1,
+    borderColor: colors.lavenderSoft,
+    backgroundColor: colors.surface,
     marginTop: spacing.sm,
   },
-  biometricLabel: {
+  cameraLabel: {
+    ...textStyles.label,
+    color: colors.lavender,
+    fontWeight: '600',
+  },
+  modalBackdrop: {
+    flex: 1,
+    backgroundColor: 'rgba(15, 23, 42, 0.45)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: spacing.xl,
+  },
+  modalCard: {
+    width: '100%',
+    maxWidth: 360,
+    backgroundColor: colors.surface,
+    borderRadius: radius.xl,
+    padding: spacing.xl,
+    alignItems: 'center',
+    rowGap: spacing.sm,
+    ...shadows.lg,
+  },
+  modalIconCircle: {
+    width: 72,
+    height: 72,
+    borderRadius: 36,
+    backgroundColor: colors.primarySoft,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: spacing.xs,
+  },
+  modalTitle: {
+    ...textStyles.h3,
+    color: colors.textHeading,
+    textAlign: 'center',
+  },
+  modalBody: {
+    ...textStyles.body,
+    color: colors.textMuted,
+    textAlign: 'center',
+  },
+  modalActions: {
+    flexDirection: 'row',
+    columnGap: spacing.sm,
+    marginTop: spacing.lg,
+    width: '100%',
+  },
+  modalSecondary: {
+    flex: 1,
+    paddingVertical: spacing.md,
+    borderRadius: radius.pill,
+    borderWidth: 1.5,
+    borderColor: colors.border,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  modalSecondaryLabel: {
     ...textStyles.button,
-    color: colors.primary,
+    color: colors.textSecondary,
+    fontWeight: '600',
+  },
+  modalPrimary: {
+    flex: 1,
+    paddingVertical: spacing.md,
+    borderRadius: radius.pill,
+    backgroundColor: colors.primary,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  modalPrimaryLabel: {
+    ...textStyles.button,
+    color: colors.white,
+    fontWeight: '700',
   },
   registerCtaBlock: {
     alignItems: 'center',

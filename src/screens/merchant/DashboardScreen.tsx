@@ -9,6 +9,7 @@
 
 import React, { useCallback, useMemo, useState } from 'react';
 import {
+  Alert,
   Modal,
   Pressable,
   RefreshControl,
@@ -19,7 +20,7 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTranslation } from 'react-i18next';
-import { useNavigation } from '@react-navigation/native';
+import { DrawerActions, useNavigation } from '@react-navigation/native';
 
 import { CurrencyDisplay } from '../../components/forms/CurrencyDisplay';
 import { Header } from '../../components/common/Header';
@@ -98,6 +99,18 @@ export const DashboardScreen: React.FC = () => {
 
   const [notificationsOpen, setNotificationsOpen] = useState(false);
 
+  const openDrawer = useCallback((): void => {
+    navigation.dispatch(DrawerActions.openDrawer());
+  }, [navigation]);
+
+  const onSearch = useCallback((): void => {
+    Alert.alert(t('appHeader.search'), t('appHeader.globalSearchPlaceholder'));
+  }, [t]);
+
+  const onQuickAdd = useCallback((): void => {
+    Alert.alert(t('appHeader.quickAdd'));
+  }, [t]);
+
   const onRefresh = useCallback((): void => {
     void refetch();
   }, [refetch]);
@@ -122,16 +135,46 @@ export const DashboardScreen: React.FC = () => {
   return (
     <SafeAreaView edges={['bottom']} style={styles.safe}>
       <Header
-        title={t('navigation.dashboard')}
+        title={t('common.appName')}
         showBack={false}
+        titleAlign="start"
+        leftSlot={
+          <Pressable
+            onPress={openDrawer}
+            hitSlop={hitSlop.md}
+            accessibilityRole="button"
+            accessibilityLabel={t('appHeader.menu')}
+            style={styles.iconBtn}
+          >
+            <Icon name="menu-outline" size={24} color={colors.textInverse} />
+          </Pressable>
+        }
         rightSlot={
           <View style={styles.headerActions}>
+            <Pressable
+              onPress={onSearch}
+              hitSlop={hitSlop.md}
+              accessibilityRole="button"
+              accessibilityLabel={t('appHeader.search')}
+              style={styles.iconBtn}
+            >
+              <Icon name="search" size={22} color={colors.textInverse} />
+            </Pressable>
+            <Pressable
+              onPress={onQuickAdd}
+              hitSlop={hitSlop.md}
+              accessibilityRole="button"
+              accessibilityLabel={t('appHeader.quickAdd')}
+              style={styles.iconBtn}
+            >
+              <Icon name="add" size={24} color={colors.textInverse} />
+            </Pressable>
             <Pressable
               onPress={() => setNotificationsOpen(true)}
               hitSlop={hitSlop.md}
               style={styles.bellBtn}
               accessibilityRole="button"
-              accessibilityLabel={t('notifications.title')}
+              accessibilityLabel={t('appHeader.notifications')}
             >
               <Icon
                 name="notifications-outline"
@@ -315,7 +358,13 @@ const styles = StyleSheet.create({
   headerActions: {
     flexDirection: 'row',
     alignItems: 'center',
-    columnGap: spacing.xs,
+    columnGap: spacing.xxs,
+  },
+  iconBtn: {
+    width: 40,
+    height: 40,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   bellBtn: {
     width: 40,

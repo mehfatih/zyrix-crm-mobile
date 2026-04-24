@@ -19,7 +19,7 @@ import React, { useEffect } from 'react';
 import { AdminNavigator } from './AdminNavigator';
 import { AuthNavigator } from './AuthNavigator';
 import { CustomerNavigator } from './CustomerNavigator';
-import { MerchantNavigator } from './MerchantNavigator';
+import { MerchantRootNavigator } from './MerchantRootNavigator';
 import { LoadingScreen } from '../screens/common/LoadingScreen';
 import { useAuthStore } from '../store/authStore';
 import { useCountryConfigStore } from '../store/countryConfigStore';
@@ -36,7 +36,7 @@ const pickNavigator = (role: UserRole | null): React.ReactElement => {
     case 'merchant_admin':
     case 'merchant_manager':
     case 'merchant_employee':
-      return <MerchantNavigator />;
+      return <MerchantRootNavigator />;
     case 'customer':
       return <CustomerNavigator />;
     default:

@@ -23,6 +23,7 @@ import {
 } from '../types/auth';
 
 const USER_STORAGE_KEY = 'zyrix.user.profile';
+const BIOMETRIC_FLAG_KEY = 'zyrix.user.biometricEnabled';
 
 type SetState = (
   partial:
@@ -61,12 +62,14 @@ export interface UserStoreState {
   currentUser: User | null;
   permissions: UserPermissions;
   hasHydrated: boolean;
+  biometricEnabled: boolean;
 
   setUser: (user: User | null) => Promise<void>;
   updateProfile: (partial: Partial<Omit<User, 'id' | 'permissions'>>) => Promise<void>;
   setRole: (role: UserRole) => Promise<void>;
   clearUser: () => Promise<void>;
   hydrate: () => Promise<void>;
+  setBiometricEnabled: (enabled: boolean) => Promise<void>;
 }
 
 const applySetUser =
@@ -106,13 +109,33 @@ const applySetRole =
 
 const applyClearUser = (set: SetState) => async (): Promise<void> => {
   await safeRemove(USER_STORAGE_KEY);
-  set({ currentUser: null, permissions: { ...EMPTY_PERMISSIONS } });
+  await safeRemove(BIOMETRIC_FLAG_KEY);
+  set({
+    currentUser: null,
+    permissions: { ...EMPTY_PERMISSIONS },
+    biometricEnabled: false,
+  });
 };
 
+const applySetBiometricEnabled =
+  (set: SetState) =>
+  async (enabled: boolean): Promise<void> => {
+    if (enabled) {
+      await safeWrite(BIOMETRIC_FLAG_KEY, 'true');
+    } else {
+      await safeRemove(BIOMETRIC_FLAG_KEY);
+    }
+    set({ biometricEnabled: enabled });
+  };
+
 const applyHydrate = (set: SetState) => async (): Promise<void> => {
-  const raw = await safeRead(USER_STORAGE_KEY);
+  const [raw, bioFlag] = await Promise.all([
+    safeRead(USER_STORAGE_KEY),
+    safeRead(BIOMETRIC_FLAG_KEY),
+  ]);
+  const biometricEnabled = bioFlag === 'true';
   if (!raw) {
-    set({ hasHydrated: true });
+    set({ hasHydrated: true, biometricEnabled });
     return;
   }
   try {
@@ -121,11 +144,12 @@ const applyHydrate = (set: SetState) => async (): Promise<void> => {
       currentUser: parsed,
       permissions: parsed.permissions ?? { ...EMPTY_PERMISSIONS },
       hasHydrated: true,
+      biometricEnabled,
     });
   } catch (err) {
     console.warn('[userStore] corrupt profile blob — dropping', err);
     await safeRemove(USER_STORAGE_KEY);
-    set({ hasHydrated: true });
+    set({ hasHydrated: true, biometricEnabled });
   }
 };
 
@@ -133,12 +157,15 @@ export const useUserStore = create<UserStoreState>((set, get) => ({
   currentUser: null,
   permissions: { ...EMPTY_PERMISSIONS },
   hasHydrated: false,
+  biometricEnabled: false,
 
   setUser: applySetUser(set),
   updateProfile: applyUpdateProfile(set, get),
   setRole: applySetRole(set, get),
   clearUser: applyClearUser(set),
   hydrate: applyHydrate(set),
+  setBiometricEnabled: applySetBiometricEnabled(set),
 }));
 
 export const USER_STORAGE_KEY_EXPORT = USER_STORAGE_KEY;
+export const BIOMETRIC_FLAG_KEY_EXPORT = BIOMETRIC_FLAG_KEY;

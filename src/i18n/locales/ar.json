@@ -1151,5 +1151,61 @@
     "iPad": "iPad",
     "androidPhone": "هاتف أندرويد",
     "androidTablet": "جهاز لوحي أندرويد"
+  },
+  "sidebar": {
+    "home": "الرئيسية",
+    "pinned": "المثبّت",
+    "pinToTop": "تثبيت في الأعلى",
+    "unpin": "إلغاء التثبيت",
+    "groupWork": "العمل",
+    "groupEngage": "التواصل",
+    "groupGrow": "النمو",
+    "groupSystem": "النظام",
+    "search": "ابحث في القائمة",
+    "version": "v2026.1",
+    "logout": "تسجيل الخروج",
+    "contacts": "جهات الاتصال",
+    "companies": "الشركات",
+    "deals": "الصفقات",
+    "tasks": "المهام",
+    "tickets": "التذاكر",
+    "conversations": "المحادثات",
+    "marketingEmail": "البريد التسويقي",
+    "calls": "المكالمات",
+    "meetingLinks": "روابط الاجتماعات",
+    "feeds": "التغذية",
+    "dashboards": "اللوحات",
+    "segments": "الشرائح",
+    "help": "المساعدة",
+    "settings": "الإعدادات",
+    "todaysTasks": "مهام اليوم",
+    "dealsPipeline": "خط الصفقات",
+    "comingSoonTitle": "قريبًا",
+    "comingSoonSubtitle": "نُعدّ لك شيئًا رائعًا"
+  },
+  "biometricEnroll": {
+    "title": "تفعيل الدخول بالبصمة؟",
+    "body": "ادخل مباشرة في المرة القادمة دون كتابة كلمة المرور.",
+    "enable": "تفعيل",
+    "later": "ربما لاحقًا",
+    "cameraSignIn": "الدخول عبر الكاميرا",
+    "cameraComingSoon": "الدخول عبر الكاميرا قادم قريبًا",
+    "signInWithFaceID": "الدخول ببصمة الوجه",
+    "signInWithTouchID": "الدخول ببصمة الإصبع",
+    "signInWithFingerprint": "الدخول ببصمة الإصبع"
+  },
+  "appHeader": {
+    "search": "بحث",
+    "quickAdd": "إضافة سريعة",
+    "notifications": "التنبيهات",
+    "menu": "القائمة",
+    "globalSearchPlaceholder": "ابحث عن أي شيء"
+  },
+  "plansBadge": {
+    "free": "الباقة المجانية",
+    "starter": "باقة المبتدئ",
+    "pro": "الباقة المتقدمة",
+    "business": "باقة الأعمال",
+    "enterprise": "باقة المؤسسات"
   }
 }

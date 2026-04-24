@@ -1172,5 +1172,61 @@
     "iPad": "iPad",
     "androidPhone": "Android phone",
     "androidTablet": "Android tablet"
+  },
+  "sidebar": {
+    "home": "Home",
+    "pinned": "Pinned",
+    "pinToTop": "Pin to top",
+    "unpin": "Unpin",
+    "groupWork": "WORK",
+    "groupEngage": "ENGAGE",
+    "groupGrow": "GROW",
+    "groupSystem": "SYSTEM",
+    "search": "Search the menu",
+    "version": "v2026.1",
+    "logout": "Log out",
+    "contacts": "Contacts",
+    "companies": "Companies",
+    "deals": "Deals",
+    "tasks": "Tasks",
+    "tickets": "Tickets",
+    "conversations": "Conversations",
+    "marketingEmail": "Marketing Email",
+    "calls": "Calls",
+    "meetingLinks": "Meeting Links",
+    "feeds": "Feeds",
+    "dashboards": "Dashboards",
+    "segments": "Segments",
+    "help": "Help",
+    "settings": "Settings",
+    "todaysTasks": "Today's tasks",
+    "dealsPipeline": "Deals pipeline",
+    "comingSoonTitle": "Coming soon",
+    "comingSoonSubtitle": "We're crafting something great for you"
+  },
+  "biometricEnroll": {
+    "title": "Enable biometric login?",
+    "body": "Sign in instantly next time without typing your password.",
+    "enable": "Enable",
+    "later": "Maybe later",
+    "cameraSignIn": "Use camera to sign in",
+    "cameraComingSoon": "Camera sign-in is coming soon",
+    "signInWithFaceID": "Sign in with Face ID",
+    "signInWithTouchID": "Sign in with Touch ID",
+    "signInWithFingerprint": "Sign in with fingerprint"
+  },
+  "appHeader": {
+    "search": "Search",
+    "quickAdd": "Quick add",
+    "notifications": "Notifications",
+    "menu": "Menu",
+    "globalSearchPlaceholder": "Search anything"
+  },
+  "plansBadge": {
+    "free": "Free plan",
+    "starter": "Starter plan",
+    "pro": "Pro plan",
+    "business": "Business plan",
+    "enterprise": "Enterprise plan"
   }
 }

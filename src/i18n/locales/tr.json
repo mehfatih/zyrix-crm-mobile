@@ -1151,5 +1151,61 @@
     "iPad": "iPad",
     "androidPhone": "Android telefon",
     "androidTablet": "Android tablet"
+  },
+  "sidebar": {
+    "home": "Ana sayfa",
+    "pinned": "Sabitlenmiş",
+    "pinToTop": "Üste sabitle",
+    "unpin": "Sabitlemeyi kaldır",
+    "groupWork": "İŞ",
+    "groupEngage": "ETKİLEŞİM",
+    "groupGrow": "BÜYÜME",
+    "groupSystem": "SİSTEM",
+    "search": "Menüde ara",
+    "version": "v2026.1",
+    "logout": "Çıkış yap",
+    "contacts": "Kişiler",
+    "companies": "Şirketler",
+    "deals": "Anlaşmalar",
+    "tasks": "Görevler",
+    "tickets": "Talepler",
+    "conversations": "Konuşmalar",
+    "marketingEmail": "Pazarlama E-postası",
+    "calls": "Aramalar",
+    "meetingLinks": "Toplantı Bağlantıları",
+    "feeds": "Akışlar",
+    "dashboards": "Gösterge Panelleri",
+    "segments": "Segmentler",
+    "help": "Yardım",
+    "settings": "Ayarlar",
+    "todaysTasks": "Bugünün görevleri",
+    "dealsPipeline": "Anlaşma hattı",
+    "comingSoonTitle": "Yakında geliyor",
+    "comingSoonSubtitle": "Sizin için harika bir şey hazırlıyoruz"
+  },
+  "biometricEnroll": {
+    "title": "Biyometrik girişi etkinleştir?",
+    "body": "Bir dahaki sefere parolayı yazmadan anında giriş yapın.",
+    "enable": "Etkinleştir",
+    "later": "Belki sonra",
+    "cameraSignIn": "Kameradan giriş",
+    "cameraComingSoon": "Kameradan giriş yakında geliyor",
+    "signInWithFaceID": "Yüz kimliğiyle giriş",
+    "signInWithTouchID": "Parmak iziyle giriş",
+    "signInWithFingerprint": "Parmak iziyle giriş"
+  },
+  "appHeader": {
+    "search": "Ara",
+    "quickAdd": "Hızlı ekle",
+    "notifications": "Bildirimler",
+    "menu": "Menü",
+    "globalSearchPlaceholder": "Her şeyi ara"
+  },
+  "plansBadge": {
+    "free": "Ücretsiz plan",
+    "starter": "Başlangıç planı",
+    "pro": "Pro plan",
+    "business": "İşletme planı",
+    "enterprise": "Kurumsal plan"
   }
 }
