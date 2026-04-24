@@ -1,13 +1,17 @@
 /**
- * DashboardScreen — real merchant home for Sprint 4.
+ * DashboardScreen — merchant home.
  *
- * Pulls stats from `useDashboardStats`, renders a welcome card with
- * country flag, 2×2 StatCard grid, revenue LineChart, deals-by-stage
- * PieChart, a recent-activities feed, and a horizontal scroll of quick
- * actions. Pull-to-refresh hits `refetch()` on the stats query.
+ * Sprint 4 introduced the live KPI/chart layout; Sprint 3 (mobile) wires
+ * the new "+" header action to a `<QuickAddSheet />` bottom sheet, adds
+ * the `<AIRecommendationsCard />` slider to the bottom of the scroll, and
+ * extends the pull-to-refresh handler to also re-fetch recommendations.
+ *
+ * Two extra modal screens (`<ScanScreen />`, `<VoiceNoteScreen />`) are
+ * wired here because the corresponding tiles open them directly rather
+ * than navigating into a stack.
  */
 
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useMemo, useRef, useState } from 'react';
 import {
   Alert,
   Modal,
@@ -22,6 +26,10 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTranslation } from 'react-i18next';
 import { DrawerActions, useNavigation } from '@react-navigation/native';
 
+import {
+  AIRecommendationsCard,
+  type AIRecommendationsCardHandle,
+} from '../../components/AIRecommendationsCard';
 import { CurrencyDisplay } from '../../components/forms/CurrencyDisplay';
 import { Header } from '../../components/common/Header';
 import { Icon, type AnyIconName } from '../../components/common/Icon';
@@ -29,7 +37,10 @@ import { LanguageSwitcher } from '../../components/common/LanguageSwitcher';
 import { LineChart, type LinePoint } from '../../components/charts/LineChart';
 import { NotificationsScreen } from './NotificationsScreen';
 import { PieChart } from '../../components/charts/PieChart';
+import { QuickAddSheet } from '../../components/QuickAddSheet';
+import { ScanScreen } from '../scan/ScanScreen';
 import { StatCard } from '../../components/common/StatCard';
+import { VoiceNoteScreen } from '../notes/VoiceNoteScreen';
 import { colors } from '../../constants/colors';
 import { findCountry } from '../../constants/countries';
 import { hitSlop, radius, shadows, spacing } from '../../constants/spacing';
@@ -37,6 +48,7 @@ import { textStyles } from '../../constants/typography';
 import { useCountryConfig } from '../../hooks/useCountryConfig';
 import { useDashboardStats } from '../../hooks/useDashboardStats';
 import type { SupportedLanguage } from '../../i18n';
+import type { QuickAddTileKey } from '../../services/quickAddUsageTracker';
 import { useUiStore } from '../../store/uiStore';
 import { useUserStore } from '../../store/userStore';
 
@@ -97,7 +109,11 @@ export const DashboardScreen: React.FC = () => {
   const statsQuery = useDashboardStats();
   const { data: stats, isLoading, isFetching, refetch } = statsQuery;
 
+  const aiCardRef = useRef<AIRecommendationsCardHandle>(null);
   const [notificationsOpen, setNotificationsOpen] = useState(false);
+  const [quickAddOpen, setQuickAddOpen] = useState(false);
+  const [scanOpen, setScanOpen] = useState(false);
+  const [voiceOpen, setVoiceOpen] = useState(false);
 
   const openDrawer = useCallback((): void => {
     navigation.dispatch(DrawerActions.openDrawer());
@@ -108,11 +124,24 @@ export const DashboardScreen: React.FC = () => {
   }, [t]);
 
   const onQuickAdd = useCallback((): void => {
-    Alert.alert(t('appHeader.quickAdd'));
-  }, [t]);
+    setQuickAddOpen(true);
+  }, []);
+
+  const onTileSelect = useCallback((key: QuickAddTileKey): boolean => {
+    if (key === 'scanQR') {
+      setScanOpen(true);
+      return true;
+    }
+    if (key === 'voiceNote') {
+      setVoiceOpen(true);
+      return true;
+    }
+    return false;
+  }, []);
 
   const onRefresh = useCallback((): void => {
     void refetch();
+    void aiCardRef.current?.refresh();
   }, [refetch]);
 
   const linePoints = useMemo<LinePoint[]>(() => {
@@ -196,6 +225,8 @@ export const DashboardScreen: React.FC = () => {
             onRefresh={onRefresh}
             tintColor={colors.primary}
             colors={[colors.primary]}
+            title={t('dashboardExtra.updating')}
+            titleColor={colors.primary}
           />
         }
       >
@@ -327,7 +358,35 @@ export const DashboardScreen: React.FC = () => {
             </Pressable>
           ))}
         </ScrollView>
+
+        <View style={styles.aiCardWrap}>
+          <AIRecommendationsCard ref={aiCardRef} />
+        </View>
       </ScrollView>
+
+      <QuickAddSheet
+        visible={quickAddOpen}
+        onClose={() => setQuickAddOpen(false)}
+        onTileSelect={onTileSelect}
+      />
+
+      <Modal
+        visible={scanOpen}
+        animationType="slide"
+        presentationStyle="fullScreen"
+        onRequestClose={() => setScanOpen(false)}
+      >
+        <ScanScreen onClose={() => setScanOpen(false)} />
+      </Modal>
+
+      <Modal
+        visible={voiceOpen}
+        animationType="slide"
+        presentationStyle="pageSheet"
+        onRequestClose={() => setVoiceOpen(false)}
+      >
+        <VoiceNoteScreen onClose={() => setVoiceOpen(false)} />
+      </Modal>
 
       <Modal
         visible={notificationsOpen}
@@ -495,6 +554,11 @@ const styles = StyleSheet.create({
     ...textStyles.label,
     color: colors.textPrimary,
     fontWeight: '600',
+  },
+  aiCardWrap: {
+    marginTop: spacing.sm,
+    marginBottom: spacing.base,
+    marginHorizontal: -spacing.base,
   },
 });
 
