@@ -12,11 +12,16 @@
       "resizeMode": "contain",
       "backgroundColor": "#F0F9FF"
     },
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.zyrix.crm",
       "infoPlist": {
-        "ITSAppUsesNonExemptEncryption": false
+        "ITSAppUsesNonExemptEncryption": false,
+        "NSCameraUsageDescription": "Zyrix CRM needs camera access to scan business cards and QR codes.",
+        "NSPhotoLibraryUsageDescription": "Zyrix CRM needs photo library access to attach images to customer records.",
+        "NSMicrophoneUsageDescription": "Zyrix CRM needs microphone access to record voice notes.",
+        "NSFaceIDUsageDescription": "Zyrix CRM uses Face ID for secure and fast sign-in."
       }
     },
     "android": {
