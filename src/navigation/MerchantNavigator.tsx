@@ -13,10 +13,12 @@
  */
 
 import React, { useCallback } from 'react';
+import { View, StyleSheet } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import type { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 
+import { AIFloatingButton } from '../components/ai/AIFloatingButton';
 import { TabBar, type TabBarSlotResolver, type TabSlotDescriptor } from '../components/common/TabBar';
 import { colors } from '../constants/colors';
 import { DashboardScreen } from '../screens/merchant/DashboardScreen';
@@ -72,21 +74,28 @@ export const MerchantNavigator: React.FC = () => {
   );
 
   return (
-    <Tab.Navigator
-      initialRouteName="DashboardTab"
-      tabBar={renderTabBar}
-      screenOptions={{
-        headerShown: false,
-        sceneStyle: { backgroundColor: colors.background },
-      }}
-    >
-      <Tab.Screen name="DashboardTab" component={DashboardScreen} />
-      <Tab.Screen name="SalesTab" component={MerchantSalesStack} />
-      <Tab.Screen name="AITab" component={MerchantAIStack} />
-      <Tab.Screen name="GrowthTab" component={MerchantGrowthStack} />
-      <Tab.Screen name="MoreTab" component={MerchantMoreNavigator} />
-    </Tab.Navigator>
+    <View style={styles.host}>
+      <Tab.Navigator
+        initialRouteName="DashboardTab"
+        tabBar={renderTabBar}
+        screenOptions={{
+          headerShown: false,
+          sceneStyle: { backgroundColor: colors.background },
+        }}
+      >
+        <Tab.Screen name="DashboardTab" component={DashboardScreen} />
+        <Tab.Screen name="SalesTab" component={MerchantSalesStack} />
+        <Tab.Screen name="AITab" component={MerchantAIStack} />
+        <Tab.Screen name="GrowthTab" component={MerchantGrowthStack} />
+        <Tab.Screen name="MoreTab" component={MerchantMoreNavigator} />
+      </Tab.Navigator>
+      <AIFloatingButton />
+    </View>
   );
 };
+
+const styles = StyleSheet.create({
+  host: { flex: 1 },
+});
 
 export default MerchantNavigator;

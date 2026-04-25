@@ -649,7 +649,26 @@
     "leadScoring": "Predictive Lead Scoring",
     "conversationIntel": "Conversation Intelligence",
     "meetingIntel": "Meeting Intelligence",
-    "duplicateDetection": "Smart Duplicate Detection"
+    "duplicateDetection": "Smart Duplicate Detection",
+    "confidence": "confidence",
+    "explain": "Explain",
+    "howThisWasDecided": "How this was decided",
+    "basedOnSignals": "Based on these signals",
+    "recommendedAction": "Recommended action",
+    "context": "Context",
+    "suggestedCommands": "Suggested commands",
+    "askAnything": "Ask anything...",
+    "commandCenter": {
+      "title": "AI Command Center"
+    },
+    "commands": {
+      "analyzeDeal": "Analyze this deal",
+      "writeFollowup": "Write follow-up",
+      "findRisks": "Find deals at risk",
+      "createPlan": "Create action plan",
+      "predictRevenue": "Predict revenue",
+      "explainRec": "Explain this recommendation"
+    }
   },
   "aiCFO": {
     "welcomeMessage": "Hello {{name}}! Ask me about cash flow, late-paying customers, or this quarter's forecast.",

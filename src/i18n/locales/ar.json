@@ -628,7 +628,26 @@
     "leadScoring": "تقييم العملاء المحتملين",
     "conversationIntel": "تحليل المحادثات",
     "meetingIntel": "تحليل الاجتماعات",
-    "duplicateDetection": "كشف التكرارات الذكي"
+    "duplicateDetection": "كشف التكرارات الذكي",
+    "confidence": "ثقة",
+    "explain": "اشرح",
+    "howThisWasDecided": "كيف اتُّخذ هذا القرار",
+    "basedOnSignals": "بناءً على هذه الإشارات",
+    "recommendedAction": "الإجراء الموصى به",
+    "context": "السياق",
+    "suggestedCommands": "أوامر مقترحة",
+    "askAnything": "اسأل أي شيء...",
+    "commandCenter": {
+      "title": "مركز تحكم الذكاء الاصطناعي"
+    },
+    "commands": {
+      "analyzeDeal": "حلّل هذه الصفقة",
+      "writeFollowup": "اكتب رسالة متابعة",
+      "findRisks": "اعثر على الصفقات المعرّضة للخطر",
+      "createPlan": "أنشئ خطة عمل",
+      "predictRevenue": "توقّع الإيرادات",
+      "explainRec": "اشرح هذه التوصية"
+    }
   },
   "aiCFO": {
     "welcomeMessage": "مرحبًا {{name}}! اسألني عن التدفق النقدي أو العملاء المتأخرين أو توقعات هذا الربع.",

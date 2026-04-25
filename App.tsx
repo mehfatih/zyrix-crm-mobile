@@ -26,6 +26,7 @@ import {
 import * as SplashScreen from 'expo-splash-screen';
 
 import './src/i18n';
+import { AICommandCenter } from './src/components/ai/AICommandCenter';
 import { InactivityTracker } from './src/components/common/InactivityTracker';
 import { ReAuthScreen } from './src/screens/common/ReAuthScreen';
 import { SecurityBlockScreen } from './src/screens/common/SecurityBlockScreen';
@@ -145,6 +146,7 @@ export default function App(): React.ReactElement {
               <InactivityTracker>
                 <RootNavigator />
               </InactivityTracker>
+              <AICommandCenter />
               <Toast />
               {needsReAuth ? (
                 <ReAuthScreen onResume={() => setNeedsReAuth(false)} />

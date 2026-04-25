@@ -628,7 +628,26 @@
     "leadScoring": "Tahminsel Müşteri Adayı Puanı",
     "conversationIntel": "Konuşma Zekâsı",
     "meetingIntel": "Toplantı Zekâsı",
-    "duplicateDetection": "Akıllı Yinelenen Tespiti"
+    "duplicateDetection": "Akıllı Yinelenen Tespiti",
+    "confidence": "güven",
+    "explain": "Açıkla",
+    "howThisWasDecided": "Bu nasıl belirlendi",
+    "basedOnSignals": "Bu sinyallere göre",
+    "recommendedAction": "Önerilen eylem",
+    "context": "Bağlam",
+    "suggestedCommands": "Önerilen komutlar",
+    "askAnything": "Bir şey sorun...",
+    "commandCenter": {
+      "title": "AI Komut Merkezi"
+    },
+    "commands": {
+      "analyzeDeal": "Bu fırsatı analiz et",
+      "writeFollowup": "Takip mesajı yaz",
+      "findRisks": "Riskli fırsatları bul",
+      "createPlan": "Eylem planı oluştur",
+      "predictRevenue": "Gelir tahmini yap",
+      "explainRec": "Bu öneriyi açıkla"
+    }
   },
   "aiCFO": {
     "welcomeMessage": "Merhaba {{name}}! Nakit akışı, geciken ödemeler veya çeyrek tahmini hakkında sorabilirsin.",

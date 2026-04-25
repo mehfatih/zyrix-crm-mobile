@@ -1,45 +1,97 @@
 /**
- * aiStore — Zustand store for AI-era app state (AI Sprint 1, section 15).
+ * aiStore — Zustand store for AI-era app state.
  *
- * Placeholder implementation: holds ranked actions, the current screen
- * context, and a floating-button toggle. Later sprints wire the decision
- * engine and agent outputs into this store.
+ * AI Sprint 2 (sections 3, 5, 6, 7) wires this into the Decision Engine,
+ * Trust Layer, Memory Layer, Command Center and Floating Button. The
+ * store keeps:
+ *
+ *   - rankedActions       → Decision Engine output (top 10 daily actions)
+ *   - context             → Current screen/entity context (set by screens)
+ *   - commandCenterOpen   → Floating Button toggle for the bottom-sheet
+ *   - pendingAgentActions → Agent outputs awaiting human approval
+ *   - lastSyncedAt        → Timestamp of the last successful refresh
+ *
+ * Only the Floating Button mutates `commandCenterOpen`. Screens push
+ * their context via `setContext` so the Command Center can render the
+ * correct entity card when it opens.
  */
 
 import { create } from 'zustand';
 
-import type { AIContext, RankedAction } from '../types/ai';
+import type { AgentOutput, AIContext, RankedAction } from '../types/ai';
+
+export type AgentActionOutcome = 'approved' | 'edited' | 'dismissed';
 
 export interface AIStoreState {
   rankedActions: RankedAction[];
   context: AIContext | null;
   commandCenterOpen: boolean;
+  pendingAgentActions: AgentOutput[];
   lastSyncedAt: number | null;
 
   setRankedActions: (actions: RankedAction[]) => void;
   setContext: (context: AIContext | null) => void;
-  openCommandCenter: () => void;
+
+  openCommandCenter: (context?: AIContext) => void;
   closeCommandCenter: () => void;
+
+  addPendingAgentAction: (action: AgentOutput) => void;
+  resolvePendingAction: (id: string, outcome: AgentActionOutcome) => void;
+
   markSynced: () => void;
   reset: () => void;
 }
+
+const pendingActionId = (action: AgentOutput): string =>
+  `${action.agentRole}-${action.entityType ?? 'global'}-${action.entityId ?? 'na'}`;
 
 export const useAiStore = create<AIStoreState>((set) => ({
   rankedActions: [],
   context: null,
   commandCenterOpen: false,
+  pendingAgentActions: [],
   lastSyncedAt: null,
 
   setRankedActions: (actions) => set({ rankedActions: actions }),
   setContext: (context) => set({ context }),
-  openCommandCenter: () => set({ commandCenterOpen: true }),
+
+  openCommandCenter: (context) =>
+    set((state) => ({
+      commandCenterOpen: true,
+      context: context ?? state.context,
+    })),
   closeCommandCenter: () => set({ commandCenterOpen: false }),
+
+  addPendingAgentAction: (action) =>
+    set((state) => {
+      const id = pendingActionId(action);
+      const existing = state.pendingAgentActions.find(
+        (a) => pendingActionId(a) === id
+      );
+      if (existing) return state;
+      return { pendingAgentActions: [...state.pendingAgentActions, action] };
+    }),
+
+  resolvePendingAction: (id, _outcome) =>
+    set((state) => ({
+      pendingAgentActions: state.pendingAgentActions.filter(
+        (a) => pendingActionId(a) !== id
+      ),
+    })),
+
   markSynced: () => set({ lastSyncedAt: Date.now() }),
+
   reset: () =>
     set({
       rankedActions: [],
       context: null,
       commandCenterOpen: false,
+      pendingAgentActions: [],
       lastSyncedAt: null,
     }),
 }));
+
+// Spec uses `useAIStore` (capital AI) in places. Re-export with that name
+// so component code can match the section-7 examples verbatim while we
+// also keep the long-standing `useAiStore` callers happy.
+export const useAIStore = useAiStore;
