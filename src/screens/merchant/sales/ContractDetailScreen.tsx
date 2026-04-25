@@ -22,6 +22,7 @@ import {
 } from '@react-navigation/native';
 import { useMutation, useQuery } from '@tanstack/react-query';
 
+import { AttachedFilesSection } from '../../../components/files/AttachedFilesSection';
 import { CurrencyDisplay } from '../../../components/forms/CurrencyDisplay';
 import { Header } from '../../../components/common/Header';
 import { Icon } from '../../../components/common/Icon';
@@ -204,6 +205,12 @@ export const ContractDetailScreen: React.FC = () => {
                 </Text>
               </Pressable>
             </View>
+
+            <AttachedFilesSection
+              recordType="contract"
+              recordId={contract.id}
+              recordName={contract.contractNumber}
+            />
           </>
         )}
       </ScrollView>

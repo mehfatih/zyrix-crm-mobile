@@ -486,7 +486,8 @@
     "quotes": "Quotes",
     "invoices": "Invoices",
     "activities": "Activities",
-    "notes": "Notes"
+    "notes": "Notes",
+    "files": "Files"
   },
   "deals": {
     "title": "Deals",
@@ -759,13 +760,46 @@
     "maxSize": "Max size",
     "uploading": "Uploading...",
     "uploadFailed": "Upload failed",
-    "remove": "Remove"
+    "remove": "Remove",
+    "attachFile": "Attach file",
+    "attached": "File attached",
+    "noneAttached": "No files attached yet",
+    "uploadFromDevice": "Upload from device",
+    "pickFromDrive": "Pick from Google Drive",
+    "pickFromOneDrive": "Pick from OneDrive",
+    "confirmAttachTitle": "Attach this file?",
+    "confirmAttachBody": "Attach \"{{name}}\" to {{target}}?",
+    "attachFor": "Attach a file to {{name}}",
+    "attachSubtitle": "Pick a source",
+    "notConnectedHelper": "Not connected — open Integrations to set up",
+    "removeTitle": "Remove attachment",
+    "removeBody": "Remove \"{{name}}\" from this record? The file stays in cloud storage.",
+    "removed": "Attachment removed",
+    "empty": "No files in this folder",
+    "recordType": {
+      "customer": "this customer",
+      "deal": "this deal",
+      "quote": "this quote",
+      "contract": "this contract",
+      "report": "this report"
+    }
   },
   "richText": {
     "bold": "Bold",
     "italic": "Italic",
     "list": "List",
     "hint": "Use **bold**, *italic*, - lists"
+  },
+  "integrations": {
+    "title": "Integrations",
+    "subtitle": "Connect your tools to Zyrix",
+    "fileStorage": "File Storage",
+    "connect": "Connect",
+    "connected": "Connected",
+    "notConnected": "Not connected",
+    "disconnect": "Disconnect",
+    "connectFailed": "Connection failed. Check your client ID and try again.",
+    "privacyNote": "Zyrix only fetches files you explicitly attach. We never sync your cloud storage in the background."
   },
   "ai": {
     "askMeAnything": "Ask me anything",

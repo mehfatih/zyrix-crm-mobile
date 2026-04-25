@@ -22,6 +22,7 @@ import {
 } from '@react-navigation/native';
 import { useQuery } from '@tanstack/react-query';
 
+import { AttachedFilesSection } from '../../../components/files/AttachedFilesSection';
 import { CurrencyDisplay } from '../../../components/forms/CurrencyDisplay';
 import { Header } from '../../../components/common/Header';
 import { Icon, type AnyIconName } from '../../../components/common/Icon';
@@ -270,6 +271,12 @@ export const QuoteDetailScreen: React.FC = () => {
                 </Pressable>
               ) : null}
             </View>
+
+            <AttachedFilesSection
+              recordType="quote"
+              recordId={quote.id}
+              recordName={quote.quoteNumber ?? quote.id}
+            />
           </>
         )}
       </ScrollView>

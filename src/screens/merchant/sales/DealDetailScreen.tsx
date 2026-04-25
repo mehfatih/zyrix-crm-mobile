@@ -21,6 +21,7 @@ import {
   type RouteProp,
 } from '@react-navigation/native';
 
+import { AttachedFilesSection } from '../../../components/files/AttachedFilesSection';
 import { CurrencyDisplay } from '../../../components/forms/CurrencyDisplay';
 import { DEAL_PIPELINE } from '../../../api/deals';
 import { DEALS_BY_STAGE_COLORS } from '../../../api/mockData';
@@ -194,6 +195,12 @@ export const DealDetailScreen: React.FC = () => {
                 </View>
               </View>
             )}
+
+            <AttachedFilesSection
+              recordType="deal"
+              recordId={deal.id}
+              recordName={deal.title}
+            />
 
             <View style={styles.placeholderCard}>
               <Icon name="time-outline" size={28} color={colors.primary} />

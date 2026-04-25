@@ -21,6 +21,7 @@ import {
   type RouteProp,
 } from '@react-navigation/native';
 
+import { AttachedFilesSection } from '../../../components/files/AttachedFilesSection';
 import { CurrencyDisplay } from '../../../components/forms/CurrencyDisplay';
 import {
   AICustomerInsightsCard,
@@ -43,7 +44,14 @@ import type { MerchantSalesStackParamList } from '../../../navigation/types';
 
 type Route = RouteProp<MerchantSalesStackParamList, 'CustomerDetail'>;
 
-type Tab = 'overview' | 'deals' | 'quotes' | 'invoices' | 'activities' | 'notes';
+type Tab =
+  | 'overview'
+  | 'deals'
+  | 'quotes'
+  | 'invoices'
+  | 'activities'
+  | 'notes'
+  | 'files';
 
 interface ActionButton {
   key: 'call' | 'email' | 'whatsapp' | 'newDeal';
@@ -149,7 +157,7 @@ export const CustomerDetailScreen: React.FC = () => {
               style={styles.tabBar}
               contentContainerStyle={styles.tabContent}
             >
-              {(['overview', 'deals', 'quotes', 'invoices', 'activities', 'notes'] as Tab[]).map(
+              {(['overview', 'deals', 'quotes', 'invoices', 'activities', 'notes', 'files'] as Tab[]).map(
                 (key) => (
                   <Pressable
                     key={key}
@@ -258,6 +266,12 @@ export const CustomerDetailScreen: React.FC = () => {
                   </Text>
                 </View>
               </View>
+            ) : tab === 'files' ? (
+              <AttachedFilesSection
+                recordType="customer"
+                recordId={customer.id}
+                recordName={customer.name}
+              />
             ) : (
               <View style={styles.placeholderCard}>
                 <Icon

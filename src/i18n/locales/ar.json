@@ -495,7 +495,8 @@
     "quotes": "عروض الأسعار",
     "invoices": "الفواتير",
     "activities": "النشاطات",
-    "notes": "الملاحظات"
+    "notes": "الملاحظات",
+    "files": "الملفات"
   },
   "deals": {
     "title": "الصفقات",
@@ -738,13 +739,46 @@
     "maxSize": "الحد الأقصى",
     "uploading": "جارٍ الرفع...",
     "uploadFailed": "فشل الرفع",
-    "remove": "إزالة"
+    "remove": "إزالة",
+    "attachFile": "إرفاق ملف",
+    "attached": "تم إرفاق الملف",
+    "noneAttached": "لا توجد ملفات مرفقة بعد",
+    "uploadFromDevice": "رفع من الجهاز",
+    "pickFromDrive": "اختيار من Google Drive",
+    "pickFromOneDrive": "اختيار من OneDrive",
+    "confirmAttachTitle": "هل تريد إرفاق هذا الملف؟",
+    "confirmAttachBody": "هل تريد إرفاق \"{{name}}\" بـ {{target}}؟",
+    "attachFor": "إرفاق ملف بـ {{name}}",
+    "attachSubtitle": "اختر مصدرًا",
+    "notConnectedHelper": "غير متصل — افتح التكاملات للإعداد",
+    "removeTitle": "إزالة المرفق",
+    "removeBody": "هل تريد إزالة \"{{name}}\" من هذا السجل؟ يبقى الملف في التخزين السحابي.",
+    "removed": "تمت إزالة المرفق",
+    "empty": "لا توجد ملفات في هذا المجلد",
+    "recordType": {
+      "customer": "هذا العميل",
+      "deal": "هذه الصفقة",
+      "quote": "عرض السعر هذا",
+      "contract": "هذا العقد",
+      "report": "هذا التقرير"
+    }
   },
   "richText": {
     "bold": "عريض",
     "italic": "مائل",
     "list": "قائمة",
     "hint": "استخدم **عريض** و *مائل* و - قوائم"
+  },
+  "integrations": {
+    "title": "التكاملات",
+    "subtitle": "اربط أدواتك مع زيركس",
+    "fileStorage": "تخزين الملفات",
+    "connect": "اتصال",
+    "connected": "متصل",
+    "notConnected": "غير متصل",
+    "disconnect": "قطع الاتصال",
+    "connectFailed": "فشل الاتصال. تحقق من معرف العميل وحاول مرة أخرى.",
+    "privacyNote": "زيركس يجلب فقط الملفات التي ترفقها صراحة. لا نقوم بمزامنة تخزينك السحابي في الخلفية أبدًا."
   },
   "ai": {
     "askMeAnything": "اسألني أي شيء",

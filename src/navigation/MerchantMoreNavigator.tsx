@@ -16,6 +16,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import type { DrawerContentComponentProps } from '@react-navigation/drawer';
 
 import { Drawer, type DrawerItem } from '../components/common/Drawer';
+import { IntegrationsScreen } from '../screens/merchant/settings/IntegrationsScreen';
 import { MerchantComplianceStack } from './MerchantComplianceStack';
 import { MerchantOperationsStack } from './MerchantOperationsStack';
 import { MerchantSettingsStack } from './MerchantSettingsStack';
@@ -33,18 +34,6 @@ const ReportsScreen: React.FC = () => {
       title={t('navigation.reports')}
       sprintNumber={9}
       icon="bar-chart-outline"
-      showMenuButton
-    />
-  );
-};
-
-const IntegrationsScreen: React.FC = () => {
-  const { t } = useTranslation();
-  return (
-    <PlaceholderScreen
-      title={t('navigation.integrations')}
-      sprintNumber={10}
-      icon="link-outline"
       showMenuButton
     />
   );

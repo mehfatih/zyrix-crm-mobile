@@ -495,7 +495,8 @@
     "quotes": "Teklifler",
     "invoices": "Faturalar",
     "activities": "Etkinlikler",
-    "notes": "Notlar"
+    "notes": "Notlar",
+    "files": "Dosyalar"
   },
   "deals": {
     "title": "Anlaşmalar",
@@ -738,13 +739,46 @@
     "maxSize": "Maks. boyut",
     "uploading": "Yükleniyor...",
     "uploadFailed": "Yükleme başarısız",
-    "remove": "Kaldır"
+    "remove": "Kaldır",
+    "attachFile": "Dosya ekle",
+    "attached": "Dosya eklendi",
+    "noneAttached": "Henüz dosya eklenmedi",
+    "uploadFromDevice": "Cihazdan yükle",
+    "pickFromDrive": "Google Drive'dan seç",
+    "pickFromOneDrive": "OneDrive'dan seç",
+    "confirmAttachTitle": "Bu dosyayı eklemek istiyor musunuz?",
+    "confirmAttachBody": "\"{{name}}\" dosyasını {{target}} kaydına ekle?",
+    "attachFor": "{{name}} kaydına dosya ekle",
+    "attachSubtitle": "Bir kaynak seçin",
+    "notConnectedHelper": "Bağlı değil — kurmak için Entegrasyonları aç",
+    "removeTitle": "Eki kaldır",
+    "removeBody": "\"{{name}}\" dosyasını bu kayıttan kaldır? Dosya bulut depolamada kalır.",
+    "removed": "Ek kaldırıldı",
+    "empty": "Bu klasörde dosya yok",
+    "recordType": {
+      "customer": "bu müşteri",
+      "deal": "bu anlaşma",
+      "quote": "bu teklif",
+      "contract": "bu sözleşme",
+      "report": "bu rapor"
+    }
   },
   "richText": {
     "bold": "Kalın",
     "italic": "İtalik",
     "list": "Liste",
     "hint": "**kalın**, *italik*, - liste kullanın"
+  },
+  "integrations": {
+    "title": "Entegrasyonlar",
+    "subtitle": "Araçlarınızı Zyrix'e bağlayın",
+    "fileStorage": "Dosya Depolama",
+    "connect": "Bağlan",
+    "connected": "Bağlı",
+    "notConnected": "Bağlı değil",
+    "disconnect": "Bağlantıyı kes",
+    "connectFailed": "Bağlantı başarısız. Müşteri kimliğini kontrol edip tekrar deneyin.",
+    "privacyNote": "Zyrix yalnızca açıkça eklediğiniz dosyaları getirir. Bulut depolamanız arka planda asla senkronize edilmez."
   },
   "ai": {
     "askMeAnything": "Bana istediğini sor",

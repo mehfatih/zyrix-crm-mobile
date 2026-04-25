@@ -1,14 +1,14 @@
 /**
  * IntegrationAgent — AI Sprint 4 §11, agent 7.
  *
- * Triggers: on-demand (Sprint 5 wires it into Google Drive / Microsoft
- * sync events).
- * Permission: L3 (executes integration sync actions with approval).
+ * Sprint 5 wires this agent into the real Drive / Microsoft connectors.
+ * When neither provider is connected the agent surfaces a single nudge
+ * encouraging the user to wire one up so contracts and quotes can be
+ * attached straight from the cloud. If at least one provider is
+ * connected the agent stays quiet — orchestrator emits no card.
  *
- * For Sprint 4 the agent is a typed shell — it never produces an
- * output until Sprint 5 hooks the real Drive/Microsoft connectors.
- * Keeping the class in place now lets the orchestrator and inbox UI
- * register against the full eight-agent set without churn later.
+ * Permission level stays at 3 (executes integration sync actions with
+ * approval); the user must always confirm before a file is attached.
  */
 
 import { BaseAgent } from './baseAgent';
@@ -17,6 +17,8 @@ import type {
   AgentPermissionLevel,
   AgentRole,
 } from '../../types/ai';
+import { googleDriveService } from '../integrations/googleDrive';
+import { microsoftService } from '../integrations/microsoft';
 
 export class IntegrationAgent extends BaseAgent {
   role: AgentRole = 'integration';
@@ -26,9 +28,24 @@ export class IntegrationAgent extends BaseAgent {
     _workspaceId: string,
     _context?: unknown
   ): Promise<AgentOutput[]> {
-    // Sprint 5 will populate this once Google Drive / Microsoft sync
-    // signals are available. Returning [] keeps the orchestrator clean.
-    return [];
+    const [driveConnected, msConnected] = await Promise.all([
+      googleDriveService.isConnected(),
+      microsoftService.isConnected(),
+    ]);
+
+    if (driveConnected || msConnected) return [];
+
+    return [
+      this.createOutput({
+        insight: 'Connect a file storage provider',
+        reason:
+          'Attach contracts, quotes, and customer files directly from Google Drive or OneDrive without leaving Zyrix.',
+        confidence: 100,
+        signals: ['No cloud storage connected'],
+        recommendedAction: 'Connect Google Drive or Microsoft 365',
+        cta: { label: 'Open integrations', action: 'open-integrations' },
+      }),
+    ];
   }
 }
 
