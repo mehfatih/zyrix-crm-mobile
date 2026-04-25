@@ -783,6 +783,30 @@
       "explainRec": "Bu öneriyi açıkla"
     }
   },
+  "agents": {
+    "inbox": "AI Asistan Kutusu",
+    "draft": "Taslak",
+    "approve": "Onayla",
+    "edit": "Düzenle",
+    "dismiss": "Yoksay",
+    "filters": {
+      "all": "Tümü"
+    },
+    "roles": {
+      "sales-followup": "Satış Takip Asistanı",
+      "deal-risk": "Anlaşma Risk Asistanı",
+      "revenue": "Gelir Asistanı",
+      "customer-profile": "Müşteri Profili Asistanı",
+      "messaging": "Mesajlaşma Asistanı",
+      "onboarding": "Kurulum Asistanı",
+      "integration": "Entegrasyon Asistanı",
+      "task": "Görev Asistanı"
+    },
+    "empty": {
+      "title": "Kutu boş",
+      "subtitle": "Bekleyen asistan önerisi yok. Yenilemek için aşağı çekin, asistanlar tekrar bakacaktır."
+    }
+  },
   "aiCFO": {
     "welcomeMessage": "Merhaba {{name}}! Nakit akışı, geciken ödemeler veya çeyrek tahmini hakkında sorabilirsin.",
     "sampleQuestions": "Örnek sorular",

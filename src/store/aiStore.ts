@@ -42,9 +42,6 @@ export interface AIStoreState {
   reset: () => void;
 }
 
-const pendingActionId = (action: AgentOutput): string =>
-  `${action.agentRole}-${action.entityType ?? 'global'}-${action.entityId ?? 'na'}`;
-
 export const useAiStore = create<AIStoreState>((set) => ({
   rankedActions: [],
   context: null,
@@ -64,19 +61,15 @@ export const useAiStore = create<AIStoreState>((set) => ({
 
   addPendingAgentAction: (action) =>
     set((state) => {
-      const id = pendingActionId(action);
-      const existing = state.pendingAgentActions.find(
-        (a) => pendingActionId(a) === id
-      );
-      if (existing) return state;
+      if (state.pendingAgentActions.some((a) => a.id === action.id)) {
+        return state;
+      }
       return { pendingAgentActions: [...state.pendingAgentActions, action] };
     }),
 
   resolvePendingAction: (id, _outcome) =>
     set((state) => ({
-      pendingAgentActions: state.pendingAgentActions.filter(
-        (a) => pendingActionId(a) !== id
-      ),
+      pendingAgentActions: state.pendingAgentActions.filter((a) => a.id !== id),
     })),
 
   markSynced: () => set({ lastSyncedAt: Date.now() }),

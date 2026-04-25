@@ -90,6 +90,7 @@ export type MerchantGrowthStackParamList = {
 
 export type MerchantAIStackParamList = {
   AICFO: undefined;
+  AgentInbox: undefined;
   AIWorkflows: undefined;
   AIWorkflowBuilder: undefined;
   AIBuilder: undefined;

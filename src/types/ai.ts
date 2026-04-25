@@ -251,6 +251,8 @@ export interface LiveMeetingListItem {
 
 // ─────────────────────────────────────────────────────────────────────
 // AI Sprint 1 (section 15) — Agent/Decision-engine contract
+// AI Sprint 4 (section 11) — Full Agents System: triggers, definitions,
+//                            draft payloads, status lifecycle.
 // ─────────────────────────────────────────────────────────────────────
 
 export type AgentRole =
@@ -263,7 +265,38 @@ export type AgentRole =
   | 'integration'
   | 'task';
 
+/**
+ * Permission levels per spec §11.2:
+ *   1 = Suggest only
+ *   2 = Draft (user approves)
+ *   3 = Execute with approval
+ *   4 = Auto-execute low-risk only
+ */
 export type AgentPermissionLevel = 1 | 2 | 3 | 4;
+
+/** Triggers an agent listens to (see spec §11.1 / §11.2). */
+export type AgentTriggerType =
+  | 'no-response'
+  | 'proposal-stale'
+  | 'high-score-no-contact'
+  | 'deal-stuck'
+  | 'negative-sentiment'
+  | 'response-delay'
+  | 'decision-maker-inactive'
+  | 'month-end'
+  | 'revenue-below-target'
+  | 'high-value-near-closing'
+  | 'forecast-drops'
+  | 'user-opens-message'
+  | 'weak-followup-typed'
+  | 'deal-at-risk-needs-outreach';
+
+export interface AgentDefinition {
+  role: AgentRole;
+  defaultPermission: AgentPermissionLevel;
+  triggers: AgentTriggerType[];
+  description: string;
+}
 
 export interface AIInsight {
   title: string;
@@ -274,12 +307,36 @@ export interface AIInsight {
   signals?: string[];
 }
 
-export interface AgentOutput extends AIInsight {
+export type AgentDraftPayloadType = 'message' | 'task' | 'reminder' | 'report';
+
+export interface AgentDraftPayload {
+  type: AgentDraftPayloadType;
+  content: string;
+  metadata?: Record<string, unknown>;
+}
+
+export type AgentOutputStatus =
+  | 'pending'
+  | 'approved'
+  | 'edited'
+  | 'dismissed'
+  | 'executed';
+
+export interface AgentOutput {
+  id: string;
   agentRole: AgentRole;
   permissionLevel: AgentPermissionLevel;
+  insight: string;
+  reason: string;
+  confidence: number;
+  signals: string[];
+  recommendedAction: string;
+  cta: { label: string; action: string };
+  draftPayload?: AgentDraftPayload;
   entityType?: 'customer' | 'deal' | 'task' | 'message';
   entityId?: string;
-  draftPayload?: unknown;
+  createdAt: string;
+  status: AgentOutputStatus;
 }
 
 export interface RankedAction extends AIInsight {

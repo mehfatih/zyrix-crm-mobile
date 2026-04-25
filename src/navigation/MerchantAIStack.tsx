@@ -15,6 +15,7 @@ import { AIBuilderScreen } from '../screens/merchant/ai/AIBuilderScreen';
 import { AICFOScreen } from '../screens/merchant/ai/AICFOScreen';
 import { AIWorkflowBuilderScreen } from '../screens/merchant/ai/AIWorkflowBuilderScreen';
 import { AIWorkflowsScreen } from '../screens/merchant/ai/AIWorkflowsScreen';
+import { AgentInboxScreen } from '../screens/ai/AgentInboxScreen';
 import { ConversationAnalysisScreen } from '../screens/merchant/ai/ConversationAnalysisScreen';
 import { ConversationIntelScreen } from '../screens/merchant/ai/ConversationIntelScreen';
 import { DuplicateDetectionScreen } from '../screens/merchant/ai/DuplicateDetectionScreen';
@@ -34,6 +35,7 @@ export const MerchantAIStack: React.FC = () => (
     screenOptions={{ headerShown: false }}
   >
     <Stack.Screen name="AICFO" component={AICFOScreen} />
+    <Stack.Screen name="AgentInbox" component={AgentInboxScreen} />
     <Stack.Screen name="AIWorkflows" component={AIWorkflowsScreen} />
     <Stack.Screen
       name="AIWorkflowBuilder"

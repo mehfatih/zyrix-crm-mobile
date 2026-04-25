@@ -804,6 +804,30 @@
       "explainRec": "Explain this recommendation"
     }
   },
+  "agents": {
+    "inbox": "AI Agent Inbox",
+    "draft": "Draft",
+    "approve": "Approve",
+    "edit": "Edit",
+    "dismiss": "Dismiss",
+    "filters": {
+      "all": "All"
+    },
+    "roles": {
+      "sales-followup": "Sales Follow-up Agent",
+      "deal-risk": "Deal Risk Agent",
+      "revenue": "Revenue Agent",
+      "customer-profile": "Customer Profile Agent",
+      "messaging": "Messaging Agent",
+      "onboarding": "Onboarding Agent",
+      "integration": "Integration Agent",
+      "task": "Task Agent"
+    },
+    "empty": {
+      "title": "Inbox clear",
+      "subtitle": "No pending agent suggestions. Pull to refresh and let the agents take another look."
+    }
+  },
   "aiCFO": {
     "welcomeMessage": "Hello {{name}}! Ask me about cash flow, late-paying customers, or this quarter's forecast.",
     "sampleQuestions": "Sample questions",
