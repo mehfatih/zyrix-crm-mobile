@@ -22,6 +22,12 @@ import {
 } from '@react-navigation/native';
 
 import { CurrencyDisplay } from '../../../components/forms/CurrencyDisplay';
+import {
+  AICustomerInsightsCard,
+  type AICustomerInsights,
+  type BehaviourPattern,
+  type OpportunityLevel,
+} from '../../../components/customer/AICustomerInsightsCard';
 import { Header } from '../../../components/common/Header';
 import { Icon, type AnyIconName } from '../../../components/common/Icon';
 import { SkeletonCard } from '../../../components/common/SkeletonCard';
@@ -75,6 +81,11 @@ export const CustomerDetailScreen: React.FC = () => {
     if (!customer) return '';
     return findCountry(customer.country).name[language];
   }, [customer, language]);
+
+  const aiInsights = useMemo<AICustomerInsights | null>(() => {
+    if (!customer) return null;
+    return buildCustomerInsights(customer, t);
+  }, [customer, t]);
 
   const notImplemented = (): void => {
     Alert.alert(t('placeholders.featureNotReady'));
@@ -163,6 +174,13 @@ export const CustomerDetailScreen: React.FC = () => {
 
             {tab === 'overview' ? (
               <View style={styles.overviewWrap}>
+                {aiInsights ? (
+                  <AICustomerInsightsCard
+                    insights={aiInsights}
+                    onAction={notImplemented}
+                  />
+                ) : null}
+
                 <View style={styles.card}>
                   <Text style={styles.sectionTitle}>
                     {t('customers.contactInfo')}
@@ -430,5 +448,153 @@ const styles = StyleSheet.create({
     color: colors.textMuted,
   },
 });
+
+type TranslateFn = (key: string, options?: Record<string, unknown>) => string;
+
+interface CustomerLike {
+  name: string;
+  company: string;
+  totalRevenue: number;
+  healthScore: number;
+  tags: string[];
+  lastContactAt: string;
+}
+
+const opportunityFromHealth = (
+  health: number
+): { level: OpportunityLevel; confidence: number } => {
+  if (health >= 75) return { level: 'high', confidence: 88 };
+  if (health >= 50) return { level: 'medium', confidence: 70 };
+  return { level: 'low', confidence: 60 };
+};
+
+const daysSinceContact = (iso: string): number => {
+  const last = new Date(iso).getTime();
+  if (Number.isNaN(last)) return 0;
+  return Math.max(
+    0,
+    Math.floor((Date.now() - last) / (1000 * 60 * 60 * 24))
+  );
+};
+
+const buildCustomerInsights = (
+  customer: CustomerLike,
+  t: TranslateFn
+): AICustomerInsights => {
+  const opp = opportunityFromHealth(customer.healthScore);
+  const idle = daysSinceContact(customer.lastContactAt);
+
+  const behaviour: BehaviourPattern[] = [];
+  if (idle <= 3) {
+    behaviour.push({
+      id: 'fast-replies',
+      icon: 'flash-outline',
+      label: t('customer.ai.behaviour.repliesFast'),
+    });
+  }
+  if (customer.totalRevenue >= 10_000) {
+    behaviour.push({
+      id: 'high-value',
+      icon: 'star-outline',
+      label: t('customer.ai.behaviour.highValue'),
+    });
+  }
+  if (customer.tags.some((tag) => tag.toLowerCase().includes('whatsapp'))) {
+    behaviour.push({
+      id: 'prefers-whatsapp',
+      icon: 'logo-whatsapp',
+      label: t('customer.ai.behaviour.prefersWhatsapp'),
+    });
+  }
+  if (idle > 30) {
+    behaviour.push({
+      id: 'going-quiet',
+      icon: 'time-outline',
+      label: t('customer.ai.behaviour.goingQuiet', { days: idle }),
+    });
+  }
+  if (behaviour.length === 0) {
+    behaviour.push({
+      id: 'baseline',
+      icon: 'people-outline',
+      label: t('customer.ai.behaviour.steady'),
+    });
+  }
+
+  const summary = t('customer.ai.summaryTemplate', {
+    name: customer.name,
+    company: customer.company,
+    health: customer.healthScore,
+    revenue: customer.totalRevenue.toLocaleString(),
+    idle,
+  });
+
+  const oppLabel = t(`customer.ai.opportunity.${opp.level}`);
+  const oppReason = t('customer.ai.opportunityReason', {
+    health: customer.healthScore,
+    revenue: customer.totalRevenue.toLocaleString(),
+  });
+
+  return {
+    summary,
+    behaviour,
+    opportunity: {
+      level: opp.level,
+      label: oppLabel,
+      confidence: opp.confidence,
+      reason: oppReason,
+      signals: [
+        t('customer.ai.signal.health', { health: customer.healthScore }),
+        t('customer.ai.signal.revenue', {
+          revenue: customer.totalRevenue.toLocaleString(),
+        }),
+        t('customer.ai.signal.idle', { days: idle }),
+      ],
+    },
+    nextBestAction:
+      opp.level === 'high'
+        ? {
+            type: 'opportunity',
+            title: t('customer.ai.nextAction.proposeUpgrade'),
+            reason: t('customer.ai.nextAction.proposeUpgradeReason'),
+            confidence: 82,
+            signals: [
+              t('customer.ai.signal.health', { health: customer.healthScore }),
+            ],
+            recommendedAction: t('customer.ai.nextAction.proposeUpgradeRec'),
+            cta: {
+              label: t('customer.ai.nextAction.sendProposal'),
+              action: 'create-proposal',
+            },
+          }
+        : opp.level === 'low'
+        ? {
+            type: 'risk',
+            title: t('customer.ai.nextAction.reachOut'),
+            reason: t('customer.ai.nextAction.reachOutReason', { days: idle }),
+            confidence: 75,
+            signals: [t('customer.ai.signal.idle', { days: idle })],
+            recommendedAction: t('customer.ai.nextAction.reachOutRec'),
+            cta: {
+              label: t('customer.ai.nextAction.sendCheckin'),
+              action: 'compose-checkin',
+            },
+          }
+        : {
+            type: 'followup',
+            title: t('customer.ai.nextAction.nurture'),
+            reason: t('customer.ai.nextAction.nurtureReason'),
+            confidence: 70,
+            signals: [
+              t('customer.ai.signal.health', { health: customer.healthScore }),
+            ],
+            recommendedAction: t('customer.ai.nextAction.nurtureRec'),
+            cta: {
+              label: t('customer.ai.nextAction.scheduleCall'),
+              action: 'schedule-call',
+            },
+          },
+  };
+};
 
 export default CustomerDetailScreen;

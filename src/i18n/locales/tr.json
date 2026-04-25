@@ -203,7 +203,102 @@
     "viewAll": "Tümünü gör",
     "recentActivity": "Son etkinlikler",
     "noActivity": "Henüz etkinlik yok",
-    "comingSoon": "Tam panel Sprint 4'te geliyor"
+    "comingSoon": "Tam panel Sprint 4'te geliyor",
+    "todaysFocus": "Bugünün odağı",
+    "topActionsForToday": "Bugünün en önemli işlemleri",
+    "aiInsight": "AI İçgörüsü",
+    "smartStats": "Akıllı istatistikler",
+    "allClear": "Her şey yolunda — bugün acil işlem yok",
+    "trendOverview": "Trend özeti",
+    "chartExplain": "Gelir yükselişte — geçen ay 6 ayın en güçlüsü.",
+    "changeCustomers": "Bu hafta +2",
+    "warnInactiveCustomers": "3 pasif",
+    "hotHighValue": "2 yüksek değerli",
+    "warnAtRiskDeals": "2 riskli",
+    "hotLikelyClose": "4 yakında kapanabilir",
+    "changeRevenue": "Geçen aya göre +%12",
+    "forecastRevenue": "AI tahmini: 24.000 $",
+    "changeTasks": "3 bugün",
+    "warnOverdueTasks": "1 geçikmiş"
+  },
+  "revenueBrain": {
+    "title": "Gelir Beyni",
+    "expectedMonth": "Bu ay beklenen",
+    "target": "Hedef",
+    "gap": "Fark",
+    "gapShort": "Hedeften {{amount}} eksik",
+    "aboveTarget": "Hedefi aşma yolundasın",
+    "bestCase": "En iyi",
+    "likely": "Olası",
+    "riskCase": "Risk",
+    "impact": "Etki",
+    "openFull": "Gelir Beynini Aç",
+    "loading": "Gelir Beyni yükleniyor..."
+  },
+  "pipeline": {
+    "atRiskCount": "{{count}} riskli",
+    "dayInStage_one": "{{count}} gün",
+    "dayInStage_other": "{{count}} gün",
+    "dayInStage": "{{count}} gün",
+    "stage": {
+      "lead": "Aday",
+      "qualified": "Nitelikli",
+      "proposal": "Teklif",
+      "negotiation": "Pazarlık",
+      "closing": "Kapanış",
+      "postsale": "Satış sonrası"
+    },
+    "summary": {
+      "lead": "AI adayları niyet ve cevap hızına göre puanlar",
+      "qualified": "AI konuşmalarda satın alma niyeti tespit eder",
+      "proposal": "AI en uygun takip zamanını önerir",
+      "negotiation": "AI karşı teklif stratejisi önerir",
+      "closing": "AI kazanma olasılığını tahmin eder",
+      "postsale": "AI yukarı satış fırsatlarını gösterir"
+    },
+    "cta": {
+      "startOutreach": "İletişime başla",
+      "bookDemo": "Demo al",
+      "generateProposal": "Teklif oluştur",
+      "draftCounter": "Karşı teklif hazırla",
+      "closingPlan": "Kapanış planı",
+      "successPlan": "Başarı planı"
+    }
+  },
+  "timeline": {
+    "empty": "Henüz zaman çizelgesi olayı yok.",
+    "dayLabel": "{{day}}. gün",
+    "aiTag": "AI",
+    "delayReason": "Gecikme normalin üstünde — aşama ortalaması {{baseline}} gün, fark {{days}} gün.",
+    "signalGap": "Ortalamadan {{days}} gün fazla",
+    "signalBaseline": "Aşama ortalaması: {{baseline}} gün",
+    "actionGenerateFollowup": "Takip mesajı oluştur"
+  },
+  "messaging": {
+    "ai": {
+      "suggestReply": "AI cevap önersin",
+      "improveTone": "Tonu iyileştir",
+      "translate": "Çevir",
+      "shorten": "Kısalt",
+      "personalize": "Kişiselleştir",
+      "explain": "Açıkla",
+      "thinking": "Düşünüyor...",
+      "typeMessage": "Bir mesaj yaz — AI sana yardım edecek.",
+      "send": "Gönder",
+      "toneTitle": "Bir ton seç",
+      "translateTitle": "Şu dile çevir",
+      "tone": {
+        "professional": "Profesyonel",
+        "friendly": "Samimi",
+        "concise": "Öz",
+        "persuasive": "İkna edici"
+      },
+      "language": {
+        "ar": "Arapça",
+        "en": "İngilizce",
+        "tr": "Türkçe"
+      }
+    }
   },
   "roles": {
     "superAdmin": "Süper Yönetici",
@@ -231,7 +326,46 @@
   },
   "customer": {
     "yourCompany": "Hizmet sağlayıcınız",
-    "noCompany": "Kişisel hesap"
+    "noCompany": "Kişisel hesap",
+    "ai": {
+      "summaryLabel": "AI müşteri özeti",
+      "summaryTemplate": "{{company}} firmasından {{name}} — sağlık skoru {{health}}/100, toplam gelir {{revenue}}. Son temas {{idle}} gün önce.",
+      "behaviourPattern": "Davranış kalıbı",
+      "opportunityLevel": "Fırsat seviyesi",
+      "opportunityReason": "{{health}}/100 sağlık skoru ve {{revenue}} toplam gelir bu fırsat seviyesini gösteriyor.",
+      "nextBestAction": "Sıradaki en iyi işlem",
+      "behaviour": {
+        "repliesFast": "Hızlı yanıt verir",
+        "highValue": "Yüksek yaşam boyu değer",
+        "prefersWhatsapp": "WhatsApp tercih eder",
+        "goingQuiet": "{{days}} gündür sessiz",
+        "steady": "Sürekli etkileşim"
+      },
+      "opportunity": {
+        "high": "Yüksek",
+        "medium": "Orta",
+        "low": "Düşük"
+      },
+      "signal": {
+        "health": "Sağlık skoru: {{health}}/100",
+        "revenue": "Yaşam boyu gelir: {{revenue}}",
+        "idle": "Son temas: {{days}} gün önce"
+      },
+      "nextAction": {
+        "proposeUpgrade": "Yükseltme öner",
+        "proposeUpgradeReason": "Yüksek sağlık skoru ve gelir, ilişkiyi büyütmek için iyi bir an.",
+        "proposeUpgradeRec": "Bu hafta özel bir teklif gönder.",
+        "sendProposal": "Teklif gönder",
+        "reachOut": "Bu müşteriyle yeniden iletişim kur",
+        "reachOutReason": "Müşteri {{days}} gündür sessiz — kişisel bir kontrol gerekli.",
+        "reachOutRec": "Kısa, samimi bir kontrol mesajı gönder.",
+        "sendCheckin": "Kontrol mesajı gönder",
+        "nurture": "İlişkiyi besle",
+        "nurtureReason": "Etkileşim sürekli — değer katan bir temasla momentumu koru.",
+        "nurtureRec": "15 dakikalık başarı görüşmesi planla.",
+        "scheduleCall": "Görüşme planla"
+      }
+    }
   },
   "onboarding": {
     "welcome": "Zyrix CRM'e hoş geldiniz",

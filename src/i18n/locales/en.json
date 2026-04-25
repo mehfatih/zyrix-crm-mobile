@@ -203,7 +203,102 @@
     "viewAll": "View all",
     "recentActivity": "Recent activity",
     "noActivity": "No activity yet",
-    "comingSoon": "Full dashboard coming in Sprint 4"
+    "comingSoon": "Full dashboard coming in Sprint 4",
+    "todaysFocus": "Today's focus",
+    "topActionsForToday": "Top actions for today",
+    "aiInsight": "AI Insight",
+    "smartStats": "Smart stats",
+    "allClear": "All clear — no urgent actions today",
+    "trendOverview": "Trend overview",
+    "chartExplain": "Revenue is trending up — last month is your strongest in 6 months.",
+    "changeCustomers": "+2 this week",
+    "warnInactiveCustomers": "3 inactive",
+    "hotHighValue": "2 high-value",
+    "warnAtRiskDeals": "2 at risk",
+    "hotLikelyClose": "4 likely to close",
+    "changeRevenue": "+12% vs last month",
+    "forecastRevenue": "AI forecast: $24,000",
+    "changeTasks": "3 due today",
+    "warnOverdueTasks": "1 overdue"
+  },
+  "revenueBrain": {
+    "title": "Revenue Brain",
+    "expectedMonth": "Expected this month",
+    "target": "Target",
+    "gap": "Gap",
+    "gapShort": "{{amount}} short of target",
+    "aboveTarget": "On track to beat target",
+    "bestCase": "Best",
+    "likely": "Likely",
+    "riskCase": "Risk",
+    "impact": "Impact",
+    "openFull": "Open Revenue Brain",
+    "loading": "Loading Revenue Brain..."
+  },
+  "pipeline": {
+    "atRiskCount": "{{count}} at risk",
+    "dayInStage_one": "{{count}} day",
+    "dayInStage_other": "{{count}} days",
+    "dayInStage": "{{count}} days",
+    "stage": {
+      "lead": "Lead",
+      "qualified": "Qualified",
+      "proposal": "Proposal",
+      "negotiation": "Negotiation",
+      "closing": "Closing",
+      "postsale": "Post-sale"
+    },
+    "summary": {
+      "lead": "AI scores leads by intent and reply speed",
+      "qualified": "AI detects buying intent in conversations",
+      "proposal": "AI suggests when to follow up",
+      "negotiation": "AI suggests counter-offer strategy",
+      "closing": "AI predicts win probability",
+      "postsale": "AI suggests upsell windows"
+    },
+    "cta": {
+      "startOutreach": "Start outreach",
+      "bookDemo": "Book demo",
+      "generateProposal": "Generate proposal",
+      "draftCounter": "Draft counter",
+      "closingPlan": "Closing plan",
+      "successPlan": "Success plan"
+    }
+  },
+  "timeline": {
+    "empty": "No timeline events yet.",
+    "dayLabel": "Day {{day}}",
+    "aiTag": "AI",
+    "delayReason": "Delay above normal — {{days}} days past the {{baseline}}-day stage baseline.",
+    "signalGap": "Gap of {{days}} days vs. baseline",
+    "signalBaseline": "Stage baseline: {{baseline}} days",
+    "actionGenerateFollowup": "Generate follow-up"
+  },
+  "messaging": {
+    "ai": {
+      "suggestReply": "AI suggest reply",
+      "improveTone": "Improve tone",
+      "translate": "Translate",
+      "shorten": "Shorten",
+      "personalize": "Personalize",
+      "explain": "Explain",
+      "thinking": "Thinking...",
+      "typeMessage": "Type a message — AI will help you polish it.",
+      "send": "Send",
+      "toneTitle": "Pick a tone",
+      "translateTitle": "Translate to",
+      "tone": {
+        "professional": "Professional",
+        "friendly": "Friendly",
+        "concise": "Concise",
+        "persuasive": "Persuasive"
+      },
+      "language": {
+        "ar": "Arabic",
+        "en": "English",
+        "tr": "Turkish"
+      }
+    }
   },
   "roles": {
     "superAdmin": "Super Admin",
@@ -231,7 +326,46 @@
   },
   "customer": {
     "yourCompany": "Your provider",
-    "noCompany": "Personal account"
+    "noCompany": "Personal account",
+    "ai": {
+      "summaryLabel": "AI customer summary",
+      "summaryTemplate": "{{name}} from {{company}} has a health score of {{health}}/100 and {{revenue}} in lifetime revenue. Last contact was {{idle}} days ago.",
+      "behaviourPattern": "Behaviour pattern",
+      "opportunityLevel": "Opportunity level",
+      "opportunityReason": "Health {{health}}/100 with {{revenue}} lifetime revenue suggests this opportunity tier.",
+      "nextBestAction": "Next best action",
+      "behaviour": {
+        "repliesFast": "Replies fast",
+        "highValue": "High lifetime value",
+        "prefersWhatsapp": "Prefers WhatsApp",
+        "goingQuiet": "Quiet for {{days}} days",
+        "steady": "Steady engagement"
+      },
+      "opportunity": {
+        "high": "High",
+        "medium": "Medium",
+        "low": "Low"
+      },
+      "signal": {
+        "health": "Health score: {{health}}/100",
+        "revenue": "Lifetime revenue: {{revenue}}",
+        "idle": "Last contact: {{days}} days ago"
+      },
+      "nextAction": {
+        "proposeUpgrade": "Propose an upgrade",
+        "proposeUpgradeReason": "Strong health and revenue make this a prime moment to expand the relationship.",
+        "proposeUpgradeRec": "Send a tailored proposal this week.",
+        "sendProposal": "Send proposal",
+        "reachOut": "Re-engage this customer",
+        "reachOutReason": "Customer has been quiet for {{days}} days — a personalised check-in is overdue.",
+        "reachOutRec": "Send a brief, friendly check-in.",
+        "sendCheckin": "Send check-in",
+        "nurture": "Nurture the relationship",
+        "nurtureReason": "Engagement is steady — keep momentum with a value-add touchpoint.",
+        "nurtureRec": "Schedule a 15-minute success call.",
+        "scheduleCall": "Schedule call"
+      }
+    }
   },
   "onboarding": {
     "welcome": "Welcome to Zyrix CRM",

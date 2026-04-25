@@ -203,7 +203,102 @@
     "viewAll": "عرض الكل",
     "recentActivity": "آخر النشاطات",
     "noActivity": "لا توجد نشاطات بعد",
-    "comingSoon": "لوحة التحكم الكاملة قادمة في المرحلة 4"
+    "comingSoon": "لوحة التحكم الكاملة قادمة في المرحلة 4",
+    "todaysFocus": "تركيز اليوم",
+    "topActionsForToday": "أهم الإجراءات لهذا اليوم",
+    "aiInsight": "رؤية الذكاء الاصطناعي",
+    "smartStats": "إحصاءات ذكية",
+    "allClear": "كل شيء على ما يرام — لا توجد إجراءات عاجلة اليوم",
+    "trendOverview": "نظرة عامة على الاتجاه",
+    "chartExplain": "الإيرادات في تصاعد — الشهر الماضي هو الأقوى خلال 6 أشهر.",
+    "changeCustomers": "+2 هذا الأسبوع",
+    "warnInactiveCustomers": "3 غير نشطين",
+    "hotHighValue": "2 ذو قيمة عالية",
+    "warnAtRiskDeals": "2 في خطر",
+    "hotLikelyClose": "4 على وشك الإغلاق",
+    "changeRevenue": "+12% مقارنة بالشهر الماضي",
+    "forecastRevenue": "توقع الذكاء الاصطناعي: 24,000$",
+    "changeTasks": "3 مستحقة اليوم",
+    "warnOverdueTasks": "1 متأخرة"
+  },
+  "revenueBrain": {
+    "title": "عقل الإيرادات",
+    "expectedMonth": "المتوقع هذا الشهر",
+    "target": "الهدف",
+    "gap": "الفجوة",
+    "gapShort": "{{amount}} ينقصك للوصول للهدف",
+    "aboveTarget": "أنت في طريقك لتجاوز الهدف",
+    "bestCase": "الأفضل",
+    "likely": "الأرجح",
+    "riskCase": "المخاطرة",
+    "impact": "الأثر",
+    "openFull": "فتح عقل الإيرادات",
+    "loading": "تحميل عقل الإيرادات..."
+  },
+  "pipeline": {
+    "atRiskCount": "{{count}} في خطر",
+    "dayInStage_one": "{{count}} يوم",
+    "dayInStage_other": "{{count}} يوم",
+    "dayInStage": "{{count}} يوم",
+    "stage": {
+      "lead": "عميل محتمل",
+      "qualified": "مؤهل",
+      "proposal": "عرض",
+      "negotiation": "تفاوض",
+      "closing": "إغلاق",
+      "postsale": "ما بعد البيع"
+    },
+    "summary": {
+      "lead": "الذكاء الاصطناعي يقيّم العملاء حسب النية وسرعة الرد",
+      "qualified": "الذكاء الاصطناعي يكتشف نية الشراء في المحادثات",
+      "proposal": "الذكاء الاصطناعي يقترح أفضل وقت للمتابعة",
+      "negotiation": "الذكاء الاصطناعي يقترح استراتيجية العرض المضاد",
+      "closing": "الذكاء الاصطناعي يتوقع احتمال الفوز",
+      "postsale": "الذكاء الاصطناعي يكتشف فرص البيع الإضافي"
+    },
+    "cta": {
+      "startOutreach": "بدء التواصل",
+      "bookDemo": "حجز عرض",
+      "generateProposal": "إنشاء عرض",
+      "draftCounter": "صياغة عرض مضاد",
+      "closingPlan": "خطة الإغلاق",
+      "successPlan": "خطة النجاح"
+    }
+  },
+  "timeline": {
+    "empty": "لا توجد أحداث بعد.",
+    "dayLabel": "اليوم {{day}}",
+    "aiTag": "ذكاء",
+    "delayReason": "التأخير أعلى من المعتاد — {{days}} يوم بعد متوسط المرحلة البالغ {{baseline}} يوم.",
+    "signalGap": "فارق {{days}} يوم عن المتوسط",
+    "signalBaseline": "متوسط المرحلة: {{baseline}} يوم",
+    "actionGenerateFollowup": "إنشاء متابعة"
+  },
+  "messaging": {
+    "ai": {
+      "suggestReply": "اقتراح رد بالذكاء الاصطناعي",
+      "improveTone": "تحسين النبرة",
+      "translate": "ترجمة",
+      "shorten": "اختصار",
+      "personalize": "تخصيص",
+      "explain": "شرح",
+      "thinking": "جاري التفكير...",
+      "typeMessage": "اكتب رسالة — الذكاء الاصطناعي سيساعدك على تحسينها.",
+      "send": "إرسال",
+      "toneTitle": "اختر النبرة",
+      "translateTitle": "ترجمة إلى",
+      "tone": {
+        "professional": "احترافية",
+        "friendly": "ودودة",
+        "concise": "موجزة",
+        "persuasive": "مقنعة"
+      },
+      "language": {
+        "ar": "العربية",
+        "en": "الإنجليزية",
+        "tr": "التركية"
+      }
+    }
   },
   "roles": {
     "superAdmin": "مشرف عام",
@@ -231,7 +326,46 @@
   },
   "customer": {
     "yourCompany": "مزوّد الخدمة",
-    "noCompany": "حساب شخصي"
+    "noCompany": "حساب شخصي",
+    "ai": {
+      "summaryLabel": "ملخص العميل من الذكاء الاصطناعي",
+      "summaryTemplate": "{{name}} من {{company}} — مؤشر الصحة {{health}}/100 وإجمالي الإيرادات {{revenue}}. آخر تواصل قبل {{idle}} يوم.",
+      "behaviourPattern": "نمط السلوك",
+      "opportunityLevel": "مستوى الفرصة",
+      "opportunityReason": "مؤشر صحة {{health}}/100 مع إيرادات إجمالية {{revenue}} يشير إلى هذا المستوى من الفرصة.",
+      "nextBestAction": "أفضل إجراء تالٍ",
+      "behaviour": {
+        "repliesFast": "يرد بسرعة",
+        "highValue": "قيمة عمر مرتفعة",
+        "prefersWhatsapp": "يفضّل واتساب",
+        "goingQuiet": "صامت منذ {{days}} يوم",
+        "steady": "تفاعل ثابت"
+      },
+      "opportunity": {
+        "high": "عالية",
+        "medium": "متوسطة",
+        "low": "منخفضة"
+      },
+      "signal": {
+        "health": "مؤشر الصحة: {{health}}/100",
+        "revenue": "الإيرادات الإجمالية: {{revenue}}",
+        "idle": "آخر تواصل: قبل {{days}} يوم"
+      },
+      "nextAction": {
+        "proposeUpgrade": "اقترح ترقية",
+        "proposeUpgradeReason": "الصحة العالية والإيرادات الجيدة تجعل هذا الوقت مثاليًا لتوسيع العلاقة.",
+        "proposeUpgradeRec": "أرسل عرضًا مخصصًا هذا الأسبوع.",
+        "sendProposal": "إرسال العرض",
+        "reachOut": "أعد التواصل مع هذا العميل",
+        "reachOutReason": "العميل صامت منذ {{days}} يوم — حان وقت التواصل الشخصي.",
+        "reachOutRec": "أرسل رسالة متابعة قصيرة وودودة.",
+        "sendCheckin": "إرسال تواصل",
+        "nurture": "ارعَ العلاقة",
+        "nurtureReason": "التفاعل ثابت — حافظ على الزخم بنقطة قيمة مضافة.",
+        "nurtureRec": "حدد مكالمة نجاح لمدة 15 دقيقة.",
+        "scheduleCall": "جدولة مكالمة"
+      }
+    }
   },
   "onboarding": {
     "welcome": "مرحبًا بك في زيريكس CRM",
