@@ -34,6 +34,7 @@ import { getCountryConfig } from '../../../config/countries';
 import { radius, shadows, spacing } from '../../../constants/spacing';
 import { textStyles } from '../../../constants/typography';
 import type { SupportedLanguage } from '../../../i18n';
+import { useAuthStore } from '../../../store/authStore';
 import { useCountryConfigStore } from '../../../store/countryConfigStore';
 import { useToastStore } from '../../../store/toastStore';
 import { useUiStore } from '../../../store/uiStore';
@@ -51,12 +52,24 @@ export const ProfileScreen: React.FC = () => {
   const navigation = useNavigation();
   const currentUser = useUserStore((s) => s.currentUser);
   const updateProfile = useUserStore((s) => s.updateProfile);
+  const biometricEnabled = useUserStore((s) => s.biometricEnabled);
   const countryCode = useCountryConfigStore((s) => s.countryCode);
   const setCountry = useCountryConfigStore((s) => s.setCountry);
   const language = useUiStore((s) => s.language) as SupportedLanguage;
   const pushToast = useToastStore((s) => s.show);
+  const twoFactorEnabled = useAuthStore((s) => s.twoFactorEnabled);
 
   const [pickerOpen, setPickerOpen] = useState(false);
+  const [useUSD, setUseUSD] = useState(false);
+
+  const goToSettingsRoute = (route: string): void => {
+    try {
+      (navigation as unknown as { navigate: (name: string, params?: unknown) => void })
+        .navigate('MoreTab', { screen: 'Settings', params: { screen: route } });
+    } catch {
+      // ignore — route missing in this build
+    }
+  };
 
   const activeCountry = findCountry(countryCode);
   const config = getCountryConfig(activeCountry.code);
@@ -179,6 +192,150 @@ export const ProfileScreen: React.FC = () => {
           <LanguageSwitcher />
         </View>
 
+        {currentUser?.email ? (
+          <View style={[styles.card, styles.cardIdentity]}>
+            <View style={[styles.iconBubble, { backgroundColor: colors.skySoft }]}>
+              <Icon name="mail-outline" size={22} color={colors.primary} />
+            </View>
+            <View style={styles.cardBody}>
+              <Text style={styles.cardLabel}>{t('profile.email')}</Text>
+              <Text style={styles.cardValue} numberOfLines={1}>
+                {currentUser.email}
+              </Text>
+              <Text style={styles.cardCaption}>{t('profile.emailVerified')}</Text>
+            </View>
+            <Icon name="checkmark-circle" size={22} color={colors.success} />
+          </View>
+        ) : null}
+
+        <View style={[styles.card, styles.cardIdentity]}>
+          <View style={[styles.iconBubble, { backgroundColor: colors.peachSoft }]}>
+            <Icon name="call-outline" size={22} color={colors.peach} />
+          </View>
+          <View style={styles.cardBody}>
+            <Text style={styles.cardLabel}>{t('profile.phone')}</Text>
+            <Text style={styles.cardValue} numberOfLines={1}>
+              {currentUser?.phone ?? '—'}
+            </Text>
+            <Text style={styles.cardCaption}>{t('profile.phoneHint')}</Text>
+          </View>
+        </View>
+
+        <Pressable
+          onPress={() => setUseUSD((v) => !v)}
+          style={({ pressed }) => [
+            styles.card,
+            styles.cardIdentity,
+            pressed ? { opacity: 0.9 } : null,
+          ]}
+          accessibilityRole="switch"
+          accessibilityState={{ checked: useUSD }}
+        >
+          <View style={[styles.iconBubble, { backgroundColor: colors.mintSoft }]}>
+            <Icon name="cash-outline" size={22} color={colors.mint} />
+          </View>
+          <View style={styles.cardBody}>
+            <Text style={styles.cardLabel}>{t('profile.currencyPreference')}</Text>
+            <Text style={styles.cardValue} numberOfLines={1}>
+              {useUSD ? 'USD' : config.currency}
+            </Text>
+            <Text style={styles.cardCaption}>
+              {t('profile.currencyPreferenceHint', { alt: useUSD ? config.currency : 'USD' })}
+            </Text>
+          </View>
+          <View
+            style={[
+              styles.toggle,
+              useUSD ? styles.toggleOn : styles.toggleOff,
+            ]}
+          >
+            <View
+              style={[
+                styles.toggleKnob,
+                useUSD ? styles.toggleKnobOn : styles.toggleKnobOff,
+              ]}
+            />
+          </View>
+        </Pressable>
+
+        <Text style={styles.sectionHeading}>{t('profile.securityTitle')}</Text>
+
+        <Pressable
+          onPress={() => goToSettingsRoute('Security')}
+          style={({ pressed }) => [
+            styles.card,
+            styles.cardIdentity,
+            pressed ? { opacity: 0.9 } : null,
+          ]}
+          accessibilityRole="button"
+        >
+          <View style={[styles.iconBubble, { backgroundColor: colors.primarySoft }]}>
+            <Icon name="finger-print-outline" size={22} color={colors.primary} />
+          </View>
+          <View style={styles.cardBody}>
+            <Text style={styles.cardLabel}>{t('profile.biometric')}</Text>
+            <Text style={styles.cardValue}>{biometricEnabled ? 'On' : 'Off'}</Text>
+          </View>
+          <Icon name="chevron-forward" size={20} color={colors.textMuted} />
+        </Pressable>
+
+        <Pressable
+          onPress={() => goToSettingsRoute('TwoFactor')}
+          style={({ pressed }) => [
+            styles.card,
+            styles.cardIdentity,
+            pressed ? { opacity: 0.9 } : null,
+          ]}
+          accessibilityRole="button"
+        >
+          <View style={[styles.iconBubble, { backgroundColor: colors.lavenderSoft }]}>
+            <Icon name="key-outline" size={22} color={colors.lavender} />
+          </View>
+          <View style={styles.cardBody}>
+            <Text style={styles.cardLabel}>{t('profile.twoFactor')}</Text>
+            <Text style={styles.cardValue}>{twoFactorEnabled ? 'On' : 'Off'}</Text>
+          </View>
+          <Icon name="chevron-forward" size={20} color={colors.textMuted} />
+        </Pressable>
+
+        <Pressable
+          onPress={() => goToSettingsRoute('DeviceManagement')}
+          style={({ pressed }) => [
+            styles.card,
+            styles.cardIdentity,
+            pressed ? { opacity: 0.9 } : null,
+          ]}
+          accessibilityRole="button"
+        >
+          <View style={[styles.iconBubble, { backgroundColor: colors.sunshineSoft }]}>
+            <Icon name="phone-portrait-outline" size={22} color={colors.warning} />
+          </View>
+          <View style={styles.cardBody}>
+            <Text style={styles.cardLabel}>{t('profile.activeSessions')}</Text>
+            <Text style={styles.cardValue}>{t('common.edit')}</Text>
+          </View>
+          <Icon name="chevron-forward" size={20} color={colors.textMuted} />
+        </Pressable>
+
+        <Pressable
+          onPress={() => goToSettingsRoute('Security')}
+          style={({ pressed }) => [
+            styles.card,
+            styles.cardIdentity,
+            pressed ? { opacity: 0.9 } : null,
+          ]}
+          accessibilityRole="button"
+        >
+          <View style={[styles.iconBubble, { backgroundColor: colors.roseSoft }]}>
+            <Icon name="lock-closed-outline" size={22} color={colors.rose} />
+          </View>
+          <View style={styles.cardBody}>
+            <Text style={styles.cardLabel}>{t('profile.passwordChange')}</Text>
+            <Text style={styles.cardValue}>{t('common.continue')}</Text>
+          </View>
+          <Icon name="chevron-forward" size={20} color={colors.textMuted} />
+        </Pressable>
+
         <View style={styles.helpCard}>
           <Icon
             name="information-circle-outline"
@@ -279,6 +436,38 @@ const styles = StyleSheet.create({
     ...textStyles.caption,
     color: colors.textHeading,
     flex: 1,
+  },
+  sectionHeading: {
+    ...textStyles.overline,
+    color: colors.primaryDark,
+    marginTop: spacing.base,
+    marginHorizontal: spacing.xs,
+  },
+  toggle: {
+    width: 44,
+    height: 26,
+    borderRadius: 13,
+    padding: 2,
+    justifyContent: 'center',
+  },
+  toggleOn: {
+    backgroundColor: colors.primary,
+  },
+  toggleOff: {
+    backgroundColor: colors.border,
+  },
+  toggleKnob: {
+    width: 22,
+    height: 22,
+    borderRadius: 11,
+    backgroundColor: colors.white,
+    ...shadows.xs,
+  },
+  toggleKnobOn: {
+    alignSelf: 'flex-end',
+  },
+  toggleKnobOff: {
+    alignSelf: 'flex-start',
   },
 });
 

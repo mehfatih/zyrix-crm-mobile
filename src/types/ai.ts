@@ -248,3 +248,52 @@ export interface LiveMeetingListItem {
   actionItemsCount: number;
   bucket: 'upcoming' | 'recent';
 }
+
+// ─────────────────────────────────────────────────────────────────────
+// AI Sprint 1 (section 15) — Agent/Decision-engine contract
+// ─────────────────────────────────────────────────────────────────────
+
+export type AgentRole =
+  | 'sales-followup'
+  | 'deal-risk'
+  | 'revenue'
+  | 'customer-profile'
+  | 'messaging'
+  | 'onboarding'
+  | 'integration'
+  | 'task';
+
+export type AgentPermissionLevel = 1 | 2 | 3 | 4;
+
+export interface AIInsight {
+  title: string;
+  reason: string;
+  confidence: number;
+  recommendedAction: string;
+  cta: { label: string; action: string };
+  signals?: string[];
+}
+
+export interface AgentOutput extends AIInsight {
+  agentRole: AgentRole;
+  permissionLevel: AgentPermissionLevel;
+  entityType?: 'customer' | 'deal' | 'task' | 'message';
+  entityId?: string;
+  draftPayload?: unknown;
+}
+
+export interface RankedAction extends AIInsight {
+  id: string;
+  type: 'risk' | 'opportunity' | 'followup' | 'revenue' | 'retention';
+  priority: number;
+  entityType?: string;
+  entityId?: string;
+  estimatedImpact?: { type: 'revenue' | 'retention'; value: number };
+}
+
+export interface AIContext {
+  screen: string;
+  entityType?: string;
+  entityId?: string;
+  summary: string;
+}

@@ -14,6 +14,7 @@ export type AuthStackParamList = {
   LanguageSelection: undefined;
   Login: undefined;
   Register: undefined;
+  ForgotPassword: undefined;
   Onboarding: undefined;
   TwoFactorPrompt: undefined;
 };

@@ -26,17 +26,18 @@ import {
   View,
   type GestureResponderEvent,
 } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
 import Constants from 'expo-constants';
 import { useNavigation } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
+import { AppScreen } from '../../components/layout/AppScreen';
 import { LanguageSwitcher } from '../../components/common/LanguageSwitcher';
 import { colors, gradients } from '../../constants/colors';
 import { radius, shadows, spacing } from '../../constants/spacing';
 import { textStyles } from '../../constants/typography';
 import { useUiStore } from '../../store/uiStore';
+import { zyrixTheme } from '../../theme/zyrixTheme';
 import type { AuthStackParamList } from '../../navigation/types';
 
 type Nav = NativeStackNavigationProp<AuthStackParamList, 'Splash'>;
@@ -194,14 +195,7 @@ export const SplashScreen: React.FC = () => {
   );
 
   return (
-    <View style={styles.root}>
-      <LinearGradient
-        colors={[...gradients.celebration]}
-        start={{ x: 0, y: 0 }}
-        end={{ x: 1, y: 1 }}
-        style={StyleSheet.absoluteFill}
-      />
-      <SafeAreaView style={styles.safe} edges={['top', 'bottom']}>
+    <AppScreen style={styles.safe}>
         <View style={styles.topBar}>
           <View />
           <LanguageSwitcher />
@@ -261,18 +255,13 @@ export const SplashScreen: React.FC = () => {
         </View>
 
         <Text style={styles.version}>v{appVersion}</Text>
-      </SafeAreaView>
-    </View>
+    </AppScreen>
   );
 };
 
 const BUTTON_HEIGHT = 56;
 
 const styles = StyleSheet.create({
-  root: {
-    flex: 1,
-    backgroundColor: colors.coral,
-  },
   safe: {
     flex: 1,
     paddingHorizontal: spacing.xl,
@@ -296,6 +285,8 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
     alignItems: 'center',
     justifyContent: 'center',
+    borderWidth: 1,
+    borderColor: zyrixTheme.cardBorder,
     ...shadows.lg,
   },
   logoMark: {
@@ -306,7 +297,7 @@ const styles = StyleSheet.create({
   },
   brand: {
     ...textStyles.display,
-    color: colors.white,
+    color: zyrixTheme.textHeading,
     letterSpacing: 1,
   },
   taglineWrap: {
@@ -317,7 +308,7 @@ const styles = StyleSheet.create({
   },
   tagline: {
     ...textStyles.h3,
-    color: colors.white,
+    color: zyrixTheme.textBody,
     textAlign: 'center',
     fontWeight: '600',
   },
@@ -357,7 +348,7 @@ const styles = StyleSheet.create({
   },
   version: {
     ...textStyles.caption,
-    color: 'rgba(255,255,255,0.85)',
+    color: zyrixTheme.textMuted,
     textAlign: 'center',
     marginTop: spacing.md,
   },

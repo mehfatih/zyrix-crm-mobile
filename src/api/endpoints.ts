@@ -14,6 +14,14 @@ export const ENDPOINTS = {
     PROFILE: '/api/auth/me',
     FORGOT_PASSWORD: '/api/auth/forgot-password',
     RESET_PASSWORD: '/api/auth/reset-password',
+    // Spec §14.3 — 3 recovery methods.
+    PASSWORD_RESET: '/api/auth/password-reset',
+    MAGIC_LINK: '/api/auth/magic-link',
+    OTP_REQUEST: '/api/auth/otp-request',
+    OTP_VERIFY: '/api/auth/otp-verify',
+  },
+  onboarding: {
+    PROGRESS: '/api/onboarding/progress',
   },
   customers: {
     LIST: '/api/customers',

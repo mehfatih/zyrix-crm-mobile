@@ -35,8 +35,14 @@ import { colors } from '../../constants/colors';
 import { radius, shadows, spacing } from '../../constants/spacing';
 import { textStyles } from '../../constants/typography';
 import { useAuthStore } from '../../store/authStore';
+import { useToastStore } from '../../store/toastStore';
 import { useUiStore } from '../../store/uiStore';
 import { useUserStore } from '../../store/userStore';
+import {
+  appleSignIn,
+  googleSignIn,
+  isAppleSignInSupported,
+} from '../../services/socialAuth';
 import {
   getPermissionsForRole,
   type AuthUser,
@@ -148,6 +154,30 @@ export const RegisterScreen: React.FC = () => {
 
   const goToLogin = (): void => {
     navigation.navigate('Login');
+  };
+
+  const pushToast = useToastStore((s) => s.show);
+
+  const onGoogleSignIn = async (): Promise<void> => {
+    const result = await googleSignIn();
+    if (!result.ok) {
+      pushToast({
+        variant: 'info',
+        title: t('auth.continueWithGoogle'),
+        description: result.message ?? t('auth.socialNotReady'),
+      });
+    }
+  };
+
+  const onAppleSignIn = async (): Promise<void> => {
+    const result = await appleSignIn();
+    if (!result.ok) {
+      pushToast({
+        variant: 'info',
+        title: t('auth.continueWithApple'),
+        description: result.message ?? t('auth.socialNotReady'),
+      });
+    }
   };
 
   return (
@@ -303,6 +333,45 @@ export const RegisterScreen: React.FC = () => {
                 style={styles.submit}
               />
 
+              <View style={styles.socialDivider}>
+                <View style={styles.dividerLine} />
+                <Text style={styles.dividerText}>{t('common.or')}</Text>
+                <View style={styles.dividerLine} />
+              </View>
+
+              <Pressable
+                onPress={() => void onGoogleSignIn()}
+                accessibilityRole="button"
+                accessibilityLabel={t('auth.continueWithGoogle')}
+                style={({ pressed }) => [
+                  styles.socialBtn,
+                  pressed ? { opacity: 0.85 } : null,
+                ]}
+              >
+                <Text style={styles.googleMark}>G</Text>
+                <Text style={styles.socialLabel}>
+                  {t('auth.continueWithGoogle')}
+                </Text>
+              </Pressable>
+
+              {isAppleSignInSupported() ? (
+                <Pressable
+                  onPress={() => void onAppleSignIn()}
+                  accessibilityRole="button"
+                  accessibilityLabel={t('auth.continueWithApple')}
+                  style={({ pressed }) => [
+                    styles.socialBtn,
+                    styles.appleBtn,
+                    pressed ? { opacity: 0.85 } : null,
+                  ]}
+                >
+                  <Text style={styles.appleMark}></Text>
+                  <Text style={[styles.socialLabel, styles.appleLabel]}>
+                    {t('auth.continueWithApple')}
+                  </Text>
+                </Pressable>
+              ) : null}
+
               <View style={styles.loginRow}>
                 <Text style={styles.loginText}>
                   {t('forms.alreadyHaveAccount')}
@@ -417,6 +486,59 @@ const styles = StyleSheet.create({
     color: colors.primary,
     fontWeight: '700',
     marginStart: spacing.xs,
+  },
+  socialDivider: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    columnGap: spacing.sm,
+    marginTop: spacing.md,
+    marginBottom: spacing.sm,
+  },
+  dividerLine: {
+    flex: 1,
+    height: StyleSheet.hairlineWidth,
+    backgroundColor: colors.border,
+  },
+  dividerText: {
+    ...textStyles.caption,
+    color: colors.textMuted,
+    fontWeight: '600',
+    textTransform: 'uppercase',
+    letterSpacing: 1,
+  },
+  socialBtn: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    columnGap: spacing.sm,
+    paddingVertical: spacing.md,
+    borderRadius: radius.pill,
+    borderWidth: 1,
+    borderColor: colors.border,
+    backgroundColor: colors.white,
+    marginTop: spacing.sm,
+  },
+  googleMark: {
+    fontSize: 20,
+    fontWeight: '800',
+    color: '#4285F4',
+  },
+  socialLabel: {
+    ...textStyles.button,
+    color: colors.textPrimary,
+    fontWeight: '600',
+  },
+  appleBtn: {
+    backgroundColor: '#000000',
+    borderColor: '#000000',
+  },
+  appleMark: {
+    fontSize: 18,
+    color: colors.white,
+    fontWeight: '700',
+  },
+  appleLabel: {
+    color: colors.white,
   },
 });
 

@@ -34,12 +34,18 @@ import { hitSlop, radius, shadows, spacing } from '../../constants/spacing';
 import { textStyles } from '../../constants/typography';
 import { useCountryConfig } from '../../hooks/useCountryConfig';
 import type { SupportedLanguage } from '../../i18n';
+import {
+  clearOnboardingProgress,
+  getOnboardingProgress,
+  saveOnboardingProgress,
+  type OnboardingStep,
+} from '../../services/setupResume';
 import { useCountryConfigStore } from '../../store/countryConfigStore';
 import { useUiStore } from '../../store/uiStore';
 import { useUserStore } from '../../store/userStore';
 import type { CountryCode } from '../../types/country';
 
-type Step = 1 | 2 | 3 | 4 | 5;
+type Step = OnboardingStep;
 const TOTAL_STEPS = 5;
 
 interface BusinessTypeOption {
@@ -84,6 +90,25 @@ export const OnboardingScreen: React.FC = () => {
   const { width } = useWindowDimensions();
   const columnCount = width >= 640 ? 4 : 2;
 
+  // Spec §14.12 — resume from the last saved step on mount.
+  useEffect(() => {
+    let cancelled = false;
+    void (async () => {
+      const progress = await getOnboardingProgress();
+      if (!progress || cancelled) return;
+      if (progress.completed) return;
+      setStep(progress.step);
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  // Persist step changes (debounced implicitly by React render batching).
+  useEffect(() => {
+    void saveOnboardingProgress(step, false);
+  }, [step]);
+
   // Whenever country changes (step 2 → 3 transition), align language.
   useEffect(() => {
     if (!selectedCountry) return;
@@ -115,6 +140,8 @@ export const OnboardingScreen: React.FC = () => {
     setCompleting(true);
     try {
       await updateProfile({ country: selectedCountry });
+      await saveOnboardingProgress(5, true);
+      await clearOnboardingProgress();
     } finally {
       setCompleting(false);
     }
