@@ -34,7 +34,8 @@
       },
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,
-      "package": "com.zyrix.crm"
+      "package": "com.zyrix.crm",
+      "versionCode": 3
     },
     "web": {
       "favicon": "./assets/favicon.png"
