@@ -25,7 +25,7 @@ import { FileUploader, type UploadedFile } from '../../../components/forms/FileU
 import { Header } from '../../../components/common/Header';
 import { Icon } from '../../../components/common/Icon';
 import { Input } from '../../../components/common/Input';
-import { colors } from '../../../constants/colors';
+import { darkColors } from '../../../theme/dark';
 import { radius, shadows, spacing } from '../../../constants/spacing';
 import { textStyles } from '../../../constants/typography';
 import { useToast } from '../../../hooks/useToast';
@@ -99,7 +99,7 @@ export const NewLoyaltyRewardScreen: React.FC = () => {
             value={description}
             onChangeText={setDescription}
             placeholder={t('quoteBuilder.customerNotes')}
-            placeholderTextColor={colors.textMuted}
+            placeholderTextColor={darkColors.textMuted}
             multiline
             style={[
               styles.textarea,
@@ -140,7 +140,7 @@ export const NewLoyaltyRewardScreen: React.FC = () => {
                 <Text
                   style={[
                     styles.categoryText,
-                    category === cat ? { color: colors.textInverse } : null,
+                    category === cat ? { color: darkColors.textOnPrimary } : null,
                   ]}
                 >
                   {t(`loyaltyCategories.${cat}`)}
@@ -156,8 +156,8 @@ export const NewLoyaltyRewardScreen: React.FC = () => {
             <Switch
               value={limitedStock}
               onValueChange={setLimitedStock}
-              trackColor={{ false: colors.border, true: colors.primary }}
-              thumbColor={colors.white}
+              trackColor={{ false: darkColors.border, true: darkColors.primary }}
+              thumbColor={darkColors.white}
             />
           </View>
           <Text style={styles.stockHint}>
@@ -197,7 +197,7 @@ export const NewLoyaltyRewardScreen: React.FC = () => {
                 ]}
               >
                 {tiers[tier] ? (
-                  <Icon name="checkmark" size={12} color={colors.textInverse} />
+                  <Icon name="checkmark" size={12} color={darkColors.textOnPrimary} />
                 ) : null}
               </View>
               <Text style={styles.tierText}>{t(`loyalty.${tier}`)}</Text>
@@ -214,14 +214,14 @@ export const NewLoyaltyRewardScreen: React.FC = () => {
 };
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: colors.background },
+  safe: { flex: 1, backgroundColor: darkColors.background },
   scroll: {
     padding: spacing.base,
     paddingBottom: spacing.xxxl,
     rowGap: spacing.base,
   },
   card: {
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     padding: spacing.base,
     borderRadius: radius.lg,
     rowGap: spacing.sm,
@@ -229,13 +229,13 @@ const styles = StyleSheet.create({
   },
   fieldLabel: {
     ...textStyles.label,
-    color: colors.textSecondary,
+    color: darkColors.textSecondary,
   },
   textarea: {
     ...textStyles.body,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
     borderWidth: 1,
-    borderColor: colors.border,
+    borderColor: darkColors.border,
     borderRadius: radius.base,
     padding: spacing.sm,
     minHeight: 100,
@@ -250,17 +250,17 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.md,
     paddingVertical: spacing.xs,
     borderRadius: radius.pill,
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     borderWidth: 1,
-    borderColor: colors.border,
+    borderColor: darkColors.border,
   },
   categoryChipActive: {
-    backgroundColor: colors.primary,
-    borderColor: colors.primary,
+    backgroundColor: darkColors.primary,
+    borderColor: darkColors.primary,
   },
   categoryText: {
     ...textStyles.caption,
-    color: colors.textSecondary,
+    color: darkColors.textSecondary,
     textTransform: 'capitalize',
     fontWeight: '600',
   },
@@ -271,7 +271,7 @@ const styles = StyleSheet.create({
   },
   stockHint: {
     ...textStyles.caption,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
   },
   tierRow: {
     flexDirection: 'row',
@@ -284,23 +284,23 @@ const styles = StyleSheet.create({
     height: 20,
     borderRadius: 6,
     borderWidth: 1.5,
-    borderColor: colors.borderStrong,
+    borderColor: darkColors.borderStrong,
     alignItems: 'center',
     justifyContent: 'center',
   },
   checkboxChecked: {
-    backgroundColor: colors.primary,
-    borderColor: colors.primary,
+    backgroundColor: darkColors.primary,
+    borderColor: darkColors.primary,
   },
   tierText: {
     ...textStyles.body,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
   },
   footer: {
     padding: spacing.base,
     borderTopWidth: 1,
-    borderTopColor: colors.divider,
-    backgroundColor: colors.surface,
+    borderTopColor: darkColors.divider,
+    backgroundColor: darkColors.surface,
   },
 });
 

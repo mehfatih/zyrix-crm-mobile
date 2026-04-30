@@ -20,7 +20,7 @@ import { DrawerActions, useNavigation } from '@react-navigation/native';
 import { Header } from '../../components/common/Header';
 import { Icon, type AnyIconName } from '../../components/common/Icon';
 import { SkeletonCard } from '../../components/common/SkeletonCard';
-import { colors } from '../../constants/colors';
+import { darkColors } from '../../theme/dark';
 import { hitSlop, radius, shadows, spacing } from '../../constants/spacing';
 import { textStyles } from '../../constants/typography';
 import { useAuditLog } from '../../hooks/useAdmin';
@@ -34,18 +34,18 @@ const SEVERITY_TONE: Record<
   { background: string; color: string; icon: AnyIconName }
 > = {
   info: {
-    background: colors.primarySoft,
-    color: colors.primary,
+    background: darkColors.primarySoft,
+    color: darkColors.primary,
     icon: 'information-circle-outline',
   },
   warning: {
-    background: colors.warningSoft,
-    color: colors.warning,
+    background: darkColors.warningSoft,
+    color: darkColors.warning,
     icon: 'warning-outline',
   },
   critical: {
-    background: colors.errorSoft,
-    color: colors.error,
+    background: darkColors.errorSoft,
+    color: darkColors.error,
     icon: 'alert-circle-outline',
   },
 };
@@ -81,7 +81,7 @@ export const AuditLogScreen: React.FC = () => {
             hitSlop={hitSlop.md}
             style={styles.headerBtn}
           >
-            <Icon name="menu-outline" size={24} color={colors.textInverse} />
+            <Icon name="menu-outline" size={24} color={darkColors.textOnPrimary} />
           </Pressable>
         }
         rightSlot={
@@ -90,7 +90,7 @@ export const AuditLogScreen: React.FC = () => {
             hitSlop={hitSlop.md}
             style={styles.headerBtn}
           >
-            <Icon name="download-outline" size={20} color={colors.textInverse} />
+            <Icon name="download-outline" size={20} color={darkColors.textOnPrimary} />
           </Pressable>
         }
       />
@@ -113,7 +113,7 @@ export const AuditLogScreen: React.FC = () => {
               <Text
                 style={[
                   styles.chipText,
-                  severity === entry ? { color: colors.textInverse } : null,
+                  severity === entry ? { color: darkColors.textOnPrimary } : null,
                 ]}
               >
                 {entry === 'all'
@@ -130,7 +130,7 @@ export const AuditLogScreen: React.FC = () => {
           onPress={() => exportLog('csv')}
           style={styles.exportBtn}
         >
-          <Icon name="document-outline" size={14} color={colors.primary} />
+          <Icon name="document-outline" size={14} color={darkColors.primary} />
           <Text style={styles.exportText}>
             {t('auditLogAdmin.exportCSV')}
           </Text>
@@ -139,7 +139,7 @@ export const AuditLogScreen: React.FC = () => {
           onPress={() => exportLog('json')}
           style={styles.exportBtn}
         >
-          <Icon name="code-outline" size={14} color={colors.primary} />
+          <Icon name="code-outline" size={14} color={darkColors.primary} />
           <Text style={styles.exportText}>
             {t('auditLogAdmin.exportJSON')}
           </Text>
@@ -211,7 +211,7 @@ export const AuditLogScreen: React.FC = () => {
               <Icon
                 name="document-text-outline"
                 size={40}
-                color={colors.primary}
+                color={darkColors.primary}
               />
               <Text style={styles.emptyTitle}>{t('auditLogAdmin.title')}</Text>
             </View>
@@ -223,7 +223,7 @@ export const AuditLogScreen: React.FC = () => {
 };
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: colors.background },
+  safe: { flex: 1, backgroundColor: darkColors.background },
   headerBtn: {
     width: 40,
     height: 40,
@@ -241,16 +241,16 @@ const styles = StyleSheet.create({
     paddingVertical: spacing.sm,
     borderRadius: radius.pill,
     borderWidth: 1,
-    borderColor: colors.border,
-    backgroundColor: colors.surface,
+    borderColor: darkColors.border,
+    backgroundColor: darkColors.surface,
   },
   chipActive: {
-    backgroundColor: colors.primary,
-    borderColor: colors.primary,
+    backgroundColor: darkColors.primary,
+    borderColor: darkColors.primary,
   },
   chipText: {
     ...textStyles.caption,
-    color: colors.textSecondary,
+    color: darkColors.textSecondary,
     fontWeight: '600',
   },
   exportRow: {
@@ -264,12 +264,12 @@ const styles = StyleSheet.create({
     columnGap: spacing.xs,
     paddingHorizontal: spacing.sm,
     paddingVertical: 4,
-    backgroundColor: colors.primarySoft,
+    backgroundColor: darkColors.primarySoft,
     borderRadius: radius.pill,
   },
   exportText: {
     ...textStyles.caption,
-    color: colors.primary,
+    color: darkColors.primary,
     fontWeight: '700',
   },
   list: {
@@ -278,7 +278,7 @@ const styles = StyleSheet.create({
     rowGap: spacing.sm,
   },
   row: {
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     padding: spacing.sm,
     borderRadius: radius.lg,
     rowGap: spacing.xs,
@@ -299,26 +299,26 @@ const styles = StyleSheet.create({
   rowBody: { flex: 1 },
   rowAction: {
     ...textStyles.bodyMedium,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
   },
-  rowMeta: { ...textStyles.caption, color: colors.textMuted },
-  rowDate: { ...textStyles.caption, color: colors.textMuted },
+  rowMeta: { ...textStyles.caption, color: darkColors.textMuted },
+  rowDate: { ...textStyles.caption, color: darkColors.textMuted },
   expanded: {
     marginTop: spacing.sm,
-    backgroundColor: colors.surfaceAlt,
+    backgroundColor: darkColors.surfaceAlt,
     padding: spacing.sm,
     borderRadius: radius.base,
     rowGap: spacing.xs,
   },
   expandedKey: {
     ...textStyles.caption,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
     fontWeight: '700',
     textTransform: 'uppercase',
   },
   expandedValue: {
     ...textStyles.caption,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
     fontFamily: 'monospace',
   },
   empty: {
@@ -326,7 +326,7 @@ const styles = StyleSheet.create({
     paddingTop: spacing.xxxl,
     rowGap: spacing.sm,
   },
-  emptyTitle: { ...textStyles.h4, color: colors.textPrimary },
+  emptyTitle: { ...textStyles.h4, color: darkColors.textPrimary },
 });
 
 export default AuditLogScreen;

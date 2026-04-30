@@ -26,7 +26,7 @@ import { Button } from '../../components/common/Button';
 import { Header } from '../../components/common/Header';
 import { Icon } from '../../components/common/Icon';
 import { SkeletonCard } from '../../components/common/SkeletonCard';
-import { colors } from '../../constants/colors';
+import { darkColors } from '../../theme/dark';
 import { radius, shadows, spacing } from '../../constants/spacing';
 import { textStyles } from '../../constants/typography';
 import { useCreateIPRule, useIPRules } from '../../hooks/useAdmin';
@@ -101,7 +101,7 @@ export const IPAllowlistAdminScreen: React.FC = () => {
             <Text
               style={[
                 styles.scopeText,
-                scope === entry ? { color: colors.textInverse } : null,
+                scope === entry ? { color: darkColors.textOnPrimary } : null,
               ]}
             >
               {scope === entry ? entry : entry}
@@ -123,7 +123,7 @@ export const IPAllowlistAdminScreen: React.FC = () => {
               <Icon
                 name="shield-checkmark-outline"
                 size={40}
-                color={colors.primary}
+                color={darkColors.primary}
               />
               <Text style={styles.emptyTitle}>{t('admin.ipAllowlist')}</Text>
             </View>
@@ -164,7 +164,7 @@ export const IPAllowlistAdminScreen: React.FC = () => {
           pressed ? { opacity: 0.9 } : null,
         ]}
       >
-        <Icon name="add" size={26} color={colors.textInverse} />
+        <Icon name="add" size={26} color={darkColors.textOnPrimary} />
       </Pressable>
 
       <Modal
@@ -208,7 +208,7 @@ export const IPAllowlistAdminScreen: React.FC = () => {
                   <Text
                     style={[
                       styles.modeChipText,
-                      mode === entry ? { color: colors.textInverse } : null,
+                      mode === entry ? { color: darkColors.textOnPrimary } : null,
                     ]}
                   >
                     {t(`ipAllowlistAdmin.${MODE_LABEL[entry]}`)}
@@ -223,8 +223,8 @@ export const IPAllowlistAdminScreen: React.FC = () => {
               <Switch
                 value={mobileBypass}
                 onValueChange={setMobileBypass}
-                trackColor={{ false: colors.border, true: colors.primary }}
-                thumbColor={colors.white}
+                trackColor={{ false: darkColors.border, true: darkColors.primary }}
+                thumbColor={darkColors.white}
               />
             </View>
             <View style={styles.modalActions}>
@@ -266,7 +266,7 @@ const Field: React.FC<{
 );
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: colors.background },
+  safe: { flex: 1, backgroundColor: darkColors.background },
   scopeRow: {
     flexDirection: 'row',
     columnGap: spacing.sm,
@@ -277,13 +277,13 @@ const styles = StyleSheet.create({
     paddingVertical: spacing.sm,
     borderRadius: radius.pill,
     borderWidth: 1.5,
-    borderColor: colors.primary,
+    borderColor: darkColors.primary,
     alignItems: 'center',
   },
-  scopeChipActive: { backgroundColor: colors.primary },
+  scopeChipActive: { backgroundColor: darkColors.primary },
   scopeText: {
     ...textStyles.caption,
-    color: colors.primary,
+    color: darkColors.primary,
     fontWeight: '700',
     textTransform: 'capitalize',
   },
@@ -293,7 +293,7 @@ const styles = StyleSheet.create({
     paddingBottom: spacing.xxxl * 2,
   },
   card: {
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     padding: spacing.base,
     borderRadius: radius.lg,
     rowGap: spacing.xs,
@@ -304,28 +304,28 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
   },
-  cidr: { ...textStyles.h4, color: colors.textPrimary, fontWeight: '700' },
+  cidr: { ...textStyles.h4, color: darkColors.textPrimary, fontWeight: '700' },
   modePill: {
     paddingHorizontal: spacing.sm,
     paddingVertical: 2,
     borderRadius: radius.pill,
-    backgroundColor: colors.primarySoft,
+    backgroundColor: darkColors.primarySoft,
   },
   modePillText: {
     ...textStyles.caption,
-    color: colors.primary,
+    color: darkColors.primary,
     fontWeight: '700',
   },
-  description: { ...textStyles.body, color: colors.textSecondary },
+  description: { ...textStyles.body, color: darkColors.textSecondary },
   metaRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
   },
-  metaText: { ...textStyles.caption, color: colors.textMuted },
+  metaText: { ...textStyles.caption, color: darkColors.textMuted },
   metaPositive: {
     ...textStyles.caption,
-    color: colors.success,
+    color: darkColors.success,
     fontWeight: '700',
   },
   empty: {
@@ -333,7 +333,7 @@ const styles = StyleSheet.create({
     paddingTop: spacing.xxxl,
     rowGap: spacing.sm,
   },
-  emptyTitle: { ...textStyles.h4, color: colors.textPrimary },
+  emptyTitle: { ...textStyles.h4, color: darkColors.textPrimary },
   fab: {
     position: 'absolute',
     insetInlineEnd: spacing.lg,
@@ -341,7 +341,7 @@ const styles = StyleSheet.create({
     width: 56,
     height: 56,
     borderRadius: 28,
-    backgroundColor: colors.primary,
+    backgroundColor: darkColors.primary,
     alignItems: 'center',
     justifyContent: 'center',
     ...shadows.md,
@@ -352,21 +352,21 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
   },
   modalCard: {
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     borderTopLeftRadius: radius.xl,
     borderTopRightRadius: radius.xl,
     padding: spacing.lg,
     rowGap: spacing.sm,
     ...shadows.lg,
   },
-  modalTitle: { ...textStyles.h3, color: colors.textPrimary },
+  modalTitle: { ...textStyles.h3, color: darkColors.textPrimary },
   field: { rowGap: spacing.xs },
-  fieldLabel: { ...textStyles.label, color: colors.textSecondary },
+  fieldLabel: { ...textStyles.label, color: darkColors.textSecondary },
   input: {
     ...textStyles.body,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
     borderWidth: 1,
-    borderColor: colors.border,
+    borderColor: darkColors.border,
     borderRadius: radius.base,
     padding: spacing.sm,
   },
@@ -380,15 +380,15 @@ const styles = StyleSheet.create({
     paddingVertical: spacing.sm,
     borderRadius: radius.pill,
     borderWidth: 1,
-    borderColor: colors.border,
+    borderColor: darkColors.border,
   },
   modeChipActive: {
-    backgroundColor: colors.primary,
-    borderColor: colors.primary,
+    backgroundColor: darkColors.primary,
+    borderColor: darkColors.primary,
   },
   modeChipText: {
     ...textStyles.caption,
-    color: colors.textSecondary,
+    color: darkColors.textSecondary,
     fontWeight: '600',
   },
   toggleRow: {

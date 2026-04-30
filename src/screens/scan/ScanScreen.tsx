@@ -27,7 +27,7 @@ import {
 
 import { Header } from '../../components/common/Header';
 import { Icon } from '../../components/common/Icon';
-import { colors } from '../../constants/colors';
+import { darkColors } from '../../theme/dark';
 import { radius, spacing } from '../../constants/spacing';
 import { textStyles } from '../../constants/typography';
 
@@ -80,7 +80,7 @@ export const ScanScreen: React.FC<ScanScreenProps> = ({
     if (!permission) {
       return (
         <View style={styles.center}>
-          <ActivityIndicator color={colors.primary} />
+          <ActivityIndicator color={darkColors.primary} />
         </View>
       );
     }
@@ -88,7 +88,7 @@ export const ScanScreen: React.FC<ScanScreenProps> = ({
     if (!permission.granted) {
       return (
         <View style={styles.permissionWrap}>
-          <Icon name="camera-outline" size={48} color={colors.primary} />
+          <Icon name="camera-outline" size={48} color={darkColors.primary} />
           <Text style={styles.permissionTitle}>
             {t('scan.permissionTitle')}
           </Text>
@@ -187,36 +187,36 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: colors.background,
+    backgroundColor: darkColors.background,
   },
   permissionWrap: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: spacing.xl,
-    backgroundColor: colors.background,
+    backgroundColor: darkColors.background,
     rowGap: spacing.md,
   },
   permissionTitle: {
     ...textStyles.h3,
-    color: colors.textHeading,
+    color: darkColors.textHeading,
     textAlign: 'center',
   },
   permissionBody: {
     ...textStyles.body,
-    color: colors.textSecondary,
+    color: darkColors.textSecondary,
     textAlign: 'center',
   },
   permissionBtn: {
     marginTop: spacing.base,
     paddingHorizontal: spacing.xl,
     paddingVertical: spacing.md,
-    backgroundColor: colors.primary,
+    backgroundColor: darkColors.primary,
     borderRadius: radius.pill,
   },
   permissionBtnText: {
     ...textStyles.button,
-    color: colors.textInverse,
+    color: darkColors.textOnPrimary,
   },
   cameraWrap: {
     flex: 1,
@@ -232,11 +232,11 @@ const styles = StyleSheet.create({
     height: 260,
     borderRadius: radius.lg,
     borderWidth: 3,
-    borderColor: colors.primaryLighter,
+    borderColor: darkColors.primaryLighter,
   },
   subtitle: {
     ...textStyles.body,
-    color: colors.textInverse,
+    color: darkColors.textOnPrimary,
     marginTop: spacing.lg,
     textAlign: 'center',
     paddingHorizontal: spacing.xl,
@@ -246,18 +246,18 @@ const styles = StyleSheet.create({
     left: spacing.base,
     right: spacing.base,
     bottom: spacing.xl,
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     borderRadius: radius.xl,
     padding: spacing.lg,
     rowGap: spacing.sm,
   },
   resultLabel: {
     ...textStyles.overline,
-    color: colors.primary,
+    color: darkColors.primary,
   },
   resultValue: {
     ...textStyles.body,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
   },
   actions: {
     flexDirection: 'row',
@@ -272,18 +272,18 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   secondaryBtn: {
-    backgroundColor: colors.background,
+    backgroundColor: darkColors.background,
   },
   primaryBtn: {
-    backgroundColor: colors.primary,
+    backgroundColor: darkColors.primary,
   },
   secondaryText: {
     ...textStyles.button,
-    color: colors.primary,
+    color: darkColors.primary,
   },
   primaryText: {
     ...textStyles.button,
-    color: colors.textInverse,
+    color: darkColors.textOnPrimary,
   },
 });
 

@@ -21,7 +21,7 @@ import { CurrencyDisplay } from '../../../components/forms/CurrencyDisplay';
 import { Header } from '../../../components/common/Header';
 import { Icon } from '../../../components/common/Icon';
 import { SkeletonCard } from '../../../components/common/SkeletonCard';
-import { colors } from '../../../constants/colors';
+import { darkColors } from '../../../theme/dark';
 import { radius, shadows, spacing } from '../../../constants/spacing';
 import { textStyles } from '../../../constants/typography';
 import { useCountryConfig } from '../../../hooks/useCountryConfig';
@@ -47,11 +47,11 @@ const STATUS_TONE: Record<
   ComplianceStatus | 'needs',
   { background: string; color: string }
 > = {
-  needs: { background: colors.errorSoft, color: colors.error },
-  pending: { background: colors.warningSoft, color: colors.warning },
-  submitted: { background: colors.infoSoft, color: colors.info },
-  accepted: { background: colors.successSoft, color: colors.success },
-  rejected: { background: colors.errorSoft, color: colors.error },
+  needs: { background: darkColors.errorSoft, color: darkColors.error },
+  pending: { background: darkColors.warningSoft, color: darkColors.warning },
+  submitted: { background: darkColors.infoSoft, color: darkColors.info },
+  accepted: { background: darkColors.successSoft, color: darkColors.success },
+  rejected: { background: darkColors.errorSoft, color: darkColors.error },
 };
 
 const submissionFor = (
@@ -139,7 +139,7 @@ export const TaxInvoicesScreen: React.FC = () => {
       />
       {!showsScreen ? (
         <View style={styles.empty}>
-          <Icon name="information-circle-outline" size={40} color={colors.primary} />
+          <Icon name="information-circle-outline" size={40} color={darkColors.primary} />
           <Text style={styles.emptyTitle}>
             {t('taxCompliance.taxInvoice')}
           </Text>
@@ -153,14 +153,14 @@ export const TaxInvoicesScreen: React.FC = () => {
             <StatCell
               label={t('taxCompliance.needsSubmission')}
               value={pendingCount}
-              tone={colors.warning}
+              tone={darkColors.warning}
             />
-            <StatCell label={t('zatca.accepted')} value={acceptedCount} tone={colors.success} />
-            <StatCell label={t('zatca.rejected')} value={rejectedCount} tone={colors.error} />
+            <StatCell label={t('zatca.accepted')} value={acceptedCount} tone={darkColors.success} />
+            <StatCell label={t('zatca.rejected')} value={rejectedCount} tone={darkColors.error} />
             <StatCell
               label={t('taxCompliance.acceptanceRate')}
               value={`${acceptanceRate}%`}
-              tone={colors.primary}
+              tone={darkColors.primary}
             />
           </View>
 
@@ -172,7 +172,7 @@ export const TaxInvoicesScreen: React.FC = () => {
                 pressed ? { opacity: 0.85 } : null,
               ]}
             >
-              <Icon name="cloud-upload-outline" size={20} color={colors.textInverse} />
+              <Icon name="cloud-upload-outline" size={20} color={darkColors.textOnPrimary} />
               <Text style={styles.batchText}>
                 {`${t('taxCompliance.batchSubmit')} (${pendingCount})`}
               </Text>
@@ -263,7 +263,7 @@ const StatCell: React.FC<{
 );
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: colors.background },
+  safe: { flex: 1, backgroundColor: darkColors.background },
   scroll: {
     padding: spacing.base,
     paddingBottom: spacing.xxl,
@@ -277,7 +277,7 @@ const styles = StyleSheet.create({
   statCell: {
     flexBasis: '47%',
     flexGrow: 1,
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     padding: spacing.base,
     borderRadius: radius.lg,
     rowGap: 4,
@@ -285,7 +285,7 @@ const styles = StyleSheet.create({
   },
   statLabel: {
     ...textStyles.caption,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
   },
   statValue: {
     ...textStyles.h2,
@@ -298,15 +298,15 @@ const styles = StyleSheet.create({
     columnGap: spacing.sm,
     paddingVertical: spacing.md,
     borderRadius: radius.pill,
-    backgroundColor: colors.primary,
+    backgroundColor: darkColors.primary,
     ...shadows.md,
   },
   batchText: {
     ...textStyles.button,
-    color: colors.textInverse,
+    color: darkColors.textOnPrimary,
   },
   groupCard: {
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     borderRadius: radius.lg,
     padding: spacing.base,
     rowGap: spacing.sm,
@@ -328,23 +328,23 @@ const styles = StyleSheet.create({
   },
   groupCount: {
     ...textStyles.h4,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
   },
   row: {
     flexDirection: 'row',
     alignItems: 'center',
     paddingVertical: spacing.sm,
     borderBottomWidth: 1,
-    borderBottomColor: colors.divider,
+    borderBottomColor: darkColors.divider,
     columnGap: spacing.sm,
   },
   rowBody: { flex: 1 },
-  rowTitle: { ...textStyles.bodyMedium, color: colors.textPrimary },
-  rowMeta: { ...textStyles.caption, color: colors.textMuted },
+  rowTitle: { ...textStyles.bodyMedium, color: darkColors.textPrimary },
+  rowMeta: { ...textStyles.caption, color: darkColors.textMuted },
   rowMetaRight: { alignItems: 'flex-end' },
   systemTag: {
     ...textStyles.caption,
-    color: colors.primary,
+    color: darkColors.primary,
     fontWeight: '700',
     marginTop: 2,
   },
@@ -355,8 +355,8 @@ const styles = StyleSheet.create({
     padding: spacing.xl,
     rowGap: spacing.sm,
   },
-  emptyTitle: { ...textStyles.h4, color: colors.textPrimary },
-  emptyBody: { ...textStyles.body, color: colors.textMuted, textAlign: 'center' },
+  emptyTitle: { ...textStyles.h4, color: darkColors.textPrimary },
+  emptyBody: { ...textStyles.body, color: darkColors.textMuted, textAlign: 'center' },
 });
 
 export default TaxInvoicesScreen;

@@ -24,7 +24,7 @@ import { DrawerActions, useNavigation } from '@react-navigation/native';
 import { Button } from '../../../components/common/Button';
 import { Header } from '../../../components/common/Header';
 import { Icon } from '../../../components/common/Icon';
-import { colors } from '../../../constants/colors';
+import { darkColors } from '../../../theme/dark';
 import { hitSlop, radius, shadows, spacing } from '../../../constants/spacing';
 import { textStyles } from '../../../constants/typography';
 import { useCountryConfig } from '../../../hooks/useCountryConfig';
@@ -143,7 +143,7 @@ export const PaymentGatewaysScreen: React.FC = () => {
             hitSlop={hitSlop.md}
             style={styles.headerBtn}
           >
-            <Icon name="menu-outline" size={24} color={colors.textInverse} />
+            <Icon name="menu-outline" size={24} color={darkColors.textOnPrimary} />
           </Pressable>
         }
       />
@@ -163,7 +163,7 @@ export const PaymentGatewaysScreen: React.FC = () => {
                     style={[
                       styles.statusText,
                       {
-                        color: isOn ? colors.success : colors.textMuted,
+                        color: isOn ? darkColors.success : darkColors.textMuted,
                       },
                     ]}
                   >
@@ -175,8 +175,8 @@ export const PaymentGatewaysScreen: React.FC = () => {
                 <Switch
                   value={isOn}
                   onValueChange={() => toggle(gateway.id)}
-                  trackColor={{ false: colors.border, true: colors.primary }}
-                  thumbColor={colors.white}
+                  trackColor={{ false: darkColors.border, true: darkColors.primary }}
+                  thumbColor={darkColors.white}
                 />
               </View>
               <Pressable
@@ -186,7 +186,7 @@ export const PaymentGatewaysScreen: React.FC = () => {
                   pressed ? { opacity: 0.85 } : null,
                 ]}
               >
-                <Icon name="settings-outline" size={16} color={colors.primary} />
+                <Icon name="settings-outline" size={16} color={darkColors.primary} />
                 <Text style={styles.configText}>
                   {t('paymentGateways.configure')}
                 </Text>
@@ -216,7 +216,7 @@ export const PaymentGatewaysScreen: React.FC = () => {
               value={publicKey}
               onChangeText={setPublicKey}
               placeholder="pk_live_..."
-              placeholderTextColor={colors.textMuted}
+              placeholderTextColor={darkColors.textMuted}
               autoCapitalize="none"
               autoCorrect={false}
               style={[
@@ -230,7 +230,7 @@ export const PaymentGatewaysScreen: React.FC = () => {
               value={secretKey}
               onChangeText={setSecretKey}
               placeholder="sk_live_..."
-              placeholderTextColor={colors.textMuted}
+              placeholderTextColor={darkColors.textMuted}
               autoCapitalize="none"
               autoCorrect={false}
               secureTextEntry
@@ -248,7 +248,7 @@ export const PaymentGatewaysScreen: React.FC = () => {
               <Pressable
                 onPress={() => toast.success(t('paymentLinks.linkCopied'))}
               >
-                <Icon name="copy-outline" size={18} color={colors.primary} />
+                <Icon name="copy-outline" size={18} color={darkColors.primary} />
               </Pressable>
             </View>
 
@@ -268,7 +268,7 @@ export const PaymentGatewaysScreen: React.FC = () => {
 };
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: colors.background },
+  safe: { flex: 1, backgroundColor: darkColors.background },
   headerBtn: {
     width: 40,
     height: 40,
@@ -281,7 +281,7 @@ const styles = StyleSheet.create({
     paddingBottom: spacing.xxl,
   },
   card: {
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     padding: spacing.base,
     borderRadius: radius.lg,
     rowGap: spacing.sm,
@@ -296,19 +296,19 @@ const styles = StyleSheet.create({
     width: 44,
     height: 44,
     borderRadius: 22,
-    backgroundColor: colors.primarySoft,
+    backgroundColor: darkColors.primarySoft,
     alignItems: 'center',
     justifyContent: 'center',
   },
   logoText: {
     ...textStyles.label,
-    color: colors.primaryDark,
+    color: darkColors.primaryDark,
     fontWeight: '700',
   },
   body: { flex: 1 },
   name: {
     ...textStyles.bodyMedium,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
   },
   statusText: {
     ...textStyles.caption,
@@ -320,11 +320,11 @@ const styles = StyleSheet.create({
     columnGap: spacing.xs,
     paddingVertical: spacing.sm,
     borderTopWidth: 1,
-    borderTopColor: colors.divider,
+    borderTopColor: darkColors.divider,
   },
   configText: {
     ...textStyles.button,
-    color: colors.primary,
+    color: darkColors.primary,
   },
   backdrop: {
     flex: 1,
@@ -332,7 +332,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
   },
   modalCard: {
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     borderTopLeftRadius: radius.xl,
     borderTopRightRadius: radius.xl,
     padding: spacing.lg,
@@ -341,24 +341,24 @@ const styles = StyleSheet.create({
   },
   modalTitle: {
     ...textStyles.h3,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
   },
   fieldLabel: {
     ...textStyles.label,
-    color: colors.textSecondary,
+    color: darkColors.textSecondary,
   },
   input: {
     ...textStyles.body,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
     borderWidth: 1,
-    borderColor: colors.border,
+    borderColor: darkColors.border,
     borderRadius: radius.base,
     padding: spacing.sm,
   },
   webhookRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: colors.surfaceAlt,
+    backgroundColor: darkColors.surfaceAlt,
     padding: spacing.sm,
     borderRadius: radius.base,
     columnGap: spacing.sm,
@@ -366,7 +366,7 @@ const styles = StyleSheet.create({
   webhookText: {
     flex: 1,
     ...textStyles.caption,
-    color: colors.primaryDark,
+    color: darkColors.primaryDark,
   },
   modalActions: {
     flexDirection: 'row',

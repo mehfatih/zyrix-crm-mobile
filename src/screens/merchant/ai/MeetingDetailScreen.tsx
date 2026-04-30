@@ -26,7 +26,7 @@ import { Header } from '../../../components/common/Header';
 import { Icon } from '../../../components/common/Icon';
 import { SentimentBadge } from '../../../components/feature-specific/SentimentBadge';
 import { SkeletonCard } from '../../../components/common/SkeletonCard';
-import { colors } from '../../../constants/colors';
+import { darkColors } from '../../../theme/dark';
 import { hitSlop, radius, shadows, spacing } from '../../../constants/spacing';
 import { textStyles } from '../../../constants/typography';
 import { useCountryConfig } from '../../../hooks/useCountryConfig';
@@ -63,7 +63,7 @@ export const MeetingDetailScreen: React.FC = () => {
             hitSlop={hitSlop.md}
             style={styles.headerBtn}
           >
-            <Icon name="share-outline" size={22} color={colors.textInverse} />
+            <Icon name="share-outline" size={22} color={darkColors.textOnPrimary} />
           </Pressable>
         }
       />
@@ -112,7 +112,7 @@ export const MeetingDetailScreen: React.FC = () => {
                 <Text
                   style={[
                     styles.tabText,
-                    tab === entry.key ? { color: colors.textInverse } : null,
+                    tab === entry.key ? { color: darkColors.textOnPrimary } : null,
                   ]}
                 >
                   {t(entry.label)}
@@ -177,7 +177,7 @@ export const MeetingDetailScreen: React.FC = () => {
                           <Icon
                             name="checkmark"
                             size={12}
-                            color={colors.textInverse}
+                            color={darkColors.textOnPrimary}
                           />
                         ) : null}
                       </View>
@@ -188,7 +188,7 @@ export const MeetingDetailScreen: React.FC = () => {
                             done
                               ? {
                                   textDecorationLine: 'line-through',
-                                  color: colors.textMuted,
+                                  color: darkColors.textMuted,
                                 }
                               : null,
                           ]}
@@ -217,7 +217,7 @@ export const MeetingDetailScreen: React.FC = () => {
                     <Icon
                       name="flag-outline"
                       size={18}
-                      color={colors.primary}
+                      color={darkColors.primary}
                     />
                     <View style={styles.decisionBody}>
                       <Text style={styles.decisionText}>{decision.text}</Text>
@@ -240,7 +240,7 @@ export const MeetingDetailScreen: React.FC = () => {
               <Icon
                 name="download-outline"
                 size={18}
-                color={colors.primary}
+                color={darkColors.primary}
               />
               <Text style={styles.downloadText}>
                 {t('meetings.downloadTranscript')}
@@ -254,7 +254,7 @@ export const MeetingDetailScreen: React.FC = () => {
 };
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: colors.background },
+  safe: { flex: 1, backgroundColor: darkColors.background },
   headerBtn: {
     width: 40,
     height: 40,
@@ -266,13 +266,13 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: spacing.base,
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     borderBottomWidth: 1,
-    borderBottomColor: colors.divider,
+    borderBottomColor: darkColors.divider,
   },
   infoText: {
     ...textStyles.caption,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
   },
   attendeesRow: {
     flexDirection: 'row',
@@ -281,16 +281,16 @@ const styles = StyleSheet.create({
     width: 28,
     height: 28,
     borderRadius: 14,
-    backgroundColor: colors.primarySoft,
+    backgroundColor: darkColors.primarySoft,
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 2,
-    borderColor: colors.surface,
+    borderColor: darkColors.surface,
     marginLeft: -8,
   },
   avatarText: {
     ...textStyles.caption,
-    color: colors.primaryDark,
+    color: darkColors.primaryDark,
     fontWeight: '700',
     fontSize: 10,
   },
@@ -304,12 +304,12 @@ const styles = StyleSheet.create({
     paddingVertical: spacing.sm,
     borderRadius: radius.pill,
     borderWidth: 1,
-    borderColor: colors.primary,
+    borderColor: darkColors.primary,
   },
-  tabActive: { backgroundColor: colors.primary },
+  tabActive: { backgroundColor: darkColors.primary },
   tabText: {
     ...textStyles.caption,
-    color: colors.primary,
+    color: darkColors.primary,
     fontWeight: '700',
   },
   scroll: {
@@ -318,7 +318,7 @@ const styles = StyleSheet.create({
     rowGap: spacing.base,
   },
   card: {
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     padding: spacing.base,
     borderRadius: radius.lg,
     rowGap: spacing.sm,
@@ -326,11 +326,11 @@ const styles = StyleSheet.create({
   },
   sectionTitle: {
     ...textStyles.h4,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
   },
   summaryText: {
     ...textStyles.body,
-    color: colors.textSecondary,
+    color: darkColors.textSecondary,
   },
   chipsRow: {
     flexDirection: 'row',
@@ -341,31 +341,31 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.sm,
     paddingVertical: 2,
     borderRadius: radius.pill,
-    backgroundColor: colors.primarySoft,
+    backgroundColor: darkColors.primarySoft,
   },
   topicText: {
     ...textStyles.caption,
-    color: colors.primaryDark,
+    color: darkColors.primaryDark,
     fontWeight: '600',
   },
   transcriptRow: {
     paddingVertical: spacing.sm,
     borderBottomWidth: 1,
-    borderBottomColor: colors.divider,
+    borderBottomColor: darkColors.divider,
     rowGap: 4,
   },
   speaker: {
     ...textStyles.label,
-    color: colors.primary,
+    color: darkColors.primary,
     fontWeight: '700',
   },
   lineContent: {
     ...textStyles.body,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
   },
   lineTime: {
     ...textStyles.caption,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
   },
   actionRow: {
     flexDirection: 'row',
@@ -378,22 +378,22 @@ const styles = StyleSheet.create({
     height: 24,
     borderRadius: 6,
     borderWidth: 1.5,
-    borderColor: colors.borderStrong,
+    borderColor: darkColors.borderStrong,
     alignItems: 'center',
     justifyContent: 'center',
   },
   checkboxDone: {
-    backgroundColor: colors.primary,
-    borderColor: colors.primary,
+    backgroundColor: darkColors.primary,
+    borderColor: darkColors.primary,
   },
   actionBody: { flex: 1 },
   actionText: {
     ...textStyles.body,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
   },
   actionMeta: {
     ...textStyles.caption,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
   },
   decisionRow: {
     flexDirection: 'row',
@@ -403,11 +403,11 @@ const styles = StyleSheet.create({
   decisionBody: { flex: 1 },
   decisionText: {
     ...textStyles.body,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
   },
   decisionContext: {
     ...textStyles.caption,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
   },
   downloadBtn: {
     flexDirection: 'row',
@@ -416,11 +416,11 @@ const styles = StyleSheet.create({
     columnGap: spacing.xs,
     paddingVertical: spacing.md,
     borderRadius: radius.pill,
-    backgroundColor: colors.primarySoft,
+    backgroundColor: darkColors.primarySoft,
   },
   downloadText: {
     ...textStyles.button,
-    color: colors.primary,
+    color: darkColors.primary,
   },
 });
 

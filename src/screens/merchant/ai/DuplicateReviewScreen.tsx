@@ -24,7 +24,7 @@ import { useQuery } from '@tanstack/react-query';
 import { Header } from '../../../components/common/Header';
 import { Icon } from '../../../components/common/Icon';
 import { SkeletonCard } from '../../../components/common/SkeletonCard';
-import { colors } from '../../../constants/colors';
+import { darkColors } from '../../../theme/dark';
 import { detectDuplicates } from '../../../api/ai';
 import { radius, shadows, spacing } from '../../../constants/spacing';
 import { textStyles } from '../../../constants/typography';
@@ -108,7 +108,7 @@ export const DuplicateReviewScreen: React.FC = () => {
                       : 'radio-button-off'
                   }
                   size={18}
-                  color={colors.primary}
+                  color={darkColors.primary}
                 />
                 <Text style={styles.winnerLabel}>
                   {record.primaryLabel}
@@ -128,7 +128,7 @@ export const DuplicateReviewScreen: React.FC = () => {
                   <Icon
                     name="sparkles-outline"
                     size={12}
-                    color={colors.primary}
+                    color={darkColors.primary}
                   />
                   <Text style={styles.smartText}>
                     {t('duplicates.smartSuggestion')}
@@ -149,7 +149,7 @@ export const DuplicateReviewScreen: React.FC = () => {
                       style={[
                         styles.fieldValue,
                         selected === idx
-                          ? { color: colors.primaryDark, fontWeight: '700' }
+                          ? { color: darkColors.primaryDark, fontWeight: '700' }
                           : null,
                       ]}
                       numberOfLines={2}
@@ -177,7 +177,7 @@ export const DuplicateReviewScreen: React.FC = () => {
             pressed ? { opacity: 0.9 } : null,
           ]}
         >
-          <Icon name="git-merge-outline" size={18} color={colors.textInverse} />
+          <Icon name="git-merge-outline" size={18} color={darkColors.textOnPrimary} />
           <Text style={styles.mergeText}>{t('duplicates.mergeAll')}</Text>
         </Pressable>
       </View>
@@ -186,7 +186,7 @@ export const DuplicateReviewScreen: React.FC = () => {
 };
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: colors.background },
+  safe: { flex: 1, backgroundColor: darkColors.background },
   scroll: {
     padding: spacing.base,
     rowGap: spacing.sm,
@@ -194,10 +194,10 @@ const styles = StyleSheet.create({
   },
   sectionTitle: {
     ...textStyles.h4,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
   },
   winnerCard: {
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     padding: spacing.base,
     borderRadius: radius.lg,
     rowGap: spacing.sm,
@@ -215,19 +215,19 @@ const styles = StyleSheet.create({
     padding: spacing.sm,
     borderRadius: radius.base,
     borderWidth: 1.5,
-    borderColor: colors.border,
+    borderColor: darkColors.border,
   },
   winnerOptionActive: {
-    borderColor: colors.primary,
-    backgroundColor: colors.primarySoft,
+    borderColor: darkColors.primary,
+    backgroundColor: darkColors.primarySoft,
   },
   winnerLabel: {
     ...textStyles.caption,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
     flex: 1,
   },
   fieldCard: {
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     padding: spacing.base,
     borderRadius: radius.lg,
     rowGap: spacing.sm,
@@ -240,7 +240,7 @@ const styles = StyleSheet.create({
   },
   fieldLabel: {
     ...textStyles.label,
-    color: colors.textSecondary,
+    color: darkColors.textSecondary,
   },
   smartBadge: {
     flexDirection: 'row',
@@ -249,11 +249,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.sm,
     paddingVertical: 2,
     borderRadius: radius.pill,
-    backgroundColor: colors.primarySoft,
+    backgroundColor: darkColors.primarySoft,
   },
   smartText: {
     ...textStyles.caption,
-    color: colors.primary,
+    color: darkColors.primary,
     fontWeight: '700',
   },
   fieldRow: {
@@ -265,27 +265,27 @@ const styles = StyleSheet.create({
     padding: spacing.sm,
     borderRadius: radius.base,
     borderWidth: 1.5,
-    borderColor: colors.border,
+    borderColor: darkColors.border,
     rowGap: 4,
   },
   fieldOptionActive: {
-    borderColor: colors.primary,
-    backgroundColor: colors.primarySoft,
+    borderColor: darkColors.primary,
+    backgroundColor: darkColors.primarySoft,
   },
   fieldValue: {
     ...textStyles.body,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
   },
   recommendedTag: {
     ...textStyles.caption,
-    color: colors.primary,
+    color: darkColors.primary,
     fontWeight: '700',
   },
   footer: {
     padding: spacing.base,
     borderTopWidth: 1,
-    borderTopColor: colors.divider,
-    backgroundColor: colors.surface,
+    borderTopColor: darkColors.divider,
+    backgroundColor: darkColors.surface,
   },
   mergeBtn: {
     flexDirection: 'row',
@@ -294,11 +294,11 @@ const styles = StyleSheet.create({
     columnGap: spacing.xs,
     paddingVertical: spacing.md,
     borderRadius: radius.pill,
-    backgroundColor: colors.primary,
+    backgroundColor: darkColors.primary,
   },
   mergeText: {
     ...textStyles.button,
-    color: colors.textInverse,
+    color: darkColors.textOnPrimary,
   },
 });
 

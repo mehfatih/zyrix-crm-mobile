@@ -22,7 +22,7 @@ import { useNavigation } from '@react-navigation/native';
 import { Button } from '../../components/common/Button';
 import { Header } from '../../components/common/Header';
 import { Icon } from '../../components/common/Icon';
-import { colors } from '../../constants/colors';
+import { darkColors } from '../../theme/dark';
 import { radius, shadows, spacing } from '../../constants/spacing';
 import { textStyles } from '../../constants/typography';
 import { useToast } from '../../hooks/useToast';
@@ -87,8 +87,8 @@ export const NetworkRulesScreen: React.FC = () => {
             <Switch
               value={whitelistMode}
               onValueChange={setWhitelistMode}
-              trackColor={{ false: colors.border, true: colors.primary }}
-              thumbColor={colors.white}
+              trackColor={{ false: darkColors.border, true: darkColors.primary }}
+              thumbColor={darkColors.white}
             />
           </View>
           <Text style={styles.fieldLabel}>
@@ -109,7 +109,7 @@ export const NetworkRulesScreen: React.FC = () => {
                   <Text
                     style={[
                       styles.countryText,
-                      selected ? { color: colors.textInverse } : null,
+                      selected ? { color: darkColors.textOnPrimary } : null,
                     ]}
                   >
                     {code}
@@ -128,8 +128,8 @@ export const NetworkRulesScreen: React.FC = () => {
             <Switch
               value={ddosEnabled}
               onValueChange={setDdosEnabled}
-              trackColor={{ false: colors.border, true: colors.primary }}
-              thumbColor={colors.white}
+              trackColor={{ false: darkColors.border, true: darkColors.primary }}
+              thumbColor={darkColors.white}
             />
           </View>
           <Text style={styles.fieldLabel}>
@@ -148,7 +148,7 @@ export const NetworkRulesScreen: React.FC = () => {
                 <Text
                   style={[
                     styles.sensitivityText,
-                    sensitivity === entry ? { color: colors.textInverse } : null,
+                    sensitivity === entry ? { color: darkColors.textOnPrimary } : null,
                   ]}
                 >
                   {t(`networkRules.${entry}`)}
@@ -163,7 +163,7 @@ export const NetworkRulesScreen: React.FC = () => {
             {t('networkRules.recentEvents')}
           </Text>
           <View style={styles.eventRow}>
-            <Icon name="warning-outline" size={16} color={colors.warning} />
+            <Icon name="warning-outline" size={16} color={darkColors.warning} />
             <View style={styles.eventBody}>
               <Text style={styles.eventTitle}>
                 {`SYN flood detected from 185.220.x.x`}
@@ -174,7 +174,7 @@ export const NetworkRulesScreen: React.FC = () => {
             </View>
           </View>
           <View style={styles.eventRow}>
-            <Icon name="information-circle-outline" size={16} color={colors.primary} />
+            <Icon name="information-circle-outline" size={16} color={darkColors.primary} />
             <View style={styles.eventBody}>
               <Text style={styles.eventTitle}>
                 {`Sustained scrape attempt mitigated`}
@@ -215,27 +215,27 @@ const Field: React.FC<{
 );
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: colors.background },
+  safe: { flex: 1, backgroundColor: darkColors.background },
   scroll: {
     padding: spacing.base,
     rowGap: spacing.base,
     paddingBottom: spacing.xxxl,
   },
   card: {
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     padding: spacing.base,
     borderRadius: radius.lg,
     rowGap: spacing.sm,
     ...shadows.xs,
   },
-  sectionTitle: { ...textStyles.h4, color: colors.textPrimary },
+  sectionTitle: { ...textStyles.h4, color: darkColors.textPrimary },
   field: { rowGap: spacing.xs },
-  fieldLabel: { ...textStyles.label, color: colors.textSecondary },
+  fieldLabel: { ...textStyles.label, color: darkColors.textSecondary },
   input: {
     ...textStyles.body,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
     borderWidth: 1,
-    borderColor: colors.border,
+    borderColor: darkColors.border,
     borderRadius: radius.base,
     padding: spacing.sm,
     minHeight: 44,
@@ -255,15 +255,15 @@ const styles = StyleSheet.create({
     paddingVertical: spacing.xs,
     borderRadius: radius.pill,
     borderWidth: 1,
-    borderColor: colors.border,
+    borderColor: darkColors.border,
   },
   countryChipActive: {
-    backgroundColor: colors.error,
-    borderColor: colors.error,
+    backgroundColor: darkColors.error,
+    borderColor: darkColors.error,
   },
   countryText: {
     ...textStyles.caption,
-    color: colors.textSecondary,
+    color: darkColors.textSecondary,
     fontWeight: '700',
   },
   row: {
@@ -275,13 +275,13 @@ const styles = StyleSheet.create({
     paddingVertical: spacing.sm,
     borderRadius: radius.pill,
     borderWidth: 1.5,
-    borderColor: colors.primary,
+    borderColor: darkColors.primary,
     alignItems: 'center',
   },
-  sensitivityChipActive: { backgroundColor: colors.primary },
+  sensitivityChipActive: { backgroundColor: darkColors.primary },
   sensitivityText: {
     ...textStyles.caption,
-    color: colors.primary,
+    color: darkColors.primary,
     fontWeight: '700',
     textTransform: 'capitalize',
   },
@@ -291,16 +291,16 @@ const styles = StyleSheet.create({
     columnGap: spacing.sm,
     paddingVertical: spacing.xs,
     borderBottomWidth: 1,
-    borderBottomColor: colors.divider,
+    borderBottomColor: darkColors.divider,
   },
   eventBody: { flex: 1 },
-  eventTitle: { ...textStyles.body, color: colors.textPrimary },
-  eventMeta: { ...textStyles.caption, color: colors.textMuted },
+  eventTitle: { ...textStyles.body, color: darkColors.textPrimary },
+  eventMeta: { ...textStyles.caption, color: darkColors.textMuted },
   footer: {
     padding: spacing.base,
     borderTopWidth: 1,
-    borderTopColor: colors.divider,
-    backgroundColor: colors.surface,
+    borderTopColor: darkColors.divider,
+    backgroundColor: darkColors.surface,
   },
 });
 

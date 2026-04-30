@@ -18,7 +18,7 @@ import { useTranslation } from 'react-i18next';
 import { Header } from '../../../components/common/Header';
 import { Icon } from '../../../components/common/Icon';
 import { MOCK_LOYALTY_MEMBERS } from '../../../api/mockData';
-import { colors } from '../../../constants/colors';
+import { darkColors } from '../../../theme/dark';
 import { radius, shadows, spacing } from '../../../constants/spacing';
 import { textStyles } from '../../../constants/typography';
 
@@ -148,7 +148,7 @@ export const LoyaltyScreen: React.FC = () => {
 
         {tab === 'rewards' ? (
           <View style={styles.emptyCard}>
-            <Icon name="gift-outline" size={36} color={colors.primary} />
+            <Icon name="gift-outline" size={36} color={darkColors.primary} />
             <Text style={styles.emptyTitle}>{t('growth.rewards')}</Text>
             <Text style={styles.emptyBody}>
               {t('placeholders.comingInSprint', { sprint: 5 })}
@@ -158,7 +158,7 @@ export const LoyaltyScreen: React.FC = () => {
 
         {tab === 'activity' ? (
           <View style={styles.emptyCard}>
-            <Icon name="time-outline" size={36} color={colors.primary} />
+            <Icon name="time-outline" size={36} color={darkColors.primary} />
             <Text style={styles.emptyTitle}>{t('growth.activity')}</Text>
             <Text style={styles.emptyBody}>
               {t('placeholders.comingInSprint', { sprint: 5 })}
@@ -171,7 +171,7 @@ export const LoyaltyScreen: React.FC = () => {
 };
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: colors.background },
+  safe: { flex: 1, backgroundColor: darkColors.background },
   scroll: {
     padding: spacing.base,
     paddingBottom: spacing.xxl,
@@ -179,7 +179,7 @@ const styles = StyleSheet.create({
   },
   overviewCard: {
     flexDirection: 'row',
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     borderRadius: radius.xl,
     padding: spacing.base,
     ...shadows.sm,
@@ -191,11 +191,11 @@ const styles = StyleSheet.create({
   },
   overviewLabel: {
     ...textStyles.caption,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
   },
   overviewValue: {
     ...textStyles.h3,
-    color: colors.primaryDark,
+    color: darkColors.primaryDark,
   },
   tabs: {
     columnGap: spacing.xs,
@@ -205,22 +205,22 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.md,
     paddingVertical: spacing.sm,
     borderRadius: radius.pill,
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     borderWidth: 1,
-    borderColor: colors.border,
+    borderColor: darkColors.border,
   },
   tabChipActive: {
-    backgroundColor: colors.primary,
-    borderColor: colors.primary,
+    backgroundColor: darkColors.primary,
+    borderColor: darkColors.primary,
   },
   tabText: {
     ...textStyles.caption,
-    color: colors.textSecondary,
+    color: darkColors.textSecondary,
     fontWeight: '600',
   },
-  tabTextActive: { color: colors.textInverse },
+  tabTextActive: { color: darkColors.textOnPrimary },
   card: {
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     borderRadius: radius.lg,
     padding: spacing.base,
     rowGap: spacing.sm,
@@ -232,25 +232,25 @@ const styles = StyleSheet.create({
     columnGap: spacing.sm,
     paddingVertical: spacing.sm,
     borderBottomWidth: 1,
-    borderBottomColor: colors.divider,
+    borderBottomColor: darkColors.divider,
   },
   memberAvatar: {
     width: 36,
     height: 36,
     borderRadius: 18,
-    backgroundColor: colors.primarySoft,
+    backgroundColor: darkColors.primarySoft,
     alignItems: 'center',
     justifyContent: 'center',
   },
   memberInitials: {
     ...textStyles.caption,
-    color: colors.primaryDark,
+    color: darkColors.primaryDark,
     fontWeight: '700',
   },
   memberName: {
     flex: 1,
     ...textStyles.bodyMedium,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
   },
   tierBadge: {
     paddingHorizontal: spacing.sm,
@@ -263,7 +263,7 @@ const styles = StyleSheet.create({
   },
   memberPoints: {
     ...textStyles.caption,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
   },
   tierRow: {
     flexDirection: 'row',
@@ -279,14 +279,14 @@ const styles = StyleSheet.create({
   tierBody: { flex: 1 },
   tierTitle: {
     ...textStyles.bodyMedium,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
   },
   tierMeta: {
     ...textStyles.caption,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
   },
   emptyCard: {
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     borderRadius: radius.lg,
     padding: spacing.xl,
     alignItems: 'center',
@@ -295,11 +295,11 @@ const styles = StyleSheet.create({
   },
   emptyTitle: {
     ...textStyles.h4,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
   },
   emptyBody: {
     ...textStyles.caption,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
     textAlign: 'center',
   },
 });

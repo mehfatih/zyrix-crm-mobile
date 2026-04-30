@@ -21,7 +21,7 @@ import { DrawerActions, useNavigation } from '@react-navigation/native';
 import { Button } from '../../components/common/Button';
 import { Header } from '../../components/common/Header';
 import { Icon } from '../../components/common/Icon';
-import { colors } from '../../constants/colors';
+import { darkColors } from '../../theme/dark';
 import { hitSlop, radius, shadows, spacing } from '../../constants/spacing';
 import { textStyles } from '../../constants/typography';
 import { useSendSystemNotification } from '../../hooks/useAdmin';
@@ -83,7 +83,7 @@ export const SystemNotificationsScreen: React.FC = () => {
             hitSlop={hitSlop.md}
             style={styles.headerBtn}
           >
-            <Icon name="menu-outline" size={24} color={colors.textInverse} />
+            <Icon name="menu-outline" size={24} color={darkColors.textOnPrimary} />
           </Pressable>
         }
       />
@@ -105,7 +105,7 @@ export const SystemNotificationsScreen: React.FC = () => {
                 <Text
                   style={[
                     styles.chipText,
-                    audience === entry ? { color: colors.textInverse } : null,
+                    audience === entry ? { color: darkColors.textOnPrimary } : null,
                   ]}
                 >
                   {t(`systemNotifications.${entry === 'all' ? 'allUsers' : `specific${entry.charAt(0).toUpperCase()}${entry.slice(1)}`}`)}
@@ -140,7 +140,7 @@ export const SystemNotificationsScreen: React.FC = () => {
                   style={[
                     styles.chipText,
                     channels.includes(entry)
-                      ? { color: colors.textInverse }
+                      ? { color: darkColors.textOnPrimary }
                       : null,
                   ]}
                 >
@@ -159,7 +159,7 @@ export const SystemNotificationsScreen: React.FC = () => {
             onChangeText={setBody}
             multiline
             placeholder="Use {{userName}} and {{companyName}} for personalisation"
-            placeholderTextColor={colors.textMuted}
+            placeholderTextColor={darkColors.textMuted}
             style={[
               styles.textarea,
               { textAlign: I18nManager.isRTL ? 'right' : 'left' },
@@ -173,7 +173,7 @@ export const SystemNotificationsScreen: React.FC = () => {
         </View>
 
         <View style={styles.previewCard}>
-          <Icon name="megaphone-outline" size={20} color={colors.primary} />
+          <Icon name="megaphone-outline" size={20} color={darkColors.primary} />
           <View style={styles.previewBody}>
             <Text style={styles.previewTitle}>{title || 'Untitled'}</Text>
             <Text style={styles.previewText} numberOfLines={4}>
@@ -218,7 +218,7 @@ const Field: React.FC<{
 );
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: colors.background },
+  safe: { flex: 1, backgroundColor: darkColors.background },
   headerBtn: {
     width: 40,
     height: 40,
@@ -231,48 +231,48 @@ const styles = StyleSheet.create({
     paddingBottom: spacing.xxxl,
   },
   card: {
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     padding: spacing.base,
     borderRadius: radius.lg,
     rowGap: spacing.sm,
     ...shadows.xs,
   },
-  sectionTitle: { ...textStyles.h4, color: colors.textPrimary },
+  sectionTitle: { ...textStyles.h4, color: darkColors.textPrimary },
   row: { flexDirection: 'row', flexWrap: 'wrap', gap: spacing.xs },
   chip: {
     paddingHorizontal: spacing.md,
     paddingVertical: spacing.sm,
     borderRadius: radius.pill,
     borderWidth: 1,
-    borderColor: colors.border,
-    backgroundColor: colors.surface,
+    borderColor: darkColors.border,
+    backgroundColor: darkColors.surface,
   },
   chipActive: {
-    backgroundColor: colors.primary,
-    borderColor: colors.primary,
+    backgroundColor: darkColors.primary,
+    borderColor: darkColors.primary,
   },
   chipText: {
     ...textStyles.caption,
-    color: colors.textSecondary,
+    color: darkColors.textSecondary,
     fontWeight: '600',
     textTransform: 'capitalize',
   },
   field: { rowGap: spacing.xs },
-  fieldLabel: { ...textStyles.label, color: colors.textSecondary },
+  fieldLabel: { ...textStyles.label, color: darkColors.textSecondary },
   input: {
     ...textStyles.body,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
     borderWidth: 1,
-    borderColor: colors.border,
+    borderColor: darkColors.border,
     borderRadius: radius.base,
     padding: spacing.sm,
     minHeight: 44,
   },
   textarea: {
     ...textStyles.body,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
     borderWidth: 1,
-    borderColor: colors.border,
+    borderColor: darkColors.border,
     borderRadius: radius.base,
     padding: spacing.sm,
     minHeight: 100,
@@ -280,19 +280,19 @@ const styles = StyleSheet.create({
   },
   previewCard: {
     flexDirection: 'row',
-    backgroundColor: colors.primarySoft,
+    backgroundColor: darkColors.primarySoft,
     padding: spacing.base,
     borderRadius: radius.lg,
     columnGap: spacing.sm,
   },
   previewBody: { flex: 1 },
-  previewTitle: { ...textStyles.bodyMedium, color: colors.primaryDark },
-  previewText: { ...textStyles.body, color: colors.primaryDark },
+  previewTitle: { ...textStyles.bodyMedium, color: darkColors.primaryDark },
+  previewText: { ...textStyles.body, color: darkColors.primaryDark },
   footer: {
     padding: spacing.base,
     borderTopWidth: 1,
-    borderTopColor: colors.divider,
-    backgroundColor: colors.surface,
+    borderTopColor: darkColors.divider,
+    backgroundColor: darkColors.surface,
   },
 });
 

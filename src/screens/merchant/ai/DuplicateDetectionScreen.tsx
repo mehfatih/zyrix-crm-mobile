@@ -23,7 +23,7 @@ import { useQuery } from '@tanstack/react-query';
 import { Header } from '../../../components/common/Header';
 import { Icon } from '../../../components/common/Icon';
 import { SkeletonCard } from '../../../components/common/SkeletonCard';
-import { colors } from '../../../constants/colors';
+import { darkColors } from '../../../theme/dark';
 import { detectDuplicates } from '../../../api/ai';
 import { radius, shadows, spacing } from '../../../constants/spacing';
 import { textStyles } from '../../../constants/typography';
@@ -95,7 +95,7 @@ export const DuplicateDetectionScreen: React.FC = () => {
             <Text
               style={[
                 styles.tabText,
-                entity === entry ? { color: colors.textInverse } : null,
+                entity === entry ? { color: darkColors.textOnPrimary } : null,
               ]}
             >
               {t(`duplicates.${entry}`, entry)}
@@ -111,7 +111,7 @@ export const DuplicateDetectionScreen: React.FC = () => {
           pressed ? { opacity: 0.9 } : null,
         ]}
       >
-        <Icon name="scan-outline" size={18} color={colors.textInverse} />
+        <Icon name="scan-outline" size={18} color={darkColors.textOnPrimary} />
         <Text style={styles.scanText}>{t('duplicates.scan')}</Text>
       </Pressable>
 
@@ -134,7 +134,7 @@ export const DuplicateDetectionScreen: React.FC = () => {
                     <Icon
                       name="language-outline"
                       size={12}
-                      color={colors.primary}
+                      color={darkColors.primary}
                     />
                     <Text style={styles.variantText}>
                       {t('duplicates.arabicVariants', {
@@ -170,9 +170,9 @@ export const DuplicateDetectionScreen: React.FC = () => {
                   onPress={() => mergeAll(group)}
                   style={[styles.action, styles.actionPrimary]}
                 >
-                  <Icon name="git-merge-outline" size={16} color={colors.textInverse} />
+                  <Icon name="git-merge-outline" size={16} color={darkColors.textOnPrimary} />
                   <Text
-                    style={[styles.actionText, { color: colors.textInverse }]}
+                    style={[styles.actionText, { color: darkColors.textOnPrimary }]}
                   >
                     {t('duplicates.mergeAll')}
                   </Text>
@@ -181,7 +181,7 @@ export const DuplicateDetectionScreen: React.FC = () => {
                   onPress={() => keepSeparate(group)}
                   style={styles.action}
                 >
-                  <Icon name="close" size={16} color={colors.textSecondary} />
+                  <Icon name="close" size={16} color={darkColors.textSecondary} />
                   <Text style={styles.actionText}>
                     {t('duplicates.keepSeparate')}
                   </Text>
@@ -193,10 +193,10 @@ export const DuplicateDetectionScreen: React.FC = () => {
                   <Icon
                     name="swap-horizontal-outline"
                     size={16}
-                    color={colors.primary}
+                    color={darkColors.primary}
                   />
                   <Text
-                    style={[styles.actionText, { color: colors.primary }]}
+                    style={[styles.actionText, { color: darkColors.primary }]}
                   >
                     {t('duplicates.reviewIndividually')}
                   </Text>
@@ -211,7 +211,7 @@ export const DuplicateDetectionScreen: React.FC = () => {
 };
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: colors.background },
+  safe: { flex: 1, backgroundColor: darkColors.background },
   tabs: {
     flexDirection: 'row',
     padding: spacing.base,
@@ -222,15 +222,15 @@ const styles = StyleSheet.create({
     paddingVertical: spacing.sm,
     borderRadius: radius.pill,
     borderWidth: 1,
-    borderColor: colors.primary,
+    borderColor: darkColors.primary,
     alignItems: 'center',
   },
   tabActive: {
-    backgroundColor: colors.primary,
+    backgroundColor: darkColors.primary,
   },
   tabText: {
     ...textStyles.caption,
-    color: colors.primary,
+    color: darkColors.primary,
     fontWeight: '700',
     textTransform: 'capitalize',
   },
@@ -242,12 +242,12 @@ const styles = StyleSheet.create({
     marginHorizontal: spacing.base,
     paddingVertical: spacing.md,
     borderRadius: radius.pill,
-    backgroundColor: colors.primary,
+    backgroundColor: darkColors.primary,
     ...shadows.md,
   },
   scanText: {
     ...textStyles.button,
-    color: colors.textInverse,
+    color: darkColors.textOnPrimary,
   },
   list: {
     padding: spacing.base,
@@ -255,7 +255,7 @@ const styles = StyleSheet.create({
     rowGap: spacing.base,
   },
   groupCard: {
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     padding: spacing.base,
     borderRadius: radius.lg,
     rowGap: spacing.sm,
@@ -268,7 +268,7 @@ const styles = StyleSheet.create({
   },
   groupStrength: {
     ...textStyles.h4,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
   },
   variantBadge: {
     flexDirection: 'row',
@@ -277,11 +277,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.sm,
     paddingVertical: 2,
     borderRadius: radius.pill,
-    backgroundColor: colors.primarySoft,
+    backgroundColor: darkColors.primarySoft,
   },
   variantText: {
     ...textStyles.caption,
-    color: colors.primary,
+    color: darkColors.primary,
     fontWeight: '700',
   },
   recordsRow: {
@@ -293,30 +293,30 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: spacing.sm,
     borderRadius: radius.base,
-    backgroundColor: colors.surfaceAlt,
+    backgroundColor: darkColors.surfaceAlt,
     rowGap: 4,
   },
   recordAvatar: {
     width: 40,
     height: 40,
     borderRadius: 20,
-    backgroundColor: colors.primarySoft,
+    backgroundColor: darkColors.primarySoft,
     alignItems: 'center',
     justifyContent: 'center',
   },
   recordInitials: {
     ...textStyles.label,
-    color: colors.primaryDark,
+    color: darkColors.primaryDark,
     fontWeight: '700',
   },
   recordPrimary: {
     ...textStyles.caption,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
     fontWeight: '700',
   },
   recordSecondary: {
     ...textStyles.caption,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
   },
   actionsRow: {
     flexDirection: 'row',
@@ -330,14 +330,14 @@ const styles = StyleSheet.create({
     columnGap: 4,
     paddingVertical: spacing.sm,
     borderRadius: radius.pill,
-    backgroundColor: colors.surfaceAlt,
+    backgroundColor: darkColors.surfaceAlt,
   },
   actionPrimary: {
-    backgroundColor: colors.primary,
+    backgroundColor: darkColors.primary,
   },
   actionText: {
     ...textStyles.caption,
-    color: colors.textSecondary,
+    color: darkColors.textSecondary,
     fontWeight: '700',
   },
 });

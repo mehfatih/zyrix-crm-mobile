@@ -38,7 +38,7 @@ import { ArticleCard } from '../../components/help/ArticleCard';
 import { CategoryTile } from '../../components/help/CategoryTile';
 import { Header } from '../../components/common/Header';
 import { Icon, type AnyIconName } from '../../components/common/Icon';
-import { colors } from '../../constants/colors';
+import { darkColors } from '../../theme/dark';
 import { hitSlop, radius, shadows, spacing } from '../../constants/spacing';
 import { textStyles } from '../../constants/typography';
 import type { SupportedLanguage } from '../../i18n';
@@ -135,7 +135,7 @@ export const HelpHomeScreen: React.FC = () => {
             style={styles.headerBtn}
             accessibilityLabel={t('sidebar.search')}
           >
-            <Icon name="menu-outline" size={24} color={colors.textInverse} />
+            <Icon name="menu-outline" size={24} color={darkColors.textOnPrimary} />
           </Pressable>
         }
       />
@@ -150,12 +150,12 @@ export const HelpHomeScreen: React.FC = () => {
         <Text style={styles.heroSubtitle}>{t('help.heroSubtitle')}</Text>
 
         <Pressable onPress={openSearch} style={styles.searchBar}>
-          <Icon name="search-outline" size={20} color={colors.textMuted} />
+          <Icon name="search-outline" size={20} color={darkColors.textMuted} />
           <TextInput
             value={query}
             onChangeText={setQuery}
             placeholder={t('help.searchPlaceholder')}
-            placeholderTextColor={colors.textMuted}
+            placeholderTextColor={darkColors.textMuted}
             returnKeyType="search"
             onSubmitEditing={onSearchSubmit}
             onFocus={openSearch}
@@ -165,7 +165,7 @@ export const HelpHomeScreen: React.FC = () => {
 
         {loading ? (
           <View style={styles.loading}>
-            <ActivityIndicator color={colors.primary} />
+            <ActivityIndicator color={darkColors.primary} />
           </View>
         ) : (
           <>
@@ -220,7 +220,7 @@ export const HelpHomeScreen: React.FC = () => {
                     pressed ? { opacity: 0.88 } : null,
                   ]}
                 >
-                  <Icon name="logo-whatsapp" size={18} color={colors.textInverse} />
+                  <Icon name="logo-whatsapp" size={18} color={darkColors.textOnPrimary} />
                   <Text style={styles.supportBtnTextPrimary}>
                     {t('help.contactSupport')}
                   </Text>
@@ -233,7 +233,7 @@ export const HelpHomeScreen: React.FC = () => {
                     pressed ? { opacity: 0.88 } : null,
                   ]}
                 >
-                  <Icon name="mail-outline" size={18} color={colors.primary} />
+                  <Icon name="mail-outline" size={18} color={darkColors.primary} />
                   <Text style={styles.supportBtnTextSecondary}>
                     {t('help.scheduleCall')}
                   </Text>
@@ -248,7 +248,7 @@ export const HelpHomeScreen: React.FC = () => {
 };
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: colors.background },
+  safe: { flex: 1, backgroundColor: darkColors.background },
   headerBtn: {
     width: 40,
     height: 40,
@@ -262,29 +262,29 @@ const styles = StyleSheet.create({
   },
   heroTitle: {
     ...textStyles.h2,
-    color: colors.textHeading,
+    color: darkColors.textHeading,
   },
   heroSubtitle: {
     ...textStyles.body,
-    color: colors.textSecondary,
+    color: darkColors.textSecondary,
     marginTop: -spacing.xs,
   },
   searchBar: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     borderRadius: radius.pill,
     paddingHorizontal: spacing.base,
     height: 52,
     columnGap: spacing.sm,
     borderWidth: 1,
-    borderColor: colors.border,
+    borderColor: darkColors.border,
     ...shadows.xs,
   },
   searchInput: {
     flex: 1,
     ...textStyles.body,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
     paddingVertical: 0,
   },
   loading: {
@@ -293,7 +293,7 @@ const styles = StyleSheet.create({
   },
   sectionTitle: {
     ...textStyles.h4,
-    color: colors.textHeading,
+    color: darkColors.textHeading,
     marginTop: spacing.sm,
   },
   grid: {
@@ -306,7 +306,7 @@ const styles = StyleSheet.create({
     rowGap: spacing.sm,
   },
   supportCard: {
-    backgroundColor: colors.primarySoft,
+    backgroundColor: darkColors.primarySoft,
     borderRadius: radius.lg,
     padding: spacing.base,
     rowGap: spacing.xs,
@@ -314,11 +314,11 @@ const styles = StyleSheet.create({
   },
   supportTitle: {
     ...textStyles.h4,
-    color: colors.textHeading,
+    color: darkColors.textHeading,
   },
   supportSubtitle: {
     ...textStyles.caption,
-    color: colors.textSecondary,
+    color: darkColors.textSecondary,
   },
   supportActions: {
     flexDirection: 'row',
@@ -335,21 +335,21 @@ const styles = StyleSheet.create({
     borderRadius: radius.pill,
   },
   supportBtnPrimary: {
-    backgroundColor: colors.primary,
+    backgroundColor: darkColors.primary,
   },
   supportBtnSecondary: {
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     borderWidth: 1,
-    borderColor: colors.primary,
+    borderColor: darkColors.primary,
   },
   supportBtnTextPrimary: {
     ...textStyles.label,
-    color: colors.textInverse,
+    color: darkColors.textOnPrimary,
     fontWeight: '700',
   },
   supportBtnTextSecondary: {
     ...textStyles.label,
-    color: colors.primary,
+    color: darkColors.primary,
     fontWeight: '700',
   },
 });

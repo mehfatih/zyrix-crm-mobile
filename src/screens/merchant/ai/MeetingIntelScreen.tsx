@@ -19,7 +19,7 @@ import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { Header } from '../../../components/common/Header';
 import { Icon, type AnyIconName } from '../../../components/common/Icon';
 import { SkeletonCard } from '../../../components/common/SkeletonCard';
-import { colors } from '../../../constants/colors';
+import { darkColors } from '../../../theme/dark';
 import { radius, shadows, spacing } from '../../../constants/spacing';
 import { textStyles } from '../../../constants/typography';
 import { useCountryConfig } from '../../../hooks/useCountryConfig';
@@ -78,7 +78,7 @@ export const MeetingIntelScreen: React.FC = () => {
             <Text
               style={[
                 styles.tabText,
-                tab === entry ? { color: colors.textInverse } : null,
+                tab === entry ? { color: darkColors.textOnPrimary } : null,
               ]}
             >
               {t(`meetings.${entry === 'all' ? 'recent' : entry}`)}
@@ -111,7 +111,7 @@ export const MeetingIntelScreen: React.FC = () => {
                   <Icon
                     name={SOURCE_ICON[item.source]}
                     size={16}
-                    color={colors.primary}
+                    color={darkColors.primary}
                   />
                 </View>
                 <Text style={styles.title} numberOfLines={1}>
@@ -137,7 +137,7 @@ export const MeetingIntelScreen: React.FC = () => {
                     <Icon
                       name="checkmark-done-outline"
                       size={14}
-                      color={colors.primaryDark}
+                      color={darkColors.primaryDark}
                     />
                     <Text style={styles.actionsText}>
                       {`${item.actionItemsCount} ${t('meetings.actionItems')}`}
@@ -149,7 +149,7 @@ export const MeetingIntelScreen: React.FC = () => {
           )}
           ListEmptyComponent={
             <View style={styles.empty}>
-              <Icon name="videocam-outline" size={48} color={colors.primary} />
+              <Icon name="videocam-outline" size={48} color={darkColors.primary} />
               <Text style={styles.emptyTitle}>
                 {t('meetings.upcoming')}
               </Text>
@@ -165,14 +165,14 @@ export const MeetingIntelScreen: React.FC = () => {
           pressed ? { opacity: 0.9 } : null,
         ]}
       >
-        <Icon name="cloud-upload-outline" size={24} color={colors.textInverse} />
+        <Icon name="cloud-upload-outline" size={24} color={darkColors.textOnPrimary} />
       </Pressable>
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: colors.background },
+  safe: { flex: 1, backgroundColor: darkColors.background },
   tabs: {
     flexDirection: 'row',
     padding: spacing.base,
@@ -184,14 +184,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: radius.pill,
     borderWidth: 1,
-    borderColor: colors.primary,
+    borderColor: darkColors.primary,
   },
   tabActive: {
-    backgroundColor: colors.primary,
+    backgroundColor: darkColors.primary,
   },
   tabText: {
     ...textStyles.caption,
-    color: colors.primary,
+    color: darkColors.primary,
     fontWeight: '700',
     textTransform: 'capitalize',
   },
@@ -201,7 +201,7 @@ const styles = StyleSheet.create({
     rowGap: spacing.sm,
   },
   card: {
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     padding: spacing.base,
     borderRadius: radius.lg,
     rowGap: spacing.xs,
@@ -216,22 +216,22 @@ const styles = StyleSheet.create({
     width: 32,
     height: 32,
     borderRadius: 16,
-    backgroundColor: colors.primarySoft,
+    backgroundColor: darkColors.primarySoft,
     alignItems: 'center',
     justifyContent: 'center',
   },
   title: {
     ...textStyles.bodyMedium,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
     flex: 1,
   },
   dateLine: {
     ...textStyles.caption,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
   },
   summary: {
     ...textStyles.body,
-    color: colors.textSecondary,
+    color: darkColors.textSecondary,
   },
   cardFooter: {
     flexDirection: 'row',
@@ -247,16 +247,16 @@ const styles = StyleSheet.create({
     width: 28,
     height: 28,
     borderRadius: 14,
-    backgroundColor: colors.primarySoft,
+    backgroundColor: darkColors.primarySoft,
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 2,
-    borderColor: colors.surface,
+    borderColor: darkColors.surface,
     marginLeft: -8,
   },
   avatarText: {
     ...textStyles.caption,
-    color: colors.primaryDark,
+    color: darkColors.primaryDark,
     fontWeight: '700',
     fontSize: 10,
   },
@@ -267,11 +267,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.sm,
     paddingVertical: 2,
     borderRadius: radius.pill,
-    backgroundColor: colors.primarySoft,
+    backgroundColor: darkColors.primarySoft,
   },
   actionsText: {
     ...textStyles.caption,
-    color: colors.primaryDark,
+    color: darkColors.primaryDark,
     fontWeight: '700',
   },
   empty: {
@@ -281,7 +281,7 @@ const styles = StyleSheet.create({
   },
   emptyTitle: {
     ...textStyles.h4,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
   },
   fab: {
     position: 'absolute',
@@ -290,7 +290,7 @@ const styles = StyleSheet.create({
     width: 56,
     height: 56,
     borderRadius: 28,
-    backgroundColor: colors.primary,
+    backgroundColor: darkColors.primary,
     alignItems: 'center',
     justifyContent: 'center',
     ...shadows.md,

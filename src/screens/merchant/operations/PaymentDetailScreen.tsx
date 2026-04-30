@@ -25,7 +25,7 @@ import { CurrencyDisplay } from '../../../components/forms/CurrencyDisplay';
 import { Header } from '../../../components/common/Header';
 import { Icon, type AnyIconName } from '../../../components/common/Icon';
 import { SkeletonCard } from '../../../components/common/SkeletonCard';
-import { colors } from '../../../constants/colors';
+import { darkColors } from '../../../theme/dark';
 import { radius, shadows, spacing } from '../../../constants/spacing';
 import { textStyles } from '../../../constants/typography';
 import { useCountryConfig } from '../../../hooks/useCountryConfig';
@@ -75,10 +75,10 @@ export const PaymentDetailScreen: React.FC = () => {
               size="large"
               color={
                 payment.status === 'paid'
-                  ? colors.success
+                  ? darkColors.success
                   : payment.status === 'failed'
-                    ? colors.error
-                    : colors.primaryDark
+                    ? darkColors.error
+                    : darkColors.primaryDark
               }
             />
             {payment.gatewayFee ? (
@@ -130,14 +130,14 @@ export const PaymentDetailScreen: React.FC = () => {
           <View style={styles.timeline}>
             <Text style={styles.sectionTitle}>{t('payments.title')}</Text>
             <TimelineRow
-              tone={colors.success}
+              tone={darkColors.success}
               label={t('payments.paid')}
               date={payment.paidAt ?? payment.createdAt}
               formatDate={formatDate}
             />
             {payment.refundedAt ? (
               <TimelineRow
-                tone={colors.warning}
+                tone={darkColors.warning}
                 label={t('payments.refunded')}
                 date={payment.refundedAt}
                 formatDate={formatDate}
@@ -145,7 +145,7 @@ export const PaymentDetailScreen: React.FC = () => {
             ) : null}
             {payment.failureReason ? (
               <TimelineRow
-                tone={colors.error}
+                tone={darkColors.error}
                 label={payment.failureReason}
                 date={payment.createdAt}
                 formatDate={formatDate}
@@ -187,7 +187,7 @@ const InfoRow: React.FC<{ icon: AnyIconName; label: string; value: string }> = (
   value,
 }) => (
   <View style={styles.infoRow}>
-    <Icon name={icon} size={18} color={colors.primary} />
+    <Icon name={icon} size={18} color={darkColors.primary} />
     <View style={styles.infoBody}>
       <Text style={styles.infoLabel}>{label}</Text>
       <Text style={styles.infoValue}>{value}</Text>
@@ -227,12 +227,12 @@ const ActionPill: React.FC<{
     <Icon
       name={icon}
       size={16}
-      color={tone === 'error' ? colors.error : colors.primary}
+      color={tone === 'error' ? darkColors.error : darkColors.primary}
     />
     <Text
       style={[
         styles.actionText,
-        { color: tone === 'error' ? colors.error : colors.primary },
+        { color: tone === 'error' ? darkColors.error : darkColors.primary },
       ]}
     >
       {label}
@@ -241,14 +241,14 @@ const ActionPill: React.FC<{
 );
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: colors.background },
+  safe: { flex: 1, backgroundColor: darkColors.background },
   scroll: {
     padding: spacing.base,
     rowGap: spacing.base,
     paddingBottom: spacing.xxl,
   },
   heroCard: {
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     padding: spacing.lg,
     borderRadius: radius.xl,
     rowGap: spacing.xs,
@@ -257,16 +257,16 @@ const styles = StyleSheet.create({
   },
   heroLabel: {
     ...textStyles.label,
-    color: colors.primary,
+    color: darkColors.primary,
     fontWeight: '700',
     letterSpacing: 1,
   },
   heroSubtle: {
     ...textStyles.caption,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
   },
   card: {
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     padding: spacing.base,
     borderRadius: radius.lg,
     rowGap: spacing.sm,
@@ -279,10 +279,10 @@ const styles = StyleSheet.create({
     paddingVertical: spacing.xs,
   },
   infoBody: { flex: 1 },
-  infoLabel: { ...textStyles.caption, color: colors.textMuted },
-  infoValue: { ...textStyles.body, color: colors.textPrimary },
+  infoLabel: { ...textStyles.caption, color: darkColors.textMuted },
+  infoValue: { ...textStyles.body, color: darkColors.textPrimary },
   timeline: {
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     padding: spacing.base,
     borderRadius: radius.lg,
     rowGap: spacing.sm,
@@ -290,7 +290,7 @@ const styles = StyleSheet.create({
   },
   sectionTitle: {
     ...textStyles.h4,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
   },
   timelineRow: {
     flexDirection: 'row',
@@ -305,11 +305,11 @@ const styles = StyleSheet.create({
   timelineBody: { flex: 1 },
   timelineLabel: {
     ...textStyles.body,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
   },
   timelineDate: {
     ...textStyles.caption,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
   },
   actionsRow: {
     flexDirection: 'row',
@@ -325,10 +325,10 @@ const styles = StyleSheet.create({
     borderRadius: radius.pill,
   },
   actionPrimary: {
-    backgroundColor: colors.primarySoft,
+    backgroundColor: darkColors.primarySoft,
   },
   actionError: {
-    backgroundColor: colors.errorSoft,
+    backgroundColor: darkColors.errorSoft,
   },
   actionText: {
     ...textStyles.button,

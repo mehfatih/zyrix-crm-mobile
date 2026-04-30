@@ -25,7 +25,7 @@ import {
   type DropdownItem,
 } from '../../components/forms/SearchableDropdown';
 import { SkeletonCard } from '../../components/common/SkeletonCard';
-import { colors } from '../../constants/colors';
+import { darkColors } from '../../theme/dark';
 import { radius, shadows, spacing } from '../../constants/spacing';
 import { textStyles } from '../../constants/typography';
 import { useCompanies, useCreateSCIMToken, useRevokeSCIMToken, useSCIMTokens } from '../../hooks/useAdmin';
@@ -151,7 +151,7 @@ export const SCIMTokensScreen: React.FC = () => {
           pressed ? { opacity: 0.9 } : null,
         ]}
       >
-        <Icon name="add" size={26} color={colors.textInverse} />
+        <Icon name="add" size={26} color={darkColors.textOnPrimary} />
       </Pressable>
 
       <Modal
@@ -173,7 +173,7 @@ export const SCIMTokensScreen: React.FC = () => {
                 <Icon
                   name="checkmark-circle"
                   size={36}
-                  color={colors.success}
+                  color={darkColors.success}
                 />
                 <Text style={styles.tokenWarning}>
                   {t('scim.tokenShownOnce')}
@@ -215,7 +215,7 @@ export const SCIMTokensScreen: React.FC = () => {
                         style={[
                           styles.chipText,
                           scope === entry
-                            ? { color: colors.textInverse }
+                            ? { color: darkColors.textOnPrimary }
                             : null,
                         ]}
                       >
@@ -239,7 +239,7 @@ export const SCIMTokensScreen: React.FC = () => {
                         style={[
                           styles.chipText,
                           expiration === entry.key
-                            ? { color: colors.textInverse }
+                            ? { color: darkColors.textOnPrimary }
                             : null,
                         ]}
                       >
@@ -270,14 +270,14 @@ export const SCIMTokensScreen: React.FC = () => {
 };
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: colors.background },
+  safe: { flex: 1, backgroundColor: darkColors.background },
   list: {
     padding: spacing.base,
     rowGap: spacing.sm,
     paddingBottom: spacing.xxxl * 2,
   },
   card: {
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     padding: spacing.base,
     borderRadius: radius.lg,
     rowGap: spacing.xs,
@@ -288,31 +288,31 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
-  companyName: { ...textStyles.bodyMedium, color: colors.textPrimary },
+  companyName: { ...textStyles.bodyMedium, color: darkColors.textPrimary },
   scopePill: {
     paddingHorizontal: spacing.sm,
     paddingVertical: 2,
     borderRadius: radius.pill,
-    backgroundColor: colors.primarySoft,
+    backgroundColor: darkColors.primarySoft,
   },
   scopePillText: {
     ...textStyles.caption,
-    color: colors.primary,
+    color: darkColors.primary,
     fontWeight: '700',
   },
   preview: {
     ...textStyles.body,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
     fontFamily: 'monospace',
   },
   metaRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
-  metaText: { ...textStyles.caption, color: colors.textMuted },
+  metaText: { ...textStyles.caption, color: darkColors.textMuted },
   revoke: {
     ...textStyles.button,
-    color: colors.error,
+    color: darkColors.error,
     marginTop: spacing.sm,
   },
   fab: {
@@ -322,7 +322,7 @@ const styles = StyleSheet.create({
     width: 56,
     height: 56,
     borderRadius: 28,
-    backgroundColor: colors.primary,
+    backgroundColor: darkColors.primary,
     alignItems: 'center',
     justifyContent: 'center',
     ...shadows.md,
@@ -333,30 +333,30 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
   },
   modalCard: {
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     borderTopLeftRadius: radius.xl,
     borderTopRightRadius: radius.xl,
     padding: spacing.lg,
     rowGap: spacing.sm,
     ...shadows.lg,
   },
-  modalTitle: { ...textStyles.h3, color: colors.textPrimary },
-  fieldLabel: { ...textStyles.label, color: colors.textSecondary },
+  modalTitle: { ...textStyles.h3, color: darkColors.textPrimary },
+  fieldLabel: { ...textStyles.label, color: darkColors.textSecondary },
   row: { flexDirection: 'row', flexWrap: 'wrap', gap: spacing.xs },
   chip: {
     paddingHorizontal: spacing.md,
     paddingVertical: spacing.sm,
     borderRadius: radius.pill,
     borderWidth: 1,
-    borderColor: colors.border,
+    borderColor: darkColors.border,
   },
   chipActive: {
-    backgroundColor: colors.primary,
-    borderColor: colors.primary,
+    backgroundColor: darkColors.primary,
+    borderColor: darkColors.primary,
   },
   chipText: {
     ...textStyles.caption,
-    color: colors.textSecondary,
+    color: darkColors.textSecondary,
     fontWeight: '600',
   },
   actionsRow: {
@@ -368,24 +368,24 @@ const styles = StyleSheet.create({
   tokenSuccess: { rowGap: spacing.sm, alignItems: 'center' },
   tokenWarning: {
     ...textStyles.bodyMedium,
-    color: colors.warning,
+    color: darkColors.warning,
     fontWeight: '700',
     textAlign: 'center',
   },
   tokenBox: {
-    backgroundColor: colors.surfaceAlt,
+    backgroundColor: darkColors.surfaceAlt,
     padding: spacing.sm,
     borderRadius: radius.base,
     width: '100%',
   },
   tokenText: {
     ...textStyles.body,
-    color: colors.primaryDark,
+    color: darkColors.primaryDark,
     fontFamily: 'monospace',
   },
   tokenInfo: {
     ...textStyles.caption,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
     textAlign: 'center',
   },
 });

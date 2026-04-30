@@ -23,7 +23,7 @@ import { LineChart } from '../../components/charts/LineChart';
 import { PieChart } from '../../components/charts/PieChart';
 import { SkeletonCard } from '../../components/common/SkeletonCard';
 import { StatsGrid } from '../../components/admin/StatsGrid';
-import { colors } from '../../constants/colors';
+import { darkColors } from '../../theme/dark';
 import { hitSlop, radius, shadows, spacing } from '../../constants/spacing';
 import { textStyles } from '../../constants/typography';
 import { useAdminSummary } from '../../hooks/useAdmin';
@@ -81,7 +81,7 @@ export const AdminDashboardScreen: React.FC = () => {
             hitSlop={hitSlop.md}
             style={styles.headerBtn}
           >
-            <Icon name="menu-outline" size={24} color={colors.textInverse} />
+            <Icon name="menu-outline" size={24} color={darkColors.textOnPrimary} />
           </Pressable>
         }
         rightSlot={
@@ -89,7 +89,7 @@ export const AdminDashboardScreen: React.FC = () => {
             <Icon
               name="notifications-outline"
               size={22}
-              color={colors.textInverse}
+              color={darkColors.textOnPrimary}
             />
             <View style={styles.bellDot} />
           </Pressable>
@@ -102,8 +102,8 @@ export const AdminDashboardScreen: React.FC = () => {
           <RefreshControl
             refreshing={summaryQuery.isFetching && !summaryQuery.isLoading}
             onRefresh={refresh}
-            tintColor={colors.primary}
-            colors={[colors.primary]}
+            tintColor={darkColors.primary}
+            colors={[darkColors.primary]}
           />
         }
       >
@@ -138,14 +138,14 @@ export const AdminDashboardScreen: React.FC = () => {
                 label: 'MRR',
                 value: `$${summary.monthlyRecurringRevenue}/mo`,
                 icon: 'cash-outline',
-                tone: colors.success,
+                tone: darkColors.success,
               },
               {
                 key: 'signups',
                 label: 'New today',
                 value: String(summary.newSignupsToday),
                 icon: 'sparkles-outline',
-                tone: colors.warning,
+                tone: darkColors.warning,
               },
             ]}
           />
@@ -155,19 +155,19 @@ export const AdminDashboardScreen: React.FC = () => {
           <View style={styles.alertsRow}>
             <AlertCard
               icon="alert-circle-outline"
-              tone={colors.error}
+              tone={darkColors.error}
               count={summary.alerts.overduePayments}
               label="overdue payments"
             />
             <AlertCard
               icon="help-buoy-outline"
-              tone={colors.warning}
+              tone={darkColors.warning}
               count={summary.alerts.pendingTickets}
               label="support tickets"
             />
             <AlertCard
               icon="shield-checkmark-outline"
-              tone={colors.primary}
+              tone={darkColors.primary}
               count={summary.alerts.pendingCompliance}
               label="compliance"
             />
@@ -231,10 +231,10 @@ export const AdminDashboardScreen: React.FC = () => {
                   size={16}
                   color={
                     entry.severity === 'critical'
-                      ? colors.error
+                      ? darkColors.error
                       : entry.severity === 'warning'
-                        ? colors.warning
-                        : colors.primary
+                        ? darkColors.warning
+                        : darkColors.primary
                   }
                 />
                 <View style={styles.activityBody}>
@@ -272,7 +272,7 @@ const AlertCard: React.FC<{
 );
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: colors.background },
+  safe: { flex: 1, backgroundColor: darkColors.background },
   headerBtn: {
     width: 40,
     height: 40,
@@ -286,7 +286,7 @@ const styles = StyleSheet.create({
     width: 8,
     height: 8,
     borderRadius: 4,
-    backgroundColor: colors.warning,
+    backgroundColor: darkColors.warning,
   },
   scroll: {
     padding: spacing.base,
@@ -294,7 +294,7 @@ const styles = StyleSheet.create({
     rowGap: spacing.base,
   },
   welcomeCard: {
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     padding: spacing.base,
     borderRadius: radius.xl,
     rowGap: spacing.xs,
@@ -302,10 +302,10 @@ const styles = StyleSheet.create({
   },
   welcomeEyebrow: {
     ...textStyles.overline,
-    color: colors.primary,
+    color: darkColors.primary,
   },
-  welcomeName: { ...textStyles.h2, color: colors.textPrimary },
-  welcomeSub: { ...textStyles.caption, color: colors.textMuted },
+  welcomeName: { ...textStyles.h2, color: darkColors.textPrimary },
+  welcomeSub: { ...textStyles.caption, color: darkColors.textMuted },
   alertsRow: {
     flexDirection: 'row',
     gap: spacing.sm,
@@ -315,7 +315,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     columnGap: spacing.sm,
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     paddingVertical: spacing.sm,
     paddingHorizontal: spacing.base,
     borderRadius: radius.lg,
@@ -327,33 +327,33 @@ const styles = StyleSheet.create({
   alertCount: {
     ...textStyles.h3,
     fontWeight: '800',
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
   },
-  alertLabel: { ...textStyles.caption, color: colors.textMuted },
+  alertLabel: { ...textStyles.caption, color: darkColors.textMuted },
   topCompaniesCard: {
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     padding: spacing.base,
     borderRadius: radius.lg,
     rowGap: spacing.sm,
     ...shadows.xs,
   },
-  sectionTitle: { ...textStyles.h4, color: colors.textPrimary },
+  sectionTitle: { ...textStyles.h4, color: darkColors.textPrimary },
   topCompanyRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingVertical: spacing.xs,
     borderBottomWidth: 1,
-    borderBottomColor: colors.divider,
+    borderBottomColor: darkColors.divider,
   },
-  topCompanyName: { flex: 1, ...textStyles.body, color: colors.textPrimary },
+  topCompanyName: { flex: 1, ...textStyles.body, color: darkColors.textPrimary },
   topCompanyMRR: {
     ...textStyles.bodyMedium,
-    color: colors.success,
+    color: darkColors.success,
     fontWeight: '700',
   },
   activitiesCard: {
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     padding: spacing.base,
     borderRadius: radius.lg,
     rowGap: spacing.sm,
@@ -365,11 +365,11 @@ const styles = StyleSheet.create({
     columnGap: spacing.sm,
     paddingVertical: spacing.xs,
     borderBottomWidth: 1,
-    borderBottomColor: colors.divider,
+    borderBottomColor: darkColors.divider,
   },
   activityBody: { flex: 1 },
-  activityTitle: { ...textStyles.body, color: colors.textPrimary },
-  activitySub: { ...textStyles.caption, color: colors.textMuted },
+  activityTitle: { ...textStyles.body, color: darkColors.textPrimary },
+  activitySub: { ...textStyles.caption, color: darkColors.textMuted },
 });
 
 export default AdminDashboardScreen;

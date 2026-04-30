@@ -23,7 +23,7 @@ import {
 import { Header } from '../../components/common/Header';
 import { Icon, type AnyIconName } from '../../components/common/Icon';
 import { SkeletonCard } from '../../components/common/SkeletonCard';
-import { colors } from '../../constants/colors';
+import { darkColors } from '../../theme/dark';
 import { radius, shadows, spacing } from '../../constants/spacing';
 import { textStyles } from '../../constants/typography';
 import {
@@ -119,7 +119,7 @@ export const UserDetailScreen: React.FC = () => {
                 <Text
                   style={[
                     styles.tabText,
-                    tab === entry ? { color: colors.textInverse } : null,
+                    tab === entry ? { color: darkColors.textOnPrimary } : null,
                   ]}
                 >
                   {t(`userTabs.${entry}`, entry)}
@@ -248,7 +248,7 @@ const InfoLine: React.FC<{ icon: AnyIconName; label: string; value: string }> = 
   value,
 }) => (
   <View style={styles.infoLine}>
-    <Icon name={icon} size={18} color={colors.primary} />
+    <Icon name={icon} size={18} color={darkColors.primary} />
     <View style={styles.infoBody}>
       <Text style={styles.infoLabel}>{label}</Text>
       <Text style={styles.infoValue}>{value}</Text>
@@ -274,19 +274,19 @@ const ActionRow: React.FC<{
       size={20}
       color={
         tone === 'error'
-          ? colors.error
+          ? darkColors.error
           : tone === 'warning'
-            ? colors.warning
-            : colors.primary
+            ? darkColors.warning
+            : darkColors.primary
       }
     />
     <Text
       style={[
         styles.actionLabel,
         tone === 'error'
-          ? { color: colors.error }
+          ? { color: darkColors.error }
           : tone === 'warning'
-            ? { color: colors.warning }
+            ? { color: darkColors.warning }
             : null,
       ]}
     >
@@ -296,11 +296,11 @@ const ActionRow: React.FC<{
 );
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: colors.background },
+  safe: { flex: 1, backgroundColor: darkColors.background },
   heroCard: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     margin: spacing.base,
     padding: spacing.base,
     borderRadius: radius.xl,
@@ -311,18 +311,18 @@ const styles = StyleSheet.create({
     width: 60,
     height: 60,
     borderRadius: 30,
-    backgroundColor: colors.primarySoft,
+    backgroundColor: darkColors.primarySoft,
     alignItems: 'center',
     justifyContent: 'center',
   },
   avatarText: {
     ...textStyles.h3,
-    color: colors.primaryDark,
+    color: darkColors.primaryDark,
     fontWeight: '700',
   },
   heroBody: { flex: 1 },
-  heroName: { ...textStyles.h2, color: colors.textPrimary },
-  heroMeta: { ...textStyles.caption, color: colors.textMuted },
+  heroName: { ...textStyles.h2, color: darkColors.textPrimary },
+  heroMeta: { ...textStyles.caption, color: darkColors.textMuted },
   tabRow: {
     paddingHorizontal: spacing.base,
     columnGap: spacing.xs,
@@ -332,12 +332,12 @@ const styles = StyleSheet.create({
     paddingVertical: spacing.sm,
     borderRadius: radius.pill,
     borderWidth: 1,
-    borderColor: colors.primary,
+    borderColor: darkColors.primary,
   },
-  tabActive: { backgroundColor: colors.primary },
+  tabActive: { backgroundColor: darkColors.primary },
   tabText: {
     ...textStyles.caption,
-    color: colors.primary,
+    color: darkColors.primary,
     fontWeight: '700',
     textTransform: 'capitalize',
   },
@@ -347,16 +347,16 @@ const styles = StyleSheet.create({
     rowGap: spacing.base,
   },
   card: {
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     padding: spacing.base,
     borderRadius: radius.lg,
     rowGap: spacing.sm,
     ...shadows.xs,
   },
-  sectionTitle: { ...textStyles.h4, color: colors.textPrimary },
+  sectionTitle: { ...textStyles.h4, color: darkColors.textPrimary },
   placeholderTitle: {
     ...textStyles.body,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
     fontStyle: 'italic',
   },
   infoLine: {
@@ -365,28 +365,28 @@ const styles = StyleSheet.create({
     columnGap: spacing.sm,
     paddingVertical: spacing.xs,
     borderBottomWidth: 1,
-    borderBottomColor: colors.divider,
+    borderBottomColor: darkColors.divider,
   },
   infoBody: { flex: 1 },
-  infoLabel: { ...textStyles.caption, color: colors.textMuted },
-  infoValue: { ...textStyles.body, color: colors.textPrimary },
+  infoLabel: { ...textStyles.caption, color: darkColors.textMuted },
+  infoValue: { ...textStyles.body, color: darkColors.textPrimary },
   sessionRow: {
     flexDirection: 'row',
     alignItems: 'center',
     paddingVertical: spacing.sm,
     borderBottomWidth: 1,
-    borderBottomColor: colors.divider,
+    borderBottomColor: darkColors.divider,
     columnGap: spacing.sm,
   },
   sessionBody: { flex: 1 },
   sessionDevice: {
     ...textStyles.bodyMedium,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
   },
-  sessionMeta: { ...textStyles.caption, color: colors.textMuted },
+  sessionMeta: { ...textStyles.caption, color: darkColors.textMuted },
   revoke: {
     ...textStyles.button,
-    color: colors.error,
+    color: darkColors.error,
   },
   actionRow: {
     flexDirection: 'row',
@@ -397,7 +397,7 @@ const styles = StyleSheet.create({
   },
   actionLabel: {
     ...textStyles.body,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
   },
 });
 
