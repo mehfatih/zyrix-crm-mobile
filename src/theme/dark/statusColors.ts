@@ -57,3 +57,18 @@ export function confidenceColor(score: number): string {
   if (score >= 60) return statusColors.confidenceMid;
   return statusColors.confidenceLow;
 }
+
+export type ConfidenceTier = 'premium' | 'high' | 'mid' | 'low';
+
+/**
+ * Bucket a 0-100 confidence score into one of 4 named tiers.
+ * Mirrors the thresholds used by `confidenceColor()` so both helpers
+ * always agree on tier boundaries. Useful for i18n lookups
+ * (`t('ai.confidenceTier.premium')`, etc.).
+ */
+export function confidenceTier(score: number): ConfidenceTier {
+  if (score >= 90) return 'premium';
+  if (score >= 80) return 'high';
+  if (score >= 60) return 'mid';
+  return 'low';
+}

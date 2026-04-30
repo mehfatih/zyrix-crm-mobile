@@ -25,6 +25,7 @@ import {
   zyrixSpacing,
   zyrixTheme,
 } from '../../theme/zyrixTheme';
+import { confidenceColor } from '../../theme/dark/statusColors';
 
 export interface AITrustBadgeProps {
   confidence: number;
@@ -40,10 +41,18 @@ const clampConfidence = (value: number): number => {
   return Math.max(0, Math.min(100, Math.round(value)));
 };
 
+/**
+ * Map a confidence score to its tier color.
+ *
+ * Delegates to `confidenceColor()` from `theme/dark/statusColors` so
+ * AITrustBadge and AIConfidenceBadge both render from the same 4-tier
+ * source (≥90 violet, ≥80 emerald, ≥60 cyan, <60 amber). Previously
+ * used a 3-tier picker (success/primary/warning); the retrofit
+ * introduces the Premium tier (≥90 violet) without changing the
+ * component's external API.
+ */
 const pickColor = (confidence: number): string => {
-  if (confidence >= 80) return zyrixTheme.success;
-  if (confidence >= 60) return zyrixTheme.primary;
-  return zyrixTheme.warning;
+  return confidenceColor(confidence);
 };
 
 export const AITrustBadge: React.FC<AITrustBadgeProps> = ({

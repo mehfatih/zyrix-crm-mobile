@@ -798,6 +798,12 @@
     "meetingIntel": "تحليل الاجتماعات",
     "duplicateDetection": "كشف التكرارات الذكي",
     "confidence": "ثقة",
+    "confidenceTier": {
+      "premium": "ممتاز",
+      "high": "مرتفع",
+      "mid": "متوسط",
+      "low": "منخفض"
+    },
     "explain": "اشرح",
     "howThisWasDecided": "كيف اتُّخذ هذا القرار",
     "basedOnSignals": "بناءً على هذه الإشارات",

@@ -798,6 +798,12 @@
     "meetingIntel": "Toplantı Zekâsı",
     "duplicateDetection": "Akıllı Yinelenen Tespiti",
     "confidence": "güven",
+    "confidenceTier": {
+      "premium": "Premium",
+      "high": "Yüksek",
+      "mid": "Orta",
+      "low": "Düşük"
+    },
     "explain": "Açıkla",
     "howThisWasDecided": "Bu nasıl belirlendi",
     "basedOnSignals": "Bu sinyallere göre",

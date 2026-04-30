@@ -819,6 +819,12 @@
     "meetingIntel": "Meeting Intelligence",
     "duplicateDetection": "Smart Duplicate Detection",
     "confidence": "confidence",
+    "confidenceTier": {
+      "premium": "Premium",
+      "high": "High",
+      "mid": "Mid",
+      "low": "Low"
+    },
     "explain": "Explain",
     "howThisWasDecided": "How this was decided",
     "basedOnSignals": "Based on these signals",
