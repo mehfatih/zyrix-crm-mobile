@@ -33,8 +33,8 @@ import {
   zyrixRadius,
   zyrixShadows,
   zyrixSpacing,
-  zyrixTheme,
 } from '../../theme/zyrixTheme';
+import { darkColors } from '../../theme/dark';
 import { agentOrchestrator } from '../../services/agents/orchestrator';
 import { agentDefinitions } from '../../services/agents/registry';
 import { aiMemoryService } from '../../services/aiMemoryService';
@@ -121,7 +121,7 @@ export const AgentInboxScreen: React.FC = () => {
   );
 
   return (
-    <AppScreen>
+    <AppScreen noGradient style={{ backgroundColor: darkColors.background }}>
       <Header title={t('agents.inbox')} showBack={false} />
 
       <ScrollView
@@ -168,7 +168,7 @@ export const AgentInboxScreen: React.FC = () => {
           <RefreshControl
             refreshing={loading}
             onRefresh={loadInbox}
-            tintColor={zyrixTheme.primary}
+            tintColor={darkColors.primary}
           />
         }
         renderItem={({ item }) => (
@@ -186,7 +186,7 @@ export const AgentInboxScreen: React.FC = () => {
                 <Icon
                   name="sparkles-outline"
                   size={28}
-                  color={zyrixTheme.primary}
+                  color={darkColors.primary}
                   family="Ionicons"
                 />
               </View>
@@ -212,21 +212,21 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     paddingVertical: 6,
     borderRadius: zyrixRadius.pill,
-    backgroundColor: zyrixTheme.cardBg,
+    backgroundColor: darkColors.surface,
     borderWidth: 1,
-    borderColor: zyrixTheme.aiBorder,
+    borderColor: 'rgba(122, 96, 250, 0.3)',
   },
   filterChipActive: {
-    backgroundColor: zyrixTheme.primary,
-    borderColor: zyrixTheme.primary,
+    backgroundColor: darkColors.primary,
+    borderColor: darkColors.primary,
   },
   filterChipText: {
     fontSize: 12,
     fontWeight: '600',
-    color: zyrixTheme.primary,
+    color: darkColors.primary,
   },
   filterChipTextActive: {
-    color: zyrixTheme.textInverse,
+    color: darkColors.textOnPrimary,
   },
   listContent: {
     paddingHorizontal: zyrixSpacing.base,
@@ -248,7 +248,7 @@ const styles = StyleSheet.create({
     width: 64,
     height: 64,
     borderRadius: 32,
-    backgroundColor: zyrixTheme.aiSurface,
+    backgroundColor: darkColors.overlay,
     alignItems: 'center',
     justifyContent: 'center',
     ...zyrixShadows.aiGlow,
@@ -256,11 +256,11 @@ const styles = StyleSheet.create({
   emptyTitle: {
     fontSize: 18,
     fontWeight: '700',
-    color: zyrixTheme.textHeading,
+    color: darkColors.textHeading,
   },
   emptySubtitle: {
     fontSize: 13,
-    color: zyrixTheme.textMuted,
+    color: darkColors.textMuted,
     textAlign: 'center',
     paddingHorizontal: zyrixSpacing.lg,
   },
