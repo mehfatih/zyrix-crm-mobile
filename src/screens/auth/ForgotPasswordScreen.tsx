@@ -43,8 +43,8 @@ import {
   zyrixRadius,
   zyrixShadows,
   zyrixSpacing,
-  zyrixTheme,
 } from '../../theme/zyrixTheme';
+import { darkColors } from '../../theme/dark';
 import type { AuthStackParamList } from '../../navigation/types';
 
 type Method = 'resetLink' | 'magicLink' | 'otp';
@@ -159,7 +159,7 @@ export const ForgotPasswordScreen: React.FC = () => {
   };
 
   return (
-    <AppScreen>
+    <AppScreen noGradient style={{ backgroundColor: darkColors.background }}>
       <KeyboardAvoidingView
         style={styles.flex}
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}
@@ -176,7 +176,7 @@ export const ForgotPasswordScreen: React.FC = () => {
             accessibilityRole="button"
             accessibilityLabel={t('common.back')}
           >
-            <Icon name="chevron-back" size={22} color={zyrixTheme.primaryDark} />
+            <Icon name="chevron-back" size={22} color={darkColors.primaryDark} />
             <Text style={styles.backText}>{t('common.back')}</Text>
           </Pressable>
 
@@ -201,7 +201,7 @@ export const ForgotPasswordScreen: React.FC = () => {
                   <Icon
                     name={m.icon as 'mail-outline'}
                     size={22}
-                    color={active ? zyrixTheme.primary : zyrixTheme.textMuted}
+                    color={active ? darkColors.primary : darkColors.textMuted}
                   />
                   <Text style={[styles.tabLabel, active ? styles.tabLabelActive : null]}>
                     {t(m.labelKey)}
@@ -295,16 +295,16 @@ const styles = StyleSheet.create({
     marginBottom: zyrixSpacing.base,
   },
   backText: {
-    color: zyrixTheme.primaryDark,
+    color: darkColors.primaryDark,
     fontWeight: '600',
   },
   title: {
-    color: zyrixTheme.textHeading,
+    color: darkColors.textHeading,
     fontSize: 28,
     fontWeight: '800',
   },
   subtitle: {
-    color: zyrixTheme.textMuted,
+    color: darkColors.textMuted,
     marginTop: zyrixSpacing.xs,
     marginBottom: zyrixSpacing.lg,
   },
@@ -317,34 +317,34 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: zyrixSpacing.base,
     borderRadius: zyrixRadius.lg,
-    backgroundColor: zyrixTheme.cardBg,
+    backgroundColor: darkColors.surface,
     borderWidth: 1,
-    borderColor: zyrixTheme.cardBorder,
+    borderColor: darkColors.border,
     rowGap: 4,
     ...zyrixShadows.card,
   },
   tabActive: {
-    borderColor: zyrixTheme.primary,
-    backgroundColor: zyrixTheme.primarySoft,
+    borderColor: darkColors.primary,
+    backgroundColor: darkColors.primarySoft,
   },
   tabLabel: {
-    color: zyrixTheme.textMuted,
+    color: darkColors.textMuted,
     fontWeight: '700',
     marginTop: zyrixSpacing.xs,
   },
   tabLabelActive: {
-    color: zyrixTheme.primaryDark,
+    color: darkColors.primaryDark,
   },
   tabSubtitle: {
-    color: zyrixTheme.textMuted,
+    color: darkColors.textMuted,
     fontSize: 11,
   },
   card: {
     padding: zyrixSpacing.lg,
     borderRadius: zyrixRadius.xl,
-    backgroundColor: zyrixTheme.cardBg,
+    backgroundColor: darkColors.surface,
     borderWidth: 1,
-    borderColor: zyrixTheme.cardBorder,
+    borderColor: darkColors.border,
     ...zyrixShadows.card,
     rowGap: zyrixSpacing.base,
   },
@@ -359,10 +359,10 @@ const styles = StyleSheet.create({
     marginTop: zyrixSpacing.xl,
   },
   footerText: {
-    color: zyrixTheme.textMuted,
+    color: darkColors.textMuted,
   },
   footerLink: {
-    color: zyrixTheme.primary,
+    color: darkColors.primary,
     fontWeight: '700',
   },
 });
