@@ -1,96 +1,31 @@
 /**
- * zyrixTheme — Premium Light AI theme tokens (AI Sprint 1, spec section 2).
+ * Legacy zyrixTheme palette — atomically swapped to dark navy theme via M19.
  *
- * This is the forward-looking theme layer introduced by the AI sprint work.
- * It sits alongside the existing `constants/colors.ts` palette (Sprint 1/app
- * era) rather than replacing it — older screens can keep importing `colors`
- * while new AI-era surfaces pull from `zyrixTheme` / `zyrixShadows` / etc.
+ * This file is now a thin re-export layer over `theme/dark/zyrixTheme.dark.ts`.
+ * The shape is preserved so all 18 importers (components/ai/, components/dashboard/,
+ * components/layout/AppScreen.tsx, etc.) continue to work without modification.
  *
- * Keep the tokens numerically exact as the spec expects other packages
- * (shared Next.js site, design-doc tooling) to mirror these values.
+ * To make further palette changes, edit `theme/dark/zyrixTheme.dark.ts` directly.
+ *
+ * Migration history:
+ *   M1: created src/theme/dark/zyrixTheme.dark.ts with darkZyrixTheme variants
+ *   M6, M18: migrated 3 screens that used zyrixTheme directly
+ *   M19: this file's contents replaced with re-exports (atomic swap for
+ *        all 18 remaining component-layer importers, including AppScreen
+ *        which means gradient-wrapped screens automatically render dark)
  */
 
-export const zyrixTheme = {
-  gradient: {
-    start: '#FFFFFF',
-    mid: '#F0F9FF',
-    end: '#E0F2FE',
-  },
+import {
+  darkZyrixTheme,
+  darkZyrixShadows,
+  darkZyrixSpacing,
+  darkZyrixRadius,
+  type DarkZyrixTheme,
+} from './dark';
 
-  primary: '#0EA5E9',
-  primaryDark: '#0284C7',
-  primaryLight: '#22D3EE',
-  primarySoft: '#F0F9FF',
+export const zyrixTheme = darkZyrixTheme;
+export const zyrixShadows = darkZyrixShadows;
+export const zyrixSpacing = darkZyrixSpacing;
+export const zyrixRadius = darkZyrixRadius;
 
-  textHeading: '#0C4A6E',
-  textBody: '#1A202C',
-  textMuted: '#64748B',
-  textInverse: '#FFFFFF',
-
-  aiSurface: 'rgba(14,165,233,0.08)',
-  aiSurfaceHover: 'rgba(14,165,233,0.12)',
-  aiBorder: 'rgba(14,165,233,0.3)',
-
-  cardBg: '#FFFFFF',
-  cardBgAlpha: 'rgba(255,255,255,0.92)',
-  cardBorder: '#D7ECF8',
-  cardHover: '#F0F9FF',
-
-  surface: '#FFFFFF',
-  surfaceAlt: '#F8FAFC',
-
-  success: '#22C55E',
-  warning: '#F59E0B',
-  danger: '#EF4444',
-  info: '#0EA5E9',
-
-  saudiBadge: '#006C35',
-  turkeyBadge: '#E30A17',
-
-  border: '#D7ECF8',
-  borderStrong: 'rgba(14,165,233,0.25)',
-} as const;
-
-export const zyrixShadows = {
-  card: {
-    shadowColor: '#0EA5E9',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.08,
-    shadowRadius: 12,
-    elevation: 3,
-  },
-  aiGlow: {
-    shadowColor: '#0EA5E9',
-    shadowOffset: { width: 0, height: 8 },
-    shadowOpacity: 0.18,
-    shadowRadius: 20,
-    elevation: 8,
-  },
-  modal: {
-    shadowColor: '#0C4A6E',
-    shadowOffset: { width: 0, height: 12 },
-    shadowOpacity: 0.15,
-    shadowRadius: 24,
-    elevation: 12,
-  },
-} as const;
-
-export const zyrixSpacing = {
-  xs: 4,
-  sm: 8,
-  base: 16,
-  lg: 24,
-  xl: 32,
-  xxl: 48,
-} as const;
-
-export const zyrixRadius = {
-  sm: 8,
-  base: 12,
-  lg: 16,
-  xl: 20,
-  xxl: 28,
-  pill: 999,
-} as const;
-
-export type ZyrixTheme = typeof zyrixTheme;
+export type ZyrixTheme = DarkZyrixTheme;
