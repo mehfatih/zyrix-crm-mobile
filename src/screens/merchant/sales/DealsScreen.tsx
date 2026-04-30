@@ -23,7 +23,7 @@ import { DealCard } from '../../../components/feature-specific/DealCard';
 import { Header } from '../../../components/common/Header';
 import { Icon } from '../../../components/common/Icon';
 import { SkeletonCard } from '../../../components/common/SkeletonCard';
-import { colors } from '../../../constants/colors';
+import { darkColors } from '../../../theme/dark';
 import { radius, shadows, spacing } from '../../../constants/spacing';
 import { textStyles } from '../../../constants/typography';
 import { useDeals } from '../../../hooks/useDeals';
@@ -164,13 +164,13 @@ export const DealsScreen: React.FC = () => {
             <RefreshControl
               refreshing={query.isRefetching}
               onRefresh={() => void query.refetch()}
-              tintColor={colors.primary}
-              colors={[colors.primary]}
+              tintColor={darkColors.primary}
+              colors={[darkColors.primary]}
             />
           }
           ListEmptyComponent={
             <View style={styles.empty}>
-              <Icon name="briefcase-outline" size={48} color={colors.primary} />
+              <Icon name="briefcase-outline" size={48} color={darkColors.primary} />
               <Text style={styles.emptyTitle}>
                 {t('deals.title')}
               </Text>
@@ -186,14 +186,14 @@ export const DealsScreen: React.FC = () => {
           pressed ? { opacity: 0.9 } : null,
         ]}
       >
-        <Icon name="add" size={28} color={colors.textInverse} />
+        <Icon name="add" size={28} color={darkColors.textOnPrimary} />
       </Pressable>
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: colors.background },
+  safe: { flex: 1, backgroundColor: darkColors.background },
   chipsScroll: {
     paddingHorizontal: spacing.base,
     paddingTop: spacing.sm,
@@ -203,20 +203,20 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.md,
     paddingVertical: spacing.sm,
     borderRadius: radius.pill,
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     borderWidth: 1,
-    borderColor: colors.border,
+    borderColor: darkColors.border,
   },
   chipActive: {
-    backgroundColor: colors.primary,
-    borderColor: colors.primary,
+    backgroundColor: darkColors.primary,
+    borderColor: darkColors.primary,
   },
   chipText: {
     ...textStyles.caption,
-    color: colors.textSecondary,
+    color: darkColors.textSecondary,
     fontWeight: '600',
   },
-  chipTextActive: { color: colors.textInverse },
+  chipTextActive: { color: darkColors.textOnPrimary },
   sortRow: {
     flexDirection: 'row',
     paddingHorizontal: spacing.base,
@@ -227,17 +227,17 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.sm,
     paddingVertical: 4,
     borderRadius: radius.sm,
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
   },
   sortChipActive: {
-    backgroundColor: colors.primarySoft,
+    backgroundColor: darkColors.primarySoft,
   },
   sortText: {
     ...textStyles.caption,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
   },
   sortTextActive: {
-    color: colors.primaryDark,
+    color: darkColors.primaryDark,
     fontWeight: '700',
   },
   list: {
@@ -251,7 +251,7 @@ const styles = StyleSheet.create({
   },
   emptyTitle: {
     ...textStyles.h4,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
   },
   fab: {
     position: 'absolute',
@@ -260,7 +260,7 @@ const styles = StyleSheet.create({
     width: 56,
     height: 56,
     borderRadius: 28,
-    backgroundColor: colors.primary,
+    backgroundColor: darkColors.primary,
     alignItems: 'center',
     justifyContent: 'center',
     ...shadows.md,

@@ -28,7 +28,7 @@ import { DEALS_BY_STAGE_COLORS } from '../../../api/mockData';
 import { DealCard } from '../../../components/feature-specific/DealCard';
 import { Header } from '../../../components/common/Header';
 import { Icon } from '../../../components/common/Icon';
-import { colors } from '../../../constants/colors';
+import { darkColors } from '../../../theme/dark';
 import { radius, shadows, spacing } from '../../../constants/spacing';
 import { textStyles } from '../../../constants/typography';
 import { useDeals, useMoveDealStage } from '../../../hooks/useDeals';
@@ -100,7 +100,7 @@ export const PipelineScreen: React.FC = () => {
             onPress={() => void dealsQuery.refetch()}
             style={styles.iconBtn}
           >
-            <Icon name="refresh" size={22} color={colors.textInverse} />
+            <Icon name="refresh" size={22} color={darkColors.textOnPrimary} />
           </Pressable>
         }
       />
@@ -112,8 +112,8 @@ export const PipelineScreen: React.FC = () => {
           <RefreshControl
             refreshing={dealsQuery.isRefetching}
             onRefresh={() => void dealsQuery.refetch()}
-            tintColor={colors.primary}
-            colors={[colors.primary]}
+            tintColor={darkColors.primary}
+            colors={[darkColors.primary]}
           />
         }
       >
@@ -172,7 +172,7 @@ export const PipelineScreen: React.FC = () => {
 };
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: colors.background },
+  safe: { flex: 1, backgroundColor: darkColors.background },
   iconBtn: {
     width: 40,
     height: 40,
@@ -185,7 +185,7 @@ const styles = StyleSheet.create({
   },
   column: {
     width: COLUMN_WIDTH,
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     borderRadius: radius.lg,
     padding: spacing.sm,
     ...shadows.xs,
@@ -194,7 +194,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.xs,
     paddingBottom: spacing.sm,
     borderBottomWidth: 1,
-    borderBottomColor: colors.divider,
+    borderBottomColor: darkColors.divider,
     rowGap: 2,
   },
   columnTitleRow: {
@@ -209,7 +209,7 @@ const styles = StyleSheet.create({
   },
   columnTitle: {
     ...textStyles.h4,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
   },
   columnMetaRow: {
     flexDirection: 'row',
@@ -218,7 +218,7 @@ const styles = StyleSheet.create({
   },
   count: {
     ...textStyles.caption,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
   },
   columnScroll: {
     marginTop: spacing.sm,
@@ -229,7 +229,7 @@ const styles = StyleSheet.create({
   },
   emptyText: {
     ...textStyles.caption,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
     textAlign: 'center',
     paddingVertical: spacing.lg,
   },

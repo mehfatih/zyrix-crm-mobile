@@ -19,7 +19,7 @@ import { useTranslation } from 'react-i18next';
 import { CurrencyDisplay } from '../../../components/forms/CurrencyDisplay';
 import { Header } from '../../../components/common/Header';
 import { MOCK_REPS } from '../../../api/mockData';
-import { colors } from '../../../constants/colors';
+import { darkColors } from '../../../theme/dark';
 import { radius, shadows, spacing } from '../../../constants/spacing';
 import { textStyles } from '../../../constants/typography';
 
@@ -80,7 +80,7 @@ export const CommissionsScreen: React.FC = () => {
           <CurrencyDisplay
             amount={totalCommission}
             size="large"
-            color={colors.primaryDark}
+            color={darkColors.primaryDark}
           />
         </View>
 
@@ -108,7 +108,7 @@ export const CommissionsScreen: React.FC = () => {
                 <CurrencyDisplay
                   amount={rep.revenue}
                   size="small"
-                  color={colors.textMuted}
+                  color={darkColors.textMuted}
                 />
               </View>
               <View style={styles.earnedWrap}>
@@ -118,7 +118,7 @@ export const CommissionsScreen: React.FC = () => {
                 <CurrencyDisplay
                   amount={earned}
                   size="medium"
-                  color={colors.primaryDark}
+                  color={darkColors.primaryDark}
                 />
               </View>
             </Pressable>
@@ -130,7 +130,7 @@ export const CommissionsScreen: React.FC = () => {
 };
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: colors.background },
+  safe: { flex: 1, backgroundColor: darkColors.background },
   scroll: {
     padding: spacing.base,
     paddingBottom: spacing.xxl,
@@ -144,22 +144,22 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.md,
     paddingVertical: spacing.sm,
     borderRadius: radius.pill,
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     borderWidth: 1,
-    borderColor: colors.border,
+    borderColor: darkColors.border,
   },
   periodChipActive: {
-    backgroundColor: colors.primary,
-    borderColor: colors.primary,
+    backgroundColor: darkColors.primary,
+    borderColor: darkColors.primary,
   },
   periodText: {
     ...textStyles.caption,
-    color: colors.textSecondary,
+    color: darkColors.textSecondary,
     fontWeight: '600',
   },
-  periodTextActive: { color: colors.textInverse },
+  periodTextActive: { color: darkColors.textOnPrimary },
   summaryCard: {
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     padding: spacing.xl,
     borderRadius: radius.xl,
     ...shadows.sm,
@@ -168,17 +168,17 @@ const styles = StyleSheet.create({
   },
   summaryLabel: {
     ...textStyles.caption,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
   },
   sectionTitle: {
     ...textStyles.h4,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
     marginBottom: spacing.xs,
   },
   repCard: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     borderRadius: radius.lg,
     padding: spacing.base,
     columnGap: spacing.sm,
@@ -188,25 +188,25 @@ const styles = StyleSheet.create({
     width: 48,
     height: 48,
     borderRadius: 24,
-    backgroundColor: colors.primarySoft,
+    backgroundColor: darkColors.primarySoft,
     alignItems: 'center',
     justifyContent: 'center',
   },
   avatarText: {
     ...textStyles.label,
-    color: colors.primaryDark,
+    color: darkColors.primaryDark,
     fontWeight: '700',
   },
   repBody: { flex: 1, rowGap: 2 },
-  repName: { ...textStyles.bodyMedium, color: colors.textPrimary },
-  repMeta: { ...textStyles.caption, color: colors.textMuted },
+  repName: { ...textStyles.bodyMedium, color: darkColors.textPrimary },
+  repMeta: { ...textStyles.caption, color: darkColors.textMuted },
   earnedWrap: {
     alignItems: 'flex-end',
     rowGap: 2,
   },
   earnedLabel: {
     ...textStyles.caption,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
   },
 });
 

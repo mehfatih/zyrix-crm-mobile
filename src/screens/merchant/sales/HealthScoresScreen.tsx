@@ -16,7 +16,7 @@ import { useTranslation } from 'react-i18next';
 
 import { Header } from '../../../components/common/Header';
 import { Icon } from '../../../components/common/Icon';
-import { colors } from '../../../constants/colors';
+import { darkColors } from '../../../theme/dark';
 import { findCountry } from '../../../constants/countries';
 import { radius, shadows, spacing } from '../../../constants/spacing';
 import { textStyles } from '../../../constants/typography';
@@ -38,9 +38,9 @@ const reason = (
 };
 
 const gaugeColor = (score: number): string => {
-  if (score >= 70) return colors.success;
-  if (score >= 40) return colors.warning;
-  return colors.error;
+  if (score >= 70) return darkColors.success;
+  if (score >= 40) return darkColors.warning;
+  return darkColors.error;
 };
 
 export const HealthScoresScreen: React.FC = () => {
@@ -135,7 +135,7 @@ export const HealthScoresScreen: React.FC = () => {
                     <Icon
                       name="alert-circle-outline"
                       size={14}
-                      color={colors.error}
+                      color={darkColors.error}
                     />
                     <Text style={styles.reasonText}>{reasonText}</Text>
                   </View>
@@ -150,7 +150,7 @@ export const HealthScoresScreen: React.FC = () => {
 };
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: colors.background },
+  safe: { flex: 1, backgroundColor: darkColors.background },
   filterRow: {
     flexDirection: 'row',
     padding: spacing.base,
@@ -160,20 +160,20 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.md,
     paddingVertical: spacing.sm,
     borderRadius: radius.pill,
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     borderWidth: 1,
-    borderColor: colors.border,
+    borderColor: darkColors.border,
   },
   chipActive: {
-    backgroundColor: colors.primary,
-    borderColor: colors.primary,
+    backgroundColor: darkColors.primary,
+    borderColor: darkColors.primary,
   },
   chipText: {
     ...textStyles.caption,
-    color: colors.textSecondary,
+    color: darkColors.textSecondary,
     fontWeight: '600',
   },
-  chipTextActive: { color: colors.textInverse },
+  chipTextActive: { color: darkColors.textOnPrimary },
   list: {
     padding: spacing.base,
     paddingBottom: spacing.xxl,
@@ -182,7 +182,7 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     borderRadius: radius.lg,
     padding: spacing.base,
     columnGap: spacing.base,
@@ -192,7 +192,7 @@ const styles = StyleSheet.create({
     width: 56,
     height: 56,
     borderRadius: 28,
-    backgroundColor: colors.surfaceAlt,
+    backgroundColor: darkColors.surfaceAlt,
     alignItems: 'center',
     justifyContent: 'center',
     overflow: 'hidden',
@@ -213,7 +213,7 @@ const styles = StyleSheet.create({
   },
   name: {
     ...textStyles.bodyMedium,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
     flex: 1,
   },
   flag: {
@@ -221,7 +221,7 @@ const styles = StyleSheet.create({
   },
   meta: {
     ...textStyles.caption,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
   },
   reasonRow: {
     flexDirection: 'row',
@@ -231,7 +231,7 @@ const styles = StyleSheet.create({
   },
   reasonText: {
     ...textStyles.caption,
-    color: colors.error,
+    color: darkColors.error,
     flex: 1,
   },
 });

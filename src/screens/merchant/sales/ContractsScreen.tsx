@@ -23,7 +23,7 @@ import { CurrencyDisplay } from '../../../components/forms/CurrencyDisplay';
 import { Header } from '../../../components/common/Header';
 import { Icon } from '../../../components/common/Icon';
 import { SkeletonCard } from '../../../components/common/SkeletonCard';
-import { colors } from '../../../constants/colors';
+import { darkColors } from '../../../theme/dark';
 import { listContracts, type Contract } from '../../../api/contracts';
 import { radius, shadows, spacing } from '../../../constants/spacing';
 import { textStyles } from '../../../constants/typography';
@@ -38,11 +38,11 @@ type Navigation = NativeStackNavigationProp<
 type Bucket = 'all' | 'active' | 'expiring' | 'expired' | 'terminated';
 
 const STATUS_COLOR: Record<Contract['status'] | 'expiring', { bg: string; fg: string }> = {
-  draft: { bg: colors.surfaceAlt, fg: colors.textMuted },
-  active: { bg: colors.successSoft, fg: colors.success },
-  expired: { bg: colors.errorSoft, fg: colors.error },
-  terminated: { bg: colors.surfaceAlt, fg: colors.textMuted },
-  expiring: { bg: colors.warningSoft, fg: colors.warning },
+  draft: { bg: darkColors.surfaceAlt, fg: darkColors.textMuted },
+  active: { bg: darkColors.successSoft, fg: darkColors.success },
+  expired: { bg: darkColors.errorSoft, fg: darkColors.error },
+  terminated: { bg: darkColors.surfaceAlt, fg: darkColors.textMuted },
+  expiring: { bg: darkColors.warningSoft, fg: darkColors.warning },
 };
 
 const daysUntil = (iso: string): number => {
@@ -126,8 +126,8 @@ export const ContractsScreen: React.FC = () => {
             <RefreshControl
               refreshing={contractsQuery.isRefetching}
               onRefresh={() => void contractsQuery.refetch()}
-              tintColor={colors.primary}
-              colors={[colors.primary]}
+              tintColor={darkColors.primary}
+              colors={[darkColors.primary]}
             />
           }
           renderItem={({ item }) => {
@@ -172,7 +172,7 @@ export const ContractsScreen: React.FC = () => {
               <Icon
                 name="document-text-outline"
                 size={48}
-                color={colors.primary}
+                color={darkColors.primary}
               />
               <Text style={styles.emptyTitle}>{t('navigation.contracts')}</Text>
             </View>
@@ -187,14 +187,14 @@ export const ContractsScreen: React.FC = () => {
           pressed ? { opacity: 0.9 } : null,
         ]}
       >
-        <Icon name="add" size={28} color={colors.textInverse} />
+        <Icon name="add" size={28} color={darkColors.textOnPrimary} />
       </Pressable>
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: colors.background },
+  safe: { flex: 1, backgroundColor: darkColors.background },
   filters: {
     columnGap: spacing.xs,
     paddingHorizontal: spacing.base,
@@ -204,27 +204,27 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.md,
     paddingVertical: spacing.sm,
     borderRadius: radius.pill,
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     borderWidth: 1,
-    borderColor: colors.border,
+    borderColor: darkColors.border,
   },
   chipActive: {
-    backgroundColor: colors.primary,
-    borderColor: colors.primary,
+    backgroundColor: darkColors.primary,
+    borderColor: darkColors.primary,
   },
   chipText: {
     ...textStyles.caption,
-    color: colors.textSecondary,
+    color: darkColors.textSecondary,
     fontWeight: '600',
   },
-  chipTextActive: { color: colors.textInverse },
+  chipTextActive: { color: darkColors.textOnPrimary },
   list: {
     padding: spacing.base,
     paddingBottom: spacing.xxxl * 2,
     rowGap: spacing.sm,
   },
   card: {
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     padding: spacing.base,
     borderRadius: radius.lg,
     rowGap: spacing.xs,
@@ -237,7 +237,7 @@ const styles = StyleSheet.create({
   },
   number: {
     ...textStyles.bodyMedium,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
     fontWeight: '700',
   },
   status: {
@@ -249,7 +249,7 @@ const styles = StyleSheet.create({
     ...textStyles.caption,
     fontWeight: '700',
   },
-  customer: { ...textStyles.caption, color: colors.textSecondary },
+  customer: { ...textStyles.caption, color: darkColors.textSecondary },
   metaRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -258,7 +258,7 @@ const styles = StyleSheet.create({
   },
   date: {
     ...textStyles.caption,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
   },
   empty: {
     alignItems: 'center',
@@ -267,7 +267,7 @@ const styles = StyleSheet.create({
   },
   emptyTitle: {
     ...textStyles.h4,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
   },
   fab: {
     position: 'absolute',
@@ -276,7 +276,7 @@ const styles = StyleSheet.create({
     width: 56,
     height: 56,
     borderRadius: 28,
-    backgroundColor: colors.primary,
+    backgroundColor: darkColors.primary,
     alignItems: 'center',
     justifyContent: 'center',
     ...shadows.md,
