@@ -28,7 +28,7 @@ import { useTranslation } from 'react-i18next';
 import { Button } from '../../components/common/Button';
 import { Icon, type AnyIconName } from '../../components/common/Icon';
 import { CountryPicker } from '../../components/forms/CountryPicker';
-import { colors } from '../../constants/colors';
+import { darkColors } from '../../theme/dark';
 import { findCountry } from '../../constants/countries';
 import { hitSlop, radius, shadows, spacing } from '../../constants/spacing';
 import { textStyles } from '../../constants/typography';
@@ -174,7 +174,7 @@ export const OnboardingScreen: React.FC = () => {
             accessibilityRole="button"
             accessibilityLabel={t('onboarding.back')}
           >
-            <Icon name="chevron-back" size={22} color={colors.primaryDark} />
+            <Icon name="chevron-back" size={22} color={darkColors.primaryDark} />
           </Pressable>
         ) : (
           <View style={styles.backBtn} />
@@ -367,15 +367,15 @@ const StepCountry: React.FC<StepCountryProps> = ({
                 {t('onboarding.selectCountry')}
               </Text>
             </View>
-            <Icon name="checkmark-circle" size={24} color={colors.primary} />
+            <Icon name="checkmark-circle" size={24} color={darkColors.primary} />
           </>
         ) : (
           <>
-            <Icon name="earth-outline" size={28} color={colors.primary} />
+            <Icon name="earth-outline" size={28} color={darkColors.primary} />
             <Text style={styles.countryPlaceholder}>
               {t('onboarding.selectCountry')}
             </Text>
-            <Icon name="chevron-forward" size={20} color={colors.primary} />
+            <Icon name="chevron-forward" size={20} color={darkColors.primary} />
           </>
         )}
       </Pressable>
@@ -417,7 +417,7 @@ const StepLanguage: React.FC<StepLanguageProps> = ({ currentLanguage }) => {
       <View style={styles.languageCard}>
         <Text style={styles.languageFlag}>{flag}</Text>
         <Text style={styles.languageLabel}>{native}</Text>
-        <Icon name="checkmark-circle" size={22} color={colors.primary} />
+        <Icon name="checkmark-circle" size={22} color={darkColors.primary} />
       </View>
 
       <Pressable onPress={() => void cycle()} hitSlop={8} style={styles.changeLink}>
@@ -465,7 +465,7 @@ const StepBusinessType: React.FC<StepBusinessTypeProps> = ({
               <Icon
                 name={option.icon}
                 size={30}
-                color={selected ? colors.primary : colors.primaryDark}
+                color={selected ? darkColors.primary : darkColors.primaryDark}
               />
               <Text
                 style={[
@@ -502,7 +502,7 @@ const StepComplete: React.FC<StepCompleteProps> = ({
   return (
     <View style={styles.stepBody}>
       <View style={styles.successCircle}>
-        <Icon name="checkmark" size={48} color={colors.textInverse} />
+        <Icon name="checkmark" size={48} color={darkColors.textOnPrimary} />
       </View>
       <Text style={styles.stepTitle}>{t('onboarding.allSet')}</Text>
       <Text style={styles.stepSubtitle}>
@@ -541,7 +541,7 @@ const SummaryRow: React.FC<{ label: string; value: string }> = ({ label, value }
 const styles = StyleSheet.create({
   safe: {
     flex: 1,
-    backgroundColor: colors.background,
+    backgroundColor: darkColors.background,
   },
   progressRow: {
     flexDirection: 'row',
@@ -566,11 +566,11 @@ const styles = StyleSheet.create({
     height: 6,
     borderRadius: 3,
   },
-  dotActive: { backgroundColor: colors.primary },
-  dotInactive: { backgroundColor: colors.border },
+  dotActive: { backgroundColor: darkColors.primary },
+  dotInactive: { backgroundColor: darkColors.border },
   stepLabel: {
     ...textStyles.caption,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
     minWidth: 60,
     textAlign: 'right',
   },
@@ -588,7 +588,7 @@ const styles = StyleSheet.create({
     width: 96,
     height: 96,
     borderRadius: 48,
-    backgroundColor: colors.primary,
+    backgroundColor: darkColors.primary,
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: spacing.base,
@@ -597,16 +597,16 @@ const styles = StyleSheet.create({
   logoMark: {
     fontSize: 52,
     fontWeight: '800',
-    color: colors.white,
+    color: darkColors.textOnPrimary,
   },
   stepTitle: {
     ...textStyles.h2,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
     textAlign: 'center',
   },
   stepSubtitle: {
     ...textStyles.body,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
     textAlign: 'center',
     marginBottom: spacing.lg,
   },
@@ -616,30 +616,30 @@ const styles = StyleSheet.create({
     columnGap: spacing.md,
     padding: spacing.lg,
     borderRadius: radius.lg,
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     borderWidth: 1.5,
-    borderColor: colors.border,
+    borderColor: darkColors.border,
     width: '100%',
     ...shadows.sm,
   },
   countryButtonFilled: {
-    borderColor: colors.primary,
-    backgroundColor: colors.primarySoft,
+    borderColor: darkColors.primary,
+    backgroundColor: darkColors.primarySoft,
   },
   countryFlag: { fontSize: 32 },
   countryTextWrap: { flex: 1 },
   countryName: {
     ...textStyles.h4,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
   },
   countryHint: {
     ...textStyles.caption,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
   },
   countryPlaceholder: {
     flex: 1,
     ...textStyles.bodyMedium,
-    color: colors.textSecondary,
+    color: darkColors.textSecondary,
   },
   languageCard: {
     flexDirection: 'row',
@@ -647,23 +647,23 @@ const styles = StyleSheet.create({
     columnGap: spacing.base,
     padding: spacing.lg,
     borderRadius: radius.lg,
-    backgroundColor: colors.primarySoft,
+    backgroundColor: darkColors.primarySoft,
     borderWidth: 1,
-    borderColor: colors.primary,
+    borderColor: darkColors.primary,
     width: '100%',
   },
   languageFlag: { fontSize: 32 },
   languageLabel: {
     flex: 1,
     ...textStyles.h4,
-    color: colors.primaryDark,
+    color: darkColors.primaryDark,
   },
   changeLink: {
     paddingVertical: spacing.sm,
   },
   changeLinkText: {
     ...textStyles.label,
-    color: colors.primary,
+    color: darkColors.primary,
   },
   typeGrid: {
     flexDirection: 'row',
@@ -675,9 +675,9 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     aspectRatio: 1,
     borderWidth: 1.5,
-    borderColor: colors.border,
+    borderColor: darkColors.border,
     borderRadius: radius.lg,
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     alignItems: 'center',
     justifyContent: 'center',
     padding: spacing.base,
@@ -685,29 +685,29 @@ const styles = StyleSheet.create({
     minHeight: 110,
   },
   typeCardSelected: {
-    borderColor: colors.primary,
-    backgroundColor: colors.primarySoft,
+    borderColor: darkColors.primary,
+    backgroundColor: darkColors.primarySoft,
   },
   typeLabel: {
     ...textStyles.label,
-    color: colors.textSecondary,
+    color: darkColors.textSecondary,
     textAlign: 'center',
   },
   typeLabelSelected: {
-    color: colors.primaryDark,
+    color: darkColors.primaryDark,
   },
   successCircle: {
     width: 88,
     height: 88,
     borderRadius: 44,
-    backgroundColor: colors.primary,
+    backgroundColor: darkColors.primary,
     alignItems: 'center',
     justifyContent: 'center',
     ...shadows.md,
   },
   summaryCard: {
     width: '100%',
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     borderRadius: radius.lg,
     padding: spacing.base,
     rowGap: spacing.sm,
@@ -719,22 +719,22 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingVertical: spacing.sm,
     borderBottomWidth: 1,
-    borderBottomColor: colors.divider,
+    borderBottomColor: darkColors.divider,
   },
   summaryLabel: {
     ...textStyles.caption,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
   },
   summaryValue: {
     ...textStyles.bodyMedium,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
     maxWidth: '60%',
   },
   footer: {
     padding: spacing.lg,
     borderTopWidth: 1,
-    borderTopColor: colors.divider,
-    backgroundColor: colors.surface,
+    borderTopColor: darkColors.divider,
+    backgroundColor: darkColors.surface,
   },
 });
 
