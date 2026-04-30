@@ -27,7 +27,10 @@ import {
 } from '../../components/forms/SearchableDropdown';
 import { SkeletonCard } from '../../components/common/SkeletonCard';
 import { darkColors } from '../../theme/dark';
+import { getPageAccent } from '../../theme/dark/accents';
 import { listCustomers } from '../../api/customers';
+
+const PAGE_ACCENT = getPageAccent('settings');
 import { radius, shadows, spacing } from '../../constants/spacing';
 import { textStyles } from '../../constants/typography';
 import { useComplianceExports, useCreateComplianceExport } from '../../hooks/useAdmin';

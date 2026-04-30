@@ -21,6 +21,7 @@ import { Button } from '../../components/common/Button';
 import { Header } from '../../components/common/Header';
 import { Icon } from '../../components/common/Icon';
 import { darkColors } from '../../theme/dark';
+import { getPageAccent } from '../../theme/dark/accents';
 import { logSecurityEvent } from '../../utils/securityEvents';
 import { radius, shadows, spacing } from '../../constants/spacing';
 import { textStyles } from '../../constants/typography';
@@ -28,6 +29,8 @@ import { useAuthStore } from '../../store/authStore';
 import { useToast } from '../../hooks/useToast';
 
 const COOLDOWN_SECONDS = 30;
+
+const PAGE_ACCENT = getPageAccent('twoFactor');
 
 export const TwoFactorPromptScreen: React.FC = () => {
   const { t } = useTranslation();
@@ -91,6 +94,7 @@ export const TwoFactorPromptScreen: React.FC = () => {
     <SafeAreaView edges={['bottom']} style={styles.safe}>
       <Header
         title={t('twoFactor.title')}
+        accent={PAGE_ACCENT}
         onBack={() => navigation.goBack()}
       />
       <View style={styles.body}>

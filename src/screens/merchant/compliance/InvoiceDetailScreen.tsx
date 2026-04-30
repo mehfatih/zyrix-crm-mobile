@@ -32,6 +32,9 @@ import { Icon, type AnyIconName } from '../../../components/common/Icon';
 import { SkeletonCard } from '../../../components/common/SkeletonCard';
 import { ZATCAInvoicePreview } from '../../../components/feature-specific/ZATCAInvoicePreview';
 import { darkColors } from '../../../theme/dark';
+import { getPageAccent } from '../../../theme/dark/accents';
+
+const PAGE_ACCENT = getPageAccent('taxInvoices');
 import {
   useCancelInvoice,
   useDownloadInvoicePDF,

@@ -28,6 +28,9 @@ import {
 import { Header } from '../../components/common/Header';
 import { Icon } from '../../components/common/Icon';
 import { darkColors } from '../../theme/dark';
+import { getPageAccent } from '../../theme/dark/accents';
+
+const PAGE_ACCENT = getPageAccent('settings');
 import { radius, spacing } from '../../constants/spacing';
 import { textStyles } from '../../constants/typography';
 

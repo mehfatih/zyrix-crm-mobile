@@ -26,6 +26,9 @@ import { Icon } from '../../../components/common/Icon';
 import { SentimentBadge } from '../../../components/feature-specific/SentimentBadge';
 import { SkeletonCard } from '../../../components/common/SkeletonCard';
 import { darkColors } from '../../../theme/dark';
+import { getPageAccent } from '../../../theme/dark/accents';
+
+const PAGE_ACCENT = getPageAccent('aiAgents');
 import { radius, shadows, spacing } from '../../../constants/spacing';
 import { textStyles } from '../../../constants/typography';
 import { useConversationIntel } from '../../../hooks/useAI';

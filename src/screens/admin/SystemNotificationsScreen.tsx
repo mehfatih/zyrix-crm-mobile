@@ -22,6 +22,9 @@ import { Button } from '../../components/common/Button';
 import { Header } from '../../components/common/Header';
 import { Icon } from '../../components/common/Icon';
 import { darkColors } from '../../theme/dark';
+import { getPageAccent } from '../../theme/dark/accents';
+
+const PAGE_ACCENT = getPageAccent('settings');
 import { hitSlop, radius, shadows, spacing } from '../../constants/spacing';
 import { textStyles } from '../../constants/typography';
 import { useSendSystemNotification } from '../../hooks/useAdmin';

@@ -25,6 +25,9 @@ import { ItemLineBuilder, type LineItem } from '../../../components/feature-spec
 import { SearchableDropdown, type DropdownItem } from '../../../components/forms/SearchableDropdown';
 import { calculateInvoiceTotals } from '../../../utils/invoiceCalculator';
 import { darkColors } from '../../../theme/dark';
+import { getPageAccent } from '../../../theme/dark/accents';
+
+const PAGE_ACCENT = getPageAccent('taxInvoices');
 import { listCustomers } from '../../../api/customers';
 import { radius, shadows, spacing } from '../../../constants/spacing';
 import { textStyles } from '../../../constants/typography';

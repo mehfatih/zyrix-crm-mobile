@@ -18,6 +18,7 @@ import { useTranslation } from 'react-i18next';
 
 import { Button } from '../../components/common/Button';
 import { darkColors } from '../../theme/dark';
+import { getPageAccent } from '../../theme/dark/accents';
 import { radius, shadows, spacing } from '../../constants/spacing';
 import { textStyles } from '../../constants/typography';
 import { SUPPORTED_LANGUAGES, type SupportedLanguage } from '../../i18n';
@@ -30,6 +31,8 @@ interface LangOption {
   flag: string;
   exampleKey: 'auth.welcome';
 }
+
+const PAGE_ACCENT = getPageAccent('languageSelection');
 
 const OPTIONS: LangOption[] = [
   { code: 'ar', translationKey: 'language.arabic', nativeLabel: 'العربية', flag: '🇸🇦', exampleKey: 'auth.welcome' },

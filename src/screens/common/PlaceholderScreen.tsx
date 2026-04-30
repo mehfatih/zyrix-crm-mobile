@@ -24,6 +24,7 @@ import {
   type IconFamily,
 } from '../../components/common/Icon';
 import { darkColors } from '../../theme/dark';
+import { getPageAccent } from '../../theme/dark/accents';
 import { hitSlop, radius, shadows, spacing } from '../../constants/spacing';
 import { textStyles } from '../../constants/typography';
 
@@ -91,10 +92,13 @@ export const PlaceholderScreen: React.FC<PlaceholderScreenProps> = ({
     ? t('placeholders.comingInSprint', { sprint: resolvedSprint })
     : t('placeholders.featureNotReady');
 
+  const PAGE_ACCENT = getPageAccent('placeholder');
+
   return (
     <SafeAreaView edges={['bottom']} style={styles.safe}>
       <Header
         title={title}
+        accent={PAGE_ACCENT}
         showBack={showBack}
         onBack={showBack && canGoBack ? () => navigation.goBack() : undefined}
         leftSlot={

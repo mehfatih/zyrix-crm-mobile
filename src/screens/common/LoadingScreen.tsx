@@ -10,8 +10,11 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { useTranslation } from 'react-i18next';
 
 import { darkColors } from '../../theme/dark';
+import { getPageAccent } from '../../theme/dark/accents';
 import { radius, shadows, spacing } from '../../constants/spacing';
 import { textStyles } from '../../constants/typography';
+
+const PAGE_ACCENT = getPageAccent('loading');
 
 export interface LoadingScreenProps {
   /** Override the default "Loading…" caption. */

@@ -23,6 +23,9 @@ import { Header } from '../../../components/common/Header';
 import { LocalizedCurrencyInput } from '../../../components/common/LocalizedCurrencyInput';
 import { SearchableDropdown, type DropdownItem } from '../../../components/forms/SearchableDropdown';
 import { darkColors } from '../../../theme/dark';
+import { getPageAccent } from '../../../theme/dark/accents';
+
+const PAGE_ACCENT = getPageAccent('cashFlow');
 import { radius, shadows, spacing } from '../../../constants/spacing';
 import { textStyles } from '../../../constants/typography';
 import { useCountryConfig } from '../../../hooks/useCountryConfig';

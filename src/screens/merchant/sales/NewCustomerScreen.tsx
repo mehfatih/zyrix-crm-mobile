@@ -31,6 +31,9 @@ import { SearchableDropdown, type DropdownItem } from '../../../components/forms
 import { TagsInput } from '../../../components/forms/TagsInput';
 import { TaxIdInput } from '../../../components/common/TaxIdInput';
 import { darkColors } from '../../../theme/dark';
+import { getPageAccent } from '../../../theme/dark/accents';
+
+const PAGE_ACCENT = getPageAccent('customers');
 import { findCountry } from '../../../constants/countries';
 import { radius, shadows, spacing } from '../../../constants/spacing';
 import { textStyles } from '../../../constants/typography';

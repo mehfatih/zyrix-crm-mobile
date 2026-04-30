@@ -27,6 +27,9 @@ import { LocalizedCurrencyInput } from '../../../components/common/LocalizedCurr
 import { SearchableDropdown, type DropdownItem } from '../../../components/forms/SearchableDropdown';
 import { TagsInput } from '../../../components/forms/TagsInput';
 import { darkColors } from '../../../theme/dark';
+import { getPageAccent } from '../../../theme/dark/accents';
+
+const PAGE_ACCENT = getPageAccent('deals');
 import {
   DEAL_PIPELINE,
   type DealStage,

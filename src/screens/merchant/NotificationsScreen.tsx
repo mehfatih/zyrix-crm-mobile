@@ -33,12 +33,15 @@ import { useTranslation } from 'react-i18next';
 import { Header } from '../../components/common/Header';
 import { Icon } from '../../components/common/Icon';
 import { darkColors } from '../../theme/dark';
+import { getPageAccent } from '../../theme/dark/accents';
 import { radius, shadows, spacing } from '../../constants/spacing';
 import { textStyles } from '../../constants/typography';
 import type { SupportedLanguage } from '../../i18n';
 import { useUiStore } from '../../store/uiStore';
 
 type NotificationKind = 'deal_won' | 'payment_received' | 'task_due' | 'meeting' | 'system';
+
+const PAGE_ACCENT = getPageAccent('settings');
 
 interface NotificationItem {
   id: string;

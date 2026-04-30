@@ -29,6 +29,9 @@ import { Icon } from '../../../components/common/Icon';
 import { PDFPreview } from '../../../components/feature-specific/PDFPreview';
 import { SkeletonCard } from '../../../components/common/SkeletonCard';
 import { darkColors } from '../../../theme/dark';
+import { getPageAccent } from '../../../theme/dark/accents';
+
+const PAGE_ACCENT = getPageAccent('contracts');
 import {
   getContract,
   renewContract,

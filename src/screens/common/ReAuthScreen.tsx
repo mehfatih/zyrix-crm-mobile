@@ -19,11 +19,14 @@ import { useTranslation } from 'react-i18next';
 import { Button } from '../../components/common/Button';
 import { Icon } from '../../components/common/Icon';
 import { darkColors } from '../../theme/dark';
+import { getPageAccent } from '../../theme/dark/accents';
 import { radius, shadows, spacing } from '../../constants/spacing';
 import { textStyles } from '../../constants/typography';
 import { useAuthStore } from '../../store/authStore';
 import { useBiometric } from '../../hooks/useBiometric';
 import { useToast } from '../../hooks/useToast';
+
+const PAGE_ACCENT = getPageAccent('reAuth');
 
 export interface ReAuthScreenProps {
   onResume: () => void;

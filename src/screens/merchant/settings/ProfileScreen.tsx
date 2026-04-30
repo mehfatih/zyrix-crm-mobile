@@ -29,7 +29,10 @@ import { Icon } from '../../../components/common/Icon';
 import { LanguageSwitcher } from '../../../components/common/LanguageSwitcher';
 import { CountryPicker } from '../../../components/forms/CountryPicker';
 import { darkColors } from '../../../theme/dark';
+import { getPageAccent } from '../../../theme/dark/accents';
 import { findCountry } from '../../../constants/countries';
+
+const PAGE_ACCENT = getPageAccent('settings');
 import { getCountryConfig } from '../../../config/countries';
 import { radius, shadows, spacing } from '../../../constants/spacing';
 import { textStyles } from '../../../constants/typography';

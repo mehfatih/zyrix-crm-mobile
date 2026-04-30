@@ -23,6 +23,9 @@ import { Icon } from '../../../components/common/Icon';
 import { PaymentCard } from '../../../components/feature-specific/PaymentCard';
 import { SkeletonCard } from '../../../components/common/SkeletonCard';
 import { darkColors } from '../../../theme/dark';
+import { getPageAccent } from '../../../theme/dark/accents';
+
+const PAGE_ACCENT = getPageAccent('cashFlow');
 import { hitSlop, radius, shadows, spacing } from '../../../constants/spacing';
 import { textStyles } from '../../../constants/typography';
 import { useCountryConfig } from '../../../hooks/useCountryConfig';

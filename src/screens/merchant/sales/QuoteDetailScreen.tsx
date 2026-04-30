@@ -29,6 +29,9 @@ import { Icon, type AnyIconName } from '../../../components/common/Icon';
 import { PDFPreview } from '../../../components/feature-specific/PDFPreview';
 import { SkeletonCard } from '../../../components/common/SkeletonCard';
 import { darkColors } from '../../../theme/dark';
+import { getPageAccent } from '../../../theme/dark/accents';
+
+const PAGE_ACCENT = getPageAccent('quotes');
 import { generateQuotePDF } from '../../../utils/pdfGenerator';
 import { getQuote, type Quote } from '../../../api/quotes';
 import { radius, shadows, spacing } from '../../../constants/spacing';

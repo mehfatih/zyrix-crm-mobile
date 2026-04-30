@@ -24,6 +24,9 @@ import { Icon } from '../../components/common/Icon';
 import { SkeletonCard } from '../../components/common/SkeletonCard';
 import { UserCard } from '../../components/admin/UserCard';
 import { darkColors } from '../../theme/dark';
+import { getPageAccent } from '../../theme/dark/accents';
+
+const PAGE_ACCENT = getPageAccent('settings');
 import { hitSlop, radius, shadows, spacing } from '../../constants/spacing';
 import { textStyles } from '../../constants/typography';
 import { useAllUsers } from '../../hooks/useAdmin';

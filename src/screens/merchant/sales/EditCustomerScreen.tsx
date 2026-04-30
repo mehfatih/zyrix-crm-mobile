@@ -27,6 +27,9 @@ import { PhoneInput } from '../../../components/common/PhoneInput';
 import { TagsInput } from '../../../components/forms/TagsInput';
 import { TaxIdInput } from '../../../components/common/TaxIdInput';
 import { darkColors } from '../../../theme/dark';
+import { getPageAccent } from '../../../theme/dark/accents';
+
+const PAGE_ACCENT = getPageAccent('customers');
 import { radius, shadows, spacing } from '../../../constants/spacing';
 import { textStyles } from '../../../constants/typography';
 import { useCustomer, useUpdateCustomer } from '../../../hooks/useCustomers';
