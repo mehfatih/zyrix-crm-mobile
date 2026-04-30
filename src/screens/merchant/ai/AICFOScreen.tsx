@@ -12,7 +12,10 @@ import { useTranslation } from 'react-i18next';
 import { AIAssistant } from '../../../components/feature-specific/AIAssistant';
 import { Header } from '../../../components/common/Header';
 import { darkColors } from '../../../theme/dark';
+import { getPageAccent } from '../../../theme/dark/accents';
 import { getCFOSuggestions, getWelcomePrompt } from '../../../utils/aiPrompts';
+
+const PAGE_ACCENT = getPageAccent('aiCfo');
 import { radius, spacing } from '../../../constants/spacing';
 import { textStyles } from '../../../constants/typography';
 import { useAIChat } from '../../../hooks/useAI';

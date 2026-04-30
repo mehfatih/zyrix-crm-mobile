@@ -24,6 +24,9 @@ import {
   type QuoteDraft,
 } from '../../../components/feature-specific/QuoteBuilder';
 import { darkColors } from '../../../theme/dark';
+import { getPageAccent } from '../../../theme/dark/accents';
+
+const PAGE_ACCENT = getPageAccent('quotes');
 import { listCustomers } from '../../../api/customers';
 import { radius, shadows, spacing } from '../../../constants/spacing';
 import { textStyles } from '../../../constants/typography';

@@ -27,6 +27,9 @@ import { LocalizedCurrencyInput } from '../../../components/common/LocalizedCurr
 import { RichTextEditor } from '../../../components/forms/RichTextEditor';
 import { SearchableDropdown, type DropdownItem } from '../../../components/forms/SearchableDropdown';
 import { darkColors } from '../../../theme/dark';
+import { getPageAccent } from '../../../theme/dark/accents';
+
+const PAGE_ACCENT = getPageAccent('contracts');
 import { listCustomers } from '../../../api/customers';
 import { radius, shadows, spacing } from '../../../constants/spacing';
 import { textStyles } from '../../../constants/typography';

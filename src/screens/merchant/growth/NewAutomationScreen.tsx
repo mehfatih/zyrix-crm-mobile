@@ -14,6 +14,9 @@ import { AutomationBuilder, type AutomationWorkflow } from '../../../components/
 import { Button } from '../../../components/common/Button';
 import { Header } from '../../../components/common/Header';
 import { darkColors } from '../../../theme/dark';
+import { getPageAccent } from '../../../theme/dark/accents';
+
+const PAGE_ACCENT = getPageAccent('automations');
 import { spacing } from '../../../constants/spacing';
 import { useToast } from '../../../hooks/useToast';
 

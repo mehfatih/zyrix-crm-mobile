@@ -21,6 +21,9 @@ import { useNavigation } from '@react-navigation/native';
 import { Button } from '../../../components/common/Button';
 import { Header } from '../../../components/common/Header';
 import { darkColors } from '../../../theme/dark';
+import { getPageAccent } from '../../../theme/dark/accents';
+
+const PAGE_ACCENT = getPageAccent('loyalty');
 import { radius, shadows, spacing } from '../../../constants/spacing';
 import { textStyles } from '../../../constants/typography';
 import { useToast } from '../../../hooks/useToast';

@@ -21,7 +21,10 @@ import { useNavigation } from '@react-navigation/native';
 import { Header } from '../../../components/common/Header';
 import { Icon, type AnyIconName } from '../../../components/common/Icon';
 import { darkColors } from '../../../theme/dark';
+import { getPageAccent } from '../../../theme/dark/accents';
 import { radius, shadows, spacing } from '../../../constants/spacing';
+
+const PAGE_ACCENT = getPageAccent('settings');
 import { setSessionTimeoutMinutes } from '../../../utils/sessionManager';
 import { textStyles } from '../../../constants/typography';
 import { useAuthStore } from '../../../store/authStore';

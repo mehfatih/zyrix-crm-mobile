@@ -20,6 +20,9 @@ import { CurrencyDisplay } from '../../../components/forms/CurrencyDisplay';
 import { Header } from '../../../components/common/Header';
 import { MOCK_REPS } from '../../../api/mockData';
 import { darkColors } from '../../../theme/dark';
+import { getPageAccent } from '../../../theme/dark/accents';
+
+const PAGE_ACCENT = getPageAccent('commission');
 import { radius, shadows, spacing } from '../../../constants/spacing';
 import { textStyles } from '../../../constants/typography';
 

@@ -22,6 +22,9 @@ import { Icon } from '../../../components/common/Icon';
 import { LeadScoreCard } from '../../../components/feature-specific/LeadScoreCard';
 import { SkeletonCard } from '../../../components/common/SkeletonCard';
 import { darkColors } from '../../../theme/dark';
+import { getPageAccent } from '../../../theme/dark/accents';
+
+const PAGE_ACCENT = getPageAccent('aiAgents');
 import { hitSlop, radius, spacing } from '../../../constants/spacing';
 import { textStyles } from '../../../constants/typography';
 import { useAIScoreLeads } from '../../../hooks/useAI';

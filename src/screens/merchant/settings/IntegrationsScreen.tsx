@@ -31,7 +31,10 @@ import {
   zyrixSpacing,
 } from '../../../theme/zyrixTheme';
 import { darkColors } from '../../../theme/dark';
+import { getPageAccent } from '../../../theme/dark/accents';
 import { googleDriveService } from '../../../services/integrations/googleDrive';
+
+const PAGE_ACCENT = getPageAccent('settings');
 import { microsoftService } from '../../../services/integrations/microsoft';
 import { hitSlop } from '../../../constants/spacing';
 

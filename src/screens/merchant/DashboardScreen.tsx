@@ -42,6 +42,7 @@ import { ScanScreen } from '../scan/ScanScreen';
 import { StatCard } from '../../components/common/StatCard';
 import { VoiceNoteScreen } from '../notes/VoiceNoteScreen';
 import { darkColors } from '../../theme/dark';
+import { getPageAccent } from '../../theme/dark/accents';
 import { findCountry } from '../../constants/countries';
 import { hitSlop, radius, shadows, spacing } from '../../constants/spacing';
 import { textStyles } from '../../constants/typography';
@@ -85,6 +86,8 @@ const QUICK_ACTIONS: readonly QuickAction[] = [
     screen: 'Reports',
   },
 ];
+
+const PAGE_ACCENT = getPageAccent('dashboard');
 
 const ACTIVITY_ICON: Record<string, AnyIconName> = {
   deal_won: 'trophy-outline',

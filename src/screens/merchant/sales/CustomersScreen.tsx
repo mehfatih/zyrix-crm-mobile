@@ -30,6 +30,9 @@ import { Header } from '../../../components/common/Header';
 import { Icon } from '../../../components/common/Icon';
 import { SkeletonCard } from '../../../components/common/SkeletonCard';
 import { darkColors } from '../../../theme/dark';
+import { getPageAccent } from '../../../theme/dark/accents';
+
+const PAGE_ACCENT = getPageAccent('customers');
 import { hitSlop, radius, shadows, spacing } from '../../../constants/spacing';
 import { textStyles } from '../../../constants/typography';
 import { useCustomers } from '../../../hooks/useCustomers';

@@ -18,6 +18,9 @@ import { AIAssistant } from '../../../components/feature-specific/AIAssistant';
 import { Header } from '../../../components/common/Header';
 import { Icon, type AnyIconName } from '../../../components/common/Icon';
 import { darkColors } from '../../../theme/dark';
+import { getPageAccent } from '../../../theme/dark/accents';
+
+const PAGE_ACCENT = getPageAccent('aiCfo');
 import {
   getArchitectSuggestions,
   getBuilderSuggestions,
