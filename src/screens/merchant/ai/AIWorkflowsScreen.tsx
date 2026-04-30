@@ -21,7 +21,7 @@ import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { Header } from '../../../components/common/Header';
 import { Icon } from '../../../components/common/Icon';
 import { MOCK_AUTOMATIONS } from '../../../api/mockData';
-import { colors } from '../../../constants/colors';
+import { darkColors } from '../../../theme/dark';
 import { radius, shadows, spacing } from '../../../constants/spacing';
 import { textStyles } from '../../../constants/typography';
 import type { MerchantAIStackParamList } from '../../../navigation/types';
@@ -52,7 +52,7 @@ export const AIWorkflowsScreen: React.FC = () => {
             pressed ? { opacity: 0.9 } : null,
           ]}
         >
-          <Icon name="sparkles-outline" size={24} color={colors.textInverse} />
+          <Icon name="sparkles-outline" size={24} color={darkColors.textOnPrimary} />
           <View style={styles.ctaBody}>
             <Text style={styles.ctaTitle}>{t('aiWorkflows.createWithAI')}</Text>
             <Text style={styles.ctaSubtitle}>
@@ -62,13 +62,13 @@ export const AIWorkflowsScreen: React.FC = () => {
           <Icon
             name="arrow-forward"
             size={20}
-            color={colors.textInverse}
+            color={darkColors.textOnPrimary}
           />
         </Pressable>
 
         {workflows.length === 0 ? (
           <View style={styles.empty}>
-            <Icon name="flash-outline" size={48} color={colors.primary} />
+            <Icon name="flash-outline" size={48} color={darkColors.primary} />
             <Text style={styles.emptyTitle}>
               {t('aiWorkflows.describeWorkflow')}
             </Text>
@@ -83,8 +83,8 @@ export const AIWorkflowsScreen: React.FC = () => {
                     styles.badge,
                     {
                       backgroundColor: wf.enabled
-                        ? colors.successSoft
-                        : colors.surfaceAlt,
+                        ? darkColors.successSoft
+                        : darkColors.surfaceAlt,
                     },
                   ]}
                 >
@@ -92,7 +92,7 @@ export const AIWorkflowsScreen: React.FC = () => {
                     style={[
                       styles.badgeText,
                       {
-                        color: wf.enabled ? colors.success : colors.textMuted,
+                        color: wf.enabled ? darkColors.success : darkColors.textMuted,
                       },
                     ]}
                   >
@@ -120,7 +120,7 @@ export const AIWorkflowsScreen: React.FC = () => {
 };
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: colors.background },
+  safe: { flex: 1, backgroundColor: darkColors.background },
   scroll: {
     padding: spacing.base,
     paddingBottom: spacing.xxl,
@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     columnGap: spacing.sm,
-    backgroundColor: colors.primary,
+    backgroundColor: darkColors.primary,
     padding: spacing.lg,
     borderRadius: radius.xl,
     ...shadows.md,
@@ -138,12 +138,12 @@ const styles = StyleSheet.create({
   ctaBody: { flex: 1 },
   ctaTitle: {
     ...textStyles.h3,
-    color: colors.textInverse,
+    color: darkColors.textOnPrimary,
     fontWeight: '800',
   },
   ctaSubtitle: {
     ...textStyles.caption,
-    color: colors.primarySoft,
+    color: darkColors.primarySoft,
   },
   empty: {
     alignItems: 'center',
@@ -152,11 +152,11 @@ const styles = StyleSheet.create({
   },
   emptyTitle: {
     ...textStyles.h4,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
     textAlign: 'center',
   },
   card: {
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     padding: spacing.base,
     borderRadius: radius.lg,
     rowGap: spacing.xs,
@@ -169,7 +169,7 @@ const styles = StyleSheet.create({
   },
   name: {
     ...textStyles.bodyMedium,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
     fontWeight: '700',
   },
   badge: {
@@ -183,7 +183,7 @@ const styles = StyleSheet.create({
   },
   trigger: {
     ...textStyles.caption,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
   },
   metaRow: {
     flexDirection: 'row',
@@ -192,7 +192,7 @@ const styles = StyleSheet.create({
   },
   meta: {
     ...textStyles.caption,
-    color: colors.textSecondary,
+    color: darkColors.textSecondary,
   },
 });
 

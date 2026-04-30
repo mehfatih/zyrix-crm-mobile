@@ -11,7 +11,7 @@ import { useTranslation } from 'react-i18next';
 
 import { Header } from '../../components/common/Header';
 import { Icon } from '../../components/common/Icon';
-import { colors } from '../../constants/colors';
+import { darkColors } from '../../theme/dark';
 import { radius, shadows, spacing } from '../../constants/spacing';
 import { textStyles } from '../../constants/typography';
 import { useUserStore } from '../../store/userStore';
@@ -38,7 +38,7 @@ export const CustomerDashboardScreen: React.FC = () => {
 
         <View style={styles.companyCard}>
           <View style={styles.companyIcon}>
-            <Icon name="business-outline" size={24} color={colors.primary} />
+            <Icon name="business-outline" size={24} color={darkColors.primary} />
           </View>
           <View style={styles.companyText}>
             <Text style={styles.companyLabel}>{t('customer.yourCompany')}</Text>
@@ -49,7 +49,7 @@ export const CustomerDashboardScreen: React.FC = () => {
         </View>
 
         <View style={styles.placeholderCard}>
-          <Icon name="rocket-outline" size={40} color={colors.primary} />
+          <Icon name="rocket-outline" size={40} color={darkColors.primary} />
           <Text style={styles.placeholderTitle}>
             {t('navigation.customerHome')}
           </Text>
@@ -65,7 +65,7 @@ export const CustomerDashboardScreen: React.FC = () => {
 const styles = StyleSheet.create({
   safe: {
     flex: 1,
-    backgroundColor: colors.background,
+    backgroundColor: darkColors.background,
   },
   scroll: {
     padding: spacing.base,
@@ -73,18 +73,18 @@ const styles = StyleSheet.create({
     paddingBottom: spacing.xxl,
   },
   welcome: {
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     borderRadius: radius.xl,
     padding: spacing.xl,
     ...shadows.sm,
   },
   welcomeEyebrow: {
     ...textStyles.overline,
-    color: colors.primary,
+    color: darkColors.primary,
   },
   welcomeName: {
     ...textStyles.h2,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
     marginTop: spacing.xs,
   },
   companyCard: {
@@ -93,14 +93,14 @@ const styles = StyleSheet.create({
     columnGap: spacing.md,
     padding: spacing.base,
     borderRadius: radius.lg,
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     ...shadows.xs,
   },
   companyIcon: {
     width: 44,
     height: 44,
     borderRadius: radius.md,
-    backgroundColor: colors.primarySoft,
+    backgroundColor: darkColors.primarySoft,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -109,28 +109,28 @@ const styles = StyleSheet.create({
   },
   companyLabel: {
     ...textStyles.caption,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
   },
   companyValue: {
     ...textStyles.bodyMedium,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
     marginTop: 2,
   },
   placeholderCard: {
     alignItems: 'center',
     padding: spacing.xl,
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     borderRadius: radius.xl,
     rowGap: spacing.sm,
     ...shadows.xs,
   },
   placeholderTitle: {
     ...textStyles.h4,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
   },
   placeholderSubtitle: {
     ...textStyles.caption,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
   },
 });
 

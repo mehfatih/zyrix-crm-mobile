@@ -19,7 +19,7 @@ import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 import { Header } from '../../components/common/Header';
 import { Icon, type AnyIconName } from '../../components/common/Icon';
-import { colors } from '../../constants/colors';
+import { darkColors } from '../../theme/dark';
 import { hitSlop, radius, shadows, spacing } from '../../constants/spacing';
 import { textStyles } from '../../constants/typography';
 import type { AdminSecurityStackParamList } from '../../navigation/types';
@@ -84,13 +84,13 @@ export const SecurityScreen: React.FC = () => {
             hitSlop={hitSlop.md}
             style={styles.headerBtn}
           >
-            <Icon name="menu-outline" size={24} color={colors.textInverse} />
+            <Icon name="menu-outline" size={24} color={darkColors.textOnPrimary} />
           </Pressable>
         }
       />
 
       <View style={styles.alertCard}>
-        <Icon name="information-circle-outline" size={20} color={colors.primary} />
+        <Icon name="information-circle-outline" size={20} color={darkColors.primary} />
         <View style={styles.alertBody}>
           <Text style={styles.alertTitle}>
             {t('admin.security')}
@@ -112,7 +112,7 @@ export const SecurityScreen: React.FC = () => {
             ]}
           >
             <View style={styles.iconCircle}>
-              <Icon name={card.icon} size={20} color={colors.primary} />
+              <Icon name={card.icon} size={20} color={darkColors.primary} />
             </View>
             <View style={styles.cardBody}>
               <Text style={styles.cardTitle}>{t(card.titleKey)}</Text>
@@ -120,7 +120,7 @@ export const SecurityScreen: React.FC = () => {
                 {t(card.descriptionKey)}
               </Text>
             </View>
-            <Icon name="chevron-forward" size={18} color={colors.textMuted} />
+            <Icon name="chevron-forward" size={18} color={darkColors.textMuted} />
           </Pressable>
         ))}
       </ScrollView>
@@ -129,7 +129,7 @@ export const SecurityScreen: React.FC = () => {
 };
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: colors.background },
+  safe: { flex: 1, backgroundColor: darkColors.background },
   headerBtn: {
     width: 40,
     height: 40,
@@ -140,14 +140,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     columnGap: spacing.sm,
-    backgroundColor: colors.primarySoft,
+    backgroundColor: darkColors.primarySoft,
     margin: spacing.base,
     padding: spacing.base,
     borderRadius: radius.lg,
   },
   alertBody: { flex: 1 },
-  alertTitle: { ...textStyles.bodyMedium, color: colors.primaryDark },
-  alertSub: { ...textStyles.caption, color: colors.primary },
+  alertTitle: { ...textStyles.bodyMedium, color: darkColors.primaryDark },
+  alertSub: { ...textStyles.caption, color: darkColors.primary },
   scroll: {
     padding: spacing.base,
     rowGap: spacing.sm,
@@ -157,7 +157,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     columnGap: spacing.sm,
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     padding: spacing.base,
     borderRadius: radius.lg,
     ...shadows.xs,
@@ -166,13 +166,13 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 20,
-    backgroundColor: colors.primarySoft,
+    backgroundColor: darkColors.primarySoft,
     alignItems: 'center',
     justifyContent: 'center',
   },
   cardBody: { flex: 1 },
-  cardTitle: { ...textStyles.bodyMedium, color: colors.textPrimary },
-  cardSub: { ...textStyles.caption, color: colors.textMuted },
+  cardTitle: { ...textStyles.bodyMedium, color: darkColors.textPrimary },
+  cardSub: { ...textStyles.caption, color: darkColors.textMuted },
 });
 
 export default SecurityScreen;

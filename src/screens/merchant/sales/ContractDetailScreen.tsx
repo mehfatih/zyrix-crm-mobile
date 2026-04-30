@@ -28,7 +28,7 @@ import { Header } from '../../../components/common/Header';
 import { Icon } from '../../../components/common/Icon';
 import { PDFPreview } from '../../../components/feature-specific/PDFPreview';
 import { SkeletonCard } from '../../../components/common/SkeletonCard';
-import { colors } from '../../../constants/colors';
+import { darkColors } from '../../../theme/dark';
 import {
   getContract,
   renewContract,
@@ -109,7 +109,7 @@ export const ContractDetailScreen: React.FC = () => {
               <CurrencyDisplay
                 amount={contract.amount}
                 size="large"
-                color={colors.primaryDark}
+                color={darkColors.primaryDark}
               />
               <Text style={styles.heroMeta}>
                 {`${t(`contractTypes.${contract.type}`)}`}
@@ -146,7 +146,7 @@ export const ContractDetailScreen: React.FC = () => {
                 <Icon
                   name={contract.autoRenew ? 'refresh' : 'close-circle-outline'}
                   size={16}
-                  color={contract.autoRenew ? colors.success : colors.textMuted}
+                  color={contract.autoRenew ? darkColors.success : darkColors.textMuted}
                 />
                 <Text style={styles.autoRenewText}>
                   {contract.autoRenew ? t('contracts.renew') : t('contracts.terminate')}
@@ -163,7 +163,7 @@ export const ContractDetailScreen: React.FC = () => {
                 <Icon
                   name={termsOpen ? 'chevron-up' : 'chevron-down'}
                   size={20}
-                  color={colors.textMuted}
+                  color={darkColors.textMuted}
                 />
               </View>
               {termsOpen ? (
@@ -193,14 +193,14 @@ export const ContractDetailScreen: React.FC = () => {
                 onPress={() => renewMut.mutate()}
                 style={[styles.action, styles.actionPrimary]}
               >
-                <Icon name="refresh" size={18} color={colors.textInverse} />
-                <Text style={[styles.actionText, { color: colors.textInverse }]}>
+                <Icon name="refresh" size={18} color={darkColors.textOnPrimary} />
+                <Text style={[styles.actionText, { color: darkColors.textOnPrimary }]}>
                   {t('contracts.renew')}
                 </Text>
               </Pressable>
               <Pressable onPress={confirmTerminate} style={styles.action}>
-                <Icon name="stop-circle-outline" size={18} color={colors.error} />
-                <Text style={[styles.actionText, { color: colors.error }]}>
+                <Icon name="stop-circle-outline" size={18} color={darkColors.error} />
+                <Text style={[styles.actionText, { color: darkColors.error }]}>
                   {t('contracts.terminate')}
                 </Text>
               </Pressable>
@@ -224,7 +224,7 @@ const InfoRow: React.FC<{
   value: string;
 }> = ({ icon, label, value }) => (
   <View style={styles.infoRow}>
-    <Icon name={icon} size={18} color={colors.primary} />
+    <Icon name={icon} size={18} color={darkColors.primary} />
     <View style={styles.infoBody}>
       <Text style={styles.infoLabel}>{label}</Text>
       <Text style={styles.infoValue}>{value}</Text>
@@ -233,14 +233,14 @@ const InfoRow: React.FC<{
 );
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: colors.background },
+  safe: { flex: 1, backgroundColor: darkColors.background },
   scroll: {
     padding: spacing.base,
     paddingBottom: spacing.xxl,
     rowGap: spacing.base,
   },
   heroCard: {
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     padding: spacing.xl,
     borderRadius: radius.xl,
     rowGap: spacing.xs,
@@ -249,13 +249,13 @@ const styles = StyleSheet.create({
   },
   heroLabel: {
     ...textStyles.caption,
-    color: colors.primary,
+    color: darkColors.primary,
     fontWeight: '700',
     textTransform: 'uppercase',
   },
-  heroMeta: { ...textStyles.caption, color: colors.textMuted },
+  heroMeta: { ...textStyles.caption, color: darkColors.textMuted },
   card: {
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     padding: spacing.base,
     borderRadius: radius.lg,
     rowGap: spacing.sm,
@@ -263,7 +263,7 @@ const styles = StyleSheet.create({
   },
   sectionTitle: {
     ...textStyles.h4,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
   },
   infoRow: {
     flexDirection: 'row',
@@ -272,8 +272,8 @@ const styles = StyleSheet.create({
     paddingVertical: spacing.xs,
   },
   infoBody: { flex: 1 },
-  infoLabel: { ...textStyles.caption, color: colors.textMuted },
-  infoValue: { ...textStyles.body, color: colors.textPrimary },
+  infoLabel: { ...textStyles.caption, color: darkColors.textMuted },
+  infoValue: { ...textStyles.body, color: darkColors.textPrimary },
   autoRenewRow: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -282,17 +282,17 @@ const styles = StyleSheet.create({
   },
   autoRenewText: {
     ...textStyles.caption,
-    color: colors.textSecondary,
+    color: darkColors.textSecondary,
   },
   termsHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
   },
-  termsBody: { ...textStyles.body, color: colors.textMuted },
+  termsBody: { ...textStyles.body, color: darkColors.textMuted },
   signaturesHint: {
     ...textStyles.caption,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
     fontStyle: 'italic',
   },
   actionsRow: {
@@ -307,10 +307,10 @@ const styles = StyleSheet.create({
     paddingVertical: spacing.sm,
     paddingHorizontal: spacing.base,
     borderRadius: radius.pill,
-    backgroundColor: colors.errorSoft,
+    backgroundColor: darkColors.errorSoft,
   },
   actionPrimary: {
-    backgroundColor: colors.primary,
+    backgroundColor: darkColors.primary,
   },
   actionText: {
     ...textStyles.button,

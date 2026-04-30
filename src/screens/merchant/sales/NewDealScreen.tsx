@@ -26,7 +26,7 @@ import { Input } from '../../../components/common/Input';
 import { LocalizedCurrencyInput } from '../../../components/common/LocalizedCurrencyInput';
 import { SearchableDropdown, type DropdownItem } from '../../../components/forms/SearchableDropdown';
 import { TagsInput } from '../../../components/forms/TagsInput';
-import { colors } from '../../../constants/colors';
+import { darkColors } from '../../../theme/dark';
 import {
   DEAL_PIPELINE,
   type DealStage,
@@ -199,7 +199,7 @@ export const NewDealScreen: React.FC = () => {
                   style={[
                     styles.probBtnText,
                     probability === p
-                      ? { color: colors.textInverse, fontWeight: '700' }
+                      ? { color: darkColors.textOnPrimary, fontWeight: '700' }
                       : null,
                   ]}
                 >
@@ -229,7 +229,7 @@ export const NewDealScreen: React.FC = () => {
                 <Text
                   style={[
                     styles.sourceText,
-                    source === key ? { color: colors.textInverse } : null,
+                    source === key ? { color: darkColors.textOnPrimary } : null,
                   ]}
                 >
                   {t(`dealSources.${key}`)}
@@ -252,7 +252,7 @@ export const NewDealScreen: React.FC = () => {
             onChangeText={setNotes}
             multiline
             placeholder={t('quoteBuilder.internalNotes')}
-            placeholderTextColor={colors.textMuted}
+            placeholderTextColor={darkColors.textMuted}
             style={[
               styles.textarea,
               { textAlign: I18nManager.isRTL ? 'right' : 'left' },
@@ -275,10 +275,10 @@ export const NewDealScreen: React.FC = () => {
 };
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: colors.background },
+  safe: { flex: 1, backgroundColor: darkColors.background },
   scroll: { padding: spacing.base, paddingBottom: spacing.xxxl },
   card: {
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     padding: spacing.base,
     borderRadius: radius.lg,
     rowGap: spacing.sm,
@@ -286,7 +286,7 @@ const styles = StyleSheet.create({
   },
   fieldLabel: {
     ...textStyles.label,
-    color: colors.textSecondary,
+    color: darkColors.textSecondary,
   },
   stageRow: {
     flexDirection: 'row',
@@ -298,19 +298,19 @@ const styles = StyleSheet.create({
     paddingVertical: spacing.xs,
     borderRadius: radius.pill,
     borderWidth: 1,
-    borderColor: colors.border,
-    backgroundColor: colors.surface,
+    borderColor: darkColors.border,
+    backgroundColor: darkColors.surface,
   },
   stageChipActive: {
-    backgroundColor: colors.primary,
-    borderColor: colors.primary,
+    backgroundColor: darkColors.primary,
+    borderColor: darkColors.primary,
   },
   stageText: {
     ...textStyles.caption,
-    color: colors.textSecondary,
+    color: darkColors.textSecondary,
     fontWeight: '600',
   },
-  stageTextActive: { color: colors.textInverse },
+  stageTextActive: { color: darkColors.textOnPrimary },
   probabilityCard: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -319,17 +319,17 @@ const styles = StyleSheet.create({
   probabilityTrack: {
     flex: 1,
     height: 8,
-    backgroundColor: colors.surfaceAlt,
+    backgroundColor: darkColors.surfaceAlt,
     borderRadius: radius.pill,
     overflow: 'hidden',
   },
   probabilityFill: {
     height: 8,
-    backgroundColor: colors.primary,
+    backgroundColor: darkColors.primary,
   },
   probabilityValue: {
     ...textStyles.bodyMedium,
-    color: colors.primaryDark,
+    color: darkColors.primaryDark,
     minWidth: 48,
     textAlign: 'right',
   },
@@ -341,13 +341,13 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingVertical: spacing.xs,
     borderRadius: radius.base,
-    backgroundColor: colors.surfaceAlt,
+    backgroundColor: darkColors.surfaceAlt,
     alignItems: 'center',
   },
-  probBtnActive: { backgroundColor: colors.primary },
+  probBtnActive: { backgroundColor: darkColors.primary },
   probBtnText: {
     ...textStyles.caption,
-    color: colors.textSecondary,
+    color: darkColors.textSecondary,
   },
   sourceRow: {
     flexDirection: 'row',
@@ -358,25 +358,25 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.md,
     paddingVertical: spacing.xs,
     borderRadius: radius.pill,
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     borderWidth: 1,
-    borderColor: colors.border,
+    borderColor: darkColors.border,
   },
   sourceChipActive: {
-    backgroundColor: colors.primary,
-    borderColor: colors.primary,
+    backgroundColor: darkColors.primary,
+    borderColor: darkColors.primary,
   },
   sourceText: {
     ...textStyles.caption,
-    color: colors.textSecondary,
+    color: darkColors.textSecondary,
     textTransform: 'capitalize',
     fontWeight: '600',
   },
   textarea: {
     ...textStyles.body,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
     borderWidth: 1,
-    borderColor: colors.border,
+    borderColor: darkColors.border,
     borderRadius: radius.base,
     padding: spacing.sm,
     minHeight: 100,
@@ -385,8 +385,8 @@ const styles = StyleSheet.create({
   footer: {
     padding: spacing.base,
     borderTopWidth: 1,
-    borderTopColor: colors.divider,
-    backgroundColor: colors.surface,
+    borderTopColor: darkColors.divider,
+    backgroundColor: darkColors.surface,
   },
 });
 

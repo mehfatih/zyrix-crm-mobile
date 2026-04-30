@@ -19,7 +19,7 @@ import { useTranslation } from 'react-i18next';
 import { Header } from '../../../components/common/Header';
 import { Icon, type AnyIconName } from '../../../components/common/Icon';
 import { MOCK_CAMPAIGNS, type MockCampaign } from '../../../api/mockData';
-import { colors } from '../../../constants/colors';
+import { darkColors } from '../../../theme/dark';
 import { radius, shadows, spacing } from '../../../constants/spacing';
 import { textStyles } from '../../../constants/typography';
 
@@ -34,10 +34,10 @@ const STATUS_STYLE: Record<
   MockCampaign['status'],
   { background: string; color: string }
 > = {
-  draft: { background: colors.surfaceAlt, color: colors.textMuted },
-  scheduled: { background: colors.infoSoft, color: colors.info },
-  active: { background: colors.successSoft, color: colors.success },
-  completed: { background: colors.primarySoft, color: colors.primaryDark },
+  draft: { background: darkColors.surfaceAlt, color: darkColors.textMuted },
+  scheduled: { background: darkColors.infoSoft, color: darkColors.info },
+  active: { background: darkColors.successSoft, color: darkColors.success },
+  completed: { background: darkColors.primarySoft, color: darkColors.primaryDark },
 };
 
 export const CampaignsScreen: React.FC = () => {
@@ -64,7 +64,7 @@ export const CampaignsScreen: React.FC = () => {
                   <Icon
                     name={CHANNEL_ICON[c.channel]}
                     size={18}
-                    color={colors.primary}
+                    color={darkColors.primary}
                   />
                 </View>
                 <Text style={styles.name} numberOfLines={1}>
@@ -101,7 +101,7 @@ export const CampaignsScreen: React.FC = () => {
           pressed ? { opacity: 0.9 } : null,
         ]}
       >
-        <Icon name="add" size={28} color={colors.textInverse} />
+        <Icon name="add" size={28} color={darkColors.textOnPrimary} />
       </Pressable>
     </SafeAreaView>
   );
@@ -118,14 +118,14 @@ const MetaCol: React.FC<{ label: string; value: number | string }> = ({
 );
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: colors.background },
+  safe: { flex: 1, backgroundColor: darkColors.background },
   scroll: {
     padding: spacing.base,
     paddingBottom: spacing.xxxl * 2,
     rowGap: spacing.sm,
   },
   card: {
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     borderRadius: radius.lg,
     padding: spacing.base,
     rowGap: spacing.sm,
@@ -140,14 +140,14 @@ const styles = StyleSheet.create({
     width: 36,
     height: 36,
     borderRadius: 18,
-    backgroundColor: colors.primarySoft,
+    backgroundColor: darkColors.primarySoft,
     alignItems: 'center',
     justifyContent: 'center',
   },
   name: {
     flex: 1,
     ...textStyles.bodyMedium,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
   },
   statusBadge: {
     paddingHorizontal: spacing.sm,
@@ -161,7 +161,7 @@ const styles = StyleSheet.create({
   metaGrid: {
     flexDirection: 'row',
     borderTopWidth: 1,
-    borderTopColor: colors.divider,
+    borderTopColor: darkColors.divider,
     paddingTop: spacing.sm,
   },
   metaCol: {
@@ -170,11 +170,11 @@ const styles = StyleSheet.create({
   },
   metaLabel: {
     ...textStyles.caption,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
   },
   metaValue: {
     ...textStyles.h4,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
   },
   fab: {
     position: 'absolute',
@@ -183,7 +183,7 @@ const styles = StyleSheet.create({
     width: 56,
     height: 56,
     borderRadius: 28,
-    backgroundColor: colors.primary,
+    backgroundColor: darkColors.primary,
     alignItems: 'center',
     justifyContent: 'center',
     ...shadows.md,
