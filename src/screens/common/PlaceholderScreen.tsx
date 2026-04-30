@@ -23,7 +23,7 @@ import {
   type AnyIconName,
   type IconFamily,
 } from '../../components/common/Icon';
-import { colors } from '../../constants/colors';
+import { darkColors } from '../../theme/dark';
 import { hitSlop, radius, shadows, spacing } from '../../constants/spacing';
 import { textStyles } from '../../constants/typography';
 
@@ -61,7 +61,7 @@ const MenuButton: React.FC<{ onPress: () => void; label: string }> = ({
       pressed ? styles.menuButtonPressed : null,
     ]}
   >
-    <Icon name="menu-outline" size={26} color={colors.textInverse} />
+    <Icon name="menu-outline" size={26} color={darkColors.textOnPrimary} />
   </Pressable>
 );
 
@@ -109,7 +109,7 @@ export const PlaceholderScreen: React.FC<PlaceholderScreenProps> = ({
             name={icon}
             family={iconFamily}
             size={52}
-            color={colors.primary}
+            color={darkColors.primary}
           />
         </View>
         <Text style={styles.title}>{title}</Text>
@@ -126,7 +126,7 @@ export const PlaceholderScreen: React.FC<PlaceholderScreenProps> = ({
 const styles = StyleSheet.create({
   safe: {
     flex: 1,
-    backgroundColor: colors.background,
+    backgroundColor: darkColors.background,
   },
   content: {
     flex: 1,
@@ -139,7 +139,7 @@ const styles = StyleSheet.create({
     width: 120,
     height: 120,
     borderRadius: radius.full,
-    backgroundColor: colors.primarySoft,
+    backgroundColor: darkColors.primarySoft,
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: spacing.base,
@@ -147,22 +147,22 @@ const styles = StyleSheet.create({
   },
   title: {
     ...textStyles.h2,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
     textAlign: 'center',
   },
   subtitleComing: {
     ...textStyles.body,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
     textAlign: 'center',
   },
   subtitle: {
     ...textStyles.bodyMedium,
-    color: colors.textSecondary,
+    color: darkColors.textSecondary,
     textAlign: 'center',
   },
   description: {
     ...textStyles.caption,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
     textAlign: 'center',
     marginTop: spacing.xs,
   },

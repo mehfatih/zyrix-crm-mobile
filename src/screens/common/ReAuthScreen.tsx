@@ -18,7 +18,7 @@ import { useTranslation } from 'react-i18next';
 
 import { Button } from '../../components/common/Button';
 import { Icon } from '../../components/common/Icon';
-import { colors } from '../../constants/colors';
+import { darkColors } from '../../theme/dark';
 import { radius, shadows, spacing } from '../../constants/spacing';
 import { textStyles } from '../../constants/typography';
 import { useAuthStore } from '../../store/authStore';
@@ -73,7 +73,7 @@ export const ReAuthScreen: React.FC<ReAuthScreenProps> = ({ onResume }) => {
     <SafeAreaView edges={['top', 'bottom']} style={styles.safe}>
       <View style={styles.card}>
         <View style={styles.iconCircle}>
-          <Icon name="lock-closed-outline" size={36} color={colors.primary} />
+          <Icon name="lock-closed-outline" size={36} color={darkColors.primary} />
         </View>
         <Text style={styles.title}>{t('reAuth.title')}</Text>
         <Text style={styles.subtitle}>{t('reAuth.sessionExpired')}</Text>
@@ -83,7 +83,7 @@ export const ReAuthScreen: React.FC<ReAuthScreenProps> = ({ onResume }) => {
           value={password}
           onChangeText={setPassword}
           placeholder={t('forms.password')}
-          placeholderTextColor={colors.textMuted}
+          placeholderTextColor={darkColors.textMuted}
           secureTextEntry
           style={[
             styles.input,
@@ -102,7 +102,7 @@ export const ReAuthScreen: React.FC<ReAuthScreenProps> = ({ onResume }) => {
             onPress={() => void useBiometricPath()}
             style={styles.biometricBtn}
           >
-            <Icon name="finger-print-outline" size={20} color={colors.primary} />
+            <Icon name="finger-print-outline" size={20} color={darkColors.primary} />
             <Text style={styles.biometricText}>
               {t('reAuth.useBiometric')}
             </Text>
@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
   card: {
     width: '100%',
     maxWidth: 400,
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     borderRadius: radius.xl,
     padding: spacing.xl,
     rowGap: spacing.sm,
@@ -139,33 +139,33 @@ const styles = StyleSheet.create({
     width: 72,
     height: 72,
     borderRadius: 36,
-    backgroundColor: colors.primarySoft,
+    backgroundColor: darkColors.primarySoft,
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: spacing.sm,
   },
   title: {
     ...textStyles.h3,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
     textAlign: 'center',
   },
   subtitle: {
     ...textStyles.body,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
     textAlign: 'center',
   },
   fieldLabel: {
     ...textStyles.label,
-    color: colors.textSecondary,
+    color: darkColors.textSecondary,
     alignSelf: 'flex-start',
     marginTop: spacing.sm,
   },
   input: {
     width: '100%',
     ...textStyles.body,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
     borderWidth: 1,
-    borderColor: colors.border,
+    borderColor: darkColors.border,
     borderRadius: radius.base,
     padding: spacing.sm,
     minHeight: 44,
@@ -178,11 +178,11 @@ const styles = StyleSheet.create({
   },
   biometricText: {
     ...textStyles.button,
-    color: colors.primary,
+    color: darkColors.primary,
   },
   logoutText: {
     ...textStyles.label,
-    color: colors.error,
+    color: darkColors.error,
     paddingVertical: spacing.sm,
   },
 });
