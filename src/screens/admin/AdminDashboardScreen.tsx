@@ -24,6 +24,9 @@ import { PieChart } from '../../components/charts/PieChart';
 import { SkeletonCard } from '../../components/common/SkeletonCard';
 import { StatsGrid } from '../../components/admin/StatsGrid';
 import { darkColors } from '../../theme/dark';
+import { getPageAccent } from '../../theme/dark/accents';
+
+const PAGE_ACCENT = getPageAccent('settings');
 import { hitSlop, radius, shadows, spacing } from '../../constants/spacing';
 import { textStyles } from '../../constants/typography';
 import { useAdminSummary } from '../../hooks/useAdmin';

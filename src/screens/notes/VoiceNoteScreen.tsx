@@ -25,7 +25,10 @@ import { Audio } from 'expo-av';
 import { Header } from '../../components/common/Header';
 import { Icon } from '../../components/common/Icon';
 import { darkColors } from '../../theme/dark';
+import { getPageAccent } from '../../theme/dark/accents';
 import { radius, spacing } from '../../constants/spacing';
+
+const PAGE_ACCENT = getPageAccent('settings');
 import { textStyles } from '../../constants/typography';
 import { useToast } from '../../hooks/useToast';
 

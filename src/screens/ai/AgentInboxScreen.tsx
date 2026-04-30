@@ -35,7 +35,10 @@ import {
   zyrixSpacing,
 } from '../../theme/zyrixTheme';
 import { darkColors } from '../../theme/dark';
+import { getPageAccent } from '../../theme/dark/accents';
 import { agentOrchestrator } from '../../services/agents/orchestrator';
+
+const PAGE_ACCENT = getPageAccent('aiAgents');
 import { agentDefinitions } from '../../services/agents/registry';
 import { aiMemoryService } from '../../services/aiMemoryService';
 import { useAiStore } from '../../store/aiStore';
