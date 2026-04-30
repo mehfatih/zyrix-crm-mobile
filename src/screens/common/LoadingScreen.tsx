@@ -9,7 +9,7 @@ import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useTranslation } from 'react-i18next';
 
-import { colors } from '../../constants/colors';
+import { darkColors } from '../../theme/dark';
 import { radius, shadows, spacing } from '../../constants/spacing';
 import { textStyles } from '../../constants/typography';
 
@@ -23,7 +23,7 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ message }) => {
 
   return (
     <LinearGradient
-      colors={[colors.gradientStart, colors.gradientMid, colors.gradientEnd]}
+      colors={[darkColors.gradientStart, darkColors.gradientMid, darkColors.gradientEnd]}
       start={{ x: 0, y: 0 }}
       end={{ x: 1, y: 1 }}
       style={styles.container}
@@ -32,7 +32,7 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ message }) => {
         <Text style={styles.logoMark}>Z</Text>
       </View>
       <Text style={styles.brand}>{t('common.appName')}</Text>
-      <ActivityIndicator color={colors.white} style={styles.loader} />
+      <ActivityIndicator color={darkColors.textOnPrimary} style={styles.loader} />
       <Text style={styles.caption}>{message ?? t('common.loading')}</Text>
     </LinearGradient>
   );
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     width: 96,
     height: 96,
     borderRadius: radius.xl,
-    backgroundColor: colors.white,
+    backgroundColor: darkColors.surface,
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: spacing.lg,
@@ -58,12 +58,12 @@ const styles = StyleSheet.create({
   logoMark: {
     fontSize: 54,
     fontWeight: '800',
-    color: colors.primary,
+    color: darkColors.primary,
     letterSpacing: -1,
   },
   brand: {
     ...textStyles.h2,
-    color: colors.white,
+    color: darkColors.textOnPrimary,
     letterSpacing: 1,
   },
   loader: {
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
   },
   caption: {
     ...textStyles.caption,
-    color: colors.primarySoft,
+    color: darkColors.primarySoft,
     marginTop: spacing.md,
   },
 });
