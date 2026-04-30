@@ -41,7 +41,7 @@ import { QuickAddSheet } from '../../components/QuickAddSheet';
 import { ScanScreen } from '../scan/ScanScreen';
 import { StatCard } from '../../components/common/StatCard';
 import { VoiceNoteScreen } from '../notes/VoiceNoteScreen';
-import { colors } from '../../constants/colors';
+import { darkColors } from '../../theme/dark';
 import { findCountry } from '../../constants/countries';
 import { hitSlop, radius, shadows, spacing } from '../../constants/spacing';
 import { textStyles } from '../../constants/typography';
@@ -175,7 +175,7 @@ export const DashboardScreen: React.FC = () => {
             accessibilityLabel={t('appHeader.menu')}
             style={styles.iconBtn}
           >
-            <Icon name="menu-outline" size={24} color={colors.textInverse} />
+            <Icon name="menu-outline" size={24} color={darkColors.textOnPrimary} />
           </Pressable>
         }
         rightSlot={
@@ -187,7 +187,7 @@ export const DashboardScreen: React.FC = () => {
               accessibilityLabel={t('appHeader.search')}
               style={styles.iconBtn}
             >
-              <Icon name="search" size={22} color={colors.textInverse} />
+              <Icon name="search" size={22} color={darkColors.textOnPrimary} />
             </Pressable>
             <Pressable
               onPress={onQuickAdd}
@@ -196,7 +196,7 @@ export const DashboardScreen: React.FC = () => {
               accessibilityLabel={t('appHeader.quickAdd')}
               style={styles.iconBtn}
             >
-              <Icon name="add" size={24} color={colors.textInverse} />
+              <Icon name="add" size={24} color={darkColors.textOnPrimary} />
             </Pressable>
             <Pressable
               onPress={() => setNotificationsOpen(true)}
@@ -208,7 +208,7 @@ export const DashboardScreen: React.FC = () => {
               <Icon
                 name="notifications-outline"
                 size={22}
-                color={colors.textInverse}
+                color={darkColors.textOnPrimary}
               />
               <View style={styles.bellDot} />
             </Pressable>
@@ -223,10 +223,10 @@ export const DashboardScreen: React.FC = () => {
           <RefreshControl
             refreshing={isFetching && !isLoading}
             onRefresh={onRefresh}
-            tintColor={colors.primary}
-            colors={[colors.primary]}
+            tintColor={darkColors.primary}
+            colors={[darkColors.primary]}
             title={t('dashboardExtra.updating')}
-            titleColor={colors.primary}
+            titleColor={darkColors.primary}
           />
         }
       >
@@ -266,7 +266,7 @@ export const DashboardScreen: React.FC = () => {
               <CurrencyDisplay
                 amount={stats?.monthRevenue ?? 0}
                 size="large"
-                color={colors.primaryDark}
+                color={darkColors.primaryDark}
               />
             }
             trend={stats?.growth.revenue}
@@ -304,7 +304,7 @@ export const DashboardScreen: React.FC = () => {
                   <Icon
                     name={ACTIVITY_ICON[activity.kind] ?? 'ellipse-outline'}
                     size={18}
-                    color={colors.primary}
+                    color={darkColors.primary}
                   />
                 </View>
                 <View style={styles.activityBody}>
@@ -350,7 +350,7 @@ export const DashboardScreen: React.FC = () => {
               accessibilityRole="button"
             >
               <View style={styles.quickIcon}>
-                <Icon name={action.icon} size={22} color={colors.primary} />
+                <Icon name={action.icon} size={22} color={darkColors.primary} />
               </View>
               <Text style={styles.quickLabel}>
                 {t(`dashboard.${action.key}`)}
@@ -407,7 +407,7 @@ void findCountry;
 const styles = StyleSheet.create({
   safe: {
     flex: 1,
-    backgroundColor: colors.background,
+    backgroundColor: darkColors.background,
   },
   scroll: {
     padding: spacing.base,
@@ -438,10 +438,10 @@ const styles = StyleSheet.create({
     width: 8,
     height: 8,
     borderRadius: 4,
-    backgroundColor: colors.warning,
+    backgroundColor: darkColors.warning,
   },
   welcomeCard: {
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     borderRadius: radius.xl,
     padding: spacing.xl,
     ...shadows.sm,
@@ -451,7 +451,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     columnGap: spacing.xs,
     alignSelf: 'flex-start',
-    backgroundColor: colors.primarySoft,
+    backgroundColor: darkColors.primarySoft,
     borderRadius: radius.pill,
     paddingHorizontal: spacing.sm,
     paddingVertical: 2,
@@ -460,16 +460,16 @@ const styles = StyleSheet.create({
   countryFlag: { fontSize: 16 },
   countryName: {
     ...textStyles.caption,
-    color: colors.primaryDark,
+    color: darkColors.primaryDark,
     fontWeight: '600',
   },
   welcomeEyebrow: {
     ...textStyles.overline,
-    color: colors.primary,
+    color: darkColors.primary,
   },
   welcomeName: {
     ...textStyles.h2,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
     marginTop: spacing.xs,
   },
   statsGrid: {
@@ -479,19 +479,19 @@ const styles = StyleSheet.create({
     rowGap: spacing.md,
   },
   activitiesCard: {
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     borderRadius: radius.lg,
     padding: spacing.base,
     ...shadows.xs,
   },
   sectionTitle: {
     ...textStyles.h4,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
     marginBottom: spacing.sm,
   },
   sectionHeader: {
     ...textStyles.h4,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
     marginTop: spacing.xs,
   },
   activityRow: {
@@ -499,33 +499,33 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingVertical: spacing.sm,
     borderBottomWidth: 1,
-    borderBottomColor: colors.divider,
+    borderBottomColor: darkColors.divider,
     columnGap: spacing.sm,
   },
   activityIcon: {
     width: 36,
     height: 36,
     borderRadius: 18,
-    backgroundColor: colors.primarySoft,
+    backgroundColor: darkColors.primarySoft,
     alignItems: 'center',
     justifyContent: 'center',
   },
   activityBody: { flex: 1 },
   activityTitle: {
     ...textStyles.label,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
   },
   activitySub: {
     ...textStyles.caption,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
   },
   activityDate: {
     ...textStyles.caption,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
   },
   activityEmpty: {
     ...textStyles.body,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
     textAlign: 'center',
     paddingVertical: spacing.lg,
   },
@@ -535,7 +535,7 @@ const styles = StyleSheet.create({
   },
   quickCard: {
     width: 120,
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     borderRadius: radius.lg,
     padding: spacing.base,
     rowGap: spacing.xs,
@@ -546,13 +546,13 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 20,
-    backgroundColor: colors.primarySoft,
+    backgroundColor: darkColors.primarySoft,
     alignItems: 'center',
     justifyContent: 'center',
   },
   quickLabel: {
     ...textStyles.label,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
     fontWeight: '600',
   },
   aiCardWrap: {
