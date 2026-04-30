@@ -20,6 +20,8 @@ import { CurrencyDisplay } from '../../../components/forms/CurrencyDisplay';
 import { Header } from '../../../components/common/Header';
 import { Icon } from '../../../components/common/Icon';
 import { SkeletonCard } from '../../../components/common/SkeletonCard';
+import { StatusPill } from '../../../components/ui/StatusPill';
+import { REFUND_STATUS_TONE } from '../../../lib/ui/status-tones';
 import { darkColors } from '../../../theme/dark';
 import { getPageAccent } from '../../../theme/dark/accents';
 
@@ -37,13 +39,6 @@ type Navigation = NativeStackNavigationProp<
   MerchantOperationsStackParamList,
   'Refunds'
 >;
-
-const STATUS_TONE: Record<RefundStatus, { background: string; color: string }> = {
-  pending: { background: darkColors.warningSoft, color: darkColors.warning },
-  processing: { background: darkColors.infoSoft, color: darkColors.info },
-  processed: { background: darkColors.successSoft, color: darkColors.success },
-  failed: { background: darkColors.errorSoft, color: darkColors.error },
-};
 
 export const RefundsScreen: React.FC = () => {
   const { t } = useTranslation();
@@ -113,16 +108,17 @@ export const RefundsScreen: React.FC = () => {
       ) : (
         <ScrollView contentContainerStyle={styles.list}>
           {items.map((refund: Refund) => {
-            const tone = STATUS_TONE[refund.status];
             return (
               <View key={refund.id} style={styles.card}>
                 <View style={styles.headerRow}>
                   <Text style={styles.refundId}>{`#${refund.id}`}</Text>
-                  <View style={[styles.statusPill, { backgroundColor: tone.background }]}>
-                    <Text style={[styles.statusText, { color: tone.color }]}>
-                      {refund.status}
-                    </Text>
-                  </View>
+                  <StatusPill
+                    tone={REFUND_STATUS_TONE[refund.status] ?? 'neutral'}
+                    size="sm"
+                    textStyle={styles.statusPillText}
+                  >
+                    {refund.status}
+                  </StatusPill>
                 </View>
                 <Text style={styles.customer} numberOfLines={1}>
                   {refund.customerName ?? '—'}
@@ -215,14 +211,7 @@ const styles = StyleSheet.create({
     color: darkColors.textPrimary,
     fontWeight: '700',
   },
-  statusPill: {
-    paddingHorizontal: spacing.sm,
-    paddingVertical: 2,
-    borderRadius: radius.pill,
-  },
-  statusText: {
-    ...textStyles.caption,
-    fontWeight: '700',
+  statusPillText: {
     textTransform: 'capitalize',
   },
   customer: { ...textStyles.caption, color: darkColors.textSecondary },

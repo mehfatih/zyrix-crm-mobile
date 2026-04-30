@@ -158,14 +158,18 @@ export const INVOICE_STATUS_TONE: Record<string, StatusTone> = {
 
 /**
  * REFUND_STATUS_TONE — for refunds.
+ * Mirrors the runtime `RefundStatus` union
+ * (pending/processing/processed/failed) plus approval-flow aliases.
  */
 export const REFUND_STATUS_TONE: Record<string, StatusTone> = {
   pending: 'warning',
-  approved: 'info',
   processing: 'info',
+  processed: 'success',
+  failed: 'error',
+  // Approval-flow aliases (forward-compatible)
+  approved: 'info',
   completed: 'success',
   rejected: 'error',
-  failed: 'error',
 };
 
 /**

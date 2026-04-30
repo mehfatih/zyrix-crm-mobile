@@ -18,6 +18,8 @@ import { useTranslation } from 'react-i18next';
 
 import { Header } from '../../../components/common/Header';
 import { Icon, type AnyIconName } from '../../../components/common/Icon';
+import { StatusPill } from '../../../components/ui/StatusPill';
+import { CAMPAIGN_STATUS_TONE } from '../../../lib/ui/status-tones';
 import { MOCK_CAMPAIGNS, type MockCampaign } from '../../../api/mockData';
 import { darkColors } from '../../../theme/dark';
 import { getPageAccent } from '../../../theme/dark/accents';
@@ -31,16 +33,6 @@ const CHANNEL_ICON: Record<MockCampaign['channel'], AnyIconName> = {
   sms: 'chatbubble-outline',
   whatsapp: 'logo-whatsapp',
   push: 'notifications-outline',
-};
-
-const STATUS_STYLE: Record<
-  MockCampaign['status'],
-  { background: string; color: string }
-> = {
-  draft: { background: darkColors.surfaceAlt, color: darkColors.textMuted },
-  scheduled: { background: darkColors.infoSoft, color: darkColors.info },
-  active: { background: darkColors.successSoft, color: darkColors.success },
-  completed: { background: darkColors.primarySoft, color: darkColors.primaryDark },
 };
 
 export const CampaignsScreen: React.FC = () => {
@@ -59,7 +51,6 @@ export const CampaignsScreen: React.FC = () => {
 
       <ScrollView contentContainerStyle={styles.scroll}>
         {MOCK_CAMPAIGNS.map((c) => {
-          const statusStyle = STATUS_STYLE[c.status];
           return (
             <View key={c.id} style={styles.card}>
               <View style={styles.topRow}>
@@ -73,18 +64,12 @@ export const CampaignsScreen: React.FC = () => {
                 <Text style={styles.name} numberOfLines={1}>
                   {c.name}
                 </Text>
-                <View
-                  style={[
-                    styles.statusBadge,
-                    { backgroundColor: statusStyle.background },
-                  ]}
+                <StatusPill
+                  tone={CAMPAIGN_STATUS_TONE[c.status] ?? 'neutral'}
+                  size="sm"
                 >
-                  <Text
-                    style={[styles.statusText, { color: statusStyle.color }]}
-                  >
-                    {t(`campaignStatus.${c.status}`)}
-                  </Text>
-                </View>
+                  {t(`campaignStatus.${c.status}`)}
+                </StatusPill>
               </View>
 
               <View style={styles.metaGrid}>
@@ -151,15 +136,6 @@ const styles = StyleSheet.create({
     flex: 1,
     ...textStyles.bodyMedium,
     color: darkColors.textPrimary,
-  },
-  statusBadge: {
-    paddingHorizontal: spacing.sm,
-    paddingVertical: 2,
-    borderRadius: radius.pill,
-  },
-  statusText: {
-    ...textStyles.caption,
-    fontWeight: '700',
   },
   metaGrid: {
     flexDirection: 'row',
