@@ -121,7 +121,7 @@ export const AgentInboxScreen: React.FC = () => {
   );
 
   return (
-    <AppScreen noGradient style={{ backgroundColor: darkColors.background }}>
+    <AppScreen>
       <Header title={t('agents.inbox')} showBack={false} />
 
       <ScrollView

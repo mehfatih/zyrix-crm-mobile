@@ -159,7 +159,7 @@ export const ForgotPasswordScreen: React.FC = () => {
   };
 
   return (
-    <AppScreen noGradient style={{ backgroundColor: darkColors.background }}>
+    <AppScreen>
       <KeyboardAvoidingView
         style={styles.flex}
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}
