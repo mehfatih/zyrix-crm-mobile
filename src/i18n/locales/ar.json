@@ -1588,5 +1588,47 @@
       "advanced": { "title": "متقدم", "description": "تعدد العلامات التجارية والتحليلات." },
       "experience": { "title": "التجربة", "description": "معالج الإعداد والويب على الجوال." }
     }
+  },
+  "Sidebar": {
+    "home": "الرئيسية",
+    "tasks": "المهام",
+    "followup": "المتابعة",
+    "teamChat": "محادثة الفريق",
+    "customers": "العملاء",
+    "deals": "الصفقات",
+    "pipeline": "خط المبيعات",
+    "contacts": "جهات الاتصال",
+    "companies": "الشركات",
+    "campaigns": "الحملات",
+    "quotes": "عروض الأسعار",
+    "contracts": "العقود",
+    "whatsapp": "واتساب",
+    "cashFlow": "التدفق النقدي",
+    "tax": "الضرائب",
+    "taxInvoices": "الفواتير الضريبية",
+    "commission": "العمولة",
+    "loyalty": "الولاء",
+    "analytics": "التحليلات",
+    "reports": "التقارير",
+    "sessionKPIs": "مؤشرات الجلسة",
+    "aiCFO": "AI CFO",
+    "aiAgents": "وكلاء AI",
+    "automations": "الأتمتة",
+    "templates": "القوالب",
+    "settings": "الإعدادات",
+    "help": "المساعدة",
+    "profile": "الملف الشخصي",
+    "soonBadge": "قريباً",
+    "soonToast": "قريباً — هذه الميزة قيد التطوير",
+    "groups": {
+      "dailyOps": "العمليات اليومية",
+      "crmCore": "إدارة العلاقات",
+      "salesDocs": "مستندات المبيعات",
+      "finance": "المالية",
+      "growth": "النمو",
+      "intelligence": "الذكاء",
+      "aiAutomation": "AI والأتمتة",
+      "system": "النظام"
+    }
   }
 }
