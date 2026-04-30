@@ -33,11 +33,10 @@ import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 import { AppScreen } from '../../components/layout/AppScreen';
 import { LanguageSwitcher } from '../../components/common/LanguageSwitcher';
-import { colors, gradients } from '../../constants/colors';
+import { darkColors, darkGradients } from '../../theme/dark';
 import { radius, shadows, spacing } from '../../constants/spacing';
 import { textStyles } from '../../constants/typography';
 import { useUiStore } from '../../store/uiStore';
-import { zyrixTheme } from '../../theme/zyrixTheme';
 import type { AuthStackParamList } from '../../navigation/types';
 
 type Nav = NativeStackNavigationProp<AuthStackParamList, 'Splash'>;
@@ -94,7 +93,7 @@ const PillButton: React.FC<PillButtonProps> = ({
       >
         {primary ? (
           <LinearGradient
-            colors={[...gradients.hero]}
+            colors={[...darkGradients.hero]}
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 0 }}
             style={styles.pillPrimary}
@@ -266,6 +265,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: spacing.xl,
     justifyContent: 'space-between',
+    backgroundColor: darkColors.background,
   },
   topBar: {
     flexDirection: 'row',
@@ -282,22 +282,22 @@ const styles = StyleSheet.create({
     width: 112,
     height: 112,
     borderRadius: radius.xxl,
-    backgroundColor: colors.white,
+    backgroundColor: darkColors.surface,
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 1,
-    borderColor: zyrixTheme.cardBorder,
+    borderColor: darkColors.border,
     ...shadows.lg,
   },
   logoMark: {
     fontSize: 64,
     fontWeight: '800',
-    color: colors.primary,
+    color: darkColors.primary,
     letterSpacing: -2,
   },
   brand: {
     ...textStyles.display,
-    color: zyrixTheme.textHeading,
+    color: darkColors.textHeading,
     letterSpacing: 1,
   },
   taglineWrap: {
@@ -308,7 +308,7 @@ const styles = StyleSheet.create({
   },
   tagline: {
     ...textStyles.h3,
-    color: zyrixTheme.textBody,
+    color: darkColors.textPrimary,
     textAlign: 'center',
     fontWeight: '600',
   },
@@ -328,7 +328,7 @@ const styles = StyleSheet.create({
   },
   pillPrimaryLabel: {
     ...textStyles.button,
-    color: colors.white,
+    color: darkColors.textOnPrimary,
     fontSize: 17,
   },
   pillSecondary: {
@@ -337,18 +337,18 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: spacing.xl,
-    backgroundColor: colors.white,
+    backgroundColor: darkColors.surface,
     borderWidth: 2,
-    borderColor: colors.primary,
+    borderColor: darkColors.primary,
   },
   pillSecondaryLabel: {
     ...textStyles.button,
-    color: colors.primary,
+    color: darkColors.primary,
     fontSize: 17,
   },
   version: {
     ...textStyles.caption,
-    color: zyrixTheme.textMuted,
+    color: darkColors.textMuted,
     textAlign: 'center',
     marginTop: spacing.md,
   },
