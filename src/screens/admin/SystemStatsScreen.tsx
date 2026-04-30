@@ -22,7 +22,7 @@ import { Icon } from '../../components/common/Icon';
 import { LineChart } from '../../components/charts/LineChart';
 import { SkeletonCard } from '../../components/common/SkeletonCard';
 import { StatsGrid } from '../../components/admin/StatsGrid';
-import { colors } from '../../constants/colors';
+import { darkColors } from '../../theme/dark';
 import { hitSlop, radius, shadows, spacing } from '../../constants/spacing';
 import { textStyles } from '../../constants/typography';
 import { useSystemStats } from '../../hooks/useAdmin';
@@ -45,7 +45,7 @@ export const SystemStatsScreen: React.FC = () => {
             hitSlop={hitSlop.md}
             style={styles.headerBtn}
           >
-            <Icon name="menu-outline" size={24} color={colors.textInverse} />
+            <Icon name="menu-outline" size={24} color={darkColors.textOnPrimary} />
           </Pressable>
         }
       />
@@ -67,7 +67,7 @@ export const SystemStatsScreen: React.FC = () => {
                   label: 'p95 / p99',
                   value: `${stats.apiResponseTime.p95} / ${stats.apiResponseTime.p99}`,
                   icon: 'speedometer-outline',
-                  tone: colors.warning,
+                  tone: darkColors.warning,
                 },
                 {
                   key: 'sessions',
@@ -92,14 +92,14 @@ export const SystemStatsScreen: React.FC = () => {
                   label: t('systemStats.errorRate'),
                   value: `${stats.errorRate}%`,
                   icon: 'warning-outline',
-                  tone: colors.error,
+                  tone: darkColors.error,
                 },
                 {
                   key: 'uptime',
                   label: t('systemStats.uptime'),
                   value: `${stats.uptimePercent}%`,
                   icon: 'shield-checkmark-outline',
-                  tone: colors.success,
+                  tone: darkColors.success,
                 },
               ]}
             />
@@ -147,10 +147,10 @@ export const SystemStatsScreen: React.FC = () => {
                     size={18}
                     color={
                       incident.severity === 'critical'
-                        ? colors.error
+                        ? darkColors.error
                         : incident.severity === 'warning'
-                          ? colors.warning
-                          : colors.primary
+                          ? darkColors.warning
+                          : darkColors.primary
                     }
                   />
                   <View style={styles.incidentBody}>
@@ -191,10 +191,10 @@ const HealthRow: React.FC<{ label: string; status: 'ok' | 'warn' | 'crit' }> = (
         {
           backgroundColor:
             status === 'ok'
-              ? colors.success
+              ? darkColors.success
               : status === 'warn'
-                ? colors.warning
-                : colors.error,
+                ? darkColors.warning
+                : darkColors.error,
         },
       ]}
     />
@@ -203,7 +203,7 @@ const HealthRow: React.FC<{ label: string; status: 'ok' | 'warn' | 'crit' }> = (
 );
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: colors.background },
+  safe: { flex: 1, backgroundColor: darkColors.background },
   headerBtn: {
     width: 40,
     height: 40,
@@ -216,26 +216,26 @@ const styles = StyleSheet.create({
     paddingBottom: spacing.xxxl,
   },
   incidentsCard: {
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     padding: spacing.base,
     borderRadius: radius.lg,
     rowGap: spacing.sm,
     ...shadows.xs,
   },
-  sectionTitle: { ...textStyles.h4, color: colors.textPrimary },
+  sectionTitle: { ...textStyles.h4, color: darkColors.textPrimary },
   incidentRow: {
     flexDirection: 'row',
     alignItems: 'center',
     columnGap: spacing.sm,
     paddingVertical: spacing.xs,
     borderBottomWidth: 1,
-    borderBottomColor: colors.divider,
+    borderBottomColor: darkColors.divider,
   },
   incidentBody: { flex: 1 },
-  incidentTitle: { ...textStyles.body, color: colors.textPrimary },
-  incidentMeta: { ...textStyles.caption, color: colors.textMuted },
+  incidentTitle: { ...textStyles.body, color: darkColors.textPrimary },
+  incidentMeta: { ...textStyles.caption, color: darkColors.textMuted },
   healthCard: {
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     padding: spacing.base,
     borderRadius: radius.lg,
     rowGap: spacing.sm,
@@ -252,7 +252,7 @@ const styles = StyleSheet.create({
     height: 12,
     borderRadius: 6,
   },
-  healthLabel: { ...textStyles.body, color: colors.textPrimary },
+  healthLabel: { ...textStyles.body, color: darkColors.textPrimary },
 });
 
 export default SystemStatsScreen;

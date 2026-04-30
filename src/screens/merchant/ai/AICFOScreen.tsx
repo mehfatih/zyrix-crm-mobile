@@ -11,7 +11,7 @@ import { useTranslation } from 'react-i18next';
 
 import { AIAssistant } from '../../../components/feature-specific/AIAssistant';
 import { Header } from '../../../components/common/Header';
-import { colors } from '../../../constants/colors';
+import { darkColors } from '../../../theme/dark';
 import { getCFOSuggestions, getWelcomePrompt } from '../../../utils/aiPrompts';
 import { radius, spacing } from '../../../constants/spacing';
 import { textStyles } from '../../../constants/typography';
@@ -66,7 +66,7 @@ export const AICFOScreen: React.FC = () => {
 };
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: colors.background },
+  safe: { flex: 1, backgroundColor: darkColors.background },
   flagWrap: {
     width: 36,
     height: 36,

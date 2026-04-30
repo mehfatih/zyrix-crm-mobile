@@ -20,7 +20,7 @@ import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { Header } from '../../components/common/Header';
 import { Icon } from '../../components/common/Icon';
 import { SkeletonCard } from '../../components/common/SkeletonCard';
-import { colors } from '../../constants/colors';
+import { darkColors } from '../../theme/dark';
 import { hitSlop, radius, shadows, spacing } from '../../constants/spacing';
 import { textStyles } from '../../constants/typography';
 import { usePlans, useUpdatePlan } from '../../hooks/useAdmin';
@@ -48,7 +48,7 @@ export const PlansManagementScreen: React.FC = () => {
             hitSlop={hitSlop.md}
             style={styles.headerBtn}
           >
-            <Icon name="menu-outline" size={24} color={colors.textInverse} />
+            <Icon name="menu-outline" size={24} color={darkColors.textOnPrimary} />
           </Pressable>
         }
       />
@@ -87,10 +87,10 @@ export const PlansManagementScreen: React.FC = () => {
                       })
                     }
                     trackColor={{
-                      false: colors.border,
-                      true: colors.primary,
+                      false: darkColors.border,
+                      true: darkColors.primary,
                     }}
-                    thumbColor={colors.white}
+                    thumbColor={darkColors.white}
                   />
                 </View>
                 <Text style={styles.planDesc}>{plan.description}</Text>
@@ -136,14 +136,14 @@ export const PlansManagementScreen: React.FC = () => {
           pressed ? { opacity: 0.9 } : null,
         ]}
       >
-        <Icon name="add" size={26} color={colors.textInverse} />
+        <Icon name="add" size={26} color={darkColors.textOnPrimary} />
       </Pressable>
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: colors.background },
+  safe: { flex: 1, backgroundColor: darkColors.background },
   headerBtn: {
     width: 40,
     height: 40,
@@ -156,7 +156,7 @@ const styles = StyleSheet.create({
     paddingBottom: spacing.xxxl * 2,
   },
   card: {
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     padding: spacing.base,
     borderRadius: radius.lg,
     rowGap: spacing.sm,
@@ -168,31 +168,31 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   titleBlock: { flex: 1 },
-  planName: { ...textStyles.h3, color: colors.textPrimary },
+  planName: { ...textStyles.h3, color: darkColors.textPrimary },
   planPrice: {
     ...textStyles.bodyMedium,
-    color: colors.primary,
+    color: darkColors.primary,
     fontWeight: '700',
   },
-  planDesc: { ...textStyles.body, color: colors.textSecondary },
+  planDesc: { ...textStyles.body, color: darkColors.textSecondary },
   statsRow: {
     flexDirection: 'row',
     gap: spacing.sm,
   },
   statCell: {
     flex: 1,
-    backgroundColor: colors.primarySoft,
+    backgroundColor: darkColors.primarySoft,
     padding: spacing.sm,
     borderRadius: radius.base,
     rowGap: 2,
   },
-  statLabel: { ...textStyles.caption, color: colors.primaryDark },
+  statLabel: { ...textStyles.caption, color: darkColors.primaryDark },
   statValue: {
     ...textStyles.h4,
-    color: colors.primaryDark,
+    color: darkColors.primaryDark,
     fontWeight: '700',
   },
-  companies: { ...textStyles.caption, color: colors.textMuted },
+  companies: { ...textStyles.caption, color: darkColors.textMuted },
   fab: {
     position: 'absolute',
     insetInlineEnd: spacing.lg,
@@ -200,7 +200,7 @@ const styles = StyleSheet.create({
     width: 56,
     height: 56,
     borderRadius: 28,
-    backgroundColor: colors.primary,
+    backgroundColor: darkColors.primary,
     alignItems: 'center',
     justifyContent: 'center',
     ...shadows.md,

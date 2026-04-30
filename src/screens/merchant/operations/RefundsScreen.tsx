@@ -20,7 +20,7 @@ import { CurrencyDisplay } from '../../../components/forms/CurrencyDisplay';
 import { Header } from '../../../components/common/Header';
 import { Icon } from '../../../components/common/Icon';
 import { SkeletonCard } from '../../../components/common/SkeletonCard';
-import { colors } from '../../../constants/colors';
+import { darkColors } from '../../../theme/dark';
 import { radius, shadows, spacing } from '../../../constants/spacing';
 import { textStyles } from '../../../constants/typography';
 import { useCountryConfig } from '../../../hooks/useCountryConfig';
@@ -36,10 +36,10 @@ type Navigation = NativeStackNavigationProp<
 >;
 
 const STATUS_TONE: Record<RefundStatus, { background: string; color: string }> = {
-  pending: { background: colors.warningSoft, color: colors.warning },
-  processing: { background: colors.infoSoft, color: colors.info },
-  processed: { background: colors.successSoft, color: colors.success },
-  failed: { background: colors.errorSoft, color: colors.error },
+  pending: { background: darkColors.warningSoft, color: darkColors.warning },
+  processing: { background: darkColors.infoSoft, color: darkColors.info },
+  processed: { background: darkColors.successSoft, color: darkColors.success },
+  failed: { background: darkColors.errorSoft, color: darkColors.error },
 };
 
 export const RefundsScreen: React.FC = () => {
@@ -73,7 +73,7 @@ export const RefundsScreen: React.FC = () => {
         <CurrencyDisplay
           amount={totalThisMonth}
           size="large"
-          color={colors.warning}
+          color={darkColors.warning}
         />
       </View>
 
@@ -92,7 +92,7 @@ export const RefundsScreen: React.FC = () => {
             <Text
               style={[
                 styles.chipText,
-                filter === key ? { color: colors.textInverse } : null,
+                filter === key ? { color: darkColors.textOnPrimary } : null,
               ]}
             >
               {key === 'all' ? t('customers.title') : key}
@@ -146,17 +146,17 @@ export const RefundsScreen: React.FC = () => {
           pressed ? { opacity: 0.9 } : null,
         ]}
       >
-        <Icon name="add" size={26} color={colors.textInverse} />
+        <Icon name="add" size={26} color={darkColors.textOnPrimary} />
       </Pressable>
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: colors.background },
+  safe: { flex: 1, backgroundColor: darkColors.background },
   summary: {
     margin: spacing.base,
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     padding: spacing.base,
     borderRadius: radius.lg,
     rowGap: spacing.xs,
@@ -164,7 +164,7 @@ const styles = StyleSheet.create({
   },
   summaryLabel: {
     ...textStyles.caption,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
   },
   filterRow: {
     flexDirection: 'row',
@@ -177,16 +177,16 @@ const styles = StyleSheet.create({
     paddingVertical: spacing.sm,
     borderRadius: radius.pill,
     borderWidth: 1,
-    borderColor: colors.border,
-    backgroundColor: colors.surface,
+    borderColor: darkColors.border,
+    backgroundColor: darkColors.surface,
   },
   chipActive: {
-    backgroundColor: colors.primary,
-    borderColor: colors.primary,
+    backgroundColor: darkColors.primary,
+    borderColor: darkColors.primary,
   },
   chipText: {
     ...textStyles.caption,
-    color: colors.textSecondary,
+    color: darkColors.textSecondary,
     fontWeight: '600',
     textTransform: 'capitalize',
   },
@@ -196,7 +196,7 @@ const styles = StyleSheet.create({
     paddingBottom: spacing.xxxl * 2,
   },
   card: {
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     padding: spacing.base,
     borderRadius: radius.lg,
     rowGap: spacing.xs,
@@ -209,7 +209,7 @@ const styles = StyleSheet.create({
   },
   refundId: {
     ...textStyles.bodyMedium,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
     fontWeight: '700',
   },
   statusPill: {
@@ -222,15 +222,15 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     textTransform: 'capitalize',
   },
-  customer: { ...textStyles.caption, color: colors.textSecondary },
-  reason: { ...textStyles.body, color: colors.textPrimary },
+  customer: { ...textStyles.caption, color: darkColors.textSecondary },
+  reason: { ...textStyles.body, color: darkColors.textPrimary },
   metaRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     marginTop: spacing.xs,
   },
-  date: { ...textStyles.caption, color: colors.textMuted },
+  date: { ...textStyles.caption, color: darkColors.textMuted },
   fab: {
     position: 'absolute',
     insetInlineEnd: spacing.lg,
@@ -238,7 +238,7 @@ const styles = StyleSheet.create({
     width: 56,
     height: 56,
     borderRadius: 28,
-    backgroundColor: colors.primary,
+    backgroundColor: darkColors.primary,
     alignItems: 'center',
     justifyContent: 'center',
     ...shadows.md,

@@ -21,7 +21,7 @@ import { Header } from '../../../components/common/Header';
 import { Icon } from '../../../components/common/Icon';
 import { LeadScoreCard } from '../../../components/feature-specific/LeadScoreCard';
 import { SkeletonCard } from '../../../components/common/SkeletonCard';
-import { colors } from '../../../constants/colors';
+import { darkColors } from '../../../theme/dark';
 import { hitSlop, radius, spacing } from '../../../constants/spacing';
 import { textStyles } from '../../../constants/typography';
 import { useAIScoreLeads } from '../../../hooks/useAI';
@@ -90,7 +90,7 @@ export const LeadScoringScreen: React.FC = () => {
             style={styles.refreshBtn}
             accessibilityLabel={t('leadScoring.rescoreAll')}
           >
-            <Icon name="refresh" size={22} color={colors.textInverse} />
+            <Icon name="refresh" size={22} color={darkColors.textOnPrimary} />
           </Pressable>
         }
       />
@@ -144,7 +144,7 @@ export const LeadScoringScreen: React.FC = () => {
               style={[
                 styles.sortText,
                 sort === option.key
-                  ? { color: colors.primaryDark, fontWeight: '700' }
+                  ? { color: darkColors.primaryDark, fontWeight: '700' }
                   : null,
               ]}
             >
@@ -172,8 +172,8 @@ export const LeadScoringScreen: React.FC = () => {
             <RefreshControl
               refreshing={leadsQuery.isRefetching}
               onRefresh={() => void leadsQuery.refetch()}
-              tintColor={colors.primary}
-              colors={[colors.primary]}
+              tintColor={darkColors.primary}
+              colors={[darkColors.primary]}
             />
           }
           ListEmptyComponent={
@@ -181,7 +181,7 @@ export const LeadScoringScreen: React.FC = () => {
               <Icon
                 name="sparkles-outline"
                 size={48}
-                color={colors.primary}
+                color={darkColors.primary}
               />
               <Text style={styles.emptyTitle}>
                 {t('leadScoring.rescoreAll')}
@@ -195,7 +195,7 @@ export const LeadScoringScreen: React.FC = () => {
 };
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: colors.background },
+  safe: { flex: 1, backgroundColor: darkColors.background },
   refreshBtn: {
     width: 40,
     height: 40,
@@ -213,19 +213,19 @@ const styles = StyleSheet.create({
     paddingVertical: spacing.sm,
     borderRadius: radius.pill,
     borderWidth: 1,
-    borderColor: colors.border,
-    backgroundColor: colors.surface,
+    borderColor: darkColors.border,
+    backgroundColor: darkColors.surface,
   },
   chipActive: {
-    backgroundColor: colors.primary,
-    borderColor: colors.primary,
+    backgroundColor: darkColors.primary,
+    borderColor: darkColors.primary,
   },
   chipText: {
     ...textStyles.caption,
-    color: colors.textSecondary,
+    color: darkColors.textSecondary,
     fontWeight: '600',
   },
-  chipTextActive: { color: colors.textInverse },
+  chipTextActive: { color: darkColors.textOnPrimary },
   sortRow: {
     flexDirection: 'row',
     columnGap: spacing.xs,
@@ -236,14 +236,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.sm,
     paddingVertical: 4,
     borderRadius: radius.sm,
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
   },
   sortChipActive: {
-    backgroundColor: colors.primarySoft,
+    backgroundColor: darkColors.primarySoft,
   },
   sortText: {
     ...textStyles.caption,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
   },
   list: {
     padding: spacing.base,
@@ -256,7 +256,7 @@ const styles = StyleSheet.create({
   },
   emptyTitle: {
     ...textStyles.h4,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
   },
 });
 

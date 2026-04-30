@@ -14,7 +14,7 @@ import { Button } from '../../../components/common/Button';
 import { FileUploader, type UploadedFile } from '../../../components/forms/FileUploader';
 import { Header } from '../../../components/common/Header';
 import { Icon } from '../../../components/common/Icon';
-import { colors } from '../../../constants/colors';
+import { darkColors } from '../../../theme/dark';
 import { radius, shadows, spacing } from '../../../constants/spacing';
 import { textStyles } from '../../../constants/typography';
 import { uploadMeetingRecording } from '../../../api/ai';
@@ -103,21 +103,21 @@ const StatusCard: React.FC<{
   body: string;
 }> = ({ icon, title, body }) => (
   <View style={styles.statusCard}>
-    <Icon name={icon} size={28} color={colors.primary} />
+    <Icon name={icon} size={28} color={darkColors.primary} />
     <Text style={styles.statusTitle}>{title}</Text>
     <Text style={styles.statusBody}>{body}</Text>
   </View>
 );
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: colors.background },
+  safe: { flex: 1, backgroundColor: darkColors.background },
   scroll: {
     flex: 1,
     padding: spacing.base,
     rowGap: spacing.base,
   },
   statusCard: {
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     padding: spacing.lg,
     borderRadius: radius.lg,
     alignItems: 'center',
@@ -126,17 +126,17 @@ const styles = StyleSheet.create({
   },
   statusTitle: {
     ...textStyles.h4,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
   },
   statusBody: {
     ...textStyles.caption,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
   },
   footer: {
     padding: spacing.base,
     borderTopWidth: 1,
-    borderTopColor: colors.divider,
-    backgroundColor: colors.surface,
+    borderTopColor: darkColors.divider,
+    backgroundColor: darkColors.surface,
   },
 });
 

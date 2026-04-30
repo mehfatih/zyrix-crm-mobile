@@ -23,7 +23,7 @@ import { Header } from '../../components/common/Header';
 import { Icon } from '../../components/common/Icon';
 import { SkeletonCard } from '../../components/common/SkeletonCard';
 import { UserCard } from '../../components/admin/UserCard';
-import { colors } from '../../constants/colors';
+import { darkColors } from '../../theme/dark';
 import { hitSlop, radius, shadows, spacing } from '../../constants/spacing';
 import { textStyles } from '../../constants/typography';
 import { useAllUsers } from '../../hooks/useAdmin';
@@ -80,18 +80,18 @@ export const UsersManagementScreen: React.FC = () => {
             hitSlop={hitSlop.md}
             style={styles.headerBtn}
           >
-            <Icon name="menu-outline" size={24} color={colors.textInverse} />
+            <Icon name="menu-outline" size={24} color={darkColors.textOnPrimary} />
           </Pressable>
         }
       />
 
       <View style={styles.searchRow}>
-        <Icon name="search-outline" size={18} color={colors.textMuted} />
+        <Icon name="search-outline" size={18} color={darkColors.textMuted} />
         <TextInput
           value={query}
           onChangeText={setQuery}
           placeholder={t('forms.searchCountry')}
-          placeholderTextColor={colors.textMuted}
+          placeholderTextColor={darkColors.textMuted}
           style={[
             styles.searchInput,
             { textAlign: I18nManager.isRTL ? 'right' : 'left' },
@@ -113,7 +113,7 @@ export const UsersManagementScreen: React.FC = () => {
             <Text
               style={[
                 styles.chipText,
-                role === entry ? { color: colors.textInverse } : null,
+                role === entry ? { color: darkColors.textOnPrimary } : null,
               ]}
             >
               {entry === 'all' ? t('customers.title') : entry}
@@ -136,7 +136,7 @@ export const UsersManagementScreen: React.FC = () => {
           renderItem={({ item }) => <UserCard user={item} onPress={open} />}
           ListEmptyComponent={
             <View style={styles.empty}>
-              <Icon name="people-outline" size={48} color={colors.primary} />
+              <Icon name="people-outline" size={48} color={darkColors.primary} />
               <Text style={styles.emptyTitle}>{t('usersAdmin.allUsers')}</Text>
             </View>
           }
@@ -152,14 +152,14 @@ export const UsersManagementScreen: React.FC = () => {
           pressed ? { opacity: 0.9 } : null,
         ]}
       >
-        <Icon name="person-add-outline" size={24} color={colors.textInverse} />
+        <Icon name="person-add-outline" size={24} color={darkColors.textOnPrimary} />
       </Pressable>
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: colors.background },
+  safe: { flex: 1, backgroundColor: darkColors.background },
   headerBtn: {
     width: 40,
     height: 40,
@@ -171,7 +171,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     columnGap: spacing.sm,
     margin: spacing.base,
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     borderRadius: radius.lg,
     paddingHorizontal: spacing.md,
     paddingVertical: spacing.xs,
@@ -180,7 +180,7 @@ const styles = StyleSheet.create({
   searchInput: {
     flex: 1,
     ...textStyles.body,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
     paddingVertical: spacing.sm,
   },
   filterRow: {
@@ -193,16 +193,16 @@ const styles = StyleSheet.create({
     paddingVertical: spacing.sm,
     borderRadius: radius.pill,
     borderWidth: 1,
-    borderColor: colors.border,
-    backgroundColor: colors.surface,
+    borderColor: darkColors.border,
+    backgroundColor: darkColors.surface,
   },
   chipActive: {
-    backgroundColor: colors.primary,
-    borderColor: colors.primary,
+    backgroundColor: darkColors.primary,
+    borderColor: darkColors.primary,
   },
   chipText: {
     ...textStyles.caption,
-    color: colors.textSecondary,
+    color: darkColors.textSecondary,
     fontWeight: '600',
   },
   list: {
@@ -214,7 +214,7 @@ const styles = StyleSheet.create({
     paddingTop: spacing.xxxl,
     rowGap: spacing.sm,
   },
-  emptyTitle: { ...textStyles.h4, color: colors.textPrimary },
+  emptyTitle: { ...textStyles.h4, color: darkColors.textPrimary },
   fab: {
     position: 'absolute',
     insetInlineEnd: spacing.lg,
@@ -222,7 +222,7 @@ const styles = StyleSheet.create({
     width: 56,
     height: 56,
     borderRadius: 28,
-    backgroundColor: colors.primary,
+    backgroundColor: darkColors.primary,
     alignItems: 'center',
     justifyContent: 'center',
     ...shadows.md,

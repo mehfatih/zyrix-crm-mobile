@@ -21,7 +21,7 @@ import { useNavigation } from '@react-navigation/native';
 import { AIAssistant } from '../../../components/feature-specific/AIAssistant';
 import { Header } from '../../../components/common/Header';
 import { Icon } from '../../../components/common/Icon';
-import { colors } from '../../../constants/colors';
+import { darkColors } from '../../../theme/dark';
 import { createWorkflow } from '../../../api/ai';
 import { radius, shadows, spacing } from '../../../constants/spacing';
 import { textStyles } from '../../../constants/typography';
@@ -83,7 +83,7 @@ export const AIWorkflowBuilderScreen: React.FC = () => {
         {preview ? (
           <View style={styles.previewCard}>
             <View style={styles.previewHeader}>
-              <Icon name="flash-outline" size={18} color={colors.primary} />
+              <Icon name="flash-outline" size={18} color={darkColors.primary} />
               <Text style={styles.previewTitle}>{preview.name}</Text>
             </View>
             <Text style={styles.previewDesc}>{preview.description}</Text>
@@ -114,7 +114,7 @@ export const AIWorkflowBuilderScreen: React.FC = () => {
                   pressed ? { opacity: 0.85 } : null,
                 ]}
               >
-                <Icon name="refresh" size={16} color={colors.primary} />
+                <Icon name="refresh" size={16} color={darkColors.primary} />
                 <Text style={styles.ghostText}>
                   {t('aiWorkflows.refine')}
                 </Text>
@@ -129,7 +129,7 @@ export const AIWorkflowBuilderScreen: React.FC = () => {
                 <Icon
                   name="checkmark"
                   size={16}
-                  color={colors.textInverse}
+                  color={darkColors.textOnPrimary}
                 />
                 <Text style={styles.primaryText}>
                   {t('aiWorkflows.activate')}
@@ -144,7 +144,7 @@ export const AIWorkflowBuilderScreen: React.FC = () => {
 };
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: colors.background },
+  safe: { flex: 1, backgroundColor: darkColors.background },
   scroll: {
     flexGrow: 1,
   },
@@ -155,7 +155,7 @@ const styles = StyleSheet.create({
   previewCard: {
     margin: spacing.base,
     padding: spacing.base,
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     borderRadius: radius.lg,
     rowGap: spacing.xs,
     ...shadows.sm,
@@ -167,11 +167,11 @@ const styles = StyleSheet.create({
   },
   previewTitle: {
     ...textStyles.h4,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
   },
   previewDesc: {
     ...textStyles.body,
-    color: colors.textSecondary,
+    color: darkColors.textSecondary,
   },
   previewRow: {
     flexDirection: 'row',
@@ -179,15 +179,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingVertical: spacing.xs,
     borderTopWidth: 1,
-    borderTopColor: colors.divider,
+    borderTopColor: darkColors.divider,
   },
   previewLabel: {
     ...textStyles.caption,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
   },
   previewValue: {
     ...textStyles.label,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
     fontWeight: '700',
     maxWidth: '60%',
     textAlign: 'right',
@@ -205,11 +205,11 @@ const styles = StyleSheet.create({
     columnGap: spacing.xs,
     paddingVertical: spacing.sm,
     borderRadius: radius.pill,
-    backgroundColor: colors.primarySoft,
+    backgroundColor: darkColors.primarySoft,
   },
   ghostText: {
     ...textStyles.button,
-    color: colors.primary,
+    color: darkColors.primary,
   },
   primaryBtn: {
     flex: 1,
@@ -219,11 +219,11 @@ const styles = StyleSheet.create({
     columnGap: spacing.xs,
     paddingVertical: spacing.sm,
     borderRadius: radius.pill,
-    backgroundColor: colors.primary,
+    backgroundColor: darkColors.primary,
   },
   primaryText: {
     ...textStyles.button,
-    color: colors.textInverse,
+    color: darkColors.textOnPrimary,
   },
 });
 
