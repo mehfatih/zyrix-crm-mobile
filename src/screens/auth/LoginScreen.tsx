@@ -34,7 +34,7 @@ import { Button } from '../../components/common/Button';
 import { Icon } from '../../components/common/Icon';
 import { Input } from '../../components/common/Input';
 import { LanguageSwitcher } from '../../components/common/LanguageSwitcher';
-import { colors } from '../../constants/colors';
+import { darkColors } from '../../theme/dark';
 import { logSecurityEvent } from '../../utils/securityEvents';
 import { radius, shadows, spacing } from '../../constants/spacing';
 import { textStyles } from '../../constants/typography';
@@ -407,7 +407,7 @@ export const LoginScreen: React.FC = () => {
                       <Icon
                         name={biometricIcon}
                         size={28}
-                        color={colors.white}
+                        color={darkColors.textOnPrimary}
                       />
                     </View>
                     <Text style={styles.biometricPrimaryLabel}>
@@ -537,7 +537,7 @@ export const LoginScreen: React.FC = () => {
                 <Icon
                   name="camera-outline"
                   size={20}
-                  color={colors.lavender}
+                  color={darkColors.lavender}
                 />
                 <Text style={styles.cameraLabel}>
                   {t('biometricEnroll.cameraSignIn')}
@@ -570,7 +570,7 @@ export const LoginScreen: React.FC = () => {
         <View style={styles.modalBackdrop}>
           <View style={styles.modalCard}>
             <View style={styles.modalIconCircle}>
-              <Icon name={biometricIcon} size={32} color={colors.primary} />
+              <Icon name={biometricIcon} size={32} color={darkColors.primary} />
             </View>
             <Text style={styles.modalTitle}>{t('biometricEnroll.title')}</Text>
             <Text style={styles.modalBody}>{t('biometricEnroll.body')}</Text>
@@ -608,7 +608,7 @@ export const LoginScreen: React.FC = () => {
 const styles = StyleSheet.create({
   safe: {
     flex: 1,
-    backgroundColor: colors.background,
+    backgroundColor: darkColors.background,
   },
   flex: {
     flex: 1,
@@ -625,7 +625,7 @@ const styles = StyleSheet.create({
     width: 72,
     height: 72,
     borderRadius: radius.xl,
-    backgroundColor: colors.primary,
+    backgroundColor: darkColors.primary,
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: spacing.base,
@@ -634,26 +634,26 @@ const styles = StyleSheet.create({
   logoMark: {
     fontSize: 40,
     fontWeight: '800',
-    color: colors.white,
+    color: darkColors.textOnPrimary,
   },
   appName: {
     ...textStyles.overline,
-    color: colors.primary,
+    color: darkColors.primary,
   },
   title: {
     ...textStyles.h1,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
     marginTop: spacing.xs,
     textAlign: 'center',
   },
   subtitle: {
     ...textStyles.body,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
     marginTop: spacing.xs,
     textAlign: 'center',
   },
   card: {
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     borderRadius: radius.xl,
     padding: spacing.xl,
     ...shadows.md,
@@ -668,7 +668,7 @@ const styles = StyleSheet.create({
   },
   linkText: {
     ...textStyles.label,
-    color: colors.textLink,
+    color: darkColors.textLink,
   },
   submitButton: {
     alignSelf: 'stretch',
@@ -685,20 +685,20 @@ const styles = StyleSheet.create({
     columnGap: spacing.md,
     paddingVertical: spacing.md,
     borderRadius: radius.pill,
-    backgroundColor: colors.primary,
+    backgroundColor: darkColors.primary,
     ...shadows.md,
   },
   biometricIconCircle: {
     width: 40,
     height: 40,
     borderRadius: 20,
-    backgroundColor: colors.primaryDark,
+    backgroundColor: darkColors.primaryDark,
     alignItems: 'center',
     justifyContent: 'center',
   },
   biometricPrimaryLabel: {
     ...textStyles.button,
-    color: colors.white,
+    color: darkColors.textOnPrimary,
     fontWeight: '700',
   },
   dividerRow: {
@@ -709,11 +709,11 @@ const styles = StyleSheet.create({
   dividerLine: {
     flex: 1,
     height: StyleSheet.hairlineWidth,
-    backgroundColor: colors.border,
+    backgroundColor: darkColors.border,
   },
   dividerText: {
     ...textStyles.caption,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
     fontWeight: '600',
     textTransform: 'uppercase',
     letterSpacing: 1,
@@ -726,13 +726,13 @@ const styles = StyleSheet.create({
     paddingVertical: spacing.sm,
     borderRadius: radius.pill,
     borderWidth: 1,
-    borderColor: colors.lavenderSoft,
-    backgroundColor: colors.surface,
+    borderColor: darkColors.lavenderSoft,
+    backgroundColor: darkColors.surface,
     marginTop: spacing.sm,
   },
   cameraLabel: {
     ...textStyles.label,
-    color: colors.lavender,
+    color: darkColors.lavender,
     fontWeight: '600',
   },
   modalBackdrop: {
@@ -745,7 +745,7 @@ const styles = StyleSheet.create({
   modalCard: {
     width: '100%',
     maxWidth: 360,
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     borderRadius: radius.xl,
     padding: spacing.xl,
     alignItems: 'center',
@@ -756,19 +756,19 @@ const styles = StyleSheet.create({
     width: 72,
     height: 72,
     borderRadius: 36,
-    backgroundColor: colors.primarySoft,
+    backgroundColor: darkColors.primarySoft,
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: spacing.xs,
   },
   modalTitle: {
     ...textStyles.h3,
-    color: colors.textHeading,
+    color: darkColors.textHeading,
     textAlign: 'center',
   },
   modalBody: {
     ...textStyles.body,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
     textAlign: 'center',
   },
   modalActions: {
@@ -782,26 +782,26 @@ const styles = StyleSheet.create({
     paddingVertical: spacing.md,
     borderRadius: radius.pill,
     borderWidth: 1.5,
-    borderColor: colors.border,
+    borderColor: darkColors.border,
     alignItems: 'center',
     justifyContent: 'center',
   },
   modalSecondaryLabel: {
     ...textStyles.button,
-    color: colors.textSecondary,
+    color: darkColors.textSecondary,
     fontWeight: '600',
   },
   modalPrimary: {
     flex: 1,
     paddingVertical: spacing.md,
     borderRadius: radius.pill,
-    backgroundColor: colors.primary,
+    backgroundColor: darkColors.primary,
     alignItems: 'center',
     justifyContent: 'center',
   },
   modalPrimaryLabel: {
     ...textStyles.button,
-    color: colors.white,
+    color: darkColors.textOnPrimary,
     fontWeight: '700',
   },
   registerCtaBlock: {
@@ -811,11 +811,11 @@ const styles = StyleSheet.create({
   },
   registerText: {
     ...textStyles.body,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
   },
   registerCta: {
     ...textStyles.h4,
-    color: colors.primary,
+    color: darkColors.primary,
     fontWeight: '700',
   },
   socialDivider: {
@@ -833,8 +833,8 @@ const styles = StyleSheet.create({
     paddingVertical: spacing.md,
     borderRadius: radius.pill,
     borderWidth: 1,
-    borderColor: colors.border,
-    backgroundColor: colors.white,
+    borderColor: darkColors.border,
+    backgroundColor: darkColors.surface,
     marginTop: spacing.sm,
   },
   googleMark: {
@@ -844,7 +844,7 @@ const styles = StyleSheet.create({
   },
   socialLabel: {
     ...textStyles.button,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
     fontWeight: '600',
   },
   appleBtn: {
@@ -853,11 +853,11 @@ const styles = StyleSheet.create({
   },
   appleMark: {
     fontSize: 18,
-    color: colors.white,
+    color: darkColors.textOnPrimary,
     fontWeight: '700',
   },
   appleLabel: {
-    color: colors.white,
+    color: darkColors.textOnPrimary,
   },
   footer: {
     alignItems: 'center',
