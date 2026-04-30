@@ -30,6 +30,8 @@ import { GenericInvoicePreview } from '../../../components/feature-specific/Gene
 import { Header } from '../../../components/common/Header';
 import { Icon, type AnyIconName } from '../../../components/common/Icon';
 import { SkeletonCard } from '../../../components/common/SkeletonCard';
+import { StatusPill } from '../../../components/ui/StatusPill';
+import { INVOICE_STATUS_TONE } from '../../../lib/ui/status-tones';
 import { ZATCAInvoicePreview } from '../../../components/feature-specific/ZATCAInvoicePreview';
 import { darkColors } from '../../../theme/dark';
 import { getPageAccent } from '../../../theme/dark/accents';
@@ -183,16 +185,12 @@ export const InvoiceDetailScreen: React.FC = () => {
       ) : (
         <ScrollView contentContainerStyle={styles.scroll}>
           <View style={styles.statusCard}>
-            <View
-              style={[
-                styles.statusBadge,
-                { backgroundColor: darkColors.primarySoft },
-              ]}
+            <StatusPill
+              tone={INVOICE_STATUS_TONE[invoice.status] ?? 'neutral'}
+              size="md"
             >
-              <Text style={styles.statusText}>
-                {t(`invoices.${invoice.status}`)}
-              </Text>
-            </View>
+              {t(`invoices.${invoice.status}`)}
+            </StatusPill>
             <View style={styles.timelineRow}>
               {STATUS_ORDER.map((status, idx) => {
                 const reachedIdx = STATUS_ORDER.indexOf(invoice.status);
@@ -386,18 +384,6 @@ const styles = StyleSheet.create({
     borderRadius: radius.lg,
     rowGap: spacing.sm,
     ...shadows.xs,
-  },
-  statusBadge: {
-    alignSelf: 'flex-start',
-    paddingHorizontal: spacing.md,
-    paddingVertical: 4,
-    borderRadius: radius.pill,
-  },
-  statusText: {
-    ...textStyles.label,
-    color: darkColors.primary,
-    fontWeight: '700',
-    textTransform: 'uppercase',
   },
   timelineRow: {
     flexDirection: 'row',

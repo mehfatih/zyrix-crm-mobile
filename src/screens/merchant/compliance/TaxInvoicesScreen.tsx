@@ -21,6 +21,8 @@ import { CurrencyDisplay } from '../../../components/forms/CurrencyDisplay';
 import { Header } from '../../../components/common/Header';
 import { Icon } from '../../../components/common/Icon';
 import { SkeletonCard } from '../../../components/common/SkeletonCard';
+import { StatusPill } from '../../../components/ui/StatusPill';
+import { INVOICE_STATUS_TONE } from '../../../lib/ui/status-tones';
 import { darkColors } from '../../../theme/dark';
 import { getPageAccent } from '../../../theme/dark/accents';
 
@@ -45,17 +47,6 @@ interface Group {
   label: string;
   items: Invoice[];
 }
-
-const STATUS_TONE: Record<
-  ComplianceStatus | 'needs',
-  { background: string; color: string }
-> = {
-  needs: { background: darkColors.errorSoft, color: darkColors.error },
-  pending: { background: darkColors.warningSoft, color: darkColors.warning },
-  submitted: { background: darkColors.infoSoft, color: darkColors.info },
-  accepted: { background: darkColors.successSoft, color: darkColors.success },
-  rejected: { background: darkColors.errorSoft, color: darkColors.error },
-};
 
 const submissionFor = (
   invoice: Invoice
@@ -186,22 +177,15 @@ export const TaxInvoicesScreen: React.FC = () => {
             <SkeletonCard height={120} />
           ) : (
             groups.map((group) => {
-              const tone = STATUS_TONE[group.key];
               return (
                 <View key={group.key} style={styles.groupCard}>
                   <View style={styles.groupHeader}>
-                    <View
-                      style={[
-                        styles.groupBadge,
-                        { backgroundColor: tone.background },
-                      ]}
+                    <StatusPill
+                      tone={INVOICE_STATUS_TONE[group.key] ?? 'neutral'}
+                      size="sm"
                     >
-                      <Text
-                        style={[styles.groupBadgeText, { color: tone.color }]}
-                      >
-                        {group.label}
-                      </Text>
-                    </View>
+                      {group.label}
+                    </StatusPill>
                     <Text style={styles.groupCount}>{group.items.length}</Text>
                   </View>
 
@@ -319,15 +303,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-  },
-  groupBadge: {
-    paddingHorizontal: spacing.sm,
-    paddingVertical: 2,
-    borderRadius: radius.pill,
-  },
-  groupBadgeText: {
-    ...textStyles.caption,
-    fontWeight: '700',
   },
   groupCount: {
     ...textStyles.h4,

@@ -116,27 +116,44 @@ export const QUOTE_STATUS_TONE: Record<string, StatusTone> = {
 
 /**
  * CONTRACT_STATUS_TONE — for contracts.
+ * Mirrors the runtime statuses on `MockContract.status`
+ * (draft/active/expired/terminated) plus a synthetic `expiring` bucket
+ * computed from end-date proximity in ContractsScreen.
  */
 export const CONTRACT_STATUS_TONE: Record<string, StatusTone> = {
   draft: 'neutral',
-  pending: 'warning',
-  active: 'info',
-  signed: 'success',
+  active: 'success',
   expired: 'error',
+  terminated: 'neutral',
+  expiring: 'warning',
+  // Aliases for forward-compatibility
+  pending: 'warning',
+  signed: 'success',
   cancelled: 'error',
 };
 
 /**
  * INVOICE_STATUS_TONE — for invoices and tax invoices.
+ * Covers the runtime `InvoiceStatus` union, plus the compliance-status
+ * vocabulary used by ZATCA / e-Fatura flows (submitted/accepted/rejected/
+ * needs) so the same map drives both lists.
  */
 export const INVOICE_STATUS_TONE: Record<string, StatusTone> = {
+  // Invoice statuses
   draft: 'neutral',
+  issued: 'info',
   sent: 'info',
+  viewed: 'warning',
   pending: 'warning',
   paid: 'success',
   overdue: 'error',
-  cancelled: 'error',
+  cancelled: 'neutral',
   void: 'neutral',
+  // Compliance statuses (ZATCA / e-Fatura submission lifecycle)
+  submitted: 'info',
+  accepted: 'success',
+  rejected: 'error',
+  needs: 'error',
 };
 
 /**
