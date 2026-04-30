@@ -17,7 +17,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTranslation } from 'react-i18next';
 
 import { Button } from '../../components/common/Button';
-import { colors } from '../../constants/colors';
+import { darkColors } from '../../theme/dark';
 import { radius, shadows, spacing } from '../../constants/spacing';
 import { textStyles } from '../../constants/typography';
 import { SUPPORTED_LANGUAGES, type SupportedLanguage } from '../../i18n';
@@ -167,7 +167,7 @@ const LangCard: React.FC<LangCardProps> = ({
 const styles = StyleSheet.create({
   safe: {
     flex: 1,
-    backgroundColor: colors.background,
+    backgroundColor: darkColors.background,
   },
   scroll: {
     padding: spacing.xl,
@@ -182,7 +182,7 @@ const styles = StyleSheet.create({
     width: 72,
     height: 72,
     borderRadius: radius.xl,
-    backgroundColor: colors.primary,
+    backgroundColor: darkColors.primary,
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: spacing.lg,
@@ -191,16 +191,16 @@ const styles = StyleSheet.create({
   logoMark: {
     fontSize: 40,
     fontWeight: '800',
-    color: colors.white,
+    color: darkColors.textOnPrimary,
   },
   title: {
     ...textStyles.h1,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
     textAlign: 'center',
   },
   subtitle: {
     ...textStyles.body,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
     marginTop: spacing.sm,
     textAlign: 'center',
   },
@@ -214,13 +214,13 @@ const styles = StyleSheet.create({
     padding: spacing.base,
     borderRadius: radius.lg,
     borderWidth: 1.5,
-    borderColor: colors.border,
-    backgroundColor: colors.surface,
+    borderColor: darkColors.border,
+    backgroundColor: darkColors.surface,
     ...shadows.xs,
   },
   cardSelected: {
-    borderColor: colors.primary,
-    backgroundColor: colors.primarySoft,
+    borderColor: darkColors.primary,
+    backgroundColor: darkColors.primarySoft,
   },
   cardFlag: {
     fontSize: 36,
@@ -230,16 +230,16 @@ const styles = StyleSheet.create({
   },
   cardNative: {
     ...textStyles.h4,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
   },
   cardTranslation: {
     ...textStyles.caption,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
     marginTop: 2,
   },
   cardPreview: {
     ...textStyles.caption,
-    color: colors.primaryDark,
+    color: darkColors.primaryDark,
     marginTop: spacing.xs,
   },
   radio: {
@@ -247,18 +247,18 @@ const styles = StyleSheet.create({
     height: 24,
     borderRadius: radius.full,
     borderWidth: 2,
-    borderColor: colors.borderStrong,
+    borderColor: darkColors.borderStrong,
     alignItems: 'center',
     justifyContent: 'center',
   },
   radioActive: {
-    borderColor: colors.primary,
+    borderColor: darkColors.primary,
   },
   radioDot: {
     width: 12,
     height: 12,
     borderRadius: radius.full,
-    backgroundColor: colors.primary,
+    backgroundColor: darkColors.primary,
   },
   footer: {
     marginTop: spacing.xxl,
