@@ -20,7 +20,7 @@ import { useNavigation } from '@react-navigation/native';
 import { Button } from '../../components/common/Button';
 import { Header } from '../../components/common/Header';
 import { Icon } from '../../components/common/Icon';
-import { colors } from '../../constants/colors';
+import { darkColors } from '../../theme/dark';
 import { logSecurityEvent } from '../../utils/securityEvents';
 import { radius, shadows, spacing } from '../../constants/spacing';
 import { textStyles } from '../../constants/typography';
@@ -95,7 +95,7 @@ export const TwoFactorPromptScreen: React.FC = () => {
       />
       <View style={styles.body}>
         <View style={styles.iconCircle}>
-          <Icon name="shield-checkmark-outline" size={32} color={colors.primary} />
+          <Icon name="shield-checkmark-outline" size={32} color={darkColors.primary} />
         </View>
         <Text style={styles.title}>{t('twoFactor.verifyCode')}</Text>
         <Text style={styles.subtitle}>{t('twoFactor.enterSixDigits')}</Text>
@@ -108,7 +108,7 @@ export const TwoFactorPromptScreen: React.FC = () => {
           autoCapitalize="characters"
           style={styles.codeInput}
           placeholder={useRecovery ? 'XXXXXXXX' : '••••••'}
-          placeholderTextColor={colors.textMuted}
+          placeholderTextColor={darkColors.textMuted}
           maxLength={useRecovery ? 8 : 6}
         />
 
@@ -129,7 +129,7 @@ export const TwoFactorPromptScreen: React.FC = () => {
             <Text
               style={[
                 styles.resendLink,
-                cooldown > 0 ? { color: colors.textMuted } : null,
+                cooldown > 0 ? { color: darkColors.textMuted } : null,
               ]}
             >
               {cooldown > 0
@@ -146,8 +146,8 @@ export const TwoFactorPromptScreen: React.FC = () => {
           <Switch
             value={trustDevice}
             onValueChange={setTrustDevice}
-            trackColor={{ false: colors.border, true: colors.primary }}
-            thumbColor={colors.white}
+            trackColor={{ false: darkColors.border, true: darkColors.primary }}
+            thumbColor={darkColors.white}
           />
         </View>
 
@@ -162,7 +162,7 @@ export const TwoFactorPromptScreen: React.FC = () => {
 };
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: colors.background },
+  safe: { flex: 1, backgroundColor: darkColors.background },
   body: {
     flex: 1,
     padding: spacing.xl,
@@ -173,20 +173,20 @@ const styles = StyleSheet.create({
     width: 80,
     height: 80,
     borderRadius: 40,
-    backgroundColor: colors.primarySoft,
+    backgroundColor: darkColors.primarySoft,
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: spacing.sm,
     ...shadows.md,
   },
-  title: { ...textStyles.h2, color: colors.textPrimary, textAlign: 'center' },
-  subtitle: { ...textStyles.body, color: colors.textMuted, textAlign: 'center' },
+  title: { ...textStyles.h2, color: darkColors.textPrimary, textAlign: 'center' },
+  subtitle: { ...textStyles.body, color: darkColors.textMuted, textAlign: 'center' },
   codeInput: {
     ...textStyles.h1,
-    color: colors.primaryDark,
-    backgroundColor: colors.surface,
+    color: darkColors.primaryDark,
+    backgroundColor: darkColors.surface,
     borderWidth: 1.5,
-    borderColor: colors.primary,
+    borderColor: darkColors.primary,
     borderRadius: radius.lg,
     paddingHorizontal: spacing.xl,
     paddingVertical: spacing.md,
@@ -200,8 +200,8 @@ const styles = StyleSheet.create({
     width: '100%',
     paddingHorizontal: spacing.sm,
   },
-  toggleLink: { ...textStyles.label, color: colors.primary },
-  resendLink: { ...textStyles.label, color: colors.primary },
+  toggleLink: { ...textStyles.label, color: darkColors.primary },
+  resendLink: { ...textStyles.label, color: darkColors.primary },
   trustRow: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -211,7 +211,7 @@ const styles = StyleSheet.create({
   },
   trustLabel: {
     ...textStyles.body,
-    color: colors.textSecondary,
+    color: darkColors.textSecondary,
     flex: 1,
   },
 });
