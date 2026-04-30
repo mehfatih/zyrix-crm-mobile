@@ -32,7 +32,7 @@ import { useTranslation } from 'react-i18next';
 
 import { Header } from '../../components/common/Header';
 import { Icon } from '../../components/common/Icon';
-import { colors } from '../../constants/colors';
+import { darkColors } from '../../theme/dark';
 import { radius, shadows, spacing } from '../../constants/spacing';
 import { textStyles } from '../../constants/typography';
 import type { SupportedLanguage } from '../../i18n';
@@ -53,11 +53,11 @@ interface NotificationItem {
 }
 
 const ICON_BY_KIND: Record<NotificationKind, { icon: 'trophy-outline' | 'cash-outline' | 'checkmark-circle-outline' | 'calendar-outline' | 'information-circle-outline'; tint: string; soft: string }> = {
-  deal_won: { icon: 'trophy-outline', tint: colors.mint, soft: colors.mintSoft },
-  payment_received: { icon: 'cash-outline', tint: colors.teal, soft: colors.tealSoft },
-  task_due: { icon: 'checkmark-circle-outline', tint: colors.peach, soft: colors.peachSoft },
-  meeting: { icon: 'calendar-outline', tint: colors.lavender, soft: colors.lavenderSoft },
-  system: { icon: 'information-circle-outline', tint: colors.primary, soft: colors.primarySoft },
+  deal_won: { icon: 'trophy-outline', tint: darkColors.mint, soft: darkColors.mintSoft },
+  payment_received: { icon: 'cash-outline', tint: darkColors.teal, soft: darkColors.tealSoft },
+  task_due: { icon: 'checkmark-circle-outline', tint: darkColors.peach, soft: darkColors.peachSoft },
+  meeting: { icon: 'calendar-outline', tint: darkColors.lavender, soft: darkColors.lavenderSoft },
+  system: { icon: 'information-circle-outline', tint: darkColors.primary, soft: darkColors.primarySoft },
 };
 
 // Mock seed data — replace with an API-backed list once the endpoint exists.
@@ -197,7 +197,7 @@ const NotificationRow: React.FC<RowProps> = ({
   return (
     <View style={styles.rowWrap}>
       <View style={styles.deleteBg}>
-        <Icon name="trash-outline" size={20} color={colors.white} />
+        <Icon name="trash-outline" size={20} color={darkColors.white} />
         <Text style={styles.deleteLabel}>{t('common.delete')}</Text>
       </View>
       <Animated.View
@@ -326,7 +326,7 @@ export const NotificationsScreen: React.FC<NotificationsScreenProps> = ({
               <Icon
                 name="checkmark-done-outline"
                 size={18}
-                color={colors.textInverse}
+                color={darkColors.textOnPrimary}
               />
               <Text style={styles.markAllText}>
                 {t('notifications.markAllRead')}
@@ -352,8 +352,8 @@ export const NotificationsScreen: React.FC<NotificationsScreenProps> = ({
           <RefreshControl
             refreshing={refreshing}
             onRefresh={onRefresh}
-            tintColor={colors.primary}
-            colors={[colors.primary]}
+            tintColor={darkColors.primary}
+            colors={[darkColors.primary]}
           />
         }
         ItemSeparatorComponent={() => <View style={{ height: spacing.sm }} />}
@@ -363,7 +363,7 @@ export const NotificationsScreen: React.FC<NotificationsScreenProps> = ({
               <Icon
                 name="notifications-off-outline"
                 size={56}
-                color={colors.primary}
+                color={darkColors.primary}
               />
             </View>
             <Text style={styles.emptyTitle}>
@@ -382,7 +382,7 @@ export const NotificationsScreen: React.FC<NotificationsScreenProps> = ({
 const styles = StyleSheet.create({
   safe: {
     flex: 1,
-    backgroundColor: colors.background,
+    backgroundColor: darkColors.background,
   },
   list: {
     padding: spacing.base,
@@ -400,7 +400,7 @@ const styles = StyleSheet.create({
   },
   markAllText: {
     ...textStyles.label,
-    color: colors.textInverse,
+    color: darkColors.textOnPrimary,
     fontWeight: '600',
   },
   rowWrap: {
@@ -412,7 +412,7 @@ const styles = StyleSheet.create({
     top: 0,
     bottom: 0,
     width: 96,
-    backgroundColor: colors.error,
+    backgroundColor: darkColors.error,
     borderRadius: radius.lg,
     alignItems: 'center',
     justifyContent: 'center',
@@ -420,7 +420,7 @@ const styles = StyleSheet.create({
   },
   deleteLabel: {
     ...textStyles.caption,
-    color: colors.white,
+    color: darkColors.white,
     fontWeight: '700',
   },
   rowCard: {
@@ -428,7 +428,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   rowCardUnread: {
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     ...shadows.sm,
   },
   rowCardRead: {
@@ -444,7 +444,7 @@ const styles = StyleSheet.create({
     width: 8,
     height: 8,
     borderRadius: 4,
-    backgroundColor: colors.primary,
+    backgroundColor: darkColors.primary,
     marginTop: 8,
   },
   rowIcon: {
@@ -462,20 +462,20 @@ const styles = StyleSheet.create({
     ...textStyles.bodyMedium,
   },
   rowTitleUnread: {
-    color: colors.textHeading,
+    color: darkColors.textHeading,
     fontWeight: '700',
   },
   rowTitleRead: {
-    color: colors.textSecondary,
+    color: darkColors.textSecondary,
     fontWeight: '500',
   },
   rowSubtitle: {
     ...textStyles.caption,
-    color: colors.textSecondary,
+    color: darkColors.textSecondary,
   },
   rowTime: {
     ...textStyles.caption,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
     marginTop: 2,
   },
   empty: {
@@ -489,18 +489,18 @@ const styles = StyleSheet.create({
     width: 96,
     height: 96,
     borderRadius: 48,
-    backgroundColor: colors.primarySoft,
+    backgroundColor: darkColors.primarySoft,
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: spacing.md,
   },
   emptyTitle: {
     ...textStyles.h4,
-    color: colors.textHeading,
+    color: darkColors.textHeading,
   },
   emptyBody: {
     ...textStyles.body,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
     textAlign: 'center',
     paddingHorizontal: spacing.xl,
   },

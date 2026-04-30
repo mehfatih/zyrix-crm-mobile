@@ -22,7 +22,7 @@ import { CurrencyDisplay } from '../../../components/forms/CurrencyDisplay';
 import { Header } from '../../../components/common/Header';
 import { Icon, type AnyIconName } from '../../../components/common/Icon';
 import { SkeletonCard } from '../../../components/common/SkeletonCard';
-import { colors } from '../../../constants/colors';
+import { darkColors } from '../../../theme/dark';
 import { hitSlop, radius, shadows, spacing } from '../../../constants/spacing';
 import { textStyles } from '../../../constants/typography';
 import { useCountryConfig } from '../../../hooks/useCountryConfig';
@@ -42,23 +42,23 @@ type Navigation = NativeStackNavigationProp<
 >;
 
 const STATUS_TONE: Record<InvoiceStatus, { background: string; color: string }> = {
-  draft: { background: colors.surfaceAlt, color: colors.textMuted },
-  issued: { background: colors.infoSoft, color: colors.info },
-  sent: { background: colors.infoSoft, color: colors.info },
-  viewed: { background: colors.warningSoft, color: colors.warning },
-  paid: { background: colors.successSoft, color: colors.success },
-  overdue: { background: colors.errorSoft, color: colors.error },
-  cancelled: { background: colors.surfaceAlt, color: colors.textMuted },
+  draft: { background: darkColors.surfaceAlt, color: darkColors.textMuted },
+  issued: { background: darkColors.infoSoft, color: darkColors.info },
+  sent: { background: darkColors.infoSoft, color: darkColors.info },
+  viewed: { background: darkColors.warningSoft, color: darkColors.warning },
+  paid: { background: darkColors.successSoft, color: darkColors.success },
+  overdue: { background: darkColors.errorSoft, color: darkColors.error },
+  cancelled: { background: darkColors.surfaceAlt, color: darkColors.textMuted },
 };
 
 const COMPLIANCE_TONE: Record<
   ComplianceStatus,
   { background: string; color: string }
 > = {
-  pending: { background: colors.warningSoft, color: colors.warning },
-  submitted: { background: colors.infoSoft, color: colors.info },
-  accepted: { background: colors.successSoft, color: colors.success },
-  rejected: { background: colors.errorSoft, color: colors.error },
+  pending: { background: darkColors.warningSoft, color: darkColors.warning },
+  submitted: { background: darkColors.infoSoft, color: darkColors.info },
+  accepted: { background: darkColors.successSoft, color: darkColors.success },
+  rejected: { background: darkColors.errorSoft, color: darkColors.error },
 };
 
 export const InvoicesScreen: React.FC = () => {
@@ -117,7 +117,7 @@ export const InvoicesScreen: React.FC = () => {
             hitSlop={hitSlop.md}
             style={styles.headerBtn}
           >
-            <Icon name="menu-outline" size={24} color={colors.textInverse} />
+            <Icon name="menu-outline" size={24} color={darkColors.textOnPrimary} />
           </Pressable>
         }
         rightSlot={
@@ -129,7 +129,7 @@ export const InvoicesScreen: React.FC = () => {
             <Icon
               name="shield-checkmark-outline"
               size={22}
-              color={colors.textInverse}
+              color={darkColors.textOnPrimary}
             />
           </Pressable>
         }
@@ -147,7 +147,7 @@ export const InvoicesScreen: React.FC = () => {
             <CurrencyDisplay
               amount={summary?.outstanding ?? 0}
               size="medium"
-              color={colors.error}
+              color={darkColors.error}
             />
           }
         />
@@ -173,7 +173,7 @@ export const InvoicesScreen: React.FC = () => {
           label={t('invoices.overdueCount', { defaultValue: 'Overdue' })}
           icon="time-outline"
           value={
-            <Text style={[styles.summaryValue, { color: colors.error }]}>
+            <Text style={[styles.summaryValue, { color: darkColors.error }]}>
               {summary?.overdueCount ?? 0}
             </Text>
           }
@@ -195,7 +195,7 @@ export const InvoicesScreen: React.FC = () => {
             <Text
               style={[
                 styles.chipText,
-                status === key ? { color: colors.textInverse } : null,
+                status === key ? { color: darkColors.textOnPrimary } : null,
               ]}
             >
               {key === 'all' ? t('customers.title') : t(`invoices.${key}`)}
@@ -275,7 +275,7 @@ export const InvoicesScreen: React.FC = () => {
               <Icon
                 name="document-text-outline"
                 size={48}
-                color={colors.primary}
+                color={darkColors.primary}
               />
               <Text style={styles.emptyTitle}>{t('invoices.title')}</Text>
             </View>
@@ -290,7 +290,7 @@ export const InvoicesScreen: React.FC = () => {
           pressed ? { opacity: 0.9 } : null,
         ]}
       >
-        <Icon name="add" size={26} color={colors.textInverse} />
+        <Icon name="add" size={26} color={darkColors.textOnPrimary} />
       </Pressable>
     </SafeAreaView>
   );
@@ -303,7 +303,7 @@ const SummaryCard: React.FC<{
 }> = ({ label, icon, value }) => (
   <View style={styles.summaryCard}>
     <View style={styles.summaryHeader}>
-      <Icon name={icon} size={16} color={colors.primary} />
+      <Icon name={icon} size={16} color={darkColors.primary} />
       <Text style={styles.summaryLabel}>{label}</Text>
     </View>
     {value}
@@ -311,7 +311,7 @@ const SummaryCard: React.FC<{
 );
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: colors.background },
+  safe: { flex: 1, backgroundColor: darkColors.background },
   headerBtn: {
     width: 40,
     height: 40,
@@ -324,7 +324,7 @@ const styles = StyleSheet.create({
     columnGap: spacing.sm,
   },
   summaryCard: {
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     paddingVertical: spacing.sm,
     paddingHorizontal: spacing.base,
     borderRadius: radius.lg,
@@ -339,11 +339,11 @@ const styles = StyleSheet.create({
   },
   summaryLabel: {
     ...textStyles.caption,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
   },
   summaryValue: {
     ...textStyles.h3,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
     fontWeight: '800',
   },
   filterRow: {
@@ -358,16 +358,16 @@ const styles = StyleSheet.create({
     paddingVertical: spacing.sm,
     borderRadius: radius.pill,
     borderWidth: 1,
-    borderColor: colors.border,
-    backgroundColor: colors.surface,
+    borderColor: darkColors.border,
+    backgroundColor: darkColors.surface,
   },
   chipActive: {
-    backgroundColor: colors.primary,
-    borderColor: colors.primary,
+    backgroundColor: darkColors.primary,
+    borderColor: darkColors.primary,
   },
   chipText: {
     ...textStyles.caption,
-    color: colors.textSecondary,
+    color: darkColors.textSecondary,
     fontWeight: '600',
   },
   list: {
@@ -376,7 +376,7 @@ const styles = StyleSheet.create({
     rowGap: spacing.sm,
   },
   card: {
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     padding: spacing.base,
     borderRadius: radius.lg,
     rowGap: spacing.xs,
@@ -389,7 +389,7 @@ const styles = StyleSheet.create({
   },
   invoiceNumber: {
     ...textStyles.bodyMedium,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
     fontWeight: '700',
   },
   statusPill: {
@@ -403,7 +403,7 @@ const styles = StyleSheet.create({
   },
   customer: {
     ...textStyles.caption,
-    color: colors.textSecondary,
+    color: darkColors.textSecondary,
   },
   metaRow: {
     flexDirection: 'row',
@@ -413,7 +413,7 @@ const styles = StyleSheet.create({
   },
   date: {
     ...textStyles.caption,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
   },
   compliancePill: {
     flexDirection: 'row',
@@ -435,7 +435,7 @@ const styles = StyleSheet.create({
   },
   emptyTitle: {
     ...textStyles.h4,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
   },
   fab: {
     position: 'absolute',
@@ -444,7 +444,7 @@ const styles = StyleSheet.create({
     width: 56,
     height: 56,
     borderRadius: 28,
-    backgroundColor: colors.primary,
+    backgroundColor: darkColors.primary,
     alignItems: 'center',
     justifyContent: 'center',
     ...shadows.md,

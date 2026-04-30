@@ -25,7 +25,7 @@ import { useNavigation } from '@react-navigation/native';
 import { Button } from '../../../components/common/Button';
 import { Header } from '../../../components/common/Header';
 import { Icon } from '../../../components/common/Icon';
-import { colors } from '../../../constants/colors';
+import { darkColors } from '../../../theme/dark';
 import { getCurrentIP } from '../../../utils/ipDetection';
 import { radius, shadows, spacing } from '../../../constants/spacing';
 import { textStyles } from '../../../constants/typography';
@@ -128,8 +128,8 @@ export const IPAllowlistScreen: React.FC = () => {
             <Switch
               value={enabled}
               onValueChange={setEnabled}
-              trackColor={{ false: colors.border, true: colors.primary }}
-              thumbColor={colors.white}
+              trackColor={{ false: darkColors.border, true: darkColors.primary }}
+              thumbColor={darkColors.white}
             />
           </View>
         </View>
@@ -147,7 +147,7 @@ export const IPAllowlistScreen: React.FC = () => {
                   <Icon
                     name={mode === entry ? 'radio-button-on' : 'radio-button-off'}
                     size={20}
-                    color={colors.primary}
+                    color={darkColors.primary}
                   />
                   <View style={{ flex: 1 }}>
                     <Text style={styles.radioLabel}>
@@ -198,7 +198,7 @@ export const IPAllowlistScreen: React.FC = () => {
                   hitSlop={8}
                   style={styles.addBtn}
                 >
-                  <Icon name="add" size={20} color={colors.primary} />
+                  <Icon name="add" size={20} color={darkColors.primary} />
                 </Pressable>
               </View>
               {rules.map((rule) => (
@@ -218,15 +218,15 @@ export const IPAllowlistScreen: React.FC = () => {
                         )
                       )
                     }
-                    trackColor={{ false: colors.border, true: colors.primary }}
-                    thumbColor={colors.white}
+                    trackColor={{ false: darkColors.border, true: darkColors.primary }}
+                    thumbColor={darkColors.white}
                   />
                 </View>
               ))}
             </View>
 
             <View style={styles.testCard}>
-              <Icon name="locate-outline" size={20} color={colors.primary} />
+              <Icon name="locate-outline" size={20} color={darkColors.primary} />
               <Text style={styles.testText}>
                 {`${t('ipBlocked.currentIP')}: ${currentIP}`}
               </Text>
@@ -291,7 +291,7 @@ const CheckboxRow: React.FC<{
     <Icon
       name={value ? 'checkbox-outline' : 'square-outline'}
       size={20}
-      color={value ? colors.primary : colors.border}
+      color={value ? darkColors.primary : darkColors.border}
     />
     <Text style={styles.checkboxLabel}>{label}</Text>
   </Pressable>
@@ -317,22 +317,22 @@ const Field: React.FC<{
 );
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: colors.background },
+  safe: { flex: 1, backgroundColor: darkColors.background },
   scroll: {
     padding: spacing.base,
     rowGap: spacing.base,
     paddingBottom: spacing.xxxl,
   },
   card: {
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     padding: spacing.base,
     borderRadius: radius.lg,
     rowGap: spacing.sm,
     ...shadows.xs,
   },
-  title: { ...textStyles.h4, color: colors.textPrimary },
-  subtitle: { ...textStyles.caption, color: colors.textMuted },
-  sectionTitle: { ...textStyles.bodyMedium, color: colors.textPrimary },
+  title: { ...textStyles.h4, color: darkColors.textPrimary },
+  subtitle: { ...textStyles.caption, color: darkColors.textMuted },
+  sectionTitle: { ...textStyles.bodyMedium, color: darkColors.textPrimary },
   toggleRow: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -344,10 +344,10 @@ const styles = StyleSheet.create({
     columnGap: spacing.sm,
     paddingVertical: spacing.xs,
   },
-  radioLabel: { ...textStyles.body, color: colors.textPrimary },
+  radioLabel: { ...textStyles.body, color: darkColors.textPrimary },
   recommendBadge: {
     ...textStyles.caption,
-    color: colors.success,
+    color: darkColors.success,
     fontWeight: '700',
   },
   checkboxRow: {
@@ -356,7 +356,7 @@ const styles = StyleSheet.create({
     columnGap: spacing.sm,
     paddingVertical: spacing.xs,
   },
-  checkboxLabel: { ...textStyles.body, color: colors.textPrimary, flex: 1 },
+  checkboxLabel: { ...textStyles.body, color: darkColors.textPrimary, flex: 1 },
   rowHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -366,7 +366,7 @@ const styles = StyleSheet.create({
     width: 32,
     height: 32,
     borderRadius: 16,
-    backgroundColor: colors.primarySoft,
+    backgroundColor: darkColors.primarySoft,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -376,24 +376,24 @@ const styles = StyleSheet.create({
     columnGap: spacing.sm,
     paddingVertical: spacing.sm,
     borderBottomWidth: 1,
-    borderBottomColor: colors.divider,
+    borderBottomColor: darkColors.divider,
   },
   ruleCidr: {
     ...textStyles.bodyMedium,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
     fontWeight: '700',
   },
-  ruleMeta: { ...textStyles.caption, color: colors.textMuted },
+  ruleMeta: { ...textStyles.caption, color: darkColors.textMuted },
   testCard: {
     flexDirection: 'row',
     alignItems: 'center',
     columnGap: spacing.sm,
-    backgroundColor: colors.primarySoft,
+    backgroundColor: darkColors.primarySoft,
     padding: spacing.base,
     borderRadius: radius.lg,
   },
-  testText: { flex: 1, ...textStyles.body, color: colors.primaryDark },
-  testLink: { ...textStyles.button, color: colors.primary },
+  testText: { flex: 1, ...textStyles.body, color: darkColors.primaryDark },
+  testLink: { ...textStyles.button, color: darkColors.primary },
   backdrop: {
     flex: 1,
     backgroundColor: 'rgba(12, 74, 110, 0.45)',
@@ -404,19 +404,19 @@ const styles = StyleSheet.create({
   modalCard: {
     width: '100%',
     maxWidth: 400,
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     borderRadius: radius.xl,
     padding: spacing.lg,
     rowGap: spacing.sm,
     ...shadows.lg,
   },
-  modalTitle: { ...textStyles.h3, color: colors.textPrimary },
-  fieldLabel: { ...textStyles.label, color: colors.textSecondary },
+  modalTitle: { ...textStyles.h3, color: darkColors.textPrimary },
+  fieldLabel: { ...textStyles.label, color: darkColors.textSecondary },
   input: {
     ...textStyles.body,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
     borderWidth: 1,
-    borderColor: colors.border,
+    borderColor: darkColors.border,
     borderRadius: radius.base,
     padding: spacing.sm,
     minHeight: 44,

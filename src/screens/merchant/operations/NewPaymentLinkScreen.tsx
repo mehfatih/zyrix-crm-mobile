@@ -30,7 +30,7 @@ import { Icon, type AnyIconName } from '../../../components/common/Icon';
 import { LocalizedCurrencyInput } from '../../../components/common/LocalizedCurrencyInput';
 import { QRCodeDisplay } from '../../../components/feature-specific/QRCodeDisplay';
 import { SearchableDropdown, type DropdownItem } from '../../../components/forms/SearchableDropdown';
-import { colors } from '../../../constants/colors';
+import { darkColors } from '../../../theme/dark';
 import { listCustomers } from '../../../api/customers';
 import { radius, shadows, spacing } from '../../../constants/spacing';
 import { textStyles } from '../../../constants/typography';
@@ -156,7 +156,7 @@ export const NewPaymentLinkScreen: React.FC = () => {
         <ScrollView contentContainerStyle={styles.scroll}>
           <View style={styles.successCard}>
             <View style={styles.successCircle}>
-              <Icon name="checkmark" size={36} color={colors.textInverse} />
+              <Icon name="checkmark" size={36} color={darkColors.textOnPrimary} />
             </View>
             <Text style={styles.successTitle}>{t('paymentLinks.linkGenerated')}</Text>
             <Pressable
@@ -187,7 +187,7 @@ export const NewPaymentLinkScreen: React.FC = () => {
                   pressed ? { opacity: 0.85 } : null,
                 ]}
               >
-                <Icon name={entry.icon as AnyIconName} size={22} color={colors.primary} />
+                <Icon name={entry.icon as AnyIconName} size={22} color={darkColors.primary} />
                 <Text style={styles.shareLabel}>{t(entry.label)}</Text>
               </Pressable>
             ))}
@@ -219,7 +219,7 @@ export const NewPaymentLinkScreen: React.FC = () => {
                 value={description}
                 onChangeText={setDescription}
                 placeholder={t('payments.description')}
-                placeholderTextColor={colors.textMuted}
+                placeholderTextColor={darkColors.textMuted}
                 style={[
                   styles.textInput,
                   { textAlign: I18nManager.isRTL ? 'right' : 'left' },
@@ -250,12 +250,12 @@ export const NewPaymentLinkScreen: React.FC = () => {
                       <Icon
                         name={checked ? 'checkmark-circle' : 'ellipse-outline'}
                         size={16}
-                        color={checked ? colors.primary : colors.border}
+                        color={checked ? darkColors.primary : darkColors.border}
                       />
                       <Text
                         style={[
                           styles.methodLabel,
-                          checked ? { color: colors.primaryDark, fontWeight: '700' } : null,
+                          checked ? { color: darkColors.primaryDark, fontWeight: '700' } : null,
                         ]}
                       >
                         {t(`paymentMethods.${method}`, method)}
@@ -274,8 +274,8 @@ export const NewPaymentLinkScreen: React.FC = () => {
                 <Switch
                   value={allowPartial}
                   onValueChange={setAllowPartial}
-                  trackColor={{ false: colors.border, true: colors.primary }}
-                  thumbColor={colors.white}
+                  trackColor={{ false: darkColors.border, true: darkColors.primary }}
+                  thumbColor={darkColors.white}
                 />
               </View>
               <Text style={styles.fieldLabel}>
@@ -285,7 +285,7 @@ export const NewPaymentLinkScreen: React.FC = () => {
                 value={notes}
                 onChangeText={setNotes}
                 placeholder={t('quoteBuilder.customerNotes')}
-                placeholderTextColor={colors.textMuted}
+                placeholderTextColor={darkColors.textMuted}
                 multiline
                 style={[
                   styles.textarea,
@@ -311,14 +311,14 @@ export const NewPaymentLinkScreen: React.FC = () => {
 };
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: colors.background },
+  safe: { flex: 1, backgroundColor: darkColors.background },
   scroll: {
     padding: spacing.base,
     paddingBottom: spacing.xxxl,
     rowGap: spacing.base,
   },
   card: {
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     padding: spacing.base,
     borderRadius: radius.lg,
     rowGap: spacing.sm,
@@ -326,22 +326,22 @@ const styles = StyleSheet.create({
   },
   fieldLabel: {
     ...textStyles.label,
-    color: colors.textSecondary,
+    color: darkColors.textSecondary,
   },
   textInput: {
     ...textStyles.body,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
     borderWidth: 1,
-    borderColor: colors.border,
+    borderColor: darkColors.border,
     borderRadius: radius.base,
     padding: spacing.sm,
     minHeight: 44,
   },
   textarea: {
     ...textStyles.body,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
     borderWidth: 1,
-    borderColor: colors.border,
+    borderColor: darkColors.border,
     borderRadius: radius.base,
     padding: spacing.sm,
     minHeight: 80,
@@ -360,16 +360,16 @@ const styles = StyleSheet.create({
     paddingVertical: spacing.sm,
     borderRadius: radius.pill,
     borderWidth: 1.5,
-    borderColor: colors.border,
-    backgroundColor: colors.surface,
+    borderColor: darkColors.border,
+    backgroundColor: darkColors.surface,
   },
   methodChipActive: {
-    borderColor: colors.primary,
-    backgroundColor: colors.primarySoft,
+    borderColor: darkColors.primary,
+    backgroundColor: darkColors.primarySoft,
   },
   methodLabel: {
     ...textStyles.caption,
-    color: colors.textSecondary,
+    color: darkColors.textSecondary,
   },
   toggleRow: {
     flexDirection: 'row',
@@ -379,11 +379,11 @@ const styles = StyleSheet.create({
   footer: {
     padding: spacing.base,
     borderTopWidth: 1,
-    borderTopColor: colors.divider,
-    backgroundColor: colors.surface,
+    borderTopColor: darkColors.divider,
+    backgroundColor: darkColors.surface,
   },
   successCard: {
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     padding: spacing.lg,
     borderRadius: radius.xl,
     alignItems: 'center',
@@ -394,23 +394,23 @@ const styles = StyleSheet.create({
     width: 80,
     height: 80,
     borderRadius: 40,
-    backgroundColor: colors.primary,
+    backgroundColor: darkColors.primary,
     alignItems: 'center',
     justifyContent: 'center',
   },
   successTitle: {
     ...textStyles.h3,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
   },
   linkBox: {
     width: '100%',
-    backgroundColor: colors.primarySoft,
+    backgroundColor: darkColors.primarySoft,
     padding: spacing.sm,
     borderRadius: radius.base,
   },
   linkText: {
     ...textStyles.body,
-    color: colors.primaryDark,
+    color: darkColors.primaryDark,
     textAlign: 'center',
   },
   shareRow: {
@@ -427,11 +427,11 @@ const styles = StyleSheet.create({
     columnGap: spacing.xs,
     paddingVertical: spacing.sm,
     borderRadius: radius.pill,
-    backgroundColor: colors.primarySoft,
+    backgroundColor: darkColors.primarySoft,
   },
   shareLabel: {
     ...textStyles.button,
-    color: colors.primary,
+    color: darkColors.primary,
   },
 });
 
