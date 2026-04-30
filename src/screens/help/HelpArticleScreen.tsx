@@ -40,7 +40,7 @@ import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { Header } from '../../components/common/Header';
 import { Icon } from '../../components/common/Icon';
 import { MarkdownRenderer } from '../../components/help/MarkdownRenderer';
-import { colors } from '../../constants/colors';
+import { darkColors } from '../../theme/dark';
 import { radius, shadows, spacing } from '../../constants/spacing';
 import { textStyles } from '../../constants/typography';
 import type { SupportedLanguage } from '../../i18n';
@@ -156,7 +156,7 @@ export const HelpArticleScreen: React.FC = () => {
               accessibilityLabel={t('help.share')}
               style={styles.headerAction}
             >
-              <Icon name="share-social-outline" size={22} color={colors.textInverse} />
+              <Icon name="share-social-outline" size={22} color={darkColors.textOnPrimary} />
             </Pressable>
           ) : null
         }
@@ -169,7 +169,7 @@ export const HelpArticleScreen: React.FC = () => {
       >
         {loading && !article ? (
           <View style={styles.loading}>
-            <ActivityIndicator color={colors.primary} />
+            <ActivityIndicator color={darkColors.primary} />
           </View>
         ) : !article ? (
           <Text style={styles.empty}>{t('help.articleMissing')}</Text>
@@ -177,7 +177,7 @@ export const HelpArticleScreen: React.FC = () => {
           <>
             {offline ? (
               <View style={styles.offlineBanner}>
-                <Icon name="cloud-offline-outline" size={18} color={colors.warning} />
+                <Icon name="cloud-offline-outline" size={18} color={darkColors.warning} />
                 <Text style={styles.offlineText}>
                   {fromCache ? t('help.readingOffline') : t('help.offlineBanner')}
                 </Text>
@@ -186,11 +186,11 @@ export const HelpArticleScreen: React.FC = () => {
 
             <View style={styles.metaRow}>
               <View style={styles.metaItem}>
-                <Icon name="time-outline" size={14} color={colors.textMuted} />
+                <Icon name="time-outline" size={14} color={darkColors.textMuted} />
                 <Text style={styles.metaText}>{article.readTime}</Text>
               </View>
               <View style={styles.metaItem}>
-                <Icon name="calendar-outline" size={14} color={colors.textMuted} />
+                <Icon name="calendar-outline" size={14} color={darkColors.textMuted} />
                 <Text style={styles.metaText}>{article.updatedAt}</Text>
               </View>
               <View style={styles.metaItem}>
@@ -216,7 +216,7 @@ export const HelpArticleScreen: React.FC = () => {
                   <Icon
                     name="thumbs-up-outline"
                     size={18}
-                    color={feedback === 'up' ? colors.textInverse : colors.primary}
+                    color={feedback === 'up' ? darkColors.textOnPrimary : darkColors.primary}
                   />
                   <Text
                     style={[
@@ -238,7 +238,7 @@ export const HelpArticleScreen: React.FC = () => {
                   <Icon
                     name="thumbs-down-outline"
                     size={18}
-                    color={feedback === 'down' ? colors.textInverse : colors.primary}
+                    color={feedback === 'down' ? darkColors.textOnPrimary : darkColors.primary}
                   />
                   <Text
                     style={[
@@ -262,7 +262,7 @@ export const HelpArticleScreen: React.FC = () => {
                   pressed ? { opacity: 0.88 } : null,
                 ]}
               >
-                <Icon name="chevron-back" size={18} color={colors.primary} />
+                <Icon name="chevron-back" size={18} color={darkColors.primary} />
                 <Text style={styles.navBtnText}>{t('help.previous')}</Text>
               </Pressable>
               <Pressable
@@ -275,7 +275,7 @@ export const HelpArticleScreen: React.FC = () => {
                 ]}
               >
                 <Text style={styles.navBtnText}>{t('help.next')}</Text>
-                <Icon name="chevron-forward" size={18} color={colors.primary} />
+                <Icon name="chevron-forward" size={18} color={darkColors.primary} />
               </Pressable>
             </View>
           </>
@@ -286,7 +286,7 @@ export const HelpArticleScreen: React.FC = () => {
 };
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: colors.background },
+  safe: { flex: 1, backgroundColor: darkColors.background },
   headerAction: {
     width: 40,
     height: 40,
@@ -304,7 +304,7 @@ const styles = StyleSheet.create({
   },
   empty: {
     ...textStyles.body,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
     textAlign: 'center',
     marginTop: spacing.xxl,
   },
@@ -312,7 +312,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     columnGap: spacing.xs,
-    backgroundColor: colors.warningSoft,
+    backgroundColor: darkColors.warningSoft,
     borderRadius: radius.md,
     padding: spacing.sm,
   },
@@ -334,21 +334,21 @@ const styles = StyleSheet.create({
   },
   metaText: {
     ...textStyles.caption,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
   },
   feedbackCard: {
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     borderRadius: radius.lg,
     padding: spacing.base,
     rowGap: spacing.sm,
     borderWidth: 1,
-    borderColor: colors.border,
+    borderColor: darkColors.border,
     marginTop: spacing.base,
     ...shadows.xs,
   },
   feedbackTitle: {
     ...textStyles.bodyMedium,
-    color: colors.textHeading,
+    color: darkColors.textHeading,
     fontWeight: '700',
   },
   feedbackRow: {
@@ -364,19 +364,19 @@ const styles = StyleSheet.create({
     height: 42,
     borderRadius: radius.pill,
     borderWidth: 1,
-    borderColor: colors.primary,
-    backgroundColor: colors.surface,
+    borderColor: darkColors.primary,
+    backgroundColor: darkColors.surface,
   },
   feedbackBtnActive: {
-    backgroundColor: colors.primary,
+    backgroundColor: darkColors.primary,
   },
   feedbackBtnText: {
     ...textStyles.label,
-    color: colors.primary,
+    color: darkColors.primary,
     fontWeight: '700',
   },
   feedbackBtnTextActive: {
-    color: colors.textInverse,
+    color: darkColors.textOnPrimary,
   },
   navRow: {
     flexDirection: 'row',
@@ -392,15 +392,15 @@ const styles = StyleSheet.create({
     height: 44,
     borderRadius: radius.md,
     borderWidth: 1,
-    borderColor: colors.primary,
-    backgroundColor: colors.surface,
+    borderColor: darkColors.primary,
+    backgroundColor: darkColors.surface,
   },
   navBtnDisabled: {
     opacity: 0.4,
   },
   navBtnText: {
     ...textStyles.label,
-    color: colors.primary,
+    color: darkColors.primary,
     fontWeight: '700',
   },
 });

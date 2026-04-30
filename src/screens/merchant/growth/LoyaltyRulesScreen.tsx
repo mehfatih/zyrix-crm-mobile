@@ -20,7 +20,7 @@ import { useNavigation } from '@react-navigation/native';
 
 import { Button } from '../../../components/common/Button';
 import { Header } from '../../../components/common/Header';
-import { colors } from '../../../constants/colors';
+import { darkColors } from '../../../theme/dark';
 import { radius, shadows, spacing } from '../../../constants/spacing';
 import { textStyles } from '../../../constants/typography';
 import { useToast } from '../../../hooks/useToast';
@@ -212,21 +212,21 @@ const Toggle: React.FC<{
     <Switch
       value={value}
       onValueChange={onValueChange}
-      trackColor={{ false: colors.border, true: colors.primary }}
-      thumbColor={colors.white}
+      trackColor={{ false: darkColors.border, true: darkColors.primary }}
+      thumbColor={darkColors.white}
     />
   </View>
 );
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: colors.background },
+  safe: { flex: 1, backgroundColor: darkColors.background },
   scroll: {
     padding: spacing.base,
     paddingBottom: spacing.xxxl,
     rowGap: spacing.base,
   },
   card: {
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     padding: spacing.base,
     borderRadius: radius.lg,
     rowGap: spacing.sm,
@@ -234,17 +234,17 @@ const styles = StyleSheet.create({
   },
   title: {
     ...textStyles.h4,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
   },
   caption: {
     ...textStyles.caption,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
   },
   numberInput: {
     ...textStyles.body,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
     borderWidth: 1,
-    borderColor: colors.border,
+    borderColor: darkColors.border,
     borderRadius: radius.base,
     padding: spacing.sm,
     minHeight: 44,
@@ -257,18 +257,18 @@ const styles = StyleSheet.create({
   },
   multiplierLabel: {
     ...textStyles.body,
-    color: colors.textSecondary,
+    color: darkColors.textSecondary,
     minWidth: 110,
   },
   tierBlock: {
     borderTopWidth: 1,
-    borderTopColor: colors.divider,
+    borderTopColor: darkColors.divider,
     paddingTop: spacing.sm,
     rowGap: spacing.xs,
   },
   tierTitle: {
     ...textStyles.bodyMedium,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
   },
   row: {
     flexDirection: 'row',
@@ -278,7 +278,7 @@ const styles = StyleSheet.create({
   },
   rowLabel: {
     ...textStyles.caption,
-    color: colors.textSecondary,
+    color: darkColors.textSecondary,
     flex: 1,
   },
   rowValue: { flex: 1 },
@@ -290,8 +290,8 @@ const styles = StyleSheet.create({
   footer: {
     padding: spacing.base,
     borderTopWidth: 1,
-    borderTopColor: colors.divider,
-    backgroundColor: colors.surface,
+    borderTopColor: darkColors.divider,
+    backgroundColor: darkColors.surface,
   },
 });
 

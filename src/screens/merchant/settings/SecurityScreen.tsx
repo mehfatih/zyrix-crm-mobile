@@ -20,7 +20,7 @@ import { useNavigation } from '@react-navigation/native';
 
 import { Header } from '../../../components/common/Header';
 import { Icon, type AnyIconName } from '../../../components/common/Icon';
-import { colors } from '../../../constants/colors';
+import { darkColors } from '../../../theme/dark';
 import { radius, shadows, spacing } from '../../../constants/spacing';
 import { setSessionTimeoutMinutes } from '../../../utils/sessionManager';
 import { textStyles } from '../../../constants/typography';
@@ -122,8 +122,8 @@ export const SecurityScreen: React.FC = () => {
               value={biometric.isEnabled}
               disabled={!biometric.isAvailable}
               onValueChange={(next) => void toggleBiometric(next)}
-              trackColor={{ false: colors.border, true: colors.primary }}
-              thumbColor={colors.white}
+              trackColor={{ false: darkColors.border, true: darkColors.primary }}
+              thumbColor={darkColors.white}
             />
           </View>
         </Section>
@@ -138,8 +138,8 @@ export const SecurityScreen: React.FC = () => {
               <Switch
                 value={sensitiveFlags[entry.key] ?? false}
                 onValueChange={() => toggleSensitive(entry.key)}
-                trackColor={{ false: colors.border, true: colors.primary }}
-                thumbColor={colors.white}
+                trackColor={{ false: darkColors.border, true: darkColors.primary }}
+                thumbColor={darkColors.white}
               />
             </View>
           ))}
@@ -163,7 +163,7 @@ export const SecurityScreen: React.FC = () => {
                   style={[
                     styles.timeoutText,
                     sessionMinutes === option.minutes
-                      ? { color: colors.textInverse }
+                      ? { color: darkColors.textOnPrimary }
                       : null,
                   ]}
                 >
@@ -179,8 +179,8 @@ export const SecurityScreen: React.FC = () => {
             <Switch
               value={logoutOnBackground}
               onValueChange={setLogoutOnBackground}
-              trackColor={{ false: colors.border, true: colors.primary }}
-              thumbColor={colors.white}
+              trackColor={{ false: darkColors.border, true: darkColors.primary }}
+              thumbColor={darkColors.white}
             />
           </View>
         </Section>
@@ -274,47 +274,47 @@ const SettingsRow: React.FC<{
     <Icon
       name={icon}
       size={20}
-      color={tone === 'error' ? colors.error : colors.primary}
+      color={tone === 'error' ? darkColors.error : darkColors.primary}
     />
     <View style={{ flex: 1 }}>
       <Text
         style={[
           styles.rowLabel,
-          tone === 'error' ? { color: colors.error } : null,
+          tone === 'error' ? { color: darkColors.error } : null,
         ]}
       >
         {label}
       </Text>
       {value ? <Text style={styles.rowSub}>{value}</Text> : null}
     </View>
-    <Icon name="chevron-forward" size={18} color={colors.textMuted} />
+    <Icon name="chevron-forward" size={18} color={darkColors.textMuted} />
   </Pressable>
 );
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: colors.background },
+  safe: { flex: 1, backgroundColor: darkColors.background },
   scroll: {
     padding: spacing.base,
     paddingBottom: spacing.xxxl,
     rowGap: spacing.base,
   },
   section: {
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     padding: spacing.base,
     borderRadius: radius.lg,
     rowGap: spacing.sm,
     ...shadows.xs,
   },
-  sectionTitle: { ...textStyles.h4, color: colors.textPrimary },
-  sectionHint: { ...textStyles.caption, color: colors.textMuted },
+  sectionTitle: { ...textStyles.h4, color: darkColors.textPrimary },
+  sectionHint: { ...textStyles.caption, color: darkColors.textMuted },
   toggleRow: {
     flexDirection: 'row',
     alignItems: 'center',
     columnGap: spacing.sm,
     paddingVertical: spacing.xs,
   },
-  rowLabel: { ...textStyles.body, color: colors.textPrimary },
-  rowSub: { ...textStyles.caption, color: colors.textMuted },
+  rowLabel: { ...textStyles.body, color: darkColors.textPrimary },
+  rowSub: { ...textStyles.caption, color: darkColors.textMuted },
   timeoutRow: {
     flexDirection: 'row',
     flexWrap: 'wrap',
@@ -325,23 +325,23 @@ const styles = StyleSheet.create({
     paddingVertical: spacing.sm,
     borderRadius: radius.pill,
     borderWidth: 1,
-    borderColor: colors.border,
-    backgroundColor: colors.surface,
+    borderColor: darkColors.border,
+    backgroundColor: darkColors.surface,
   },
   timeoutChipActive: {
-    backgroundColor: colors.primary,
-    borderColor: colors.primary,
+    backgroundColor: darkColors.primary,
+    borderColor: darkColors.primary,
   },
   timeoutText: {
     ...textStyles.caption,
-    color: colors.textSecondary,
+    color: darkColors.textSecondary,
     fontWeight: '700',
   },
   settingsRow: {
     flexDirection: 'row',
     alignItems: 'center',
     columnGap: spacing.sm,
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     padding: spacing.base,
     borderRadius: radius.lg,
     ...shadows.xs,

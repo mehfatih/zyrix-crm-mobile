@@ -23,7 +23,7 @@ import {
 
 import { Header } from '../../../components/common/Header';
 import { Icon, type AnyIconName } from '../../../components/common/Icon';
-import { colors } from '../../../constants/colors';
+import { darkColors } from '../../../theme/dark';
 import { radius, shadows, spacing } from '../../../constants/spacing';
 import { textStyles } from '../../../constants/typography';
 import { useAIScoreLeads } from '../../../hooks/useAI';
@@ -32,16 +32,16 @@ import type { MerchantAIStackParamList } from '../../../navigation/types';
 type Route = RouteProp<MerchantAIStackParamList, 'LeadScoreDetail'>;
 
 const toneFor = (score: number): string => {
-  if (score >= 70) return colors.success;
-  if (score >= 40) return colors.warning;
-  return colors.error;
+  if (score >= 70) return darkColors.success;
+  if (score >= 40) return darkColors.warning;
+  return darkColors.error;
 };
 
 const QUICK_ACTIONS: readonly { key: string; icon: AnyIconName; tone: string }[] = [
-  { key: 'call', icon: 'call-outline', tone: colors.success },
-  { key: 'email', icon: 'mail-outline', tone: colors.info },
-  { key: 'schedule', icon: 'calendar-outline', tone: colors.primary },
-  { key: 'qualify', icon: 'checkmark-done-outline', tone: colors.primaryDark },
+  { key: 'call', icon: 'call-outline', tone: darkColors.success },
+  { key: 'email', icon: 'mail-outline', tone: darkColors.info },
+  { key: 'schedule', icon: 'calendar-outline', tone: darkColors.primary },
+  { key: 'qualify', icon: 'checkmark-done-outline', tone: darkColors.primaryDark },
 ];
 
 export const LeadScoreDetailScreen: React.FC = () => {
@@ -99,8 +99,8 @@ export const LeadScoreDetailScreen: React.FC = () => {
                   size={14}
                   color={
                     factor.kind === 'positive'
-                      ? colors.success
-                      : colors.error
+                      ? darkColors.success
+                      : darkColors.error
                   }
                 />
                 <Text style={styles.factorLabel}>{factor.label}</Text>
@@ -110,8 +110,8 @@ export const LeadScoreDetailScreen: React.FC = () => {
                     {
                       color:
                         factor.kind === 'positive'
-                          ? colors.success
-                          : colors.error,
+                          ? darkColors.success
+                          : darkColors.error,
                     },
                   ]}
                 >
@@ -125,7 +125,7 @@ export const LeadScoreDetailScreen: React.FC = () => {
             <Icon
               name="sparkles-outline"
               size={20}
-              color={colors.primary}
+              color={darkColors.primary}
             />
             <Text style={styles.recommendationTitle}>
               {t('leadScoring.suggestedAction')}
@@ -170,14 +170,14 @@ export const LeadScoreDetailScreen: React.FC = () => {
 };
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: colors.background },
+  safe: { flex: 1, backgroundColor: darkColors.background },
   scroll: {
     padding: spacing.base,
     paddingBottom: spacing.xxl,
     rowGap: spacing.base,
   },
   heroCard: {
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     padding: spacing.lg,
     borderRadius: radius.xl,
     flexDirection: 'row',
@@ -188,11 +188,11 @@ const styles = StyleSheet.create({
   heroHeader: { flex: 1, rowGap: 4 },
   hero: {
     ...textStyles.h2,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
   },
   company: {
     ...textStyles.body,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
   },
   scoreRing: {
     width: 96,
@@ -208,11 +208,11 @@ const styles = StyleSheet.create({
   },
   scoreLabel: {
     ...textStyles.caption,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
     letterSpacing: 1,
   },
   card: {
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     padding: spacing.base,
     borderRadius: radius.lg,
     rowGap: spacing.sm,
@@ -220,7 +220,7 @@ const styles = StyleSheet.create({
   },
   sectionTitle: {
     ...textStyles.h4,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
   },
   factorRow: {
     flexDirection: 'row',
@@ -230,27 +230,27 @@ const styles = StyleSheet.create({
   factorLabel: {
     flex: 1,
     ...textStyles.body,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
   },
   factorDelta: {
     ...textStyles.label,
     fontWeight: '800',
   },
   recommendationCard: {
-    backgroundColor: colors.primarySoft,
+    backgroundColor: darkColors.primarySoft,
     padding: spacing.base,
     borderRadius: radius.lg,
     rowGap: spacing.xs,
   },
   recommendationTitle: {
     ...textStyles.label,
-    color: colors.primary,
+    color: darkColors.primary,
     fontWeight: '700',
     textTransform: 'uppercase',
   },
   recommendationBody: {
     ...textStyles.body,
-    color: colors.primaryDark,
+    color: darkColors.primaryDark,
   },
   quickRow: {
     flexDirection: 'row',
@@ -263,7 +263,7 @@ const styles = StyleSheet.create({
     rowGap: spacing.xs,
     padding: spacing.base,
     borderRadius: radius.lg,
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     minWidth: 140,
     ...shadows.xs,
   },
@@ -276,7 +276,7 @@ const styles = StyleSheet.create({
   },
   quickLabel: {
     ...textStyles.caption,
-    color: colors.textSecondary,
+    color: darkColors.textSecondary,
     fontWeight: '600',
   },
   loading: {
@@ -286,7 +286,7 @@ const styles = StyleSheet.create({
   },
   loadingText: {
     ...textStyles.body,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
   },
 });
 

@@ -25,7 +25,7 @@ import {
 import { Button } from '../../components/common/Button';
 import { Header } from '../../components/common/Header';
 import { SkeletonCard } from '../../components/common/SkeletonCard';
-import { colors } from '../../constants/colors';
+import { darkColors } from '../../theme/dark';
 import { radius, shadows, spacing } from '../../constants/spacing';
 import { textStyles } from '../../constants/typography';
 import {
@@ -173,7 +173,7 @@ export const EditPlanScreen: React.FC = () => {
                 <Text
                   style={[
                     styles.tierText,
-                    slug === tier ? { color: colors.textInverse } : null,
+                    slug === tier ? { color: darkColors.textOnPrimary } : null,
                   ]}
                 >
                   {tier}
@@ -224,8 +224,8 @@ export const EditPlanScreen: React.FC = () => {
               <Switch
                 value={enabledFeatures.includes(flag.key)}
                 onValueChange={() => toggleFeature(flag.key)}
-                trackColor={{ false: colors.border, true: colors.primary }}
-                thumbColor={colors.white}
+                trackColor={{ false: darkColors.border, true: darkColors.primary }}
+                thumbColor={darkColors.white}
               />
             </View>
           ))}
@@ -239,8 +239,8 @@ export const EditPlanScreen: React.FC = () => {
             <Switch
               value={active}
               onValueChange={setActive}
-              trackColor={{ false: colors.border, true: colors.primary }}
-              thumbColor={colors.white}
+              trackColor={{ false: darkColors.border, true: darkColors.primary }}
+              thumbColor={darkColors.white}
             />
           </View>
         </View>
@@ -280,27 +280,27 @@ const Field: React.FC<{
 );
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: colors.background },
+  safe: { flex: 1, backgroundColor: darkColors.background },
   scroll: {
     padding: spacing.base,
     rowGap: spacing.base,
     paddingBottom: spacing.xxxl,
   },
   card: {
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     padding: spacing.base,
     borderRadius: radius.lg,
     rowGap: spacing.sm,
     ...shadows.xs,
   },
-  sectionTitle: { ...textStyles.h4, color: colors.textPrimary },
+  sectionTitle: { ...textStyles.h4, color: darkColors.textPrimary },
   field: { rowGap: spacing.xs },
-  fieldLabel: { ...textStyles.label, color: colors.textSecondary },
+  fieldLabel: { ...textStyles.label, color: darkColors.textSecondary },
   input: {
     ...textStyles.body,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
     borderWidth: 1,
-    borderColor: colors.border,
+    borderColor: darkColors.border,
     borderRadius: radius.base,
     padding: spacing.sm,
     minHeight: 44,
@@ -314,13 +314,13 @@ const styles = StyleSheet.create({
     paddingVertical: spacing.sm,
     borderRadius: radius.pill,
     borderWidth: 1.5,
-    borderColor: colors.primary,
+    borderColor: darkColors.primary,
     alignItems: 'center',
   },
-  tierChipActive: { backgroundColor: colors.primary },
+  tierChipActive: { backgroundColor: darkColors.primary },
   tierText: {
     ...textStyles.caption,
-    color: colors.primary,
+    color: darkColors.primary,
     fontWeight: '700',
     textTransform: 'capitalize',
   },
@@ -329,12 +329,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingVertical: spacing.xs,
     borderBottomWidth: 1,
-    borderBottomColor: colors.divider,
+    borderBottomColor: darkColors.divider,
     columnGap: spacing.sm,
   },
   featureBody: { flex: 1 },
-  featureName: { ...textStyles.body, color: colors.textPrimary },
-  featureMeta: { ...textStyles.caption, color: colors.textMuted },
+  featureName: { ...textStyles.body, color: darkColors.textPrimary },
+  featureMeta: { ...textStyles.caption, color: darkColors.textMuted },
   toggleRow: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -343,8 +343,8 @@ const styles = StyleSheet.create({
   footer: {
     padding: spacing.base,
     borderTopWidth: 1,
-    borderTopColor: colors.divider,
-    backgroundColor: colors.surface,
+    borderTopColor: darkColors.divider,
+    backgroundColor: darkColors.surface,
   },
 });
 

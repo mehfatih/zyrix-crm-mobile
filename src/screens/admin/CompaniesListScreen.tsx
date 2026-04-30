@@ -25,7 +25,7 @@ import { CompanyCard } from '../../components/admin/CompanyCard';
 import { Header } from '../../components/common/Header';
 import { Icon } from '../../components/common/Icon';
 import { SkeletonCard } from '../../components/common/SkeletonCard';
-import { colors } from '../../constants/colors';
+import { darkColors } from '../../theme/dark';
 import { hitSlop, radius, shadows, spacing } from '../../constants/spacing';
 import { textStyles } from '../../constants/typography';
 import { useCompanies } from '../../hooks/useAdmin';
@@ -113,18 +113,18 @@ export const CompaniesListScreen: React.FC = () => {
             hitSlop={hitSlop.md}
             style={styles.headerBtn}
           >
-            <Icon name="menu-outline" size={24} color={colors.textInverse} />
+            <Icon name="menu-outline" size={24} color={darkColors.textOnPrimary} />
           </Pressable>
         }
       />
 
       <View style={styles.searchRow}>
-        <Icon name="search-outline" size={18} color={colors.textMuted} />
+        <Icon name="search-outline" size={18} color={darkColors.textMuted} />
         <TextInput
           value={query}
           onChangeText={setQuery}
           placeholder={t('companies.searchCompanies')}
-          placeholderTextColor={colors.textMuted}
+          placeholderTextColor={darkColors.textMuted}
           style={[
             styles.searchInput,
             { textAlign: I18nManager.isRTL ? 'right' : 'left' },
@@ -149,7 +149,7 @@ export const CompaniesListScreen: React.FC = () => {
             <Text
               style={[
                 styles.chipText,
-                status === entry ? { color: colors.textInverse } : null,
+                status === entry ? { color: darkColors.textOnPrimary } : null,
               ]}
             >
               {entry === 'all' ? t('customers.title') : t(`companies.${entry}`)}
@@ -175,7 +175,7 @@ export const CompaniesListScreen: React.FC = () => {
             <Text
               style={[
                 styles.planChipText,
-                plan === entry ? { color: colors.primaryDark } : null,
+                plan === entry ? { color: darkColors.primaryDark } : null,
               ]}
             >
               {entry === 'all' ? t('customers.title') : entry}
@@ -198,7 +198,7 @@ export const CompaniesListScreen: React.FC = () => {
               style={[
                 styles.sortText,
                 sort === key
-                  ? { color: colors.primaryDark, fontWeight: '700' }
+                  ? { color: darkColors.primaryDark, fontWeight: '700' }
                   : null,
               ]}
             >
@@ -222,7 +222,7 @@ export const CompaniesListScreen: React.FC = () => {
           renderItem={({ item }) => <CompanyCard company={item} onPress={open} />}
           ListEmptyComponent={
             <View style={styles.empty}>
-              <Icon name="business-outline" size={48} color={colors.primary} />
+              <Icon name="business-outline" size={48} color={darkColors.primary} />
               <Text style={styles.emptyTitle}>{t('companies.title')}</Text>
             </View>
           }
@@ -238,14 +238,14 @@ export const CompaniesListScreen: React.FC = () => {
           pressed ? { opacity: 0.9 } : null,
         ]}
       >
-        <Icon name="add" size={26} color={colors.textInverse} />
+        <Icon name="add" size={26} color={darkColors.textOnPrimary} />
       </Pressable>
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: colors.background },
+  safe: { flex: 1, backgroundColor: darkColors.background },
   headerBtn: {
     width: 40,
     height: 40,
@@ -257,7 +257,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     columnGap: spacing.sm,
     margin: spacing.base,
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     borderRadius: radius.lg,
     paddingHorizontal: spacing.md,
     paddingVertical: spacing.xs,
@@ -266,7 +266,7 @@ const styles = StyleSheet.create({
   searchInput: {
     flex: 1,
     ...textStyles.body,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
     paddingVertical: spacing.sm,
   },
   filterRow: {
@@ -279,16 +279,16 @@ const styles = StyleSheet.create({
     paddingVertical: spacing.sm,
     borderRadius: radius.pill,
     borderWidth: 1,
-    borderColor: colors.border,
-    backgroundColor: colors.surface,
+    borderColor: darkColors.border,
+    backgroundColor: darkColors.surface,
   },
   chipActive: {
-    backgroundColor: colors.primary,
-    borderColor: colors.primary,
+    backgroundColor: darkColors.primary,
+    borderColor: darkColors.primary,
   },
   chipText: {
     ...textStyles.caption,
-    color: colors.textSecondary,
+    color: darkColors.textSecondary,
     fontWeight: '600',
     textTransform: 'capitalize',
   },
@@ -296,12 +296,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.sm,
     paddingVertical: spacing.xs,
     borderRadius: radius.sm,
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
   },
-  planChipActive: { backgroundColor: colors.primarySoft },
+  planChipActive: { backgroundColor: darkColors.primarySoft },
   planChipText: {
     ...textStyles.caption,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
     textTransform: 'uppercase',
   },
   sortRow: {
@@ -314,12 +314,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.sm,
     paddingVertical: 4,
     borderRadius: radius.sm,
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
   },
-  sortChipActive: { backgroundColor: colors.primarySoft },
+  sortChipActive: { backgroundColor: darkColors.primarySoft },
   sortText: {
     ...textStyles.caption,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
   },
   list: {
     padding: spacing.base,
@@ -330,7 +330,7 @@ const styles = StyleSheet.create({
     paddingTop: spacing.xxxl,
     rowGap: spacing.sm,
   },
-  emptyTitle: { ...textStyles.h4, color: colors.textPrimary },
+  emptyTitle: { ...textStyles.h4, color: darkColors.textPrimary },
   fab: {
     position: 'absolute',
     insetInlineEnd: spacing.lg,
@@ -338,7 +338,7 @@ const styles = StyleSheet.create({
     width: 56,
     height: 56,
     borderRadius: 28,
-    backgroundColor: colors.primary,
+    backgroundColor: darkColors.primary,
     alignItems: 'center',
     justifyContent: 'center',
     ...shadows.md,

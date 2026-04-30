@@ -26,7 +26,7 @@ import {
   type DropdownItem,
 } from '../../components/forms/SearchableDropdown';
 import { SkeletonCard } from '../../components/common/SkeletonCard';
-import { colors } from '../../constants/colors';
+import { darkColors } from '../../theme/dark';
 import { listCustomers } from '../../api/customers';
 import { radius, shadows, spacing } from '../../constants/spacing';
 import { textStyles } from '../../constants/typography';
@@ -46,11 +46,11 @@ const STATUS_TONE: Record<
   ComplianceExportStatus,
   { background: string; color: string }
 > = {
-  pending: { background: colors.warningSoft, color: colors.warning },
-  processing: { background: colors.infoSoft, color: colors.info },
-  ready: { background: colors.successSoft, color: colors.success },
-  downloaded: { background: colors.surfaceAlt, color: colors.textMuted },
-  expired: { background: colors.errorSoft, color: colors.error },
+  pending: { background: darkColors.warningSoft, color: darkColors.warning },
+  processing: { background: darkColors.infoSoft, color: darkColors.info },
+  ready: { background: darkColors.successSoft, color: darkColors.success },
+  downloaded: { background: darkColors.surfaceAlt, color: darkColors.textMuted },
+  expired: { background: darkColors.errorSoft, color: darkColors.error },
 };
 
 export const ComplianceExportScreen: React.FC = () => {
@@ -136,7 +136,7 @@ export const ComplianceExportScreen: React.FC = () => {
       <View style={styles.statsRow}>
         <Stat label="Requests / month" value={String(summary.monthCount)} />
         <Stat label="Avg fulfilment (h)" value={String(summary.averageHours)} />
-        <Stat label="Pending" value={String(summary.pendingCount)} tone={colors.warning} />
+        <Stat label="Pending" value={String(summary.pendingCount)} tone={darkColors.warning} />
       </View>
 
       {exportsQuery.isLoading ? (
@@ -194,7 +194,7 @@ export const ComplianceExportScreen: React.FC = () => {
           pressed ? { opacity: 0.9 } : null,
         ]}
       >
-        <Icon name="add" size={26} color={colors.textInverse} />
+        <Icon name="add" size={26} color={darkColors.textOnPrimary} />
       </Pressable>
 
       <Modal
@@ -235,7 +235,7 @@ export const ComplianceExportScreen: React.FC = () => {
                   <Text
                     style={[
                       styles.chipText,
-                      type === entry ? { color: colors.textInverse } : null,
+                      type === entry ? { color: darkColors.textOnPrimary } : null,
                     ]}
                   >
                     {entry.toUpperCase()}
@@ -257,7 +257,7 @@ export const ComplianceExportScreen: React.FC = () => {
                   <Text
                     style={[
                       styles.chipText,
-                      urgency === entry ? { color: colors.textInverse } : null,
+                      urgency === entry ? { color: darkColors.textOnPrimary } : null,
                     ]}
                   >
                     {entry}
@@ -296,7 +296,7 @@ const Stat: React.FC<{ label: string; value: string; tone?: string }> = ({
 );
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: colors.background },
+  safe: { flex: 1, backgroundColor: darkColors.background },
   statsRow: {
     flexDirection: 'row',
     gap: spacing.sm,
@@ -304,19 +304,19 @@ const styles = StyleSheet.create({
   },
   stat: {
     flex: 1,
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     paddingHorizontal: spacing.sm,
     paddingVertical: spacing.sm,
     borderRadius: radius.lg,
     rowGap: 2,
     borderLeftWidth: 4,
-    borderLeftColor: colors.primary,
+    borderLeftColor: darkColors.primary,
     ...shadows.xs,
   },
-  statLabel: { ...textStyles.caption, color: colors.textMuted },
+  statLabel: { ...textStyles.caption, color: darkColors.textMuted },
   statValue: {
     ...textStyles.h3,
-    color: colors.primaryDark,
+    color: darkColors.primaryDark,
     fontWeight: '800',
   },
   list: {
@@ -325,7 +325,7 @@ const styles = StyleSheet.create({
     paddingBottom: spacing.xxxl * 2,
   },
   card: {
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     padding: spacing.base,
     borderRadius: radius.lg,
     rowGap: spacing.xs,
@@ -336,8 +336,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
-  cardCustomer: { ...textStyles.bodyMedium, color: colors.textPrimary },
-  cardMeta: { ...textStyles.caption, color: colors.textMuted },
+  cardCustomer: { ...textStyles.bodyMedium, color: darkColors.textPrimary },
+  cardMeta: { ...textStyles.caption, color: darkColors.textMuted },
   statusPill: {
     paddingHorizontal: spacing.sm,
     paddingVertical: 2,
@@ -355,7 +355,7 @@ const styles = StyleSheet.create({
     width: 56,
     height: 56,
     borderRadius: 28,
-    backgroundColor: colors.primary,
+    backgroundColor: darkColors.primary,
     alignItems: 'center',
     justifyContent: 'center',
     ...shadows.md,
@@ -366,30 +366,30 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
   },
   modalCard: {
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     borderTopLeftRadius: radius.xl,
     borderTopRightRadius: radius.xl,
     padding: spacing.lg,
     rowGap: spacing.sm,
     ...shadows.lg,
   },
-  modalTitle: { ...textStyles.h3, color: colors.textPrimary },
-  fieldLabel: { ...textStyles.label, color: colors.textSecondary },
+  modalTitle: { ...textStyles.h3, color: darkColors.textPrimary },
+  fieldLabel: { ...textStyles.label, color: darkColors.textSecondary },
   row: { flexDirection: 'row', flexWrap: 'wrap', gap: spacing.xs },
   chip: {
     paddingHorizontal: spacing.md,
     paddingVertical: spacing.sm,
     borderRadius: radius.pill,
     borderWidth: 1,
-    borderColor: colors.border,
+    borderColor: darkColors.border,
   },
   chipActive: {
-    backgroundColor: colors.primary,
-    borderColor: colors.primary,
+    backgroundColor: darkColors.primary,
+    borderColor: darkColors.primary,
   },
   chipText: {
     ...textStyles.caption,
-    color: colors.textSecondary,
+    color: darkColors.textSecondary,
     fontWeight: '600',
   },
   actionsRow: {

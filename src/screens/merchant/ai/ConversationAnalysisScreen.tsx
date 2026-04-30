@@ -25,7 +25,7 @@ import { Header } from '../../../components/common/Header';
 import { Icon } from '../../../components/common/Icon';
 import { SentimentBadge } from '../../../components/feature-specific/SentimentBadge';
 import { SkeletonCard } from '../../../components/common/SkeletonCard';
-import { colors } from '../../../constants/colors';
+import { darkColors } from '../../../theme/dark';
 import { radius, shadows, spacing } from '../../../constants/spacing';
 import { textStyles } from '../../../constants/typography';
 import { useConversationIntel } from '../../../hooks/useAI';
@@ -38,9 +38,9 @@ const HIGHLIGHT_TONE: Record<
   ConversationHighlight['kind'],
   { background: string; text: string }
 > = {
-  buying: { background: colors.successSoft, text: colors.success },
-  concern: { background: colors.errorSoft, text: colors.error },
-  question: { background: colors.warningSoft, text: colors.warning },
+  buying: { background: darkColors.successSoft, text: darkColors.success },
+  concern: { background: darkColors.errorSoft, text: darkColors.error },
+  question: { background: darkColors.warningSoft, text: darkColors.warning },
 };
 
 export const ConversationAnalysisScreen: React.FC = () => {
@@ -70,7 +70,7 @@ export const ConversationAnalysisScreen: React.FC = () => {
               <Icon
                 name="sparkles-outline"
                 size={18}
-                color={colors.primary}
+                color={darkColors.primary}
               />
               <Text style={styles.summaryTitle}>
                 {t('conversationIntel.summary', {
@@ -140,8 +140,8 @@ export const ConversationAnalysisScreen: React.FC = () => {
                       {
                         color:
                           message.speaker === 'customer'
-                            ? colors.primaryDark
-                            : colors.textSecondary,
+                            ? darkColors.primaryDark
+                            : darkColors.textSecondary,
                       },
                     ]}
                   >
@@ -180,7 +180,7 @@ export const ConversationAnalysisScreen: React.FC = () => {
           </View>
 
           <Pressable style={styles.replyBtn}>
-            <Icon name="chatbubble-ellipses" size={18} color={colors.textInverse} />
+            <Icon name="chatbubble-ellipses" size={18} color={darkColors.textOnPrimary} />
             <Text style={styles.replyText}>
               {analysis.suggestedAction.label}
             </Text>
@@ -192,14 +192,14 @@ export const ConversationAnalysisScreen: React.FC = () => {
 };
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: colors.background },
+  safe: { flex: 1, backgroundColor: darkColors.background },
   scroll: {
     padding: spacing.base,
     paddingBottom: spacing.xxxl,
     rowGap: spacing.base,
   },
   summaryCard: {
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     padding: spacing.base,
     borderRadius: radius.lg,
     rowGap: spacing.sm,
@@ -212,20 +212,20 @@ const styles = StyleSheet.create({
   },
   summaryTitle: {
     ...textStyles.label,
-    color: colors.primary,
+    color: darkColors.primary,
     fontWeight: '700',
     textTransform: 'uppercase',
   },
   summaryBody: {
     ...textStyles.body,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
   },
   sectionTitle: {
     ...textStyles.h4,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
   },
   intentsCard: {
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     padding: spacing.base,
     borderRadius: radius.lg,
     rowGap: spacing.sm,
@@ -240,15 +240,15 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.sm,
     paddingVertical: 4,
     borderRadius: radius.pill,
-    backgroundColor: colors.primarySoft,
+    backgroundColor: darkColors.primarySoft,
   },
   intentText: {
     ...textStyles.caption,
-    color: colors.primaryDark,
+    color: darkColors.primaryDark,
     fontWeight: '600',
   },
   transcriptCard: {
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     padding: spacing.base,
     borderRadius: radius.lg,
     rowGap: spacing.sm,
@@ -261,17 +261,17 @@ const styles = StyleSheet.create({
     padding: spacing.sm,
     borderRadius: radius.lg,
     borderWidth: 1,
-    borderColor: colors.divider,
+    borderColor: darkColors.divider,
   },
   customerBubble: {
     alignSelf: 'flex-start',
-    backgroundColor: colors.primarySoft,
-    borderColor: colors.primary,
+    backgroundColor: darkColors.primarySoft,
+    borderColor: darkColors.primary,
     maxWidth: '85%',
   },
   repBubble: {
     alignSelf: 'flex-end',
-    backgroundColor: colors.surfaceAlt,
+    backgroundColor: darkColors.surfaceAlt,
     maxWidth: '85%',
   },
   messageSpeaker: {
@@ -281,7 +281,7 @@ const styles = StyleSheet.create({
   },
   messageContent: {
     ...textStyles.body,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
   },
   highlightCard: {
     padding: spacing.sm,
@@ -294,7 +294,7 @@ const styles = StyleSheet.create({
   },
   highlightNote: {
     ...textStyles.caption,
-    color: colors.textSecondary,
+    color: darkColors.textSecondary,
   },
   replyBtn: {
     flexDirection: 'row',
@@ -302,12 +302,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     columnGap: spacing.xs,
     paddingVertical: spacing.md,
-    backgroundColor: colors.primary,
+    backgroundColor: darkColors.primary,
     borderRadius: radius.pill,
   },
   replyText: {
     ...textStyles.button,
-    color: colors.textInverse,
+    color: darkColors.textOnPrimary,
   },
 });
 

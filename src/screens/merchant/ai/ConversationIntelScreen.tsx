@@ -21,7 +21,7 @@ import { Header } from '../../../components/common/Header';
 import { Icon, type AnyIconName } from '../../../components/common/Icon';
 import { SentimentBadge } from '../../../components/feature-specific/SentimentBadge';
 import { SkeletonCard } from '../../../components/common/SkeletonCard';
-import { colors } from '../../../constants/colors';
+import { darkColors } from '../../../theme/dark';
 import { radius, shadows, spacing } from '../../../constants/spacing';
 import { textStyles } from '../../../constants/typography';
 import { useConversationList } from '../../../hooks/useAI';
@@ -97,7 +97,7 @@ export const ConversationIntelScreen: React.FC = () => {
               name={chip.icon as AnyIconName}
               size={14}
               color={
-                channelFilter === chip.key ? colors.textInverse : colors.primary
+                channelFilter === chip.key ? darkColors.textOnPrimary : darkColors.primary
               }
             />
             <Text
@@ -135,7 +135,7 @@ export const ConversationIntelScreen: React.FC = () => {
               style={[
                 styles.sentimentText,
                 sentimentFilter === chip.key
-                  ? { color: colors.primaryDark, fontWeight: '700' }
+                  ? { color: darkColors.primaryDark, fontWeight: '700' }
                   : null,
               ]}
             >
@@ -170,7 +170,7 @@ export const ConversationIntelScreen: React.FC = () => {
                   <Icon
                     name="flame-outline"
                     size={14}
-                    color={colors.textInverse}
+                    color={darkColors.textOnPrimary}
                   />
                   <Text style={styles.hotBadgeText}>
                     {t('conversationIntel.hotSignals')}
@@ -194,7 +194,7 @@ export const ConversationIntelScreen: React.FC = () => {
                   <Icon
                     name={CHANNEL_ICON[item.channel]}
                     size={18}
-                    color={colors.primary}
+                    color={darkColors.primary}
                   />
                 </View>
               </View>
@@ -223,7 +223,7 @@ export const ConversationIntelScreen: React.FC = () => {
               <Icon
                 name="chatbubbles-outline"
                 size={48}
-                color={colors.primary}
+                color={darkColors.primary}
               />
               <Text style={styles.emptyTitle}>
                 {t('ai.conversationIntel')}
@@ -237,7 +237,7 @@ export const ConversationIntelScreen: React.FC = () => {
 };
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: colors.background },
+  safe: { flex: 1, backgroundColor: darkColors.background },
   filterRow: {
     columnGap: spacing.xs,
     paddingHorizontal: spacing.base,
@@ -251,20 +251,20 @@ const styles = StyleSheet.create({
     paddingVertical: spacing.sm,
     borderRadius: radius.pill,
     borderWidth: 1,
-    borderColor: colors.primary,
-    backgroundColor: colors.surface,
+    borderColor: darkColors.primary,
+    backgroundColor: darkColors.surface,
   },
   chipActive: {
-    backgroundColor: colors.primary,
+    backgroundColor: darkColors.primary,
   },
   chipText: {
     ...textStyles.caption,
-    color: colors.primary,
+    color: darkColors.primary,
     fontWeight: '700',
     textTransform: 'capitalize',
   },
   chipTextActive: {
-    color: colors.textInverse,
+    color: darkColors.textOnPrimary,
   },
   sentimentRow: {
     flexDirection: 'row',
@@ -276,14 +276,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.sm,
     paddingVertical: 4,
     borderRadius: radius.sm,
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
   },
   sentimentChipActive: {
-    backgroundColor: colors.primarySoft,
+    backgroundColor: darkColors.primarySoft,
   },
   sentimentText: {
     ...textStyles.caption,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
   },
   list: {
     padding: spacing.base,
@@ -291,7 +291,7 @@ const styles = StyleSheet.create({
     rowGap: spacing.sm,
   },
   card: {
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     padding: spacing.base,
     borderRadius: radius.lg,
     rowGap: spacing.xs,
@@ -299,21 +299,21 @@ const styles = StyleSheet.create({
   },
   cardHot: {
     borderWidth: 2,
-    borderColor: colors.primary,
+    borderColor: darkColors.primary,
   },
   hotBadge: {
     flexDirection: 'row',
     alignItems: 'center',
     alignSelf: 'flex-start',
     columnGap: 4,
-    backgroundColor: colors.primary,
+    backgroundColor: darkColors.primary,
     paddingHorizontal: spacing.sm,
     paddingVertical: 2,
     borderRadius: radius.pill,
   },
   hotBadgeText: {
     ...textStyles.caption,
-    color: colors.textInverse,
+    color: darkColors.textOnPrimary,
     fontWeight: '700',
   },
   cardHeader: {
@@ -325,35 +325,35 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 20,
-    backgroundColor: colors.primarySoft,
+    backgroundColor: darkColors.primarySoft,
     alignItems: 'center',
     justifyContent: 'center',
   },
   avatarText: {
     ...textStyles.label,
-    color: colors.primaryDark,
+    color: darkColors.primaryDark,
     fontWeight: '700',
   },
   cardBody: { flex: 1 },
   customerName: {
     ...textStyles.bodyMedium,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
   },
   timestamp: {
     ...textStyles.caption,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
   },
   channelCircle: {
     width: 36,
     height: 36,
     borderRadius: 18,
-    backgroundColor: colors.surfaceAlt,
+    backgroundColor: darkColors.surfaceAlt,
     alignItems: 'center',
     justifyContent: 'center',
   },
   snippet: {
     ...textStyles.body,
-    color: colors.textSecondary,
+    color: darkColors.textSecondary,
   },
   badgesRow: {
     flexDirection: 'row',
@@ -365,11 +365,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.sm,
     paddingVertical: 2,
     borderRadius: radius.pill,
-    backgroundColor: colors.primarySoft,
+    backgroundColor: darkColors.primarySoft,
   },
   intentText: {
     ...textStyles.caption,
-    color: colors.primaryDark,
+    color: darkColors.primaryDark,
     fontWeight: '600',
   },
   empty: {
@@ -379,7 +379,7 @@ const styles = StyleSheet.create({
   },
   emptyTitle: {
     ...textStyles.h4,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
   },
 });
 

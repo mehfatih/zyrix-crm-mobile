@@ -19,7 +19,7 @@ import { useNavigation } from '@react-navigation/native';
 import { Button } from '../../../components/common/Button';
 import { Header } from '../../../components/common/Header';
 import { Icon, type AnyIconName } from '../../../components/common/Icon';
-import { colors } from '../../../constants/colors';
+import { darkColors } from '../../../theme/dark';
 import { logSecurityEvent } from '../../../utils/securityEvents';
 import { radius, shadows, spacing } from '../../../constants/spacing';
 import { textStyles } from '../../../constants/typography';
@@ -134,7 +134,7 @@ export const DeviceManagementScreen: React.FC = () => {
           >
             <View style={styles.headerRow}>
               <View style={styles.iconCircle}>
-                <Icon name={ICON[device.platform]} size={20} color={colors.primary} />
+                <Icon name={ICON[device.platform]} size={20} color={darkColors.primary} />
               </View>
               <View style={{ flex: 1 }}>
                 <Text style={styles.name}>{device.name}</Text>
@@ -173,7 +173,7 @@ export const DeviceManagementScreen: React.FC = () => {
                 <Icon
                   name="trash-outline"
                   size={16}
-                  color={colors.error}
+                  color={darkColors.error}
                 />
                 <Text style={styles.revokeText}>
                   {t('deviceManagement.revokeAccess')}
@@ -200,7 +200,7 @@ const Row: React.FC<{ icon: AnyIconName; label: string; value: string }> = ({
   value,
 }) => (
   <View style={styles.row}>
-    <Icon name={icon} size={16} color={colors.primary} />
+    <Icon name={icon} size={16} color={darkColors.primary} />
     <View style={{ flex: 1 }}>
       <Text style={styles.rowLabel}>{label}</Text>
       <Text style={styles.rowValue}>{value}</Text>
@@ -209,14 +209,14 @@ const Row: React.FC<{ icon: AnyIconName; label: string; value: string }> = ({
 );
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: colors.background },
+  safe: { flex: 1, backgroundColor: darkColors.background },
   scroll: {
     padding: spacing.base,
     rowGap: spacing.base,
     paddingBottom: spacing.xxl,
   },
   card: {
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     padding: spacing.base,
     borderRadius: radius.lg,
     rowGap: spacing.xs,
@@ -224,7 +224,7 @@ const styles = StyleSheet.create({
   },
   currentCard: {
     borderWidth: 2,
-    borderColor: colors.primary,
+    borderColor: darkColors.primary,
   },
   headerRow: {
     flexDirection: 'row',
@@ -235,21 +235,21 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 20,
-    backgroundColor: colors.primarySoft,
+    backgroundColor: darkColors.primarySoft,
     alignItems: 'center',
     justifyContent: 'center',
   },
-  name: { ...textStyles.bodyMedium, color: colors.textPrimary },
-  meta: { ...textStyles.caption, color: colors.textMuted },
+  name: { ...textStyles.bodyMedium, color: darkColors.textPrimary },
+  meta: { ...textStyles.caption, color: darkColors.textMuted },
   currentPill: {
     paddingHorizontal: spacing.sm,
     paddingVertical: 2,
     borderRadius: radius.pill,
-    backgroundColor: colors.primary,
+    backgroundColor: darkColors.primary,
   },
   currentText: {
     ...textStyles.caption,
-    color: colors.textInverse,
+    color: darkColors.textOnPrimary,
     fontWeight: '700',
   },
   row: {
@@ -258,8 +258,8 @@ const styles = StyleSheet.create({
     columnGap: spacing.sm,
     paddingVertical: spacing.xs,
   },
-  rowLabel: { ...textStyles.caption, color: colors.textMuted },
-  rowValue: { ...textStyles.body, color: colors.textPrimary },
+  rowLabel: { ...textStyles.caption, color: darkColors.textMuted },
+  rowValue: { ...textStyles.body, color: darkColors.textPrimary },
   revokeBtn: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -268,12 +268,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.sm,
     paddingVertical: spacing.xs,
     borderRadius: radius.pill,
-    backgroundColor: colors.errorSoft,
+    backgroundColor: darkColors.errorSoft,
     marginTop: spacing.xs,
   },
   revokeText: {
     ...textStyles.button,
-    color: colors.error,
+    color: darkColors.error,
   },
 });
 

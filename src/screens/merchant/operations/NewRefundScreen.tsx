@@ -22,7 +22,7 @@ import { Button } from '../../../components/common/Button';
 import { Header } from '../../../components/common/Header';
 import { LocalizedCurrencyInput } from '../../../components/common/LocalizedCurrencyInput';
 import { SearchableDropdown, type DropdownItem } from '../../../components/forms/SearchableDropdown';
-import { colors } from '../../../constants/colors';
+import { darkColors } from '../../../theme/dark';
 import { radius, shadows, spacing } from '../../../constants/spacing';
 import { textStyles } from '../../../constants/typography';
 import { useCountryConfig } from '../../../hooks/useCountryConfig';
@@ -152,7 +152,7 @@ export const NewRefundScreen: React.FC = () => {
                 <Text
                   style={[
                     styles.optionLabel,
-                    type === option ? { color: colors.textInverse } : null,
+                    type === option ? { color: darkColors.textOnPrimary } : null,
                   ]}
                 >
                   {t(`refunds.${option}`)}
@@ -184,7 +184,7 @@ export const NewRefundScreen: React.FC = () => {
                 <Text
                   style={[
                     styles.reasonLabel,
-                    reason === entry ? { color: colors.textInverse } : null,
+                    reason === entry ? { color: darkColors.textOnPrimary } : null,
                   ]}
                 >
                   {t(`refunds.${entry}`)}
@@ -197,7 +197,7 @@ export const NewRefundScreen: React.FC = () => {
               value={customReason}
               onChangeText={setCustomReason}
               placeholder={t('refunds.other')}
-              placeholderTextColor={colors.textMuted}
+              placeholderTextColor={darkColors.textMuted}
               style={[
                 styles.textInput,
                 { textAlign: I18nManager.isRTL ? 'right' : 'left' },
@@ -221,7 +221,7 @@ export const NewRefundScreen: React.FC = () => {
                 <Text
                   style={[
                     styles.optionLabel,
-                    method === option ? { color: colors.textInverse } : null,
+                    method === option ? { color: darkColors.textOnPrimary } : null,
                   ]}
                 >
                   {t(`refunds.${option === 'original' ? 'originalMethod' : 'bankTransfer'}`)}
@@ -237,7 +237,7 @@ export const NewRefundScreen: React.FC = () => {
             value={notes}
             onChangeText={setNotes}
             placeholder={t('quoteBuilder.internalNotes')}
-            placeholderTextColor={colors.textMuted}
+            placeholderTextColor={darkColors.textMuted}
             multiline
             style={[
               styles.textarea,
@@ -261,14 +261,14 @@ export const NewRefundScreen: React.FC = () => {
 };
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: colors.background },
+  safe: { flex: 1, backgroundColor: darkColors.background },
   scroll: {
     padding: spacing.base,
     paddingBottom: spacing.xxxl,
     rowGap: spacing.base,
   },
   card: {
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     padding: spacing.base,
     borderRadius: radius.lg,
     rowGap: spacing.sm,
@@ -276,7 +276,7 @@ const styles = StyleSheet.create({
   },
   fieldLabel: {
     ...textStyles.label,
-    color: colors.textSecondary,
+    color: darkColors.textSecondary,
   },
   row: {
     flexDirection: 'row',
@@ -287,15 +287,15 @@ const styles = StyleSheet.create({
     paddingVertical: spacing.sm,
     borderRadius: radius.pill,
     borderWidth: 1.5,
-    borderColor: colors.primary,
+    borderColor: darkColors.primary,
     alignItems: 'center',
   },
   optionChipActive: {
-    backgroundColor: colors.primary,
+    backgroundColor: darkColors.primary,
   },
   optionLabel: {
     ...textStyles.caption,
-    color: colors.primary,
+    color: darkColors.primary,
     fontWeight: '700',
     textTransform: 'capitalize',
   },
@@ -308,32 +308,32 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.md,
     paddingVertical: spacing.sm,
     borderRadius: radius.pill,
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     borderWidth: 1,
-    borderColor: colors.border,
+    borderColor: darkColors.border,
   },
   reasonChipActive: {
-    backgroundColor: colors.primary,
-    borderColor: colors.primary,
+    backgroundColor: darkColors.primary,
+    borderColor: darkColors.primary,
   },
   reasonLabel: {
     ...textStyles.caption,
-    color: colors.textSecondary,
+    color: darkColors.textSecondary,
     fontWeight: '600',
   },
   textInput: {
     ...textStyles.body,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
     borderWidth: 1,
-    borderColor: colors.border,
+    borderColor: darkColors.border,
     borderRadius: radius.base,
     padding: spacing.sm,
   },
   textarea: {
     ...textStyles.body,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
     borderWidth: 1,
-    borderColor: colors.border,
+    borderColor: darkColors.border,
     borderRadius: radius.base,
     padding: spacing.sm,
     minHeight: 80,
@@ -342,8 +342,8 @@ const styles = StyleSheet.create({
   footer: {
     padding: spacing.base,
     borderTopWidth: 1,
-    borderTopColor: colors.divider,
-    backgroundColor: colors.surface,
+    borderTopColor: darkColors.divider,
+    backgroundColor: darkColors.surface,
   },
 });
 

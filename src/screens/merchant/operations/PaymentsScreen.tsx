@@ -22,7 +22,7 @@ import { Header } from '../../../components/common/Header';
 import { Icon } from '../../../components/common/Icon';
 import { PaymentCard } from '../../../components/feature-specific/PaymentCard';
 import { SkeletonCard } from '../../../components/common/SkeletonCard';
-import { colors } from '../../../constants/colors';
+import { darkColors } from '../../../theme/dark';
 import { hitSlop, radius, shadows, spacing } from '../../../constants/spacing';
 import { textStyles } from '../../../constants/typography';
 import { useCountryConfig } from '../../../hooks/useCountryConfig';
@@ -84,7 +84,7 @@ export const PaymentsScreen: React.FC = () => {
             hitSlop={hitSlop.md}
             style={styles.headerBtn}
           >
-            <Icon name="menu-outline" size={24} color={colors.textInverse} />
+            <Icon name="menu-outline" size={24} color={darkColors.textOnPrimary} />
           </Pressable>
         }
         rightSlot={
@@ -93,7 +93,7 @@ export const PaymentsScreen: React.FC = () => {
             hitSlop={hitSlop.md}
             style={styles.headerBtn}
           >
-            <Icon name="refresh-circle-outline" size={22} color={colors.textInverse} />
+            <Icon name="refresh-circle-outline" size={22} color={darkColors.textOnPrimary} />
           </Pressable>
         }
       />
@@ -106,22 +106,22 @@ export const PaymentsScreen: React.FC = () => {
         <SummaryCard
           label={t('payments.paid')}
           amount={summary?.totalReceived ?? 0}
-          color={colors.success}
+          color={darkColors.success}
         />
         <SummaryCard
           label={t('payments.pending')}
           amount={summary?.pending ?? 0}
-          color={colors.warning}
+          color={darkColors.warning}
         />
         <SummaryCard
           label={t('payments.refunded')}
           amount={summary?.refunded ?? 0}
-          color={colors.textMuted}
+          color={darkColors.textMuted}
         />
         <SummaryCard
           label={t('payments.failed')}
           amount={summary?.failed ?? 0}
-          color={colors.error}
+          color={darkColors.error}
         />
       </ScrollView>
 
@@ -163,7 +163,7 @@ export const PaymentsScreen: React.FC = () => {
           )}
           ListEmptyComponent={
             <View style={styles.empty}>
-              <Icon name="card-outline" size={44} color={colors.primary} />
+              <Icon name="card-outline" size={44} color={darkColors.primary} />
               <Text style={styles.emptyTitle}>{t('payments.title')}</Text>
             </View>
           }
@@ -177,7 +177,7 @@ export const PaymentsScreen: React.FC = () => {
           pressed ? { opacity: 0.9 } : null,
         ]}
       >
-        <Icon name="link-outline" size={26} color={colors.textInverse} />
+        <Icon name="link-outline" size={26} color={darkColors.textOnPrimary} />
       </Pressable>
     </SafeAreaView>
   );
@@ -195,7 +195,7 @@ const SummaryCard: React.FC<{
 );
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: colors.background },
+  safe: { flex: 1, backgroundColor: darkColors.background },
   headerBtn: {
     width: 40,
     height: 40,
@@ -208,7 +208,7 @@ const styles = StyleSheet.create({
     columnGap: spacing.sm,
   },
   summaryCard: {
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     paddingVertical: spacing.sm,
     paddingHorizontal: spacing.base,
     borderRadius: radius.lg,
@@ -219,7 +219,7 @@ const styles = StyleSheet.create({
   },
   summaryLabel: {
     ...textStyles.caption,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
   },
   filterRow: {
     flexDirection: 'row',
@@ -233,19 +233,19 @@ const styles = StyleSheet.create({
     paddingVertical: spacing.sm,
     borderRadius: radius.pill,
     borderWidth: 1,
-    borderColor: colors.border,
-    backgroundColor: colors.surface,
+    borderColor: darkColors.border,
+    backgroundColor: darkColors.surface,
   },
   chipActive: {
-    backgroundColor: colors.primary,
-    borderColor: colors.primary,
+    backgroundColor: darkColors.primary,
+    borderColor: darkColors.primary,
   },
   chipText: {
     ...textStyles.caption,
-    color: colors.textSecondary,
+    color: darkColors.textSecondary,
     fontWeight: '600',
   },
-  chipTextActive: { color: colors.textInverse },
+  chipTextActive: { color: darkColors.textOnPrimary },
   list: {
     padding: spacing.base,
     paddingBottom: spacing.xxxl * 2,
@@ -257,7 +257,7 @@ const styles = StyleSheet.create({
   },
   emptyTitle: {
     ...textStyles.h4,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
   },
   fab: {
     position: 'absolute',
@@ -266,7 +266,7 @@ const styles = StyleSheet.create({
     width: 56,
     height: 56,
     borderRadius: 28,
-    backgroundColor: colors.primary,
+    backgroundColor: darkColors.primary,
     alignItems: 'center',
     justifyContent: 'center',
     ...shadows.md,
