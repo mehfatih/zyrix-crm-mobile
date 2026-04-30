@@ -31,7 +31,7 @@ import { Button } from '../../components/common/Button';
 import { Icon } from '../../components/common/Icon';
 import { Input } from '../../components/common/Input';
 import { PhoneInput } from '../../components/common/PhoneInput';
-import { colors } from '../../constants/colors';
+import { darkColors } from '../../theme/dark';
 import { radius, shadows, spacing } from '../../constants/spacing';
 import { textStyles } from '../../constants/typography';
 import { useAuthStore } from '../../store/authStore';
@@ -314,7 +314,7 @@ export const RegisterScreen: React.FC = () => {
                   ]}
                 >
                   {agreeTerms ? (
-                    <Icon name="checkmark" size={14} color={colors.textInverse} />
+                    <Icon name="checkmark" size={14} color={darkColors.textOnPrimary} />
                   ) : null}
                 </View>
                 <Text style={styles.termsText}>{t('forms.agreeTerms')}</Text>
@@ -391,7 +391,7 @@ export const RegisterScreen: React.FC = () => {
 const styles = StyleSheet.create({
   safe: {
     flex: 1,
-    backgroundColor: colors.background,
+    backgroundColor: darkColors.background,
   },
   flex: { flex: 1 },
   scroll: {
@@ -406,7 +406,7 @@ const styles = StyleSheet.create({
     width: 64,
     height: 64,
     borderRadius: radius.xl,
-    backgroundColor: colors.primary,
+    backgroundColor: darkColors.primary,
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: spacing.base,
@@ -415,21 +415,21 @@ const styles = StyleSheet.create({
   logoMark: {
     fontSize: 34,
     fontWeight: '800',
-    color: colors.white,
+    color: darkColors.textOnPrimary,
   },
   title: {
     ...textStyles.h2,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
     textAlign: 'center',
   },
   subtitle: {
     ...textStyles.body,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
     textAlign: 'center',
     marginTop: spacing.xs,
   },
   card: {
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     borderRadius: radius.xl,
     padding: spacing.xl,
     ...shadows.md,
@@ -447,23 +447,23 @@ const styles = StyleSheet.create({
     height: 22,
     borderRadius: 6,
     borderWidth: 1.5,
-    borderColor: colors.borderStrong,
+    borderColor: darkColors.borderStrong,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
   },
   checkboxChecked: {
-    borderColor: colors.primary,
-    backgroundColor: colors.primary,
+    borderColor: darkColors.primary,
+    backgroundColor: darkColors.primary,
   },
   termsText: {
     ...textStyles.caption,
-    color: colors.textSecondary,
+    color: darkColors.textSecondary,
     flex: 1,
   },
   termsError: {
     ...textStyles.caption,
-    color: colors.error,
+    color: darkColors.error,
     marginBottom: spacing.sm,
   },
   submit: {
@@ -479,11 +479,11 @@ const styles = StyleSheet.create({
   },
   loginText: {
     ...textStyles.body,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
   },
   loginLink: {
     ...textStyles.label,
-    color: colors.primary,
+    color: darkColors.primary,
     fontWeight: '700',
     marginStart: spacing.xs,
   },
@@ -497,11 +497,11 @@ const styles = StyleSheet.create({
   dividerLine: {
     flex: 1,
     height: StyleSheet.hairlineWidth,
-    backgroundColor: colors.border,
+    backgroundColor: darkColors.border,
   },
   dividerText: {
     ...textStyles.caption,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
     fontWeight: '600',
     textTransform: 'uppercase',
     letterSpacing: 1,
@@ -514,8 +514,8 @@ const styles = StyleSheet.create({
     paddingVertical: spacing.md,
     borderRadius: radius.pill,
     borderWidth: 1,
-    borderColor: colors.border,
-    backgroundColor: colors.white,
+    borderColor: darkColors.border,
+    backgroundColor: darkColors.surface,
     marginTop: spacing.sm,
   },
   googleMark: {
@@ -525,7 +525,7 @@ const styles = StyleSheet.create({
   },
   socialLabel: {
     ...textStyles.button,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
     fontWeight: '600',
   },
   appleBtn: {
@@ -534,11 +534,11 @@ const styles = StyleSheet.create({
   },
   appleMark: {
     fontSize: 18,
-    color: colors.white,
+    color: darkColors.textOnPrimary,
     fontWeight: '700',
   },
   appleLabel: {
-    color: colors.white,
+    color: darkColors.textOnPrimary,
   },
 });
 
