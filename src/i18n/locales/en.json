@@ -1657,5 +1657,14 @@
       "aiAutomation": "AI & AUTOMATION",
       "system": "SYSTEM"
     }
+  },
+  "StatusPill": {
+    "tones": {
+      "success": "Success",
+      "warning": "Warning",
+      "error": "Error",
+      "info": "Info",
+      "neutral": "Neutral"
+    }
   }
 }

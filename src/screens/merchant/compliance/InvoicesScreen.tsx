@@ -22,6 +22,8 @@ import { CurrencyDisplay } from '../../../components/forms/CurrencyDisplay';
 import { Header } from '../../../components/common/Header';
 import { Icon, type AnyIconName } from '../../../components/common/Icon';
 import { SkeletonCard } from '../../../components/common/SkeletonCard';
+import { StatusPill } from '../../../components/ui/StatusPill';
+import { INVOICE_STATUS_TONE } from '../../../lib/ui/status-tones';
 import { darkColors } from '../../../theme/dark';
 import { getPageAccent } from '../../../theme/dark/accents';
 
@@ -43,16 +45,6 @@ type Navigation = NativeStackNavigationProp<
   MerchantComplianceStackParamList,
   'Invoices'
 >;
-
-const STATUS_TONE: Record<InvoiceStatus, { background: string; color: string }> = {
-  draft: { background: darkColors.surfaceAlt, color: darkColors.textMuted },
-  issued: { background: darkColors.infoSoft, color: darkColors.info },
-  sent: { background: darkColors.infoSoft, color: darkColors.info },
-  viewed: { background: darkColors.warningSoft, color: darkColors.warning },
-  paid: { background: darkColors.successSoft, color: darkColors.success },
-  overdue: { background: darkColors.errorSoft, color: darkColors.error },
-  cancelled: { background: darkColors.surfaceAlt, color: darkColors.textMuted },
-};
 
 const COMPLIANCE_TONE: Record<
   ComplianceStatus,
@@ -219,7 +211,6 @@ export const InvoicesScreen: React.FC = () => {
           keyExtractor={(invoice) => invoice.id}
           contentContainerStyle={styles.list}
           renderItem={({ item }) => {
-            const tone = STATUS_TONE[item.status];
             const compliance = renderComplianceBadge(item);
             return (
               <Pressable
@@ -231,13 +222,12 @@ export const InvoicesScreen: React.FC = () => {
               >
                 <View style={styles.headerRow}>
                   <Text style={styles.invoiceNumber}>{item.invoiceNumber}</Text>
-                  <View
-                    style={[styles.statusPill, { backgroundColor: tone.background }]}
+                  <StatusPill
+                    tone={INVOICE_STATUS_TONE[item.status] ?? 'neutral'}
+                    size="sm"
                   >
-                    <Text style={[styles.statusText, { color: tone.color }]}>
-                      {t(`invoices.${item.status}`)}
-                    </Text>
-                  </View>
+                    {t(`invoices.${item.status}`)}
+                  </StatusPill>
                 </View>
                 <Text style={styles.customer} numberOfLines={1}>
                   {item.customerName}
@@ -393,15 +383,6 @@ const styles = StyleSheet.create({
   invoiceNumber: {
     ...textStyles.bodyMedium,
     color: darkColors.textPrimary,
-    fontWeight: '700',
-  },
-  statusPill: {
-    paddingHorizontal: spacing.sm,
-    paddingVertical: 2,
-    borderRadius: radius.pill,
-  },
-  statusText: {
-    ...textStyles.caption,
     fontWeight: '700',
   },
   customer: {

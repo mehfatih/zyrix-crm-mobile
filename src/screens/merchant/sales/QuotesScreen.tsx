@@ -23,6 +23,8 @@ import { CurrencyDisplay } from '../../../components/forms/CurrencyDisplay';
 import { Header } from '../../../components/common/Header';
 import { Icon } from '../../../components/common/Icon';
 import { SkeletonCard } from '../../../components/common/SkeletonCard';
+import { StatusPill } from '../../../components/ui/StatusPill';
+import { QUOTE_STATUS_TONE } from '../../../lib/ui/status-tones';
 import { darkColors } from '../../../theme/dark';
 import { getPageAccent } from '../../../theme/dark/accents';
 
@@ -40,17 +42,6 @@ type Navigation = NativeStackNavigationProp<
 
 type Status = Quote['status'];
 type Sort = 'newest' | 'largest' | 'closingSoon';
-
-const STATUS_STYLE: Record<
-  Status,
-  { background: string; color: string }
-> = {
-  draft: { background: darkColors.surfaceAlt, color: darkColors.textMuted },
-  sent: { background: darkColors.infoSoft, color: darkColors.info },
-  viewed: { background: darkColors.warningSoft, color: darkColors.warning },
-  accepted: { background: darkColors.successSoft, color: darkColors.success },
-  expired: { background: darkColors.errorSoft, color: darkColors.error },
-};
 
 const STATUS_KEYS: readonly (Status | 'all')[] = [
   'all',
@@ -171,7 +162,6 @@ export const QuotesScreen: React.FC = () => {
           keyExtractor={(q) => q.id}
           contentContainerStyle={styles.list}
           renderItem={({ item }) => {
-            const tone = STATUS_STYLE[item.status];
             return (
               <Pressable
                 onPress={() => open(item)}
@@ -182,13 +172,12 @@ export const QuotesScreen: React.FC = () => {
               >
                 <View style={styles.cardHeader}>
                   <Text style={styles.quoteNumber}>{item.quoteNumber}</Text>
-                  <View
-                    style={[styles.statusBadge, { backgroundColor: tone.background }]}
+                  <StatusPill
+                    tone={QUOTE_STATUS_TONE[item.status] ?? 'neutral'}
+                    size="sm"
                   >
-                    <Text style={[styles.statusText, { color: tone.color }]}>
-                      {t(`quoteStatus.${item.status}`)}
-                    </Text>
-                  </View>
+                    {t(`quoteStatus.${item.status}`)}
+                  </StatusPill>
                 </View>
                 <Text style={styles.customerName} numberOfLines={1}>
                   {item.customerName}
@@ -296,15 +285,6 @@ const styles = StyleSheet.create({
   quoteNumber: {
     ...textStyles.bodyMedium,
     color: darkColors.textPrimary,
-    fontWeight: '700',
-  },
-  statusBadge: {
-    paddingHorizontal: spacing.sm,
-    paddingVertical: 2,
-    borderRadius: radius.pill,
-  },
-  statusText: {
-    ...textStyles.caption,
     fontWeight: '700',
   },
   customerName: {

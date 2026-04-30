@@ -23,11 +23,13 @@ import { CurrencyDisplay } from '../../../components/forms/CurrencyDisplay';
 import { Header } from '../../../components/common/Header';
 import { Icon } from '../../../components/common/Icon';
 import { SkeletonCard } from '../../../components/common/SkeletonCard';
+import { StatusPill } from '../../../components/ui/StatusPill';
+import { CONTRACT_STATUS_TONE } from '../../../lib/ui/status-tones';
 import { darkColors } from '../../../theme/dark';
 import { getPageAccent } from '../../../theme/dark/accents';
 
 const PAGE_ACCENT = getPageAccent('contracts');
-import { listContracts, type Contract } from '../../../api/contracts';
+import { listContracts } from '../../../api/contracts';
 import { radius, shadows, spacing } from '../../../constants/spacing';
 import { textStyles } from '../../../constants/typography';
 import { useCountryConfig } from '../../../hooks/useCountryConfig';
@@ -39,14 +41,6 @@ type Navigation = NativeStackNavigationProp<
 >;
 
 type Bucket = 'all' | 'active' | 'expiring' | 'expired' | 'terminated';
-
-const STATUS_COLOR: Record<Contract['status'] | 'expiring', { bg: string; fg: string }> = {
-  draft: { bg: darkColors.surfaceAlt, fg: darkColors.textMuted },
-  active: { bg: darkColors.successSoft, fg: darkColors.success },
-  expired: { bg: darkColors.errorSoft, fg: darkColors.error },
-  terminated: { bg: darkColors.surfaceAlt, fg: darkColors.textMuted },
-  expiring: { bg: darkColors.warningSoft, fg: darkColors.warning },
-};
 
 const daysUntil = (iso: string): number => {
   const diff = new Date(iso).getTime() - Date.now();
@@ -137,7 +131,6 @@ export const ContractsScreen: React.FC = () => {
             const days = daysUntil(item.endDate);
             const isExpiring = item.status === 'active' && days <= 30 && days >= 0;
             const key = isExpiring ? 'expiring' : item.status;
-            const tone = STATUS_COLOR[key];
             return (
               <Pressable
                 onPress={() =>
@@ -150,13 +143,14 @@ export const ContractsScreen: React.FC = () => {
               >
                 <View style={styles.cardHeader}>
                   <Text style={styles.number}>{item.contractNumber}</Text>
-                  <View style={[styles.status, { backgroundColor: tone.bg }]}>
-                    <Text style={[styles.statusText, { color: tone.fg }]}>
-                      {isExpiring
-                        ? `${days}d`
-                        : t(`contractStatus.${item.status}`)}
-                    </Text>
-                  </View>
+                  <StatusPill
+                    tone={CONTRACT_STATUS_TONE[key] ?? 'neutral'}
+                    size="sm"
+                  >
+                    {isExpiring
+                      ? `${days}d`
+                      : t(`contractStatus.${item.status}`)}
+                  </StatusPill>
                 </View>
                 <Text style={styles.customer} numberOfLines={1}>
                   {item.customerName}
@@ -241,15 +235,6 @@ const styles = StyleSheet.create({
   number: {
     ...textStyles.bodyMedium,
     color: darkColors.textPrimary,
-    fontWeight: '700',
-  },
-  status: {
-    paddingHorizontal: spacing.sm,
-    paddingVertical: 2,
-    borderRadius: radius.pill,
-  },
-  statusText: {
-    ...textStyles.caption,
     fontWeight: '700',
   },
   customer: { ...textStyles.caption, color: darkColors.textSecondary },
