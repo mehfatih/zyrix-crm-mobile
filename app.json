@@ -6,12 +6,12 @@
     "scheme": "zyrix",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
+    "userInterfaceStyle": "dark",
     "newArchEnabled": true,
     "splash": {
       "image": "./assets/splash-icon.png",
       "resizeMode": "contain",
-      "backgroundColor": "#F0F9FF"
+      "backgroundColor": "#0C162C"
     },
     "assetBundlePatterns": [
       "**/*"
@@ -30,7 +30,7 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#F0F9FF"
+        "backgroundColor": "#0C162C"
       },
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,
