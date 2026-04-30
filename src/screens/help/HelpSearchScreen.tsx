@@ -24,7 +24,7 @@ import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { ArticleCard } from '../../components/help/ArticleCard';
 import { Header } from '../../components/common/Header';
 import { Icon } from '../../components/common/Icon';
-import { colors } from '../../constants/colors';
+import { darkColors } from '../../theme/dark';
 import { radius, shadows, spacing } from '../../constants/spacing';
 import { textStyles } from '../../constants/typography';
 import type { SupportedLanguage } from '../../i18n';
@@ -69,19 +69,19 @@ export const HelpSearchScreen: React.FC = () => {
       />
       <View style={styles.searchWrap}>
         <View style={styles.searchBar}>
-          <Icon name="search-outline" size={20} color={colors.textMuted} />
+          <Icon name="search-outline" size={20} color={darkColors.textMuted} />
           <TextInput
             value={query}
             onChangeText={setQuery}
             placeholder={t('help.searchPlaceholder')}
-            placeholderTextColor={colors.textMuted}
+            placeholderTextColor={darkColors.textMuted}
             autoFocus
             returnKeyType="search"
             style={styles.searchInput}
           />
           {query.length > 0 ? (
             <Pressable onPress={() => setQuery('')} accessibilityLabel={t('common.cancel')}>
-              <Icon name="close-circle" size={20} color={colors.textMuted} />
+              <Icon name="close-circle" size={20} color={darkColors.textMuted} />
             </Pressable>
           ) : null}
         </View>
@@ -92,7 +92,7 @@ export const HelpSearchScreen: React.FC = () => {
       >
         {loading ? (
           <View style={styles.loading}>
-            <ActivityIndicator color={colors.primary} />
+            <ActivityIndicator color={darkColors.primary} />
           </View>
         ) : query.trim().length === 0 ? (
           <Text style={styles.empty}>{t('help.searchEmpty')}</Text>
@@ -121,26 +121,26 @@ export const HelpSearchScreen: React.FC = () => {
 };
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: colors.background },
+  safe: { flex: 1, backgroundColor: darkColors.background },
   searchWrap: {
     padding: spacing.base,
   },
   searchBar: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     borderRadius: radius.pill,
     paddingHorizontal: spacing.base,
     height: 52,
     columnGap: spacing.sm,
     borderWidth: 1,
-    borderColor: colors.border,
+    borderColor: darkColors.border,
     ...shadows.xs,
   },
   searchInput: {
     flex: 1,
     ...textStyles.body,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
     paddingVertical: 0,
   },
   scroll: {
@@ -153,7 +153,7 @@ const styles = StyleSheet.create({
   },
   empty: {
     ...textStyles.body,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
     textAlign: 'center',
     marginTop: spacing.xxl,
   },

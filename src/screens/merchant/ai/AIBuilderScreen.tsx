@@ -17,7 +17,7 @@ import { useTranslation } from 'react-i18next';
 import { AIAssistant } from '../../../components/feature-specific/AIAssistant';
 import { Header } from '../../../components/common/Header';
 import { Icon, type AnyIconName } from '../../../components/common/Icon';
-import { colors } from '../../../constants/colors';
+import { darkColors } from '../../../theme/dark';
 import {
   getArchitectSuggestions,
   getBuilderSuggestions,
@@ -114,12 +114,12 @@ export const AIBuilderScreen: React.FC = () => {
               <Icon
                 name={entry.icon}
                 size={18}
-                color={isActive ? colors.textInverse : colors.primary}
+                color={isActive ? darkColors.textOnPrimary : darkColors.primary}
               />
               <Text
                 style={[
                   styles.modeLabel,
-                  isActive ? { color: colors.textInverse } : null,
+                  isActive ? { color: darkColors.textOnPrimary } : null,
                 ]}
               >
                 {t(entry.label)}
@@ -143,14 +143,14 @@ export const AIBuilderScreen: React.FC = () => {
 };
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: colors.background },
+  safe: { flex: 1, backgroundColor: darkColors.background },
   modeRow: {
     flexDirection: 'row',
     columnGap: spacing.xs,
     padding: spacing.base,
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     borderBottomWidth: 1,
-    borderBottomColor: colors.divider,
+    borderBottomColor: darkColors.divider,
   },
   modeBtn: {
     flex: 1,
@@ -161,14 +161,14 @@ const styles = StyleSheet.create({
     paddingVertical: spacing.sm,
     borderRadius: radius.pill,
     borderWidth: 1.5,
-    borderColor: colors.primary,
+    borderColor: darkColors.primary,
   },
   modeBtnActive: {
-    backgroundColor: colors.primary,
+    backgroundColor: darkColors.primary,
   },
   modeLabel: {
     ...textStyles.caption,
-    color: colors.primary,
+    color: darkColors.primary,
     fontWeight: '700',
     textTransform: 'capitalize',
   },

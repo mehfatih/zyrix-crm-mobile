@@ -20,7 +20,7 @@ import { DrawerActions, useNavigation } from '@react-navigation/native';
 import { Header } from '../../components/common/Header';
 import { Icon, type AnyIconName } from '../../components/common/Icon';
 import { LanguageSwitcher } from '../../components/common/LanguageSwitcher';
-import { colors } from '../../constants/colors';
+import { darkColors } from '../../theme/dark';
 import { hitSlop, radius, shadows, spacing } from '../../constants/spacing';
 import { textStyles } from '../../constants/typography';
 import { useAuthStore } from '../../store/authStore';
@@ -54,7 +54,7 @@ export const AdminSettingsScreen: React.FC = () => {
             hitSlop={hitSlop.md}
             style={styles.headerBtn}
           >
-            <Icon name="menu-outline" size={24} color={colors.textInverse} />
+            <Icon name="menu-outline" size={24} color={darkColors.textOnPrimary} />
           </Pressable>
         }
       />
@@ -94,8 +94,8 @@ export const AdminSettingsScreen: React.FC = () => {
               <Switch
                 value
                 disabled
-                trackColor={{ false: colors.border, true: colors.primary }}
-                thumbColor={colors.white}
+                trackColor={{ false: darkColors.border, true: darkColors.primary }}
+                thumbColor={darkColors.white}
               />
             }
           />
@@ -116,8 +116,8 @@ export const AdminSettingsScreen: React.FC = () => {
             trailing={
               <Switch
                 value
-                trackColor={{ false: colors.border, true: colors.primary }}
-                thumbColor={colors.white}
+                trackColor={{ false: darkColors.border, true: darkColors.primary }}
+                thumbColor={darkColors.white}
               />
             }
           />
@@ -127,8 +127,8 @@ export const AdminSettingsScreen: React.FC = () => {
             trailing={
               <Switch
                 value
-                trackColor={{ false: colors.border, true: colors.primary }}
-                thumbColor={colors.white}
+                trackColor={{ false: darkColors.border, true: darkColors.primary }}
+                thumbColor={darkColors.white}
               />
             }
           />
@@ -141,7 +141,7 @@ export const AdminSettingsScreen: React.FC = () => {
             pressed ? { opacity: 0.85 } : null,
           ]}
         >
-          <Icon name="log-out-outline" size={20} color={colors.error} />
+          <Icon name="log-out-outline" size={20} color={darkColors.error} />
           <Text style={styles.logoutText}>{t('common.signOut')}</Text>
         </Pressable>
       </ScrollView>
@@ -162,14 +162,14 @@ const SettingsRow: React.FC<{
       pressed && onPress ? { opacity: 0.85 } : null,
     ]}
   >
-    <Icon name={icon} size={20} color={colors.primary} />
+    <Icon name={icon} size={20} color={darkColors.primary} />
     <Text style={styles.settingsLabel}>{label}</Text>
     {trailing}
   </Pressable>
 );
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: colors.background },
+  safe: { flex: 1, backgroundColor: darkColors.background },
   headerBtn: {
     width: 40,
     height: 40,
@@ -183,7 +183,7 @@ const styles = StyleSheet.create({
   },
   profileCard: {
     alignItems: 'center',
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     padding: spacing.lg,
     borderRadius: radius.xl,
     rowGap: spacing.xs,
@@ -193,56 +193,56 @@ const styles = StyleSheet.create({
     width: 84,
     height: 84,
     borderRadius: 42,
-    backgroundColor: colors.primary,
+    backgroundColor: darkColors.primary,
     alignItems: 'center',
     justifyContent: 'center',
   },
   avatarText: {
     ...textStyles.h2,
-    color: colors.textInverse,
+    color: darkColors.textOnPrimary,
     fontWeight: '800',
   },
-  name: { ...textStyles.h3, color: colors.textPrimary },
-  email: { ...textStyles.body, color: colors.textMuted },
+  name: { ...textStyles.h3, color: darkColors.textPrimary },
+  email: { ...textStyles.body, color: darkColors.textMuted },
   role: {
     ...textStyles.label,
-    color: colors.primary,
+    color: darkColors.primary,
     fontWeight: '700',
   },
   section: {
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     padding: spacing.base,
     borderRadius: radius.lg,
     rowGap: spacing.sm,
     ...shadows.xs,
   },
-  sectionTitle: { ...textStyles.h4, color: colors.textPrimary },
+  sectionTitle: { ...textStyles.h4, color: darkColors.textPrimary },
   settingsRow: {
     flexDirection: 'row',
     alignItems: 'center',
     columnGap: spacing.sm,
     paddingVertical: spacing.sm,
     borderBottomWidth: 1,
-    borderBottomColor: colors.divider,
+    borderBottomColor: darkColors.divider,
   },
   settingsLabel: {
     flex: 1,
     ...textStyles.body,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
   },
   logoutBtn: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
     columnGap: spacing.sm,
-    backgroundColor: colors.errorSoft,
+    backgroundColor: darkColors.errorSoft,
     paddingVertical: spacing.md,
     borderRadius: radius.lg,
     marginTop: spacing.base,
   },
   logoutText: {
     ...textStyles.button,
-    color: colors.error,
+    color: darkColors.error,
   },
 });
 

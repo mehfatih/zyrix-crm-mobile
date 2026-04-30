@@ -26,7 +26,7 @@ import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 import { ArticleCard } from '../../components/help/ArticleCard';
 import { Header } from '../../components/common/Header';
-import { colors } from '../../constants/colors';
+import { darkColors } from '../../theme/dark';
 import { spacing } from '../../constants/spacing';
 import { textStyles } from '../../constants/typography';
 import type { SupportedLanguage } from '../../i18n';
@@ -111,7 +111,7 @@ export const HelpCategoryScreen: React.FC = () => {
       >
         {loading ? (
           <View style={styles.loading}>
-            <ActivityIndicator color={colors.primary} />
+            <ActivityIndicator color={darkColors.primary} />
           </View>
         ) : articles.length === 0 ? (
           <Text style={styles.empty}>{t('help.noArticles')}</Text>
@@ -140,7 +140,7 @@ export const HelpCategoryScreen: React.FC = () => {
 };
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: colors.background },
+  safe: { flex: 1, backgroundColor: darkColors.background },
   scroll: {
     padding: spacing.base,
     paddingBottom: spacing.xxl,
@@ -151,7 +151,7 @@ const styles = StyleSheet.create({
   },
   empty: {
     ...textStyles.body,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
     textAlign: 'center',
     marginTop: spacing.xxl,
   },

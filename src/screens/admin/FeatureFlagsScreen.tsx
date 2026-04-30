@@ -24,7 +24,7 @@ import {
   type DropdownItem,
 } from '../../components/forms/SearchableDropdown';
 import { SkeletonCard } from '../../components/common/SkeletonCard';
-import { colors } from '../../constants/colors';
+import { darkColors } from '../../theme/dark';
 import { hitSlop, radius, shadows, spacing } from '../../constants/spacing';
 import { textStyles } from '../../constants/typography';
 import {
@@ -101,7 +101,7 @@ export const FeatureFlagsScreen: React.FC = () => {
             hitSlop={hitSlop.md}
             style={styles.headerBtn}
           >
-            <Icon name="menu-outline" size={24} color={colors.textInverse} />
+            <Icon name="menu-outline" size={24} color={darkColors.textOnPrimary} />
           </Pressable>
         }
       />
@@ -116,7 +116,7 @@ export const FeatureFlagsScreen: React.FC = () => {
             <Text
               style={[
                 styles.scopeText,
-                scope === entry ? { color: colors.textInverse } : null,
+                scope === entry ? { color: darkColors.textOnPrimary } : null,
               ]}
             >
               {t(`featureFlags.${entry}`)}
@@ -163,10 +163,10 @@ export const FeatureFlagsScreen: React.FC = () => {
                       value={flag.enabled}
                       onValueChange={(value) => toggle(flag, value)}
                       trackColor={{
-                        false: colors.border,
-                        true: colors.primary,
+                        false: darkColors.border,
+                        true: darkColors.primary,
                       }}
-                      thumbColor={colors.white}
+                      thumbColor={darkColors.white}
                     />
                   </View>
                 ))}
@@ -180,7 +180,7 @@ export const FeatureFlagsScreen: React.FC = () => {
 };
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: colors.background },
+  safe: { flex: 1, backgroundColor: darkColors.background },
   headerBtn: {
     width: 40,
     height: 40,
@@ -197,13 +197,13 @@ const styles = StyleSheet.create({
     paddingVertical: spacing.sm,
     borderRadius: radius.pill,
     borderWidth: 1.5,
-    borderColor: colors.primary,
+    borderColor: darkColors.primary,
     alignItems: 'center',
   },
-  scopeChipActive: { backgroundColor: colors.primary },
+  scopeChipActive: { backgroundColor: darkColors.primary },
   scopeText: {
     ...textStyles.caption,
-    color: colors.primary,
+    color: darkColors.primary,
     fontWeight: '700',
     textTransform: 'capitalize',
   },
@@ -213,7 +213,7 @@ const styles = StyleSheet.create({
     rowGap: spacing.base,
   },
   categoryCard: {
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     padding: spacing.base,
     borderRadius: radius.lg,
     rowGap: spacing.sm,
@@ -221,7 +221,7 @@ const styles = StyleSheet.create({
   },
   categoryTitle: {
     ...textStyles.h4,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
     textTransform: 'capitalize',
   },
   flagRow: {
@@ -230,11 +230,11 @@ const styles = StyleSheet.create({
     columnGap: spacing.sm,
     paddingVertical: spacing.xs,
     borderBottomWidth: 1,
-    borderBottomColor: colors.divider,
+    borderBottomColor: darkColors.divider,
   },
   flagBody: { flex: 1 },
-  flagName: { ...textStyles.body, color: colors.textPrimary },
-  flagMeta: { ...textStyles.caption, color: colors.textMuted },
+  flagName: { ...textStyles.body, color: darkColors.textPrimary },
+  flagMeta: { ...textStyles.caption, color: darkColors.textMuted },
 });
 
 export default FeatureFlagsScreen;

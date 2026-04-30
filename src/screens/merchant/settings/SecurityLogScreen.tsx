@@ -17,7 +17,7 @@ import { useNavigation } from '@react-navigation/native';
 
 import { Header } from '../../../components/common/Header';
 import { Icon, type AnyIconName } from '../../../components/common/Icon';
-import { colors } from '../../../constants/colors';
+import { darkColors } from '../../../theme/dark';
 import { radius, shadows, spacing } from '../../../constants/spacing';
 import { textStyles } from '../../../constants/typography';
 import { useCountryConfig } from '../../../hooks/useCountryConfig';
@@ -85,28 +85,28 @@ const ICON: Record<
 > = {
   login_success: {
     name: 'log-in-outline',
-    color: colors.success,
-    bg: colors.successSoft,
+    color: darkColors.success,
+    bg: darkColors.successSoft,
   },
   login_failure: {
     name: 'close-circle-outline',
-    color: colors.error,
-    bg: colors.errorSoft,
+    color: darkColors.error,
+    bg: darkColors.errorSoft,
   },
   biometric_used: {
     name: 'finger-print-outline',
-    color: colors.primary,
-    bg: colors.primarySoft,
+    color: darkColors.primary,
+    bg: darkColors.primarySoft,
   },
   permission_denied: {
     name: 'shield-half-outline',
-    color: colors.warning,
-    bg: colors.warningSoft,
+    color: darkColors.warning,
+    bg: darkColors.warningSoft,
   },
   suspicious_activity: {
     name: 'alert-circle-outline',
-    color: colors.error,
-    bg: colors.errorSoft,
+    color: darkColors.error,
+    bg: darkColors.errorSoft,
   },
 };
 
@@ -154,7 +154,7 @@ export const SecurityLogScreen: React.FC = () => {
             <Text
               style={[
                 styles.chipText,
-                filter === entry ? { color: colors.textInverse } : null,
+                filter === entry ? { color: darkColors.textOnPrimary } : null,
               ]}
             >
               {entry === 'all' ? t('customers.title') : t(`securityLog.${entry}`)}
@@ -194,7 +194,7 @@ export const SecurityLogScreen: React.FC = () => {
 };
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: colors.background },
+  safe: { flex: 1, backgroundColor: darkColors.background },
   filterRow: {
     paddingHorizontal: spacing.base,
     paddingTop: spacing.sm,
@@ -205,16 +205,16 @@ const styles = StyleSheet.create({
     paddingVertical: spacing.sm,
     borderRadius: radius.pill,
     borderWidth: 1,
-    borderColor: colors.border,
-    backgroundColor: colors.surface,
+    borderColor: darkColors.border,
+    backgroundColor: darkColors.surface,
   },
   chipActive: {
-    backgroundColor: colors.primary,
-    borderColor: colors.primary,
+    backgroundColor: darkColors.primary,
+    borderColor: darkColors.primary,
   },
   chipText: {
     ...textStyles.caption,
-    color: colors.textSecondary,
+    color: darkColors.textSecondary,
     fontWeight: '600',
   },
   list: {
@@ -226,7 +226,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     columnGap: spacing.sm,
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     padding: spacing.base,
     borderRadius: radius.lg,
     ...shadows.xs,
@@ -239,15 +239,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   kind: { ...textStyles.bodyMedium, fontWeight: '700' },
-  meta: { ...textStyles.caption, color: colors.textMuted },
+  meta: { ...textStyles.caption, color: darkColors.textMuted },
   detail: {
     ...textStyles.caption,
-    color: colors.textSecondary,
+    color: darkColors.textSecondary,
     marginTop: 2,
   },
   timestamp: {
     ...textStyles.caption,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
   },
 });
 

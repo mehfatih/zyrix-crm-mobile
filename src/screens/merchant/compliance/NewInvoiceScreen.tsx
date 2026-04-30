@@ -24,7 +24,7 @@ import { Header } from '../../../components/common/Header';
 import { ItemLineBuilder, type LineItem } from '../../../components/feature-specific/ItemLineBuilder';
 import { SearchableDropdown, type DropdownItem } from '../../../components/forms/SearchableDropdown';
 import { calculateInvoiceTotals } from '../../../utils/invoiceCalculator';
-import { colors } from '../../../constants/colors';
+import { darkColors } from '../../../theme/dark';
 import { listCustomers } from '../../../api/customers';
 import { radius, shadows, spacing } from '../../../constants/spacing';
 import { textStyles } from '../../../constants/typography';
@@ -159,7 +159,7 @@ export const NewInvoiceScreen: React.FC = () => {
             <CurrencyDisplay
               amount={totals.grandTotal}
               size="large"
-              color={colors.primaryDark}
+              color={darkColors.primaryDark}
             />
           </View>
         </View>
@@ -193,20 +193,20 @@ const Row: React.FC<{ label: string; amount: number; negative?: boolean }> = ({
     <CurrencyDisplay
       amount={amount}
       size="medium"
-      color={negative ? colors.error : colors.textPrimary}
+      color={negative ? darkColors.error : darkColors.textPrimary}
     />
   </View>
 );
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: colors.background },
+  safe: { flex: 1, backgroundColor: darkColors.background },
   scroll: {
     padding: spacing.base,
     rowGap: spacing.base,
     paddingBottom: spacing.xxxl,
   },
   card: {
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     padding: spacing.base,
     borderRadius: radius.lg,
     rowGap: spacing.sm,
@@ -214,7 +214,7 @@ const styles = StyleSheet.create({
   },
   sectionTitle: {
     ...textStyles.h4,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
   },
   totalsRow: {
     flexDirection: 'row',
@@ -224,11 +224,11 @@ const styles = StyleSheet.create({
   },
   totalsLabel: {
     ...textStyles.body,
-    color: colors.textSecondary,
+    color: darkColors.textSecondary,
   },
   divider: {
     height: 1,
-    backgroundColor: colors.divider,
+    backgroundColor: darkColors.divider,
     marginVertical: spacing.xs,
   },
   grandRow: {
@@ -238,7 +238,7 @@ const styles = StyleSheet.create({
   },
   grandLabel: {
     ...textStyles.h3,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
   },
   footer: {
     flexDirection: 'row',
@@ -246,8 +246,8 @@ const styles = StyleSheet.create({
     columnGap: spacing.sm,
     padding: spacing.base,
     borderTopWidth: 1,
-    borderTopColor: colors.divider,
-    backgroundColor: colors.surface,
+    borderTopColor: darkColors.divider,
+    backgroundColor: darkColors.surface,
   },
 });
 
