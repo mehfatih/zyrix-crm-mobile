@@ -29,12 +29,11 @@ import {
   zyrixRadius,
   zyrixShadows,
   zyrixSpacing,
-  zyrixTheme,
 } from '../../../theme/zyrixTheme';
+import { darkColors } from '../../../theme/dark';
 import { googleDriveService } from '../../../services/integrations/googleDrive';
 import { microsoftService } from '../../../services/integrations/microsoft';
 import { hitSlop } from '../../../constants/spacing';
-import { colors } from '../../../constants/colors';
 
 interface ProviderCardProps {
   name: string;
@@ -79,8 +78,8 @@ const ProviderCard: React.FC<ProviderCardProps> = ({
               styles.statusDot,
               {
                 backgroundColor: connected
-                  ? zyrixTheme.success
-                  : zyrixTheme.textMuted,
+                  ? darkColors.success
+                  : darkColors.textMuted,
               },
             ]}
           />
@@ -104,7 +103,7 @@ const ProviderCard: React.FC<ProviderCardProps> = ({
         {busy ? (
           <ActivityIndicator
             size="small"
-            color={connected ? zyrixTheme.danger : zyrixTheme.textInverse}
+            color={connected ? darkColors.error : darkColors.textOnPrimary}
           />
         ) : (
           <Text
@@ -198,7 +197,7 @@ export const IntegrationsScreen: React.FC = () => {
             hitSlop={hitSlop.md}
             style={styles.headerBtn}
           >
-            <Icon name="menu-outline" size={24} color={colors.textInverse} />
+            <Icon name="menu-outline" size={24} color={darkColors.textOnPrimary} />
           </Pressable>
         }
       />
@@ -237,7 +236,7 @@ export const IntegrationsScreen: React.FC = () => {
 export default IntegrationsScreen;
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: zyrixTheme.surfaceAlt },
+  safe: { flex: 1, backgroundColor: darkColors.surfaceAlt },
   headerBtn: {
     width: 40,
     height: 40,
@@ -251,17 +250,17 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 22,
     fontWeight: '700',
-    color: zyrixTheme.textHeading,
+    color: darkColors.textHeading,
   },
   subtitle: {
     fontSize: 13,
-    color: zyrixTheme.textMuted,
+    color: darkColors.textMuted,
     marginBottom: zyrixSpacing.sm,
   },
   sectionTitle: {
     fontSize: 12,
     fontWeight: '700',
-    color: zyrixTheme.textMuted,
+    color: darkColors.textMuted,
     textTransform: 'uppercase',
     letterSpacing: 1.2,
     marginTop: zyrixSpacing.sm,
@@ -271,11 +270,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     columnGap: 14,
-    backgroundColor: zyrixTheme.cardBg,
+    backgroundColor: darkColors.surface,
     borderRadius: zyrixRadius.lg,
     padding: 14,
     borderWidth: 1,
-    borderColor: zyrixTheme.cardBorder,
+    borderColor: darkColors.border,
     ...zyrixShadows.card,
   },
   iconWrap: {
@@ -289,7 +288,7 @@ const styles = StyleSheet.create({
   cardName: {
     fontSize: 15,
     fontWeight: '700',
-    color: zyrixTheme.textHeading,
+    color: darkColors.textHeading,
   },
   statusRow: {
     flexDirection: 'row',
@@ -298,7 +297,7 @@ const styles = StyleSheet.create({
     marginTop: 4,
   },
   statusDot: { width: 8, height: 8, borderRadius: 4 },
-  statusText: { fontSize: 12, color: zyrixTheme.textMuted },
+  statusText: { fontSize: 12, color: darkColors.textMuted },
   actionBtn: {
     paddingHorizontal: 14,
     paddingVertical: 8,
@@ -307,19 +306,19 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  connectBtn: { backgroundColor: zyrixTheme.primary },
+  connectBtn: { backgroundColor: darkColors.primary },
   disconnectBtn: {
-    backgroundColor: zyrixTheme.surfaceAlt,
+    backgroundColor: darkColors.surfaceAlt,
     borderWidth: 1,
-    borderColor: zyrixTheme.border,
+    borderColor: darkColors.border,
   },
   actionText: { fontSize: 13, fontWeight: '700' },
-  connectText: { color: zyrixTheme.textInverse },
-  disconnectText: { color: zyrixTheme.danger },
+  connectText: { color: darkColors.textOnPrimary },
+  disconnectText: { color: darkColors.error },
   helper: {
     marginTop: zyrixSpacing.base,
     fontSize: 12,
-    color: zyrixTheme.textMuted,
+    color: darkColors.textMuted,
     lineHeight: 18,
   },
 });
