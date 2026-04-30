@@ -17,6 +17,7 @@ import { useTranslation } from 'react-i18next';
 
 import { Icon } from '../../components/common/Icon';
 import { darkColors } from '../../theme/dark';
+import { getPageAccent } from '../../theme/dark/accents';
 import {
   hasHooks,
   isJailbroken,
@@ -24,6 +25,8 @@ import {
 } from '../../utils/jailbreakDetection';
 import { radius, shadows, spacing } from '../../constants/spacing';
 import { textStyles } from '../../constants/typography';
+
+const PAGE_ACCENT = getPageAccent('securityBlock');
 
 export const SecurityBlockScreen: React.FC = () => {
   const { t } = useTranslation();

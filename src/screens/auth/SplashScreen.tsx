@@ -34,12 +34,15 @@ import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { AppScreen } from '../../components/layout/AppScreen';
 import { LanguageSwitcher } from '../../components/common/LanguageSwitcher';
 import { darkColors, darkGradients } from '../../theme/dark';
+import { getPageAccent } from '../../theme/dark/accents';
 import { radius, shadows, spacing } from '../../constants/spacing';
 import { textStyles } from '../../constants/typography';
 import { useUiStore } from '../../store/uiStore';
 import type { AuthStackParamList } from '../../navigation/types';
 
 type Nav = NativeStackNavigationProp<AuthStackParamList, 'Splash'>;
+
+const PAGE_ACCENT = getPageAccent('splash');
 
 interface Tagline {
   lang: 'ar' | 'en' | 'tr';

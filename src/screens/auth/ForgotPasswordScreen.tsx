@@ -45,11 +45,14 @@ import {
   zyrixSpacing,
 } from '../../theme/zyrixTheme';
 import { darkColors } from '../../theme/dark';
+import { getPageAccent } from '../../theme/dark/accents';
 import type { AuthStackParamList } from '../../navigation/types';
 
 type Method = 'resetLink' | 'magicLink' | 'otp';
 
 type Nav = NativeStackNavigationProp<AuthStackParamList, 'Login'>;
+
+const PAGE_ACCENT = getPageAccent('forgotPassword');
 
 const METHODS: readonly { key: Method; icon: string; labelKey: string; subtitleKey: string }[] = [
   {

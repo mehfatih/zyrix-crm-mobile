@@ -29,6 +29,7 @@ import { Button } from '../../components/common/Button';
 import { Icon, type AnyIconName } from '../../components/common/Icon';
 import { CountryPicker } from '../../components/forms/CountryPicker';
 import { darkColors } from '../../theme/dark';
+import { getPageAccent } from '../../theme/dark/accents';
 import { findCountry } from '../../constants/countries';
 import { hitSlop, radius, shadows, spacing } from '../../constants/spacing';
 import { textStyles } from '../../constants/typography';
@@ -47,6 +48,8 @@ import type { CountryCode } from '../../types/country';
 
 type Step = OnboardingStep;
 const TOTAL_STEPS = 5;
+
+const PAGE_ACCENT = getPageAccent('onboarding');
 
 interface BusinessTypeOption {
   key:

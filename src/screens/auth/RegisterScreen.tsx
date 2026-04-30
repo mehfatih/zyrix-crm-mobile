@@ -32,6 +32,7 @@ import { Icon } from '../../components/common/Icon';
 import { Input } from '../../components/common/Input';
 import { PhoneInput } from '../../components/common/PhoneInput';
 import { darkColors } from '../../theme/dark';
+import { getPageAccent } from '../../theme/dark/accents';
 import { radius, shadows, spacing } from '../../constants/spacing';
 import { textStyles } from '../../constants/typography';
 import { useAuthStore } from '../../store/authStore';
@@ -79,6 +80,8 @@ const mockTokenFor = (email: string): string => {
 };
 
 type Navigation = NativeStackNavigationProp<AuthStackParamList, 'Register'>;
+
+const PAGE_ACCENT = getPageAccent('register');
 
 export const RegisterScreen: React.FC = () => {
   const { t } = useTranslation();

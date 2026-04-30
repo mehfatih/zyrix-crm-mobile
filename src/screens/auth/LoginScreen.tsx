@@ -35,6 +35,7 @@ import { Icon } from '../../components/common/Icon';
 import { Input } from '../../components/common/Input';
 import { LanguageSwitcher } from '../../components/common/LanguageSwitcher';
 import { darkColors } from '../../theme/dark';
+import { getPageAccent } from '../../theme/dark/accents';
 import { logSecurityEvent } from '../../utils/securityEvents';
 import { radius, shadows, spacing } from '../../constants/spacing';
 import { textStyles } from '../../constants/typography';
@@ -143,6 +144,8 @@ const mockTokenFor = (email: string): string => {
 };
 
 type Navigation = NativeStackNavigationProp<AuthStackParamList, 'Login'>;
+
+const PAGE_ACCENT = getPageAccent('login');
 
 export const LoginScreen: React.FC = () => {
   const { t } = useTranslation();
