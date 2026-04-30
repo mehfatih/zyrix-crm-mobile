@@ -24,7 +24,7 @@ import { Audio } from 'expo-av';
 
 import { Header } from '../../components/common/Header';
 import { Icon } from '../../components/common/Icon';
-import { colors } from '../../constants/colors';
+import { darkColors } from '../../theme/dark';
 import { radius, spacing } from '../../constants/spacing';
 import { textStyles } from '../../constants/typography';
 import { useToast } from '../../hooks/useToast';
@@ -228,9 +228,9 @@ export const VoiceNoteScreen: React.FC<VoiceNoteScreenProps> = ({
   const primaryIcon =
     phase === 'recording' ? 'stop' : phase === 'recorded' ? 'play' : 'mic';
   const primaryColor =
-    phase === 'recording' ? colors.error : colors.textInverse;
+    phase === 'recording' ? darkColors.error : darkColors.textOnPrimary;
   const primaryBg =
-    phase === 'recording' ? colors.surface : colors.primary;
+    phase === 'recording' ? darkColors.surface : darkColors.primary;
 
   const helperText =
     phase === 'recording'
@@ -245,7 +245,7 @@ export const VoiceNoteScreen: React.FC<VoiceNoteScreenProps> = ({
     if (permission && !permission.granted) {
       return (
         <View style={styles.permissionWrap}>
-          <Icon name="mic-outline" size={48} color={colors.primary} />
+          <Icon name="mic-outline" size={48} color={darkColors.primary} />
           <Text style={styles.permissionTitle}>
             {t('voiceNote.permissionTitle')}
           </Text>
@@ -295,7 +295,7 @@ export const VoiceNoteScreen: React.FC<VoiceNoteScreenProps> = ({
           accessibilityLabel={helperText}
         >
           {phase === 'saving' ? (
-            <ActivityIndicator color={colors.textInverse} />
+            <ActivityIndicator color={darkColors.textOnPrimary} />
           ) : (
             <Icon name={primaryIcon} size={36} color={primaryColor} />
           )}
@@ -347,7 +347,7 @@ export const VoiceNoteScreen: React.FC<VoiceNoteScreenProps> = ({
 const styles = StyleSheet.create({
   safe: {
     flex: 1,
-    backgroundColor: colors.background,
+    backgroundColor: darkColors.background,
   },
   body: {
     flex: 1,
@@ -357,7 +357,7 @@ const styles = StyleSheet.create({
   },
   subtitle: {
     ...textStyles.body,
-    color: colors.textSecondary,
+    color: darkColors.textSecondary,
     textAlign: 'center',
   },
   timerWrap: {
@@ -368,11 +368,11 @@ const styles = StyleSheet.create({
   },
   timer: {
     ...textStyles.display,
-    color: colors.textHeading,
+    color: darkColors.textHeading,
   },
   timerMax: {
     ...textStyles.body,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
   },
   pulseRing: {
     position: 'absolute',
@@ -380,7 +380,7 @@ const styles = StyleSheet.create({
     width: 160,
     height: 160,
     borderRadius: 80,
-    backgroundColor: colors.coralSoft,
+    backgroundColor: darkColors.coralSoft,
   },
   primaryBtn: {
     marginTop: spacing.xl,
@@ -392,11 +392,11 @@ const styles = StyleSheet.create({
   },
   primaryBtnRecording: {
     borderWidth: 3,
-    borderColor: colors.error,
+    borderColor: darkColors.error,
   },
   helper: {
     ...textStyles.body,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
     marginTop: spacing.lg,
   },
   actions: {
@@ -412,24 +412,24 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   secondaryBtn: {
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     borderWidth: 1,
-    borderColor: colors.border,
+    borderColor: darkColors.border,
   },
   primaryActionBtn: {
-    backgroundColor: colors.primary,
+    backgroundColor: darkColors.primary,
   },
   secondaryText: {
     ...textStyles.button,
-    color: colors.textSecondary,
+    color: darkColors.textSecondary,
   },
   primaryActionText: {
     ...textStyles.button,
-    color: colors.textInverse,
+    color: darkColors.textOnPrimary,
   },
   maxLength: {
     ...textStyles.caption,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
     marginTop: spacing.xl,
   },
   permissionWrap: {
@@ -441,24 +441,24 @@ const styles = StyleSheet.create({
   },
   permissionTitle: {
     ...textStyles.h3,
-    color: colors.textHeading,
+    color: darkColors.textHeading,
     textAlign: 'center',
   },
   permissionBody: {
     ...textStyles.body,
-    color: colors.textSecondary,
+    color: darkColors.textSecondary,
     textAlign: 'center',
   },
   permissionBtn: {
     marginTop: spacing.base,
     paddingHorizontal: spacing.xl,
     paddingVertical: spacing.md,
-    backgroundColor: colors.primary,
+    backgroundColor: darkColors.primary,
     borderRadius: radius.pill,
   },
   permissionBtnText: {
     ...textStyles.button,
-    color: colors.textInverse,
+    color: darkColors.textOnPrimary,
   },
 });
 

@@ -23,7 +23,7 @@ import { useNavigation } from '@react-navigation/native';
 import { Button } from '../../../components/common/Button';
 import { Header } from '../../../components/common/Header';
 import { Icon, type AnyIconName } from '../../../components/common/Icon';
-import { colors } from '../../../constants/colors';
+import { darkColors } from '../../../theme/dark';
 import { logSecurityEvent } from '../../../utils/securityEvents';
 import { radius, shadows, spacing } from '../../../constants/spacing';
 import { textStyles } from '../../../constants/typography';
@@ -117,7 +117,7 @@ export const TwoFactorScreen: React.FC = () => {
         {enabled ? (
           <>
             <View style={styles.statusCard}>
-              <Icon name="shield-checkmark" size={32} color={colors.success} />
+              <Icon name="shield-checkmark" size={32} color={darkColors.success} />
               <Text style={styles.statusTitle}>2FA is active</Text>
               <Text style={styles.statusBody}>{`Method: ${method}`}</Text>
             </View>
@@ -181,7 +181,7 @@ export const TwoFactorScreen: React.FC = () => {
                         name={METHOD_ICON[entry]}
                         size={24}
                         color={
-                          method === entry ? colors.primary : colors.textSecondary
+                          method === entry ? darkColors.primary : darkColors.textSecondary
                         }
                       />
                       <Text style={styles.methodLabel}>
@@ -208,7 +208,7 @@ export const TwoFactorScreen: React.FC = () => {
                       <Icon
                         name="qr-code-outline"
                         size={48}
-                        color={colors.primary}
+                        color={darkColors.primary}
                       />
                       <Text style={styles.body}>
                         {t('twoFactor.orEnterKey')}
@@ -238,7 +238,7 @@ export const TwoFactorScreen: React.FC = () => {
                     maxLength={6}
                     autoFocus
                     placeholder="••••••"
-                    placeholderTextColor={colors.textMuted}
+                    placeholderTextColor={darkColors.textMuted}
                     style={[
                       styles.codeInput,
                       { textAlign: I18nManager.isRTL ? 'right' : 'left' },
@@ -257,7 +257,7 @@ export const TwoFactorScreen: React.FC = () => {
                   <Text style={styles.sectionTitle}>
                     {t('twoFactor.backupCodesTitle')}
                   </Text>
-                  <Text style={[styles.body, { color: colors.warning, fontWeight: '700' }]}>
+                  <Text style={[styles.body, { color: darkColors.warning, fontWeight: '700' }]}>
                     {t('security.saveThese')}
                   </Text>
                   <View style={styles.codesGrid}>
@@ -311,29 +311,29 @@ const SettingsRow: React.FC<{
     <Icon
       name={icon}
       size={20}
-      color={tone === 'error' ? colors.error : colors.primary}
+      color={tone === 'error' ? darkColors.error : darkColors.primary}
     />
     <Text
       style={[
         styles.settingsLabel,
-        tone === 'error' ? { color: colors.error } : null,
+        tone === 'error' ? { color: darkColors.error } : null,
       ]}
     >
       {label}
     </Text>
-    <Icon name="chevron-forward" size={18} color={colors.textMuted} />
+    <Icon name="chevron-forward" size={18} color={darkColors.textMuted} />
   </Pressable>
 );
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: colors.background },
+  safe: { flex: 1, backgroundColor: darkColors.background },
   scroll: {
     padding: spacing.base,
     rowGap: spacing.base,
     paddingBottom: spacing.xxl,
   },
   statusCard: {
-    backgroundColor: colors.successSoft,
+    backgroundColor: darkColors.successSoft,
     padding: spacing.base,
     borderRadius: radius.lg,
     alignItems: 'center',
@@ -341,21 +341,21 @@ const styles = StyleSheet.create({
   },
   statusTitle: {
     ...textStyles.h3,
-    color: colors.success,
+    color: darkColors.success,
   },
   statusBody: {
     ...textStyles.body,
-    color: colors.success,
+    color: darkColors.success,
   },
   section: {
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     padding: spacing.base,
     borderRadius: radius.lg,
     rowGap: spacing.sm,
     ...shadows.xs,
   },
   card: {
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     padding: spacing.base,
     borderRadius: radius.lg,
     rowGap: spacing.sm,
@@ -370,13 +370,13 @@ const styles = StyleSheet.create({
     width: 24,
     height: 5,
     borderRadius: 3,
-    backgroundColor: colors.border,
+    backgroundColor: darkColors.border,
   },
   stepDotActive: {
-    backgroundColor: colors.primary,
+    backgroundColor: darkColors.primary,
   },
-  sectionTitle: { ...textStyles.h4, color: colors.textPrimary },
-  body: { ...textStyles.body, color: colors.textSecondary },
+  sectionTitle: { ...textStyles.h4, color: darkColors.textPrimary },
+  body: { ...textStyles.body, color: darkColors.textSecondary },
   methodCard: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -384,31 +384,31 @@ const styles = StyleSheet.create({
     padding: spacing.base,
     borderRadius: radius.lg,
     borderWidth: 1.5,
-    borderColor: colors.border,
+    borderColor: darkColors.border,
   },
   methodCardActive: {
-    borderColor: colors.primary,
-    backgroundColor: colors.primarySoft,
+    borderColor: darkColors.primary,
+    backgroundColor: darkColors.primarySoft,
   },
-  methodLabel: { ...textStyles.bodyMedium, color: colors.textPrimary },
+  methodLabel: { ...textStyles.bodyMedium, color: darkColors.textPrimary },
   qrPlaceholder: {
     alignItems: 'center',
     rowGap: spacing.xs,
     padding: spacing.lg,
-    backgroundColor: colors.surfaceAlt,
+    backgroundColor: darkColors.surfaceAlt,
     borderRadius: radius.lg,
   },
   qrKey: {
     ...textStyles.body,
-    color: colors.primaryDark,
+    color: darkColors.primaryDark,
     fontFamily: 'monospace',
   },
   codeInput: {
     ...textStyles.h1,
-    color: colors.primaryDark,
-    backgroundColor: colors.surface,
+    color: darkColors.primaryDark,
+    backgroundColor: darkColors.surface,
     borderWidth: 1.5,
-    borderColor: colors.primary,
+    borderColor: darkColors.primary,
     borderRadius: radius.lg,
     paddingHorizontal: spacing.xl,
     paddingVertical: spacing.md,
@@ -421,13 +421,13 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     gap: spacing.xs,
-    backgroundColor: colors.surfaceAlt,
+    backgroundColor: darkColors.surfaceAlt,
     padding: spacing.base,
     borderRadius: radius.lg,
   },
   codeText: {
     ...textStyles.body,
-    color: colors.primaryDark,
+    color: darkColors.primaryDark,
     fontFamily: 'monospace',
     flexBasis: '47%',
     textAlign: 'center',
@@ -444,7 +444,7 @@ const styles = StyleSheet.create({
     paddingVertical: spacing.sm,
     paddingHorizontal: spacing.sm,
   },
-  settingsLabel: { flex: 1, ...textStyles.body, color: colors.textPrimary },
+  settingsLabel: { flex: 1, ...textStyles.body, color: darkColors.textPrimary },
 });
 
 export default TwoFactorScreen;

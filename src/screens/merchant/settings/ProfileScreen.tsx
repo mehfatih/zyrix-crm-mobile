@@ -28,7 +28,7 @@ import { Header } from '../../../components/common/Header';
 import { Icon } from '../../../components/common/Icon';
 import { LanguageSwitcher } from '../../../components/common/LanguageSwitcher';
 import { CountryPicker } from '../../../components/forms/CountryPicker';
-import { colors } from '../../../constants/colors';
+import { darkColors } from '../../../theme/dark';
 import { findCountry } from '../../../constants/countries';
 import { getCountryConfig } from '../../../config/countries';
 import { radius, shadows, spacing } from '../../../constants/spacing';
@@ -104,7 +104,7 @@ export const ProfileScreen: React.FC = () => {
             accessibilityLabel={t('navigation.menu')}
             style={styles.menuBtn}
           >
-            <Icon name="menu-outline" size={24} color={colors.textInverse} />
+            <Icon name="menu-outline" size={24} color={darkColors.textOnPrimary} />
           </Pressable>
         }
         rightSlot={<LanguageSwitcher />}
@@ -115,11 +115,11 @@ export const ProfileScreen: React.FC = () => {
         showsVerticalScrollIndicator={false}
       >
         <View style={[styles.card, styles.cardIdentity]}>
-          <View style={[styles.iconBubble, { backgroundColor: colors.mintSoft }]}>
+          <View style={[styles.iconBubble, { backgroundColor: darkColors.mintSoft }]}>
             <Icon
               name="person-circle-outline"
               size={28}
-              color={colors.mint}
+              color={darkColors.mint}
             />
           </View>
           <View style={styles.cardBody}>
@@ -146,7 +146,7 @@ export const ProfileScreen: React.FC = () => {
           accessibilityLabel={t('profile.changeCountry')}
         >
           <View
-            style={[styles.iconBubble, { backgroundColor: colors.lavenderSoft }]}
+            style={[styles.iconBubble, { backgroundColor: darkColors.lavenderSoft }]}
           >
             <Text style={styles.flag}>{activeCountry.flag}</Text>
           </View>
@@ -165,19 +165,19 @@ export const ProfileScreen: React.FC = () => {
           <Icon
             name="chevron-forward"
             size={20}
-            color={colors.textMuted}
+            color={darkColors.textMuted}
             style={styles.chevron}
           />
         </Pressable>
 
         <View style={[styles.card, styles.cardLanguage]}>
           <View
-            style={[styles.iconBubble, { backgroundColor: colors.coralSoft }]}
+            style={[styles.iconBubble, { backgroundColor: darkColors.coralSoft }]}
           >
             <Icon
               name="language-outline"
               size={22}
-              color={colors.coral}
+              color={darkColors.coral}
             />
           </View>
           <View style={styles.cardBody}>
@@ -194,8 +194,8 @@ export const ProfileScreen: React.FC = () => {
 
         {currentUser?.email ? (
           <View style={[styles.card, styles.cardIdentity]}>
-            <View style={[styles.iconBubble, { backgroundColor: colors.skySoft }]}>
-              <Icon name="mail-outline" size={22} color={colors.primary} />
+            <View style={[styles.iconBubble, { backgroundColor: darkColors.skySoft }]}>
+              <Icon name="mail-outline" size={22} color={darkColors.primary} />
             </View>
             <View style={styles.cardBody}>
               <Text style={styles.cardLabel}>{t('profile.email')}</Text>
@@ -204,13 +204,13 @@ export const ProfileScreen: React.FC = () => {
               </Text>
               <Text style={styles.cardCaption}>{t('profile.emailVerified')}</Text>
             </View>
-            <Icon name="checkmark-circle" size={22} color={colors.success} />
+            <Icon name="checkmark-circle" size={22} color={darkColors.success} />
           </View>
         ) : null}
 
         <View style={[styles.card, styles.cardIdentity]}>
-          <View style={[styles.iconBubble, { backgroundColor: colors.peachSoft }]}>
-            <Icon name="call-outline" size={22} color={colors.peach} />
+          <View style={[styles.iconBubble, { backgroundColor: darkColors.peachSoft }]}>
+            <Icon name="call-outline" size={22} color={darkColors.peach} />
           </View>
           <View style={styles.cardBody}>
             <Text style={styles.cardLabel}>{t('profile.phone')}</Text>
@@ -231,8 +231,8 @@ export const ProfileScreen: React.FC = () => {
           accessibilityRole="switch"
           accessibilityState={{ checked: useUSD }}
         >
-          <View style={[styles.iconBubble, { backgroundColor: colors.mintSoft }]}>
-            <Icon name="cash-outline" size={22} color={colors.mint} />
+          <View style={[styles.iconBubble, { backgroundColor: darkColors.mintSoft }]}>
+            <Icon name="cash-outline" size={22} color={darkColors.mint} />
           </View>
           <View style={styles.cardBody}>
             <Text style={styles.cardLabel}>{t('profile.currencyPreference')}</Text>
@@ -269,14 +269,14 @@ export const ProfileScreen: React.FC = () => {
           ]}
           accessibilityRole="button"
         >
-          <View style={[styles.iconBubble, { backgroundColor: colors.primarySoft }]}>
-            <Icon name="finger-print-outline" size={22} color={colors.primary} />
+          <View style={[styles.iconBubble, { backgroundColor: darkColors.primarySoft }]}>
+            <Icon name="finger-print-outline" size={22} color={darkColors.primary} />
           </View>
           <View style={styles.cardBody}>
             <Text style={styles.cardLabel}>{t('profile.biometric')}</Text>
             <Text style={styles.cardValue}>{biometricEnabled ? 'On' : 'Off'}</Text>
           </View>
-          <Icon name="chevron-forward" size={20} color={colors.textMuted} />
+          <Icon name="chevron-forward" size={20} color={darkColors.textMuted} />
         </Pressable>
 
         <Pressable
@@ -288,14 +288,14 @@ export const ProfileScreen: React.FC = () => {
           ]}
           accessibilityRole="button"
         >
-          <View style={[styles.iconBubble, { backgroundColor: colors.lavenderSoft }]}>
-            <Icon name="key-outline" size={22} color={colors.lavender} />
+          <View style={[styles.iconBubble, { backgroundColor: darkColors.lavenderSoft }]}>
+            <Icon name="key-outline" size={22} color={darkColors.lavender} />
           </View>
           <View style={styles.cardBody}>
             <Text style={styles.cardLabel}>{t('profile.twoFactor')}</Text>
             <Text style={styles.cardValue}>{twoFactorEnabled ? 'On' : 'Off'}</Text>
           </View>
-          <Icon name="chevron-forward" size={20} color={colors.textMuted} />
+          <Icon name="chevron-forward" size={20} color={darkColors.textMuted} />
         </Pressable>
 
         <Pressable
@@ -307,14 +307,14 @@ export const ProfileScreen: React.FC = () => {
           ]}
           accessibilityRole="button"
         >
-          <View style={[styles.iconBubble, { backgroundColor: colors.sunshineSoft }]}>
-            <Icon name="phone-portrait-outline" size={22} color={colors.warning} />
+          <View style={[styles.iconBubble, { backgroundColor: darkColors.sunshineSoft }]}>
+            <Icon name="phone-portrait-outline" size={22} color={darkColors.warning} />
           </View>
           <View style={styles.cardBody}>
             <Text style={styles.cardLabel}>{t('profile.activeSessions')}</Text>
             <Text style={styles.cardValue}>{t('common.edit')}</Text>
           </View>
-          <Icon name="chevron-forward" size={20} color={colors.textMuted} />
+          <Icon name="chevron-forward" size={20} color={darkColors.textMuted} />
         </Pressable>
 
         <Pressable
@@ -326,21 +326,21 @@ export const ProfileScreen: React.FC = () => {
           ]}
           accessibilityRole="button"
         >
-          <View style={[styles.iconBubble, { backgroundColor: colors.roseSoft }]}>
-            <Icon name="lock-closed-outline" size={22} color={colors.rose} />
+          <View style={[styles.iconBubble, { backgroundColor: darkColors.roseSoft }]}>
+            <Icon name="lock-closed-outline" size={22} color={darkColors.rose} />
           </View>
           <View style={styles.cardBody}>
             <Text style={styles.cardLabel}>{t('profile.passwordChange')}</Text>
             <Text style={styles.cardValue}>{t('common.continue')}</Text>
           </View>
-          <Icon name="chevron-forward" size={20} color={colors.textMuted} />
+          <Icon name="chevron-forward" size={20} color={darkColors.textMuted} />
         </Pressable>
 
         <View style={styles.helpCard}>
           <Icon
             name="information-circle-outline"
             size={20}
-            color={colors.primary}
+            color={darkColors.primary}
           />
           <Text style={styles.helpText}>{t('profile.separationNote')}</Text>
         </View>
@@ -359,7 +359,7 @@ export const ProfileScreen: React.FC = () => {
 const styles = StyleSheet.create({
   safe: {
     flex: 1,
-    backgroundColor: colors.background,
+    backgroundColor: darkColors.background,
   },
   scroll: {
     padding: spacing.base,
@@ -378,20 +378,20 @@ const styles = StyleSheet.create({
     columnGap: spacing.md,
     padding: spacing.base,
     borderRadius: radius.lg,
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     ...shadows.sm,
   },
   cardIdentity: {
     borderLeftWidth: 4,
-    borderLeftColor: colors.mint,
+    borderLeftColor: darkColors.mint,
   },
   cardCountry: {
     borderLeftWidth: 4,
-    borderLeftColor: colors.lavender,
+    borderLeftColor: darkColors.lavender,
   },
   cardLanguage: {
     borderLeftWidth: 4,
-    borderLeftColor: colors.coral,
+    borderLeftColor: darkColors.coral,
   },
   iconBubble: {
     width: 48,
@@ -408,16 +408,16 @@ const styles = StyleSheet.create({
   },
   cardLabel: {
     ...textStyles.overline,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
   },
   cardValue: {
     ...textStyles.h4,
-    color: colors.textHeading,
+    color: darkColors.textHeading,
     marginTop: 2,
   },
   cardCaption: {
     ...textStyles.caption,
-    color: colors.textSecondary,
+    color: darkColors.textSecondary,
     marginTop: 2,
   },
   chevron: {
@@ -427,19 +427,19 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'flex-start',
     columnGap: spacing.sm,
-    backgroundColor: colors.skySoft,
+    backgroundColor: darkColors.skySoft,
     borderRadius: radius.md,
     padding: spacing.md,
     marginTop: spacing.xs,
   },
   helpText: {
     ...textStyles.caption,
-    color: colors.textHeading,
+    color: darkColors.textHeading,
     flex: 1,
   },
   sectionHeading: {
     ...textStyles.overline,
-    color: colors.primaryDark,
+    color: darkColors.primaryDark,
     marginTop: spacing.base,
     marginHorizontal: spacing.xs,
   },
@@ -451,16 +451,16 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   toggleOn: {
-    backgroundColor: colors.primary,
+    backgroundColor: darkColors.primary,
   },
   toggleOff: {
-    backgroundColor: colors.border,
+    backgroundColor: darkColors.border,
   },
   toggleKnob: {
     width: 22,
     height: 22,
     borderRadius: 11,
-    backgroundColor: colors.white,
+    backgroundColor: darkColors.white,
     ...shadows.xs,
   },
   toggleKnobOn: {

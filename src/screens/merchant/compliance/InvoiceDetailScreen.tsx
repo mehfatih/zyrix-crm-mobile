@@ -31,7 +31,7 @@ import { Header } from '../../../components/common/Header';
 import { Icon, type AnyIconName } from '../../../components/common/Icon';
 import { SkeletonCard } from '../../../components/common/SkeletonCard';
 import { ZATCAInvoicePreview } from '../../../components/feature-specific/ZATCAInvoicePreview';
-import { colors } from '../../../constants/colors';
+import { darkColors } from '../../../theme/dark';
 import {
   useCancelInvoice,
   useDownloadInvoicePDF,
@@ -62,10 +62,10 @@ const STATUS_ORDER: readonly InvoiceStatus[] = [
 ];
 
 const STATUS_TONE: Record<ComplianceStatus, { background: string; color: string }> = {
-  pending: { background: colors.warningSoft, color: colors.warning },
-  submitted: { background: colors.infoSoft, color: colors.info },
-  accepted: { background: colors.successSoft, color: colors.success },
-  rejected: { background: colors.errorSoft, color: colors.error },
+  pending: { background: darkColors.warningSoft, color: darkColors.warning },
+  submitted: { background: darkColors.infoSoft, color: darkColors.info },
+  accepted: { background: darkColors.successSoft, color: darkColors.success },
+  rejected: { background: darkColors.errorSoft, color: darkColors.error },
 };
 
 export const InvoiceDetailScreen: React.FC = () => {
@@ -166,7 +166,7 @@ export const InvoiceDetailScreen: React.FC = () => {
             <Icon
               name="ellipsis-vertical"
               size={20}
-              color={colors.textInverse}
+              color={darkColors.textOnPrimary}
             />
           </Pressable>
         }
@@ -183,7 +183,7 @@ export const InvoiceDetailScreen: React.FC = () => {
             <View
               style={[
                 styles.statusBadge,
-                { backgroundColor: colors.primarySoft },
+                { backgroundColor: darkColors.primarySoft },
               ]}
             >
               <Text style={styles.statusText}>
@@ -201,8 +201,8 @@ export const InvoiceDetailScreen: React.FC = () => {
                         styles.timelineDot,
                         {
                           backgroundColor: reached
-                            ? colors.primary
-                            : colors.border,
+                            ? darkColors.primary
+                            : darkColors.border,
                         },
                       ]}
                     />
@@ -210,7 +210,7 @@ export const InvoiceDetailScreen: React.FC = () => {
                       style={[
                         styles.timelineLabel,
                         reached
-                          ? { color: colors.primaryDark, fontWeight: '700' }
+                          ? { color: darkColors.primaryDark, fontWeight: '700' }
                           : null,
                       ]}
                     >
@@ -333,7 +333,7 @@ const ComplianceCard: React.FC<{
       </Text>
       {uuid ? <Text style={styles.complianceMeta}>{`UUID: ${uuid}`}</Text> : null}
       {error ? (
-        <Text style={[styles.complianceMeta, { color: colors.error }]}>
+        <Text style={[styles.complianceMeta, { color: darkColors.error }]}>
           {error}
         </Text>
       ) : null}
@@ -357,12 +357,12 @@ const ActionRow: React.FC<{
     <Icon
       name={icon}
       size={20}
-      color={tone === 'error' ? colors.error : colors.primary}
+      color={tone === 'error' ? darkColors.error : darkColors.primary}
     />
     <Text
       style={[
         styles.actionLabel,
-        tone === 'error' ? { color: colors.error } : null,
+        tone === 'error' ? { color: darkColors.error } : null,
       ]}
     >
       {label}
@@ -371,14 +371,14 @@ const ActionRow: React.FC<{
 );
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: colors.background },
+  safe: { flex: 1, backgroundColor: darkColors.background },
   scroll: {
     padding: spacing.base,
     paddingBottom: spacing.xxl,
     rowGap: spacing.base,
   },
   statusCard: {
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     padding: spacing.base,
     borderRadius: radius.lg,
     rowGap: spacing.sm,
@@ -392,7 +392,7 @@ const styles = StyleSheet.create({
   },
   statusText: {
     ...textStyles.label,
-    color: colors.primary,
+    color: darkColors.primary,
     fontWeight: '700',
     textTransform: 'uppercase',
   },
@@ -413,7 +413,7 @@ const styles = StyleSheet.create({
   },
   timelineLabel: {
     ...textStyles.caption,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
   },
   complianceCard: {
     padding: spacing.base,
@@ -432,10 +432,10 @@ const styles = StyleSheet.create({
   },
   complianceMeta: {
     ...textStyles.caption,
-    color: colors.textSecondary,
+    color: darkColors.textSecondary,
   },
   actionsCard: {
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     borderRadius: radius.lg,
     padding: spacing.sm,
     rowGap: spacing.xs,
@@ -450,7 +450,7 @@ const styles = StyleSheet.create({
   },
   actionLabel: {
     ...textStyles.body,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
   },
   headerBtn: {
     width: 40,
