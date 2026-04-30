@@ -29,7 +29,7 @@ import { CustomerCard } from '../../../components/feature-specific/CustomerCard'
 import { Header } from '../../../components/common/Header';
 import { Icon } from '../../../components/common/Icon';
 import { SkeletonCard } from '../../../components/common/SkeletonCard';
-import { colors } from '../../../constants/colors';
+import { darkColors } from '../../../theme/dark';
 import { hitSlop, radius, shadows, spacing } from '../../../constants/spacing';
 import { textStyles } from '../../../constants/typography';
 import { useCustomers } from '../../../hooks/useCustomers';
@@ -97,7 +97,7 @@ export const CustomersScreen: React.FC = () => {
               style={styles.iconBtn}
               accessibilityLabel={t('customers.searchCustomers')}
             >
-              <Icon name="search-outline" size={22} color={colors.textInverse} />
+              <Icon name="search-outline" size={22} color={darkColors.textOnPrimary} />
             </Pressable>
             <Pressable
               onPress={openFilters}
@@ -105,7 +105,7 @@ export const CustomersScreen: React.FC = () => {
               style={styles.iconBtn}
               accessibilityLabel={t('common.edit')}
             >
-              <Icon name="funnel-outline" size={22} color={colors.textInverse} />
+              <Icon name="funnel-outline" size={22} color={darkColors.textOnPrimary} />
             </Pressable>
           </View>
         }
@@ -113,12 +113,12 @@ export const CustomersScreen: React.FC = () => {
 
       {searchOpen ? (
         <View style={styles.searchRow}>
-          <Icon name="search-outline" size={18} color={colors.textMuted} />
+          <Icon name="search-outline" size={18} color={darkColors.textMuted} />
           <TextInput
             value={query}
             onChangeText={setQuery}
             placeholder={t('customers.searchCustomers')}
-            placeholderTextColor={colors.textMuted}
+            placeholderTextColor={darkColors.textMuted}
             autoFocus
             style={[
               styles.searchInput,
@@ -130,7 +130,7 @@ export const CustomersScreen: React.FC = () => {
               onPress={() => setQuery('')}
               hitSlop={hitSlop.sm}
             >
-              <Icon name="close-circle" size={18} color={colors.textMuted} />
+              <Icon name="close-circle" size={18} color={darkColors.textMuted} />
             </Pressable>
           ) : null}
         </View>
@@ -182,13 +182,13 @@ export const CustomersScreen: React.FC = () => {
             <RefreshControl
               refreshing={customersQuery.isRefetching}
               onRefresh={() => void customersQuery.refetch()}
-              tintColor={colors.primary}
-              colors={[colors.primary]}
+              tintColor={darkColors.primary}
+              colors={[darkColors.primary]}
             />
           }
           ListEmptyComponent={
             <View style={styles.empty}>
-              <Icon name="people-outline" size={48} color={colors.primary} />
+              <Icon name="people-outline" size={48} color={darkColors.primary} />
               <Text style={styles.emptyTitle}>{t('customers.noCustomers')}</Text>
               <Text style={styles.emptyBody}>
                 {t('customers.addFirstCustomer')}
@@ -207,14 +207,14 @@ export const CustomersScreen: React.FC = () => {
         accessibilityRole="button"
         accessibilityLabel={t('customers.addFirstCustomer')}
       >
-        <Icon name="add" size={28} color={colors.textInverse} />
+        <Icon name="add" size={28} color={darkColors.textOnPrimary} />
       </Pressable>
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: colors.background },
+  safe: { flex: 1, backgroundColor: darkColors.background },
   actionsRow: { flexDirection: 'row', columnGap: spacing.xs },
   iconBtn: {
     width: 40,
@@ -227,7 +227,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     columnGap: spacing.sm,
     margin: spacing.base,
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     borderRadius: radius.lg,
     paddingHorizontal: spacing.md,
     paddingVertical: spacing.xs,
@@ -236,7 +236,7 @@ const styles = StyleSheet.create({
   searchInput: {
     flex: 1,
     ...textStyles.body,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
     paddingVertical: spacing.sm,
   },
   chipsRow: {
@@ -249,20 +249,20 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.md,
     paddingVertical: spacing.xs,
     borderRadius: radius.pill,
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     borderWidth: 1,
-    borderColor: colors.border,
+    borderColor: darkColors.border,
   },
   chipActive: {
-    backgroundColor: colors.primary,
-    borderColor: colors.primary,
+    backgroundColor: darkColors.primary,
+    borderColor: darkColors.primary,
   },
   chipText: {
     ...textStyles.caption,
-    color: colors.textSecondary,
+    color: darkColors.textSecondary,
     fontWeight: '600',
   },
-  chipTextActive: { color: colors.textInverse },
+  chipTextActive: { color: darkColors.textOnPrimary },
   list: {
     paddingHorizontal: spacing.base,
     paddingBottom: spacing.xxxl * 2,
@@ -274,12 +274,12 @@ const styles = StyleSheet.create({
   },
   emptyTitle: {
     ...textStyles.h4,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
     marginTop: spacing.sm,
   },
   emptyBody: {
     ...textStyles.body,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
     textAlign: 'center',
   },
   fab: {
@@ -289,7 +289,7 @@ const styles = StyleSheet.create({
     width: 56,
     height: 56,
     borderRadius: 28,
-    backgroundColor: colors.primary,
+    backgroundColor: darkColors.primary,
     alignItems: 'center',
     justifyContent: 'center',
     ...shadows.md,
