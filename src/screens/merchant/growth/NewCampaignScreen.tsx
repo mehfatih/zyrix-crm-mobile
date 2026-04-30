@@ -16,7 +16,7 @@ import {
 } from '../../../components/feature-specific/CampaignBuilder';
 import { Header } from '../../../components/common/Header';
 import { Icon } from '../../../components/common/Icon';
-import { colors } from '../../../constants/colors';
+import { darkColors } from '../../../theme/dark';
 import { radius, shadows, spacing } from '../../../constants/spacing';
 import { textStyles } from '../../../constants/typography';
 import { useToast } from '../../../hooks/useToast';
@@ -41,7 +41,7 @@ export const NewCampaignScreen: React.FC = () => {
       {sent ? (
         <View style={styles.successWrap}>
           <View style={styles.successCircle}>
-            <Icon name="checkmark" size={44} color={colors.textInverse} />
+            <Icon name="checkmark" size={44} color={darkColors.textOnPrimary} />
           </View>
           <Text style={styles.successTitle}>{t('common.success')}</Text>
           <Text style={styles.successBody}>
@@ -63,7 +63,7 @@ export const NewCampaignScreen: React.FC = () => {
 };
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: colors.background },
+  safe: { flex: 1, backgroundColor: darkColors.background },
   successWrap: {
     flex: 1,
     alignItems: 'center',
@@ -75,19 +75,19 @@ const styles = StyleSheet.create({
     width: 96,
     height: 96,
     borderRadius: 48,
-    backgroundColor: colors.primary,
+    backgroundColor: darkColors.primary,
     alignItems: 'center',
     justifyContent: 'center',
     ...shadows.lg,
   },
   successTitle: {
     ...textStyles.h2,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
     textAlign: 'center',
   },
   successBody: {
     ...textStyles.body,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
     textAlign: 'center',
   },
 });

@@ -13,7 +13,7 @@ import { useNavigation } from '@react-navigation/native';
 import { AutomationBuilder, type AutomationWorkflow } from '../../../components/feature-specific/AutomationBuilder';
 import { Button } from '../../../components/common/Button';
 import { Header } from '../../../components/common/Header';
-import { colors } from '../../../constants/colors';
+import { darkColors } from '../../../theme/dark';
 import { spacing } from '../../../constants/spacing';
 import { useToast } from '../../../hooks/useToast';
 
@@ -67,14 +67,14 @@ export const NewAutomationScreen: React.FC = () => {
 };
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: colors.background },
+  safe: { flex: 1, backgroundColor: darkColors.background },
   footer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     padding: spacing.base,
     borderTopWidth: 1,
-    borderTopColor: colors.divider,
-    backgroundColor: colors.surface,
+    borderTopColor: darkColors.divider,
+    backgroundColor: darkColors.surface,
   },
 });
 

@@ -28,7 +28,7 @@ import { DEALS_BY_STAGE_COLORS } from '../../../api/mockData';
 import { Header } from '../../../components/common/Header';
 import { Icon } from '../../../components/common/Icon';
 import { SkeletonCard } from '../../../components/common/SkeletonCard';
-import { colors } from '../../../constants/colors';
+import { darkColors } from '../../../theme/dark';
 import { radius, shadows, spacing } from '../../../constants/spacing';
 import { textStyles } from '../../../constants/typography';
 import { useCloseDeal, useDeal, useMoveDealStage } from '../../../hooks/useDeals';
@@ -83,7 +83,7 @@ export const DealDetailScreen: React.FC = () => {
               <CurrencyDisplay
                 amount={deal.value}
                 size="large"
-                color={colors.primaryDark}
+                color={darkColors.primaryDark}
               />
             </View>
 
@@ -102,7 +102,7 @@ export const DealDetailScreen: React.FC = () => {
                             {
                               backgroundColor: reached
                                 ? DEALS_BY_STAGE_COLORS[stage]
-                                : colors.border,
+                                : darkColors.border,
                             },
                           ]}
                         />
@@ -125,7 +125,7 @@ export const DealDetailScreen: React.FC = () => {
                             {
                               backgroundColor: reached
                                 ? DEALS_BY_STAGE_COLORS[stage]
-                                : colors.border,
+                                : darkColors.border,
                             },
                           ]}
                         />
@@ -163,7 +163,7 @@ export const DealDetailScreen: React.FC = () => {
                   <Icon
                     name="arrow-forward"
                     size={18}
-                    color={colors.textInverse}
+                    color={darkColors.textOnPrimary}
                   />
                   <Text style={styles.primaryText}>
                     {t('deals.moveToNextStage')}
@@ -203,7 +203,7 @@ export const DealDetailScreen: React.FC = () => {
             />
 
             <View style={styles.placeholderCard}>
-              <Icon name="time-outline" size={28} color={colors.primary} />
+              <Icon name="time-outline" size={28} color={darkColors.primary} />
               <Text style={styles.placeholderTitle}>
                 {t('activities.recentActivities')}
               </Text>
@@ -229,10 +229,10 @@ const InfoCard: React.FC<{ label: string; value: string }> = ({
 );
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: colors.background },
+  safe: { flex: 1, backgroundColor: darkColors.background },
   scroll: { paddingBottom: spacing.xxl },
   heroCard: {
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     margin: spacing.base,
     padding: spacing.base,
     borderRadius: radius.xl,
@@ -241,14 +241,14 @@ const styles = StyleSheet.create({
   },
   customer: {
     ...textStyles.caption,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
   },
   title: {
     ...textStyles.h3,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
   },
   pipelineCard: {
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     marginHorizontal: spacing.base,
     padding: spacing.base,
     borderRadius: radius.lg,
@@ -257,7 +257,7 @@ const styles = StyleSheet.create({
   },
   sectionTitle: {
     ...textStyles.label,
-    color: colors.textSecondary,
+    color: darkColors.textSecondary,
   },
   stageTrack: {
     flexDirection: 'row',
@@ -276,7 +276,7 @@ const styles = StyleSheet.create({
   },
   stageText: {
     ...textStyles.caption,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
     maxWidth: 60,
     textAlign: 'center',
   },
@@ -294,18 +294,18 @@ const styles = StyleSheet.create({
   infoCard: {
     flexBasis: '30%',
     flexGrow: 1,
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     borderRadius: radius.lg,
     padding: spacing.sm,
     ...shadows.xs,
   },
   infoLabel: {
     ...textStyles.caption,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
   },
   infoValue: {
     ...textStyles.bodyMedium,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
     marginTop: 2,
   },
   actionsColumn: {
@@ -316,14 +316,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: colors.primary,
+    backgroundColor: darkColors.primary,
     borderRadius: radius.lg,
     paddingVertical: spacing.md,
     columnGap: spacing.sm,
   },
   primaryText: {
     ...textStyles.button,
-    color: colors.textInverse,
+    color: darkColors.textOnPrimary,
   },
   binaryRow: {
     flexDirection: 'row',
@@ -331,33 +331,33 @@ const styles = StyleSheet.create({
   },
   wonBtn: {
     flex: 1,
-    backgroundColor: colors.successSoft,
+    backgroundColor: darkColors.successSoft,
     paddingVertical: spacing.md,
     borderRadius: radius.lg,
     alignItems: 'center',
   },
-  wonText: { ...textStyles.button, color: colors.success },
+  wonText: { ...textStyles.button, color: darkColors.success },
   lostBtn: {
     flex: 1,
-    backgroundColor: colors.errorSoft,
+    backgroundColor: darkColors.errorSoft,
     paddingVertical: spacing.md,
     borderRadius: radius.lg,
     alignItems: 'center',
   },
-  lostText: { ...textStyles.button, color: colors.error },
+  lostText: { ...textStyles.button, color: darkColors.error },
   placeholderCard: {
     margin: spacing.base,
     padding: spacing.lg,
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     borderRadius: radius.lg,
     alignItems: 'center',
     rowGap: spacing.xs,
     ...shadows.xs,
   },
-  placeholderTitle: { ...textStyles.h4, color: colors.textPrimary },
+  placeholderTitle: { ...textStyles.h4, color: darkColors.textPrimary },
   placeholderBody: {
     ...textStyles.caption,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
     textAlign: 'center',
   },
 });

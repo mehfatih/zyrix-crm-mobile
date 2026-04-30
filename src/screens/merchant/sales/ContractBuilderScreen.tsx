@@ -26,7 +26,7 @@ import { Header } from '../../../components/common/Header';
 import { LocalizedCurrencyInput } from '../../../components/common/LocalizedCurrencyInput';
 import { RichTextEditor } from '../../../components/forms/RichTextEditor';
 import { SearchableDropdown, type DropdownItem } from '../../../components/forms/SearchableDropdown';
-import { colors } from '../../../constants/colors';
+import { darkColors } from '../../../theme/dark';
 import { listCustomers } from '../../../api/customers';
 import { radius, shadows, spacing } from '../../../constants/spacing';
 import { textStyles } from '../../../constants/typography';
@@ -204,7 +204,7 @@ export const ContractBuilderScreen: React.FC = () => {
                     style={[
                       styles.typeLabel,
                       draft.type === tKey
-                        ? { color: colors.primaryDark, fontWeight: '700' }
+                        ? { color: darkColors.primaryDark, fontWeight: '700' }
                         : null,
                     ]}
                   >
@@ -235,8 +235,8 @@ export const ContractBuilderScreen: React.FC = () => {
               <Switch
                 value={draft.autoRenew}
                 onValueChange={(v) => patch({ autoRenew: v })}
-                trackColor={{ false: colors.border, true: colors.primary }}
-                thumbColor={colors.white}
+                trackColor={{ false: darkColors.border, true: darkColors.primary }}
+                thumbColor={darkColors.white}
               />
             </View>
           </View>
@@ -265,7 +265,7 @@ export const ContractBuilderScreen: React.FC = () => {
                     style={[
                       styles.paymentText,
                       draft.paymentTerms === term
-                        ? { color: colors.textInverse }
+                        ? { color: darkColors.textOnPrimary }
                         : null,
                     ]}
                   >
@@ -357,7 +357,7 @@ const ReviewRow: React.FC<{ label: string; value: string }> = ({ label, value })
 );
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: colors.background },
+  safe: { flex: 1, backgroundColor: darkColors.background },
   progress: {
     flexDirection: 'row',
     justifyContent: 'center',
@@ -365,14 +365,14 @@ const styles = StyleSheet.create({
     padding: spacing.sm,
   },
   dot: { width: 22, height: 5, borderRadius: 3 },
-  dotActive: { backgroundColor: colors.primary },
-  dotInactive: { backgroundColor: colors.border },
+  dotActive: { backgroundColor: darkColors.primary },
+  dotInactive: { backgroundColor: darkColors.border },
   scroll: {
     paddingHorizontal: spacing.base,
     paddingBottom: spacing.xxl,
   },
   section: {
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     padding: spacing.base,
     borderRadius: radius.lg,
     rowGap: spacing.sm,
@@ -380,11 +380,11 @@ const styles = StyleSheet.create({
   },
   sectionTitle: {
     ...textStyles.h3,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
   },
   fieldLabel: {
     ...textStyles.label,
-    color: colors.textSecondary,
+    color: darkColors.textSecondary,
     marginTop: spacing.xs,
   },
   typeGrid: {
@@ -398,16 +398,16 @@ const styles = StyleSheet.create({
     padding: spacing.base,
     borderRadius: radius.lg,
     borderWidth: 1.5,
-    borderColor: colors.border,
-    backgroundColor: colors.surface,
+    borderColor: darkColors.border,
+    backgroundColor: darkColors.surface,
   },
   typeCardActive: {
-    backgroundColor: colors.primarySoft,
-    borderColor: colors.primary,
+    backgroundColor: darkColors.primarySoft,
+    borderColor: darkColors.primary,
   },
   typeLabel: {
     ...textStyles.body,
-    color: colors.textSecondary,
+    color: darkColors.textSecondary,
   },
   autoRenewRow: {
     flexDirection: 'row',
@@ -424,16 +424,16 @@ const styles = StyleSheet.create({
     paddingVertical: spacing.sm,
     borderRadius: radius.pill,
     borderWidth: 1.5,
-    borderColor: colors.border,
+    borderColor: darkColors.border,
     alignItems: 'center',
   },
   paymentChipActive: {
-    backgroundColor: colors.primary,
-    borderColor: colors.primary,
+    backgroundColor: darkColors.primary,
+    borderColor: darkColors.primary,
   },
   paymentText: {
     ...textStyles.caption,
-    color: colors.textSecondary,
+    color: darkColors.textSecondary,
     textTransform: 'capitalize',
     fontWeight: '600',
   },
@@ -441,32 +441,32 @@ const styles = StyleSheet.create({
     padding: spacing.base,
     borderRadius: radius.base,
     borderWidth: 1,
-    borderColor: colors.border,
+    borderColor: darkColors.border,
     rowGap: spacing.xs,
   },
   templateRowActive: {
-    borderColor: colors.primary,
-    backgroundColor: colors.primarySoft,
+    borderColor: darkColors.primary,
+    backgroundColor: darkColors.primarySoft,
   },
   templateTitle: {
     ...textStyles.bodyMedium,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
   },
   templateHint: {
     ...textStyles.caption,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
   },
   reviewRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingVertical: spacing.sm,
     borderBottomWidth: 1,
-    borderBottomColor: colors.divider,
+    borderBottomColor: darkColors.divider,
   },
-  reviewLabel: { ...textStyles.caption, color: colors.textMuted },
+  reviewLabel: { ...textStyles.caption, color: darkColors.textMuted },
   reviewValue: {
     ...textStyles.bodyMedium,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
     maxWidth: '60%',
     textAlign: 'right',
   },
@@ -475,8 +475,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     padding: spacing.base,
     borderTopWidth: 1,
-    borderTopColor: colors.divider,
-    backgroundColor: colors.surface,
+    borderTopColor: darkColors.divider,
+    backgroundColor: darkColors.surface,
   },
 });
 

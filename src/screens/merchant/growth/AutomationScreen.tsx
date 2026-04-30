@@ -18,7 +18,7 @@ import { useTranslation } from 'react-i18next';
 import { Header } from '../../../components/common/Header';
 import { Icon } from '../../../components/common/Icon';
 import { MOCK_AUTOMATIONS } from '../../../api/mockData';
-import { colors } from '../../../constants/colors';
+import { darkColors } from '../../../theme/dark';
 import { radius, shadows, spacing } from '../../../constants/spacing';
 import { textStyles } from '../../../constants/typography';
 
@@ -66,8 +66,8 @@ export const AutomationScreen: React.FC = () => {
                 <Switch
                   value={enabled}
                   onValueChange={() => toggle(w.id)}
-                  trackColor={{ false: colors.border, true: colors.primary }}
-                  thumbColor={colors.white}
+                  trackColor={{ false: darkColors.border, true: darkColors.primary }}
+                  thumbColor={darkColors.white}
                 />
               </View>
 
@@ -92,7 +92,7 @@ export const AutomationScreen: React.FC = () => {
           pressed ? { opacity: 0.9 } : null,
         ]}
       >
-        <Icon name="add" size={28} color={colors.textInverse} />
+        <Icon name="add" size={28} color={darkColors.textOnPrimary} />
       </Pressable>
     </SafeAreaView>
   );
@@ -109,14 +109,14 @@ const StatCell: React.FC<{ label: string; value: number }> = ({
 );
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: colors.background },
+  safe: { flex: 1, backgroundColor: darkColors.background },
   scroll: {
     padding: spacing.base,
     paddingBottom: spacing.xxxl * 2,
     rowGap: spacing.sm,
   },
   card: {
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     borderRadius: radius.lg,
     padding: spacing.base,
     rowGap: spacing.sm,
@@ -130,16 +130,16 @@ const styles = StyleSheet.create({
   nameCol: { flex: 1 },
   name: {
     ...textStyles.h4,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
   },
   trigger: {
     ...textStyles.caption,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
   },
   statsRow: {
     flexDirection: 'row',
     borderTopWidth: 1,
-    borderTopColor: colors.divider,
+    borderTopColor: darkColors.divider,
     paddingTop: spacing.sm,
   },
   statCell: {
@@ -148,15 +148,15 @@ const styles = StyleSheet.create({
   },
   statLabel: {
     ...textStyles.caption,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
   },
   statValue: {
     ...textStyles.h4,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
   },
   actionsLabel: {
     ...textStyles.caption,
-    color: colors.textSecondary,
+    color: darkColors.textSecondary,
     fontWeight: '600',
   },
   fab: {
@@ -166,7 +166,7 @@ const styles = StyleSheet.create({
     width: 56,
     height: 56,
     borderRadius: 28,
-    backgroundColor: colors.primary,
+    backgroundColor: darkColors.primary,
     alignItems: 'center',
     justifyContent: 'center',
     ...shadows.md,

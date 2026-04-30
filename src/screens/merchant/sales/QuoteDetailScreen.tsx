@@ -28,7 +28,7 @@ import { Header } from '../../../components/common/Header';
 import { Icon, type AnyIconName } from '../../../components/common/Icon';
 import { PDFPreview } from '../../../components/feature-specific/PDFPreview';
 import { SkeletonCard } from '../../../components/common/SkeletonCard';
-import { colors } from '../../../constants/colors';
+import { darkColors } from '../../../theme/dark';
 import { generateQuotePDF } from '../../../utils/pdfGenerator';
 import { getQuote, type Quote } from '../../../api/quotes';
 import { radius, shadows, spacing } from '../../../constants/spacing';
@@ -150,7 +150,7 @@ export const QuoteDetailScreen: React.FC = () => {
               <CurrencyDisplay
                 amount={quote.total}
                 size="large"
-                color={colors.primaryDark}
+                color={darkColors.primaryDark}
               />
             </View>
 
@@ -164,22 +164,22 @@ export const QuoteDetailScreen: React.FC = () => {
                         styles.timelineDot,
                         {
                           backgroundColor: reached
-                            ? colors.primary
-                            : colors.border,
+                            ? darkColors.primary
+                            : darkColors.border,
                         },
                       ]}
                     >
                       <Icon
                         name={event.icon}
                         size={14}
-                        color={reached ? colors.textInverse : colors.textMuted}
+                        color={reached ? darkColors.textOnPrimary : darkColors.textMuted}
                       />
                     </View>
                     <View style={styles.timelineBody}>
                       <Text
                         style={[
                           styles.timelineLabel,
-                          reached ? { color: colors.textPrimary } : null,
+                          reached ? { color: darkColors.textPrimary } : null,
                         ]}
                       >
                         {t(`quoteStatus.${event.key}`)}
@@ -239,15 +239,15 @@ export const QuoteDetailScreen: React.FC = () => {
             <View style={styles.actionsRow}>
               {quote.status === 'draft' ? (
                 <Pressable onPress={edit} style={[styles.action, styles.actionPrimary]}>
-                  <Icon name="pencil-outline" size={18} color={colors.textInverse} />
-                  <Text style={[styles.actionText, { color: colors.textInverse }]}>
+                  <Icon name="pencil-outline" size={18} color={darkColors.textOnPrimary} />
+                  <Text style={[styles.actionText, { color: darkColors.textOnPrimary }]}>
                     {t('common.edit')}
                   </Text>
                 </Pressable>
               ) : null}
               {quote.status === 'draft' ? (
                 <Pressable onPress={send} style={styles.action}>
-                  <Icon name="paper-plane-outline" size={18} color={colors.primary} />
+                  <Icon name="paper-plane-outline" size={18} color={darkColors.primary} />
                   <Text style={styles.actionText}>{t('quoteBuilder.sendNow')}</Text>
                 </Pressable>
               ) : null}
@@ -255,16 +255,16 @@ export const QuoteDetailScreen: React.FC = () => {
                 onPress={() => void onWhatsApp()}
                 style={styles.action}
               >
-                <Icon name="logo-whatsapp" size={18} color={colors.primary} />
+                <Icon name="logo-whatsapp" size={18} color={darkColors.primary} />
                 <Text style={styles.actionText}>WhatsApp</Text>
               </Pressable>
               <Pressable onPress={duplicate} style={styles.action}>
-                <Icon name="copy-outline" size={18} color={colors.primary} />
+                <Icon name="copy-outline" size={18} color={darkColors.primary} />
                 <Text style={styles.actionText}>{t('common.save')}</Text>
               </Pressable>
               {quote.status === 'accepted' ? (
                 <Pressable onPress={convert} style={styles.action}>
-                  <Icon name="swap-horizontal-outline" size={18} color={colors.primary} />
+                  <Icon name="swap-horizontal-outline" size={18} color={darkColors.primary} />
                   <Text style={styles.actionText}>
                     {t('quoteStatus.accepted')}
                   </Text>
@@ -296,20 +296,20 @@ const TotalsRow: React.FC<{ label: string; amount: number; bold?: boolean }> = (
     <CurrencyDisplay
       amount={amount}
       size={bold ? 'large' : 'medium'}
-      color={bold ? colors.primaryDark : colors.textPrimary}
+      color={bold ? darkColors.primaryDark : darkColors.textPrimary}
     />
   </View>
 );
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: colors.background },
+  safe: { flex: 1, backgroundColor: darkColors.background },
   scroll: {
     padding: spacing.base,
     paddingBottom: spacing.xxl,
     rowGap: spacing.base,
   },
   statusCard: {
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     padding: spacing.base,
     borderRadius: radius.xl,
     alignItems: 'flex-start',
@@ -318,12 +318,12 @@ const styles = StyleSheet.create({
   },
   statusLabel: {
     ...textStyles.caption,
-    color: colors.primary,
+    color: darkColors.primary,
     fontWeight: '700',
     textTransform: 'uppercase',
   },
   timelineCard: {
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     padding: spacing.base,
     borderRadius: radius.lg,
     rowGap: spacing.sm,
@@ -344,14 +344,14 @@ const styles = StyleSheet.create({
   timelineBody: { flex: 1 },
   timelineLabel: {
     ...textStyles.body,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
   },
   timelineDate: {
     ...textStyles.caption,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
   },
   previewCard: {
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     padding: spacing.base,
     borderRadius: radius.lg,
     rowGap: spacing.xs,
@@ -359,15 +359,15 @@ const styles = StyleSheet.create({
   },
   previewHeading: {
     ...textStyles.h4,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
   },
   previewSub: {
     ...textStyles.caption,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
   },
   divider: {
     height: 1,
-    backgroundColor: colors.divider,
+    backgroundColor: darkColors.divider,
     marginVertical: spacing.xs,
   },
   lineRow: {
@@ -380,11 +380,11 @@ const styles = StyleSheet.create({
   lineDesc: {
     flex: 1,
     ...textStyles.body,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
   },
   lineQty: {
     ...textStyles.caption,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
     minWidth: 36,
     textAlign: 'center',
   },
@@ -396,7 +396,7 @@ const styles = StyleSheet.create({
   },
   totalsLabel: {
     ...textStyles.body,
-    color: colors.textSecondary,
+    color: darkColors.textSecondary,
   },
   actionsRow: {
     flexDirection: 'row',
@@ -410,14 +410,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.base,
     paddingVertical: spacing.sm,
     borderRadius: radius.pill,
-    backgroundColor: colors.primarySoft,
+    backgroundColor: darkColors.primarySoft,
   },
   actionPrimary: {
-    backgroundColor: colors.primary,
+    backgroundColor: darkColors.primary,
   },
   actionText: {
     ...textStyles.button,
-    color: colors.primary,
+    color: darkColors.primary,
   },
 });
 

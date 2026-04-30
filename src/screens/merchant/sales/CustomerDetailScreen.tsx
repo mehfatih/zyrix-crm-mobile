@@ -32,7 +32,7 @@ import {
 import { Header } from '../../../components/common/Header';
 import { Icon, type AnyIconName } from '../../../components/common/Icon';
 import { SkeletonCard } from '../../../components/common/SkeletonCard';
-import { colors } from '../../../constants/colors';
+import { darkColors } from '../../../theme/dark';
 import { findCountry } from '../../../constants/countries';
 import { radius, shadows, spacing } from '../../../constants/spacing';
 import { textStyles } from '../../../constants/typography';
@@ -61,16 +61,16 @@ interface ActionButton {
 }
 
 const ACTIONS: readonly ActionButton[] = [
-  { key: 'call', icon: 'call-outline', background: colors.successSoft, color: colors.success },
-  { key: 'email', icon: 'mail-outline', background: colors.infoSoft, color: colors.info },
-  { key: 'whatsapp', icon: 'logo-whatsapp', background: colors.successSoft, color: colors.success },
-  { key: 'newDeal', icon: 'briefcase-outline', background: colors.primarySoft, color: colors.primary },
+  { key: 'call', icon: 'call-outline', background: darkColors.successSoft, color: darkColors.success },
+  { key: 'email', icon: 'mail-outline', background: darkColors.infoSoft, color: darkColors.info },
+  { key: 'whatsapp', icon: 'logo-whatsapp', background: darkColors.successSoft, color: darkColors.success },
+  { key: 'newDeal', icon: 'briefcase-outline', background: darkColors.primarySoft, color: darkColors.primary },
 ];
 
 const healthBackground = (score: number): string => {
-  if (score >= 70) return colors.success;
-  if (score >= 40) return colors.warning;
-  return colors.error;
+  if (score >= 70) return darkColors.success;
+  if (score >= 40) return darkColors.warning;
+  return darkColors.error;
 };
 
 export const CustomerDetailScreen: React.FC = () => {
@@ -211,7 +211,7 @@ export const CustomerDetailScreen: React.FC = () => {
                     <CurrencyDisplay
                       amount={customer.totalRevenue}
                       size="large"
-                      color={colors.primaryDark}
+                      color={darkColors.primaryDark}
                     />
                   </View>
                   <View style={styles.statCard}>
@@ -246,7 +246,7 @@ export const CustomerDetailScreen: React.FC = () => {
                   <View
                     style={[
                       styles.healthGauge,
-                      { backgroundColor: colors.surfaceAlt },
+                      { backgroundColor: darkColors.surfaceAlt },
                     ]}
                   >
                     <View
@@ -277,7 +277,7 @@ export const CustomerDetailScreen: React.FC = () => {
                 <Icon
                   name="time-outline"
                   size={32}
-                  color={colors.primary}
+                  color={darkColors.primary}
                 />
                 <Text style={styles.placeholderTitle}>
                   {t('placeholders.comingInSprint', { sprint: 5 })}
@@ -296,20 +296,20 @@ const InfoRow: React.FC<{ icon: AnyIconName; label: string }> = ({
   label,
 }) => (
   <View style={styles.infoRow}>
-    <Icon name={icon} size={18} color={colors.primary} />
+    <Icon name={icon} size={18} color={darkColors.primary} />
     <Text style={styles.infoText}>{label}</Text>
   </View>
 );
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: colors.background },
+  safe: { flex: 1, backgroundColor: darkColors.background },
   scroll: {
     paddingBottom: spacing.xxl,
   },
   heroCard: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     margin: spacing.base,
     padding: spacing.base,
     borderRadius: radius.xl,
@@ -320,19 +320,19 @@ const styles = StyleSheet.create({
     width: 64,
     height: 64,
     borderRadius: 32,
-    backgroundColor: colors.primarySoft,
+    backgroundColor: darkColors.primarySoft,
     alignItems: 'center',
     justifyContent: 'center',
   },
   avatarText: {
     ...textStyles.h3,
-    color: colors.primaryDark,
+    color: darkColors.primaryDark,
     fontWeight: '700',
   },
   heroBody: { flex: 1, rowGap: 2 },
-  name: { ...textStyles.h3, color: colors.textPrimary },
-  company: { ...textStyles.body, color: colors.textSecondary },
-  meta: { ...textStyles.caption, color: colors.textMuted },
+  name: { ...textStyles.h3, color: darkColors.textPrimary },
+  company: { ...textStyles.body, color: darkColors.textSecondary },
+  meta: { ...textStyles.caption, color: darkColors.textMuted },
   actionsRow: {
     flexDirection: 'row',
     paddingHorizontal: spacing.base,
@@ -357,26 +357,26 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.base,
     paddingVertical: spacing.sm,
     borderRadius: radius.pill,
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     borderWidth: 1,
-    borderColor: colors.border,
+    borderColor: darkColors.border,
   },
   tabBtnActive: {
-    backgroundColor: colors.primary,
-    borderColor: colors.primary,
+    backgroundColor: darkColors.primary,
+    borderColor: darkColors.primary,
   },
   tabLabel: {
     ...textStyles.caption,
-    color: colors.textSecondary,
+    color: darkColors.textSecondary,
     fontWeight: '600',
   },
-  tabLabelActive: { color: colors.textInverse },
+  tabLabelActive: { color: darkColors.textOnPrimary },
   overviewWrap: {
     paddingHorizontal: spacing.base,
     rowGap: spacing.base,
   },
   card: {
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     borderRadius: radius.lg,
     padding: spacing.base,
     rowGap: spacing.xs,
@@ -384,7 +384,7 @@ const styles = StyleSheet.create({
   },
   sectionTitle: {
     ...textStyles.label,
-    color: colors.textSecondary,
+    color: darkColors.textSecondary,
     marginBottom: spacing.xs,
   },
   infoRow: {
@@ -395,7 +395,7 @@ const styles = StyleSheet.create({
   },
   infoText: {
     ...textStyles.body,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
     flex: 1,
   },
   statsRow: {
@@ -404,7 +404,7 @@ const styles = StyleSheet.create({
   },
   statCard: {
     flex: 1,
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     borderRadius: radius.lg,
     padding: spacing.base,
     rowGap: spacing.xs,
@@ -412,11 +412,11 @@ const styles = StyleSheet.create({
   },
   statLabel: {
     ...textStyles.caption,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
   },
   statValue: {
     ...textStyles.bodyMedium,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
   },
   tagsRow: {
     flexDirection: 'row',
@@ -424,14 +424,14 @@ const styles = StyleSheet.create({
     gap: spacing.xs,
   },
   tagChip: {
-    backgroundColor: colors.primarySoft,
+    backgroundColor: darkColors.primarySoft,
     paddingHorizontal: spacing.sm,
     paddingVertical: 2,
     borderRadius: radius.pill,
   },
   tagText: {
     ...textStyles.caption,
-    color: colors.primaryDark,
+    color: darkColors.primaryDark,
     fontWeight: '600',
   },
   healthGauge: {
@@ -446,12 +446,12 @@ const styles = StyleSheet.create({
   },
   healthValue: {
     ...textStyles.bodyMedium,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
   },
   placeholderCard: {
     margin: spacing.base,
     padding: spacing.xl,
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     borderRadius: radius.lg,
     alignItems: 'center',
     rowGap: spacing.sm,
@@ -459,7 +459,7 @@ const styles = StyleSheet.create({
   },
   placeholderTitle: {
     ...textStyles.body,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
   },
 });
 

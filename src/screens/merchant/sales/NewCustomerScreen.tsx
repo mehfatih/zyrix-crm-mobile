@@ -30,7 +30,7 @@ import { PhoneInput } from '../../../components/common/PhoneInput';
 import { SearchableDropdown, type DropdownItem } from '../../../components/forms/SearchableDropdown';
 import { TagsInput } from '../../../components/forms/TagsInput';
 import { TaxIdInput } from '../../../components/common/TaxIdInput';
-import { colors } from '../../../constants/colors';
+import { darkColors } from '../../../theme/dark';
 import { findCountry } from '../../../constants/countries';
 import { radius, shadows, spacing } from '../../../constants/spacing';
 import { textStyles } from '../../../constants/typography';
@@ -263,12 +263,12 @@ export const NewCustomerScreen: React.FC = () => {
                           : 'call-outline'
                     }
                     size={18}
-                    color={draft.channel === key ? colors.textInverse : colors.primary}
+                    color={draft.channel === key ? darkColors.textOnPrimary : darkColors.primary}
                   />
                   <Text
                     style={[
                       styles.channelText,
-                      draft.channel === key ? { color: colors.textInverse } : null,
+                      draft.channel === key ? { color: darkColors.textOnPrimary } : null,
                     ]}
                   >
                     {key}
@@ -345,7 +345,7 @@ export const NewCustomerScreen: React.FC = () => {
                 ]}
               >
                 {draft.exempt ? (
-                  <Icon name="checkmark" size={12} color={colors.textInverse} />
+                  <Icon name="checkmark" size={12} color={darkColors.textOnPrimary} />
                 ) : null}
               </View>
               <Text style={styles.exemptText}>
@@ -364,7 +364,7 @@ export const NewCustomerScreen: React.FC = () => {
               value={draft.notes}
               onChangeText={(next) => patch({ notes: next })}
               placeholder={t('quoteBuilder.internalNotes')}
-              placeholderTextColor={colors.textMuted}
+              placeholderTextColor={darkColors.textMuted}
               multiline
               style={[
                 styles.textarea,
@@ -379,7 +379,7 @@ export const NewCustomerScreen: React.FC = () => {
                 value={draft.customKey}
                 onChangeText={(next) => patch({ customKey: next })}
                 placeholder="Key"
-                placeholderTextColor={colors.textMuted}
+                placeholderTextColor={darkColors.textMuted}
                 style={[
                   styles.customInput,
                   { textAlign: I18nManager.isRTL ? 'right' : 'left' },
@@ -389,7 +389,7 @@ export const NewCustomerScreen: React.FC = () => {
                 value={draft.customValue}
                 onChangeText={(next) => patch({ customValue: next })}
                 placeholder="Value"
-                placeholderTextColor={colors.textMuted}
+                placeholderTextColor={darkColors.textMuted}
                 style={[
                   styles.customInput,
                   { textAlign: I18nManager.isRTL ? 'right' : 'left' },
@@ -425,7 +425,7 @@ export const NewCustomerScreen: React.FC = () => {
 };
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: colors.background },
+  safe: { flex: 1, backgroundColor: darkColors.background },
   progress: {
     flexDirection: 'row',
     justifyContent: 'center',
@@ -433,14 +433,14 @@ const styles = StyleSheet.create({
     paddingVertical: spacing.sm,
   },
   dot: { width: 22, height: 5, borderRadius: 3 },
-  dotActive: { backgroundColor: colors.primary },
-  dotInactive: { backgroundColor: colors.border },
+  dotActive: { backgroundColor: darkColors.primary },
+  dotInactive: { backgroundColor: darkColors.border },
   scroll: {
     paddingHorizontal: spacing.base,
     paddingBottom: spacing.xxl,
   },
   section: {
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     padding: spacing.base,
     borderRadius: radius.lg,
     rowGap: spacing.sm,
@@ -448,11 +448,11 @@ const styles = StyleSheet.create({
   },
   sectionTitle: {
     ...textStyles.h3,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
   },
   fieldLabel: {
     ...textStyles.label,
-    color: colors.textSecondary,
+    color: darkColors.textSecondary,
     marginTop: spacing.xs,
   },
   channelRow: {
@@ -468,14 +468,14 @@ const styles = StyleSheet.create({
     paddingVertical: spacing.sm,
     borderRadius: radius.pill,
     borderWidth: 1.5,
-    borderColor: colors.primary,
+    borderColor: darkColors.primary,
   },
   channelChipActive: {
-    backgroundColor: colors.primary,
+    backgroundColor: darkColors.primary,
   },
   channelText: {
     ...textStyles.caption,
-    color: colors.primary,
+    color: darkColors.primary,
     fontWeight: '600',
     textTransform: 'capitalize',
   },
@@ -484,11 +484,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     columnGap: spacing.sm,
     padding: spacing.md,
-    backgroundColor: colors.primarySoft,
+    backgroundColor: darkColors.primarySoft,
     borderRadius: radius.base,
   },
   countryFlag: { fontSize: 24 },
-  countryName: { ...textStyles.bodyMedium, color: colors.primaryDark },
+  countryName: { ...textStyles.bodyMedium, color: darkColors.primaryDark },
   exemptRow: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -500,24 +500,24 @@ const styles = StyleSheet.create({
     height: 20,
     borderRadius: 6,
     borderWidth: 1.5,
-    borderColor: colors.borderStrong,
+    borderColor: darkColors.borderStrong,
     alignItems: 'center',
     justifyContent: 'center',
   },
   checkboxChecked: {
-    backgroundColor: colors.primary,
-    borderColor: colors.primary,
+    backgroundColor: darkColors.primary,
+    borderColor: darkColors.primary,
   },
   exemptText: {
     ...textStyles.body,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
     flex: 1,
   },
   textarea: {
     ...textStyles.body,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
     borderWidth: 1,
-    borderColor: colors.border,
+    borderColor: darkColors.border,
     borderRadius: radius.base,
     padding: spacing.sm,
     minHeight: 120,
@@ -530,9 +530,9 @@ const styles = StyleSheet.create({
   customInput: {
     flex: 1,
     ...textStyles.body,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
     borderWidth: 1,
-    borderColor: colors.border,
+    borderColor: darkColors.border,
     borderRadius: radius.base,
     padding: spacing.sm,
   },
@@ -542,8 +542,8 @@ const styles = StyleSheet.create({
     columnGap: spacing.sm,
     padding: spacing.base,
     borderTopWidth: 1,
-    borderTopColor: colors.divider,
-    backgroundColor: colors.surface,
+    borderTopColor: darkColors.divider,
+    backgroundColor: darkColors.surface,
   },
 });
 

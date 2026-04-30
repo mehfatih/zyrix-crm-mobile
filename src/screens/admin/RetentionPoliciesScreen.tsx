@@ -20,7 +20,7 @@ import { useNavigation } from '@react-navigation/native';
 import { Header } from '../../components/common/Header';
 import { Icon } from '../../components/common/Icon';
 import { SkeletonCard } from '../../components/common/SkeletonCard';
-import { colors } from '../../constants/colors';
+import { darkColors } from '../../theme/dark';
 import { radius, shadows, spacing } from '../../constants/spacing';
 import { textStyles } from '../../constants/typography';
 import {
@@ -86,8 +86,8 @@ export const RetentionPoliciesScreen: React.FC = () => {
                         legalHoldActive: value,
                       })
                     }
-                    trackColor={{ false: colors.border, true: colors.primary }}
-                    thumbColor={colors.white}
+                    trackColor={{ false: darkColors.border, true: darkColors.primary }}
+                    thumbColor={darkColors.white}
                   />
                 </View>
               </View>
@@ -95,7 +95,7 @@ export const RetentionPoliciesScreen: React.FC = () => {
 
         <View style={styles.purgeCard}>
           <View style={styles.purgeHeader}>
-            <Icon name="trash-bin-outline" size={24} color={colors.error} />
+            <Icon name="trash-bin-outline" size={24} color={darkColors.error} />
             <Text style={styles.purgeTitle}>{t('retention.runPurgeNow')}</Text>
           </View>
           <Text style={styles.purgeBody}>{t('retention.nextPurge')}</Text>
@@ -117,30 +117,30 @@ export const RetentionPoliciesScreen: React.FC = () => {
 };
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: colors.background },
+  safe: { flex: 1, backgroundColor: darkColors.background },
   scroll: {
     padding: spacing.base,
     rowGap: spacing.sm,
     paddingBottom: spacing.xxl,
   },
   card: {
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     padding: spacing.base,
     borderRadius: radius.lg,
     rowGap: spacing.xs,
     ...shadows.xs,
   },
-  entity: { ...textStyles.bodyMedium, color: colors.textPrimary },
-  retention: { ...textStyles.caption, color: colors.textMuted },
+  entity: { ...textStyles.bodyMedium, color: darkColors.textPrimary },
+  retention: { ...textStyles.caption, color: darkColors.textMuted },
   toggleRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     marginTop: spacing.xs,
   },
-  toggleLabel: { ...textStyles.body, color: colors.textPrimary },
+  toggleLabel: { ...textStyles.body, color: darkColors.textPrimary },
   purgeCard: {
-    backgroundColor: colors.errorSoft,
+    backgroundColor: darkColors.errorSoft,
     padding: spacing.base,
     borderRadius: radius.lg,
     rowGap: spacing.sm,
@@ -151,17 +151,17 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     columnGap: spacing.sm,
   },
-  purgeTitle: { ...textStyles.h4, color: colors.error },
-  purgeBody: { ...textStyles.body, color: colors.error },
+  purgeTitle: { ...textStyles.h4, color: darkColors.error },
+  purgeBody: { ...textStyles.body, color: darkColors.error },
   purgeBtn: {
-    backgroundColor: colors.error,
+    backgroundColor: darkColors.error,
     paddingVertical: spacing.md,
     borderRadius: radius.pill,
     alignItems: 'center',
   },
   purgeBtnText: {
     ...textStyles.button,
-    color: colors.textInverse,
+    color: darkColors.textOnPrimary,
   },
 });
 
