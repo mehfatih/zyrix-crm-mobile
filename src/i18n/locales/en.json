@@ -1609,5 +1609,47 @@
       "advanced": { "title": "Advanced", "description": "Multi-brand and analytics." },
       "experience": { "title": "Experience", "description": "Onboarding wizard and mobile web." }
     }
+  },
+  "Sidebar": {
+    "home": "Home",
+    "tasks": "Tasks",
+    "followup": "Follow-up",
+    "teamChat": "Team Chat",
+    "customers": "Customers",
+    "deals": "Deals",
+    "pipeline": "Pipeline",
+    "contacts": "Contacts",
+    "companies": "Companies",
+    "campaigns": "Campaigns",
+    "quotes": "Quotes",
+    "contracts": "Contracts",
+    "whatsapp": "WhatsApp",
+    "cashFlow": "Cash Flow",
+    "tax": "Tax",
+    "taxInvoices": "Tax Invoices",
+    "commission": "Commission",
+    "loyalty": "Loyalty",
+    "analytics": "Analytics",
+    "reports": "Reports",
+    "sessionKPIs": "Session KPIs",
+    "aiCFO": "AI CFO",
+    "aiAgents": "AI Agents",
+    "automations": "Automations",
+    "templates": "Templates",
+    "settings": "Settings",
+    "help": "Help",
+    "profile": "Profile",
+    "soonBadge": "SOON",
+    "soonToast": "Coming soon — this feature is under development",
+    "groups": {
+      "dailyOps": "DAILY OPS",
+      "crmCore": "CRM CORE",
+      "salesDocs": "SALES DOCS",
+      "finance": "FINANCE",
+      "growth": "GROWTH",
+      "intelligence": "INTELLIGENCE",
+      "aiAutomation": "AI & AUTOMATION",
+      "system": "SYSTEM"
+    }
   }
 }

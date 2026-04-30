@@ -1588,5 +1588,47 @@
       "advanced": { "title": "Gelişmiş", "description": "Çoklu marka ve analitik." },
       "experience": { "title": "Deneyim", "description": "Onboarding sihirbazı ve mobil web." }
     }
+  },
+  "Sidebar": {
+    "home": "Ana Sayfa",
+    "tasks": "Görevler",
+    "followup": "Takip",
+    "teamChat": "Ekip Sohbeti",
+    "customers": "Müşteriler",
+    "deals": "Anlaşmalar",
+    "pipeline": "Satış Hattı",
+    "contacts": "Kişiler",
+    "companies": "Şirketler",
+    "campaigns": "Kampanyalar",
+    "quotes": "Teklifler",
+    "contracts": "Sözleşmeler",
+    "whatsapp": "WhatsApp",
+    "cashFlow": "Nakit Akışı",
+    "tax": "Vergi",
+    "taxInvoices": "Vergi Faturaları",
+    "commission": "Komisyon",
+    "loyalty": "Sadakat",
+    "analytics": "Analitik",
+    "reports": "Raporlar",
+    "sessionKPIs": "Oturum KPI'ları",
+    "aiCFO": "AI CFO",
+    "aiAgents": "AI Ajanları",
+    "automations": "Otomasyonlar",
+    "templates": "Şablonlar",
+    "settings": "Ayarlar",
+    "help": "Yardım",
+    "profile": "Profil",
+    "soonBadge": "YAKINDA",
+    "soonToast": "Yakında — bu özellik geliştirme aşamasında",
+    "groups": {
+      "dailyOps": "GÜNLÜK İŞLER",
+      "crmCore": "CRM ÇEKİRDEK",
+      "salesDocs": "SATIŞ BELGELERİ",
+      "finance": "FİNANS",
+      "growth": "BÜYÜME",
+      "intelligence": "İSTİHBARAT",
+      "aiAutomation": "AI VE OTOMASYON",
+      "system": "SİSTEM"
+    }
   }
 }
