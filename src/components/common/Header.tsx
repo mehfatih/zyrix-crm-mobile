@@ -27,6 +27,7 @@ import { colors } from '../../constants/colors';
 import { hitSlop, layout, spacing } from '../../constants/spacing';
 import { textStyles } from '../../constants/typography';
 import { Icon } from './Icon';
+import type { AccentShade } from '../../theme/dark/accents';
 
 export type HeaderTitleAlign = 'start' | 'center';
 
@@ -39,6 +40,14 @@ export interface HeaderProps {
   rightSlot?: React.ReactNode;
   titleAlign?: HeaderTitleAlign;
   transparent?: boolean;
+  /**
+   * Optional per-page accent. When provided, the header bar background
+   * uses `accent.base` instead of the default `colors.primary`. Added
+   * in M23 to support per-page identity (Sprint 14n) without breaking
+   * the existing call sites which continue to render with the brand
+   * primary.
+   */
+  accent?: AccentShade;
   style?: StyleProp<ViewStyle>;
   testID?: string;
 }
@@ -54,6 +63,7 @@ export const Header: React.FC<HeaderProps> = ({
   rightSlot,
   titleAlign = defaultTitleAlign,
   transparent = false,
+  accent,
   style,
   testID,
 }) => {
@@ -63,11 +73,13 @@ export const Header: React.FC<HeaderProps> = ({
   const hasLeft = Boolean(leftSlot) || (showBack && Boolean(onBack));
   const backArrowName = I18nManager.isRTL ? 'chevron-forward' : 'chevron-back';
 
+  const headerBg = accent?.base ?? colors.primary;
+
   const containerStyle: StyleProp<ViewStyle> = [
     styles.container,
     transparent
       ? { backgroundColor: colors.transparent }
-      : { backgroundColor: colors.primary },
+      : { backgroundColor: headerBg },
     { paddingTop: insets.top },
     style,
   ];
@@ -76,7 +88,7 @@ export const Header: React.FC<HeaderProps> = ({
     <View style={containerStyle} testID={testID}>
       <StatusBar
         barStyle="light-content"
-        backgroundColor={transparent ? colors.transparent : colors.primary}
+        backgroundColor={transparent ? colors.transparent : headerBg}
         translucent={transparent}
       />
       <SafeAreaView edges={['top']} style={styles.safe}>

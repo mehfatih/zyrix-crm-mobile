@@ -30,29 +30,45 @@ export type AccentShade = typeof SHADES[AccentColor];
 export const accents = SHADES;
 
 export const pageAccentMap = {
-  dashboard:    'cyan',
-  customers:    'violet',
-  deals:        'emerald',
+  // ── Translation plan (Sprint 14n) — primary site pages ─────────────────
+  dashboard:    'violet',
+  customers:    'sky',
+  deals:        'rose',
   pipeline:     'cyan',
   quotes:       'sky',
   contracts:    'indigo',
-  loyalty:      'rose',
+  loyalty:      'pink',
   tax:          'amber',
   taxInvoices:  'teal',
-  commission:   'lime',
-  cashFlow:     'emerald',
-  reports:      'sky',
+  commission:   'teal',
+  cashFlow:     'fuchsia',
+  reports:      'violet',
   analytics:    'violet',
   followUp:     'amber',
-  campaigns:    'pink',
+  campaigns:    'orange',
   aiCfo:        'violet',
   tasks:        'cyan',
   templates:    'indigo',
-  automations:  'violet',
+  automations:  'cyan',
   aiAgents:     'violet',
   teamChat:     'sky',
   whatsapp:     'emerald',
   settings:     'slate',
+
+  // ── Auth screens (M23 addition — all use violet for brand consistency) ─
+  login:              'violet',
+  register:           'violet',
+  forgotPassword:     'violet',
+  twoFactor:          'violet',
+  onboarding:         'violet',
+  languageSelection:  'violet',
+  splash:             'violet',
+  reAuth:             'amber',
+
+  // ── Common / system screens ────────────────────────────────────────────
+  loading:        'slate',
+  placeholder:    'slate',
+  securityBlock:  'rose',
 } as const;
 
 export type PageId = keyof typeof pageAccentMap;
