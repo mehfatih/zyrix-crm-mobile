@@ -23,7 +23,7 @@ import { CurrencyDisplay } from '../../../components/forms/CurrencyDisplay';
 import { Header } from '../../../components/common/Header';
 import { Icon } from '../../../components/common/Icon';
 import { SkeletonCard } from '../../../components/common/SkeletonCard';
-import { colors } from '../../../constants/colors';
+import { darkColors } from '../../../theme/dark';
 import { listQuotes, type Quote } from '../../../api/quotes';
 import { radius, shadows, spacing } from '../../../constants/spacing';
 import { textStyles } from '../../../constants/typography';
@@ -42,11 +42,11 @@ const STATUS_STYLE: Record<
   Status,
   { background: string; color: string }
 > = {
-  draft: { background: colors.surfaceAlt, color: colors.textMuted },
-  sent: { background: colors.infoSoft, color: colors.info },
-  viewed: { background: colors.warningSoft, color: colors.warning },
-  accepted: { background: colors.successSoft, color: colors.success },
-  expired: { background: colors.errorSoft, color: colors.error },
+  draft: { background: darkColors.surfaceAlt, color: darkColors.textMuted },
+  sent: { background: darkColors.infoSoft, color: darkColors.info },
+  viewed: { background: darkColors.warningSoft, color: darkColors.warning },
+  accepted: { background: darkColors.successSoft, color: darkColors.success },
+  expired: { background: darkColors.errorSoft, color: darkColors.error },
 };
 
 const STATUS_KEYS: readonly (Status | 'all')[] = [
@@ -201,13 +201,13 @@ export const QuotesScreen: React.FC = () => {
             <RefreshControl
               refreshing={quotesQuery.isRefetching}
               onRefresh={() => void quotesQuery.refetch()}
-              tintColor={colors.primary}
-              colors={[colors.primary]}
+              tintColor={darkColors.primary}
+              colors={[darkColors.primary]}
             />
           }
           ListEmptyComponent={
             <View style={styles.empty}>
-              <Icon name="document-text-outline" size={48} color={colors.primary} />
+              <Icon name="document-text-outline" size={48} color={darkColors.primary} />
               <Text style={styles.emptyTitle}>{t('navigation.quotes')}</Text>
             </View>
           }
@@ -221,14 +221,14 @@ export const QuotesScreen: React.FC = () => {
           pressed ? { opacity: 0.9 } : null,
         ]}
       >
-        <Icon name="add" size={28} color={colors.textInverse} />
+        <Icon name="add" size={28} color={darkColors.textOnPrimary} />
       </Pressable>
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: colors.background },
+  safe: { flex: 1, backgroundColor: darkColors.background },
   filters: {
     columnGap: spacing.xs,
     paddingHorizontal: spacing.base,
@@ -238,20 +238,20 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.md,
     paddingVertical: spacing.sm,
     borderRadius: radius.pill,
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     borderWidth: 1,
-    borderColor: colors.border,
+    borderColor: darkColors.border,
   },
   chipActive: {
-    backgroundColor: colors.primary,
-    borderColor: colors.primary,
+    backgroundColor: darkColors.primary,
+    borderColor: darkColors.primary,
   },
   chipText: {
     ...textStyles.caption,
-    color: colors.textSecondary,
+    color: darkColors.textSecondary,
     fontWeight: '600',
   },
-  chipTextActive: { color: colors.textInverse },
+  chipTextActive: { color: darkColors.textOnPrimary },
   sortRow: {
     flexDirection: 'row',
     columnGap: spacing.xs,
@@ -262,15 +262,15 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.sm,
     paddingVertical: 4,
     borderRadius: radius.sm,
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
   },
-  sortChipActive: { backgroundColor: colors.primarySoft },
+  sortChipActive: { backgroundColor: darkColors.primarySoft },
   sortText: {
     ...textStyles.caption,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
   },
   sortTextActive: {
-    color: colors.primaryDark,
+    color: darkColors.primaryDark,
     fontWeight: '700',
   },
   list: {
@@ -279,7 +279,7 @@ const styles = StyleSheet.create({
     rowGap: spacing.sm,
   },
   card: {
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     padding: spacing.base,
     borderRadius: radius.lg,
     rowGap: spacing.xs,
@@ -292,7 +292,7 @@ const styles = StyleSheet.create({
   },
   quoteNumber: {
     ...textStyles.bodyMedium,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
     fontWeight: '700',
   },
   statusBadge: {
@@ -306,7 +306,7 @@ const styles = StyleSheet.create({
   },
   customerName: {
     ...textStyles.caption,
-    color: colors.textSecondary,
+    color: darkColors.textSecondary,
   },
   metaRow: {
     flexDirection: 'row',
@@ -316,7 +316,7 @@ const styles = StyleSheet.create({
   },
   date: {
     ...textStyles.caption,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
   },
   empty: {
     alignItems: 'center',
@@ -325,7 +325,7 @@ const styles = StyleSheet.create({
   },
   emptyTitle: {
     ...textStyles.h4,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
   },
   fab: {
     position: 'absolute',
@@ -334,7 +334,7 @@ const styles = StyleSheet.create({
     width: 56,
     height: 56,
     borderRadius: 28,
-    backgroundColor: colors.primary,
+    backgroundColor: darkColors.primary,
     alignItems: 'center',
     justifyContent: 'center',
     ...shadows.md,

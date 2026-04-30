@@ -13,7 +13,7 @@ import { CurrencyDisplay } from '../../../components/forms/CurrencyDisplay';
 import { Header } from '../../../components/common/Header';
 import { Icon } from '../../../components/common/Icon';
 import { MOCK_REPS } from '../../../api/mockData';
-import { colors } from '../../../constants/colors';
+import { darkColors } from '../../../theme/dark';
 import { radius, shadows, spacing } from '../../../constants/spacing';
 import { textStyles } from '../../../constants/typography';
 
@@ -34,8 +34,8 @@ export const QuotasForecastScreen: React.FC = () => {
 
   const chartData = useMemo<BarDatum[]>(
     () => [
-      { label: t('quotas.target'), value: totals.target, color: colors.primarySoft },
-      { label: t('quotas.actual'), value: totals.actual, color: colors.primary },
+      { label: t('quotas.target'), value: totals.target, color: darkColors.primarySoft },
+      { label: t('quotas.actual'), value: totals.actual, color: darkColors.primary },
     ],
     [totals, t]
   );
@@ -75,10 +75,10 @@ export const QuotasForecastScreen: React.FC = () => {
               {
                 color:
                   totals.pct >= 90
-                    ? colors.success
+                    ? darkColors.success
                     : totals.pct >= 60
-                      ? colors.warning
-                      : colors.error,
+                      ? darkColors.warning
+                      : darkColors.error,
               },
             ]}
           >
@@ -90,7 +90,7 @@ export const QuotasForecastScreen: React.FC = () => {
               <CurrencyDisplay
                 amount={totals.target}
                 size="medium"
-                color={colors.textMuted}
+                color={darkColors.textMuted}
               />
             </View>
             <View style={styles.numberBlock}>
@@ -98,7 +98,7 @@ export const QuotasForecastScreen: React.FC = () => {
               <CurrencyDisplay
                 amount={totals.actual}
                 size="large"
-                color={colors.primaryDark}
+                color={darkColors.primaryDark}
               />
             </View>
           </View>
@@ -115,7 +115,7 @@ export const QuotasForecastScreen: React.FC = () => {
                 <Text style={styles.repName}>{rep.name}</Text>
                 <View style={styles.repBody}>
                   <Text style={styles.repLabel}>{t('quotas.target')}</Text>
-                  <CurrencyDisplay amount={rep.target} size="small" color={colors.textMuted} />
+                  <CurrencyDisplay amount={rep.target} size="small" color={darkColors.textMuted} />
                   <Text style={styles.repLabel}>{t('quotas.actual')}</Text>
                   <CurrencyDisplay amount={rep.actual} size="small" />
                 </View>
@@ -123,7 +123,7 @@ export const QuotasForecastScreen: React.FC = () => {
                   style={[
                     styles.repPct,
                     {
-                      color: pct >= 90 ? colors.success : pct >= 60 ? colors.warning : colors.error,
+                      color: pct >= 90 ? darkColors.success : pct >= 60 ? darkColors.warning : darkColors.error,
                     },
                   ]}
                 >
@@ -135,7 +135,7 @@ export const QuotasForecastScreen: React.FC = () => {
         </View>
 
         <View style={styles.insightCard}>
-          <Icon name="sparkles-outline" size={22} color={colors.primary} />
+          <Icon name="sparkles-outline" size={22} color={darkColors.primary} />
           <Text style={styles.insightTitle}>{t('quotas.projected')}</Text>
           <Text style={styles.insightBody}>
             {t('placeholders.comingInSprint', { sprint: 6 })}
@@ -147,7 +147,7 @@ export const QuotasForecastScreen: React.FC = () => {
 };
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: colors.background },
+  safe: { flex: 1, backgroundColor: darkColors.background },
   scroll: {
     padding: spacing.base,
     paddingBottom: spacing.xxl,
@@ -162,22 +162,22 @@ const styles = StyleSheet.create({
     paddingVertical: spacing.sm,
     borderRadius: radius.pill,
     alignItems: 'center',
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     borderWidth: 1,
-    borderColor: colors.border,
+    borderColor: darkColors.border,
   },
   periodChipActive: {
-    backgroundColor: colors.primary,
-    borderColor: colors.primary,
+    backgroundColor: darkColors.primary,
+    borderColor: darkColors.primary,
   },
   periodText: {
     ...textStyles.label,
-    color: colors.textSecondary,
+    color: darkColors.textSecondary,
     fontWeight: '600',
   },
-  periodTextActive: { color: colors.textInverse },
+  periodTextActive: { color: darkColors.textOnPrimary },
   attainmentCard: {
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     borderRadius: radius.xl,
     padding: spacing.xl,
     alignItems: 'center',
@@ -186,7 +186,7 @@ const styles = StyleSheet.create({
   },
   attainmentLabel: {
     ...textStyles.caption,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
   },
   attainmentValue: {
     fontSize: 40,
@@ -198,9 +198,9 @@ const styles = StyleSheet.create({
     marginTop: spacing.sm,
   },
   numberBlock: { rowGap: 2, alignItems: 'center' },
-  numberLabel: { ...textStyles.caption, color: colors.textMuted },
+  numberLabel: { ...textStyles.caption, color: darkColors.textMuted },
   card: {
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     borderRadius: radius.lg,
     padding: spacing.base,
     rowGap: spacing.sm,
@@ -208,18 +208,18 @@ const styles = StyleSheet.create({
   },
   cardTitle: {
     ...textStyles.h4,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
   },
   repRow: {
     flexDirection: 'row',
     alignItems: 'center',
     paddingVertical: spacing.sm,
     borderBottomWidth: 1,
-    borderBottomColor: colors.divider,
+    borderBottomColor: darkColors.divider,
   },
   repName: {
     ...textStyles.bodyMedium,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
     flex: 1,
   },
   repBody: {
@@ -231,7 +231,7 @@ const styles = StyleSheet.create({
   },
   repLabel: {
     ...textStyles.caption,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
   },
   repPct: {
     ...textStyles.h4,
@@ -240,18 +240,18 @@ const styles = StyleSheet.create({
     textAlign: 'right',
   },
   insightCard: {
-    backgroundColor: colors.primarySoft,
+    backgroundColor: darkColors.primarySoft,
     borderRadius: radius.lg,
     padding: spacing.base,
     rowGap: spacing.xs,
   },
   insightTitle: {
     ...textStyles.h4,
-    color: colors.primaryDark,
+    color: darkColors.primaryDark,
   },
   insightBody: {
     ...textStyles.caption,
-    color: colors.primaryDark,
+    color: darkColors.primaryDark,
   },
 });
 

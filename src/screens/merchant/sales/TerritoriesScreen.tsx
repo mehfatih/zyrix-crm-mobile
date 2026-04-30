@@ -20,16 +20,16 @@ import { CurrencyDisplay } from '../../../components/forms/CurrencyDisplay';
 import { Header } from '../../../components/common/Header';
 import { Icon } from '../../../components/common/Icon';
 import { MOCK_TERRITORIES } from '../../../api/mockData';
-import { colors } from '../../../constants/colors';
+import { darkColors } from '../../../theme/dark';
 import { radius, shadows, spacing } from '../../../constants/spacing';
 import { textStyles } from '../../../constants/typography';
 
 type Mode = 'map' | 'list';
 
 const PERFORMANCE_COLOR: Record<string, string> = {
-  excellent: colors.success,
-  on_track: colors.primary,
-  at_risk: colors.error,
+  excellent: darkColors.success,
+  on_track: darkColors.primary,
+  at_risk: darkColors.error,
 };
 
 export const TerritoriesScreen: React.FC = () => {
@@ -60,7 +60,7 @@ export const TerritoriesScreen: React.FC = () => {
             <Icon
               name={m === 'map' ? 'map-outline' : 'list-outline'}
               size={16}
-              color={mode === m ? colors.textInverse : colors.primary}
+              color={mode === m ? darkColors.textOnPrimary : darkColors.primary}
             />
             <Text
               style={[
@@ -77,7 +77,7 @@ export const TerritoriesScreen: React.FC = () => {
       <ScrollView contentContainerStyle={styles.scroll}>
         {mode === 'map' ? (
           <View style={styles.mapCard}>
-            <Icon name="map-outline" size={48} color={colors.primary} />
+            <Icon name="map-outline" size={48} color={darkColors.primary} />
             <Text style={styles.mapTitle}>{t('territories.mapView')}</Text>
             <Text style={styles.mapBody}>
               {t('placeholders.comingInSprint', { sprint: 5 })}
@@ -101,7 +101,7 @@ export const TerritoriesScreen: React.FC = () => {
                   styles.perfDot,
                   {
                     backgroundColor:
-                      PERFORMANCE_COLOR[territory.performance] ?? colors.primary,
+                      PERFORMANCE_COLOR[territory.performance] ?? darkColors.primary,
                   },
                 ]}
               />
@@ -123,7 +123,7 @@ export const TerritoriesScreen: React.FC = () => {
                 <CurrencyDisplay
                   amount={territory.revenue}
                   size="medium"
-                  color={colors.primaryDark}
+                  color={darkColors.primaryDark}
                 />
               </View>
             </View>
@@ -138,14 +138,14 @@ export const TerritoriesScreen: React.FC = () => {
           pressed ? { opacity: 0.9 } : null,
         ]}
       >
-        <Icon name="add" size={28} color={colors.textInverse} />
+        <Icon name="add" size={28} color={darkColors.textOnPrimary} />
       </Pressable>
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: colors.background },
+  safe: { flex: 1, backgroundColor: darkColors.background },
   toggleRow: {
     flexDirection: 'row',
     padding: spacing.base,
@@ -159,19 +159,19 @@ const styles = StyleSheet.create({
     columnGap: spacing.xs,
     paddingVertical: spacing.sm,
     borderRadius: radius.pill,
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     borderWidth: 1.5,
-    borderColor: colors.primary,
+    borderColor: darkColors.primary,
   },
   toggleBtnActive: {
-    backgroundColor: colors.primary,
+    backgroundColor: darkColors.primary,
   },
   toggleText: {
     ...textStyles.label,
-    color: colors.primary,
+    color: darkColors.primary,
     fontWeight: '700',
   },
-  toggleTextActive: { color: colors.textInverse },
+  toggleTextActive: { color: darkColors.textOnPrimary },
   scroll: {
     padding: spacing.base,
     paddingBottom: spacing.xxxl * 2,
@@ -179,7 +179,7 @@ const styles = StyleSheet.create({
   },
   mapCard: {
     alignItems: 'center',
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     borderRadius: radius.lg,
     padding: spacing.xl,
     rowGap: spacing.xs,
@@ -187,15 +187,15 @@ const styles = StyleSheet.create({
   },
   mapTitle: {
     ...textStyles.h4,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
   },
   mapBody: {
     ...textStyles.caption,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
     textAlign: 'center',
   },
   card: {
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     borderRadius: radius.lg,
     padding: spacing.base,
     rowGap: spacing.sm,
@@ -208,7 +208,7 @@ const styles = StyleSheet.create({
   },
   cardTitle: {
     ...textStyles.h4,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
   },
   perfDot: {
     width: 14,
@@ -217,7 +217,7 @@ const styles = StyleSheet.create({
   },
   cardMeta: {
     ...textStyles.caption,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
   },
   statsRow: {
     flexDirection: 'row',
@@ -226,11 +226,11 @@ const styles = StyleSheet.create({
   statCol: { flex: 1, rowGap: 2 },
   statLabel: {
     ...textStyles.caption,
-    color: colors.textMuted,
+    color: darkColors.textMuted,
   },
   statValue: {
     ...textStyles.h4,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
   },
   fab: {
     position: 'absolute',
@@ -239,7 +239,7 @@ const styles = StyleSheet.create({
     width: 56,
     height: 56,
     borderRadius: 28,
-    backgroundColor: colors.primary,
+    backgroundColor: darkColors.primary,
     alignItems: 'center',
     justifyContent: 'center',
     ...shadows.md,

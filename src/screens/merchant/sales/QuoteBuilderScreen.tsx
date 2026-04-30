@@ -23,7 +23,7 @@ import {
   calculateTotals,
   type QuoteDraft,
 } from '../../../components/feature-specific/QuoteBuilder';
-import { colors } from '../../../constants/colors';
+import { darkColors } from '../../../theme/dark';
 import { listCustomers } from '../../../api/customers';
 import { radius, shadows, spacing } from '../../../constants/spacing';
 import { textStyles } from '../../../constants/typography';
@@ -162,17 +162,17 @@ export const QuoteBuilderScreen: React.FC = () => {
 };
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: colors.background },
+  safe: { flex: 1, backgroundColor: darkColors.background },
   footer: {
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     borderTopWidth: 1,
-    borderTopColor: colors.divider,
+    borderTopColor: darkColors.divider,
     padding: spacing.base,
     rowGap: spacing.sm,
     ...shadows.md,
   },
   totalPreview: {
-    backgroundColor: colors.primarySoft,
+    backgroundColor: darkColors.primarySoft,
     padding: spacing.sm,
     borderRadius: radius.base,
     flexDirection: 'row',
@@ -181,11 +181,11 @@ const styles = StyleSheet.create({
   },
   totalLabel: {
     ...textStyles.label,
-    color: colors.primaryDark,
+    color: darkColors.primaryDark,
   },
   totalValue: {
     ...textStyles.h4,
-    color: colors.primaryDark,
+    color: darkColors.primaryDark,
     fontWeight: '800',
   },
   actions: {

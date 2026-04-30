@@ -26,7 +26,7 @@ import { Input } from '../../../components/common/Input';
 import { PhoneInput } from '../../../components/common/PhoneInput';
 import { TagsInput } from '../../../components/forms/TagsInput';
 import { TaxIdInput } from '../../../components/common/TaxIdInput';
-import { colors } from '../../../constants/colors';
+import { darkColors } from '../../../theme/dark';
 import { radius, shadows, spacing } from '../../../constants/spacing';
 import { textStyles } from '../../../constants/typography';
 import { useCustomer, useUpdateCustomer } from '../../../hooks/useCustomers';
@@ -139,7 +139,7 @@ export const EditCustomerScreen: React.FC = () => {
             onChangeText={setNotes}
             multiline
             placeholder={t('quoteBuilder.internalNotes')}
-            placeholderTextColor={colors.textMuted}
+            placeholderTextColor={darkColors.textMuted}
             style={[
               styles.textarea,
               { textAlign: I18nManager.isRTL ? 'right' : 'left' },
@@ -160,13 +160,13 @@ export const EditCustomerScreen: React.FC = () => {
 };
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: colors.background },
+  safe: { flex: 1, backgroundColor: darkColors.background },
   scroll: {
     padding: spacing.base,
     paddingBottom: spacing.xxxl,
   },
   card: {
-    backgroundColor: colors.surface,
+    backgroundColor: darkColors.surface,
     padding: spacing.base,
     borderRadius: radius.lg,
     rowGap: spacing.sm,
@@ -174,13 +174,13 @@ const styles = StyleSheet.create({
   },
   fieldLabel: {
     ...textStyles.label,
-    color: colors.textSecondary,
+    color: darkColors.textSecondary,
   },
   textarea: {
     ...textStyles.body,
-    color: colors.textPrimary,
+    color: darkColors.textPrimary,
     borderWidth: 1,
-    borderColor: colors.border,
+    borderColor: darkColors.border,
     borderRadius: radius.base,
     padding: spacing.sm,
     minHeight: 120,
@@ -189,8 +189,8 @@ const styles = StyleSheet.create({
   footer: {
     padding: spacing.base,
     borderTopWidth: 1,
-    borderTopColor: colors.divider,
-    backgroundColor: colors.surface,
+    borderTopColor: darkColors.divider,
+    backgroundColor: darkColors.surface,
   },
 });
 
