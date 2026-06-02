@@ -259,6 +259,7 @@ const Field: React.FC<{
     <TextInput
       value={value}
       onChangeText={onChange}
+      placeholderTextColor={darkColors.textMuted}
       style={[
         styles.input,
         { textAlign: I18nManager.isRTL ? 'right' : 'left' },

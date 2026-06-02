@@ -19,6 +19,7 @@ import { IPAllowlistScreen } from '../screens/merchant/settings/IPAllowlistScree
 import { PaymentGatewaysScreen } from '../screens/merchant/settings/PaymentGatewaysScreen';
 import { SecurityLogScreen } from '../screens/merchant/settings/SecurityLogScreen';
 import { SecurityScreen } from '../screens/merchant/settings/SecurityScreen';
+import { ShopifyScreen } from '../screens/merchant/settings/ShopifyScreen';
 import { TwoFactorScreen } from '../screens/merchant/settings/TwoFactorScreen';
 import { colors } from '../constants/colors';
 import { hitSlop, radius, shadows, spacing } from '../constants/spacing';
@@ -70,6 +71,12 @@ const ITEMS: readonly HomeItem[] = [
     icon: 'wallet-outline',
     titleKey: 'paymentGateways.title',
     subtitleKey: 'paymentGateways.configure',
+  },
+  {
+    route: 'Shopify',
+    icon: 'storefront-outline',
+    titleKey: 'shopifyIntegration.title',
+    subtitleKey: 'shopifyIntegration.menuSubtitle',
   },
 ];
 
@@ -132,6 +139,7 @@ export const MerchantSettingsStack: React.FC = () => (
     <Stack.Screen name="IPAllowlist" component={IPAllowlistScreen} />
     <Stack.Screen name="TwoFactor" component={TwoFactorScreen} />
     <Stack.Screen name="SecurityLog" component={SecurityLogScreen} />
+    <Stack.Screen name="Shopify" component={ShopifyScreen} />
   </Stack.Navigator>
 );
 

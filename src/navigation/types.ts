@@ -135,6 +135,7 @@ export type MerchantSettingsStackParamList = {
   IPAllowlist: undefined;
   TwoFactor: undefined;
   SecurityLog: undefined;
+  Shopify: undefined;
 };
 
 export type MerchantMoreDrawerParamList = {

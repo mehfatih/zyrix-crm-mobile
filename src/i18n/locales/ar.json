@@ -1645,5 +1645,48 @@
       "info": "معلومة",
       "neutral": "محايد"
     }
-  }
+  },
+    "shopifyIntegration": {
+      "title": "Shopify",
+      "menuSubtitle": "اربط متجرك عبر OAuth",
+      "subtitle": "اربط متجرك بنقرة واحدة — دون الحاجة إلى رمز وصول",
+      "connectTitle": "ربط متجر",
+      "connectButton": "ربط Shopify",
+      "domainLabel": "نطاق المتجر",
+      "domainHint": "أدخل نطاق myshopify.com الخاص بك",
+      "domainInvalid": "أدخل نطاقًا صحيحًا مثل your-store.myshopify.com",
+      "securityNote": "ستُحوَّل إلى Shopify للموافقة على الوصول. لا يطّلع Zyrix على كلمة المرور أو رمز الوصول ولا يخزّنهما.",
+      "connectionsTitle": "المتاجر المرتبطة",
+      "neverSynced": "لم تتم المزامنة بعد",
+      "reconnect": "إعادة الربط",
+      "reconnectViaShopify": "إعادة الربط عبر Shopify",
+      "disconnect": "فصل",
+      "emptyTitle": "لا توجد متاجر مرتبطة",
+      "emptySubtitle": "اربط متجر Shopify لاستيراد العملاء والطلبات تلقائيًا.",
+      "legacyHint": "مرتبط برمز يدوي. أعد الربط عبر Shopify للحصول على وصول آمن يتجدّد تلقائيًا.",
+      "connectedBanner": "تم ربط متجر Shopify. بدأت المزامنة الأولية.",
+      "statusLabels": {
+        "connected": "مرتبط",
+        "needs_reauth": "يلزم إعادة الربط",
+        "error": "خطأ",
+        "revoked": "ملغى",
+        "pending": "قيد الانتظار",
+        "legacy_manual": "رمز يدوي"
+      }
+    },
+    "integrationErrors": {
+      "SHOPIFY_NOT_CONFIGURED": "تكامل Shopify غير متاح بعد على هذا الحساب. حاول لاحقًا أو تواصل مع الدعم.",
+      "SHOPIFY_AUTH_FAILED": "لم تكتمل عملية تسجيل الدخول إلى Shopify. أعد المحاولة.",
+      "SHOPIFY_CODE_EXCHANGE_FAILED": "تعذّر إكمال الربط مع Shopify. أعد المحاولة.",
+      "STORE_NOT_FOUND": "لم يتم العثور على ارتباط هذا المتجر.",
+      "MISSING_PERMISSIONS": "لم تُمنح بعض الصلاحيات المطلوبة. وافق على جميع الصلاحيات وأعد المحاولة.",
+      "INVALID_SHOP_DOMAIN": "لا يبدو هذا نطاق متجر Shopify صحيحًا.",
+      "INVALID_STATE": "انتهت صلاحية رابط الربط أو سبق استخدامه. ابدأ من جديد.",
+      "INVALID_HMAC": "تعذّر التحقق من استجابة Shopify. أعد المحاولة.",
+      "RATE_LIMITED": "يحدّ Shopify من عدد الطلبات حاليًا. انتظر قليلًا وأعد المحاولة.",
+      "CONNECTION_TIMEOUT": "استغرق Shopify وقتًا طويلًا للرد. أعد المحاولة.",
+      "TOKEN_REFRESH_FAILED": "تعذّر تجديد الوصول إلى متجرك. أعد الربط.",
+      "NEEDS_REAUTH": "يلزم إعادة ربط متجرك لمتابعة المزامنة.",
+      "INTERNAL_ERROR": "حدث خطأ ما. أعد المحاولة، وتواصل مع الدعم إذا استمر."
+    }
 }
