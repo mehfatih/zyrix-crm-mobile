@@ -311,6 +311,7 @@ const Field: React.FC<{
       value={value}
       onChangeText={onChange}
       autoCapitalize="none"
+      placeholderTextColor={darkColors.textMuted}
       style={[
         styles.input,
         { textAlign: I18nManager.isRTL ? 'right' : 'left' },

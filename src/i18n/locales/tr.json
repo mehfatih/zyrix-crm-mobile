@@ -1645,5 +1645,48 @@
       "info": "Bilgi",
       "neutral": "Nötr"
     }
-  }
+  },
+    "shopifyIntegration": {
+      "title": "Shopify",
+      "menuSubtitle": "Mağazanı OAuth ile bağla",
+      "subtitle": "Mağazanı tek tıkla bağla — erişim jetonu gerekmez",
+      "connectTitle": "Mağaza bağla",
+      "connectButton": "Shopify'ı bağla",
+      "domainLabel": "Mağaza alan adı",
+      "domainHint": "myshopify.com alan adını gir",
+      "domainInvalid": "your-store.myshopify.com gibi geçerli bir alan adı gir",
+      "securityNote": "Erişimi onaylamak için Shopify'a yönlendirileceksin. Zyrix şifreni veya erişim jetonunu asla görmez ya da saklamaz.",
+      "connectionsTitle": "Bağlı mağazalar",
+      "neverSynced": "Henüz eşitlenmedi",
+      "reconnect": "Yeniden bağlan",
+      "reconnectViaShopify": "Shopify ile yeniden bağlan",
+      "disconnect": "Bağlantıyı kes",
+      "emptyTitle": "Bağlı mağaza yok",
+      "emptySubtitle": "Müşterileri ve siparişleri otomatik içe aktarmak için Shopify mağazanı bağla.",
+      "legacyHint": "Manuel jetonla bağlandı. Güvenli, otomatik yenilenen erişim için Shopify ile yeniden bağlan.",
+      "connectedBanner": "Shopify mağazan bağlandı. İlk eşitleme başladı.",
+      "statusLabels": {
+        "connected": "Bağlı",
+        "needs_reauth": "Yeniden bağlanmalı",
+        "error": "Hata",
+        "revoked": "İptal edildi",
+        "pending": "Beklemede",
+        "legacy_manual": "Manuel jeton"
+      }
+    },
+    "integrationErrors": {
+      "SHOPIFY_NOT_CONFIGURED": "Shopify bu hesapta henüz kullanılamıyor. Lütfen daha sonra dene veya destek ile iletişime geç.",
+      "SHOPIFY_AUTH_FAILED": "Shopify oturum açma tamamlanmadı. Lütfen yeniden bağlanmayı dene.",
+      "SHOPIFY_CODE_EXCHANGE_FAILED": "Shopify bağlantısı tamamlanamadı. Lütfen tekrar dene.",
+      "STORE_NOT_FOUND": "Bu mağaza bağlantısı bulunamadı.",
+      "MISSING_PERMISSIONS": "Gerekli bazı izinler verilmedi. Tüm istenen izinleri onaylayıp tekrar dene.",
+      "INVALID_SHOP_DOMAIN": "Bu geçerli bir Shopify mağaza alan adı gibi görünmüyor.",
+      "INVALID_STATE": "Bağlantın süresi doldu veya zaten kullanıldı. Lütfen yeniden başla.",
+      "INVALID_HMAC": "Shopify'dan gelen yanıt doğrulanamadı. Lütfen yeniden bağlanmayı dene.",
+      "RATE_LIMITED": "Shopify şu anda istekleri sınırlıyor. Lütfen biraz bekleyip tekrar dene.",
+      "CONNECTION_TIMEOUT": "Shopify yanıt vermesi çok uzun sürdü. Lütfen tekrar dene.",
+      "TOKEN_REFRESH_FAILED": "Mağazana erişim yenilenemedi. Lütfen yeniden bağlan.",
+      "NEEDS_REAUTH": "Eşitlemeye devam etmek için mağazanın yeniden bağlanması gerekiyor.",
+      "INTERNAL_ERROR": "Bir şeyler ters gitti. Lütfen tekrar dene; sorun sürerse destek ile iletişime geç."
+    }
 }

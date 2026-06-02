@@ -209,6 +209,7 @@ const Field: React.FC<{
       value={value}
       onChangeText={onChange}
       keyboardType={keyboard}
+      placeholderTextColor={darkColors.textMuted}
       style={[
         styles.input,
         { textAlign: I18nManager.isRTL ? 'right' : 'left' },

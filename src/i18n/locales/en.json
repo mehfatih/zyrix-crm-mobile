@@ -1666,5 +1666,48 @@
       "info": "Info",
       "neutral": "Neutral"
     }
-  }
+  },
+    "shopifyIntegration": {
+      "title": "Shopify",
+      "menuSubtitle": "Connect your store with OAuth",
+      "subtitle": "Connect your store in one click — no access token required",
+      "connectTitle": "Connect a store",
+      "connectButton": "Connect Shopify",
+      "domainLabel": "Store domain",
+      "domainHint": "Enter your myshopify.com domain",
+      "domainInvalid": "Enter a valid domain like your-store.myshopify.com",
+      "securityNote": "You'll be redirected to Shopify to approve access. Zyrix never sees or stores your password or access token.",
+      "connectionsTitle": "Connected stores",
+      "neverSynced": "Not synced yet",
+      "reconnect": "Reconnect",
+      "reconnectViaShopify": "Reconnect via Shopify",
+      "disconnect": "Disconnect",
+      "emptyTitle": "No stores connected",
+      "emptySubtitle": "Connect your Shopify store to import customers and orders automatically.",
+      "legacyHint": "Connected with a manual token. Reconnect via Shopify for secure, auto-refreshing access.",
+      "connectedBanner": "Your Shopify store is connected. Initial sync has started.",
+      "statusLabels": {
+        "connected": "Connected",
+        "needs_reauth": "Reconnect needed",
+        "error": "Error",
+        "revoked": "Revoked",
+        "pending": "Pending",
+        "legacy_manual": "Manual token"
+      }
+    },
+    "integrationErrors": {
+      "SHOPIFY_NOT_CONFIGURED": "Shopify isn't available yet on this account. Please try again later or contact support.",
+      "SHOPIFY_AUTH_FAILED": "Shopify sign-in didn't complete. Please try connecting again.",
+      "SHOPIFY_CODE_EXCHANGE_FAILED": "We couldn't finish connecting to Shopify. Please try again.",
+      "STORE_NOT_FOUND": "That store connection wasn't found.",
+      "MISSING_PERMISSIONS": "Some required permissions weren't granted. Please approve all requested scopes and try again.",
+      "INVALID_SHOP_DOMAIN": "That doesn't look like a valid Shopify store domain.",
+      "INVALID_STATE": "Your connection link expired or was already used. Please start again.",
+      "INVALID_HMAC": "We couldn't verify the response from Shopify. Please try connecting again.",
+      "RATE_LIMITED": "Shopify is rate-limiting requests. Please wait a moment and try again.",
+      "CONNECTION_TIMEOUT": "Shopify took too long to respond. Please try again.",
+      "TOKEN_REFRESH_FAILED": "We couldn't refresh access to your store. Please reconnect.",
+      "NEEDS_REAUTH": "Your store needs to be reconnected to continue syncing.",
+      "INTERNAL_ERROR": "Something went wrong. Please try again, and contact support if it persists."
+    }
 }
