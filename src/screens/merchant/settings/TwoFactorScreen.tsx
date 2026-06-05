@@ -330,11 +330,7 @@ const SettingsRow: React.FC<{
     >
       {label}
     </Text>
-    <Icon
-      name={I18nManager.isRTL ? 'chevron-back' : 'chevron-forward'}
-      size={18}
-      color={darkColors.textMuted}
-    />
+    <Icon name="chevron-forward" size={18} color={darkColors.textMuted} />
   </Pressable>
 );
 

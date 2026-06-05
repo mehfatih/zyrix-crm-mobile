@@ -2,15 +2,14 @@
  * Header — app-wide header row with cyan background, back affordance,
  * and an optional right-side actions slot.
  *
- * RTL handling: the back chevron flips automatically via I18nManager.isRTL
- * so the arrow always points "back" in reading order. Title alignment
+ * RTL handling: the back chevron flips automatically in the Icon wrapper
+ * under RTL so the arrow always points "back" in reading order. Title alignment
  * defaults to centered on iOS (platform convention) and start-aligned
  * on Android; callers can override via `titleAlign`.
  */
 
 import React from 'react';
 import {
-  I18nManager,
   Platform,
   Pressable,
   StatusBar,
@@ -71,7 +70,7 @@ export const Header: React.FC<HeaderProps> = ({
   const insets = useSafeAreaInsets();
 
   const hasLeft = Boolean(leftSlot) || (showBack && Boolean(onBack));
-  const backArrowName = I18nManager.isRTL ? 'chevron-forward' : 'chevron-back';
+  const backArrowName = 'chevron-back';
 
   const headerBg = accent?.base ?? colors.primary;
 
