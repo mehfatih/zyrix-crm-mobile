@@ -155,13 +155,16 @@ export const SystemNotificationsScreen: React.FC = () => {
         </View>
 
         <View style={styles.card}>
-          <Field label="Title" value={title} onChange={setTitle} />
-          <Text style={styles.fieldLabel}>Body</Text>
+          <Field label={t('systemNotifications.fieldTitle')} value={title} onChange={setTitle} />
+          <Text style={styles.fieldLabel}>{t('systemNotifications.fieldBody')}</Text>
           <TextInput
             value={body}
             onChangeText={setBody}
             multiline
-            placeholder="Use {{userName}} and {{companyName}} for personalisation"
+            placeholder={t('systemNotifications.bodyPlaceholder', {
+              u: '{{userName}}',
+              c: '{{companyName}}',
+            })}
             placeholderTextColor={darkColors.textMuted}
             style={[
               styles.textarea,
@@ -169,7 +172,7 @@ export const SystemNotificationsScreen: React.FC = () => {
             ]}
           />
           <Field
-            label="Schedule (ISO datetime, leave empty for now)"
+            label={t('systemNotifications.scheduleField')}
             value={scheduleAt}
             onChange={setScheduleAt}
           />

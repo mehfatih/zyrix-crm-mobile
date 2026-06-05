@@ -531,6 +531,8 @@
     "redemptions": "الاستبدالات"
   },
   "loyalty": {
+    "birthday": "عيد الميلاد",
+    "anniversary": "الذكرى السنوية",
     "bronze": "برونزي",
     "silver": "فضي",
     "gold": "ذهبي",
@@ -1073,6 +1075,23 @@
     "tamara": "تمارا"
   },
   "admin": {
+    "account": "الحساب",
+    "newToday": "جديد اليوم",
+    "overduePayments": "مدفوعات متأخرة",
+    "supportTickets": "تذاكر الدعم",
+    "complianceAlertsLabel": "الامتثال",
+    "signupsTrend": "التسجيلات · آخر 14 يومًا",
+    "revenueTrend": "الإيرادات · آخر 12 شهرًا",
+    "companiesByPlan": "الشركات حسب الخطة",
+    "topCompaniesByMrr": "أفضل الشركات حسب الإيراد الشهري",
+    "profileRow": "الملف الشخصي",
+    "passwordRow": "كلمة المرور",
+    "twoFactorRow": "المصادقة الثنائية",
+    "editProfile": "تعديل الملف الشخصي",
+    "changePassword": "تغيير كلمة المرور",
+    "enable2FA": "تفعيل المصادقة الثنائية",
+    "emailNotifications": "إشعارات البريد الإلكتروني",
+    "mobilePush": "إشعارات الجوال",
     "adminPanel": "لوحة المشرف",
     "dashboard": "نظرة عامة على المنصة",
     "companies": "الشركات",
@@ -1130,6 +1149,9 @@
     "actions": "إجراءات"
   },
   "usersAdmin": {
+    "email": "البريد الإلكتروني",
+    "created": "تاريخ الإنشاء",
+    "activeSessions": "{{count}} جلسة نشطة",
     "allUsers": "كل المستخدمين",
     "role": "الدور",
     "company": "الشركة",
@@ -1165,6 +1187,9 @@
     "experience": "تجربة المستخدم"
   },
   "plans": {
+    "name": "الاسم",
+    "description": "الوصف",
+    "order": "الترتيب",
     "title": "الباقات والتسعير",
     "newPlan": "باقة جديدة",
     "editPlan": "تعديل الباقة",
@@ -1195,6 +1220,9 @@
     "savedFilters": "مرشحات محفوظة"
   },
   "ipAllowlistAdmin": {
+    "recommended": "✓ موصى به",
+    "allowManagersAnyIp": "السماح للمديرين من أي IP",
+    "allowAllViaMobile": "السماح للجميع عبر الجوال",
     "addRule": "إضافة قاعدة",
     "cidr": "CIDR",
     "description": "الوصف",
@@ -1247,6 +1275,9 @@
     "nextPurge": "الحذف القادم: غدًا الساعة 03:00 UTC."
   },
   "complianceAdmin": {
+    "requestsPerMonth": "الطلبات / الشهر",
+    "avgFulfilment": "متوسط الإنجاز (س)",
+    "pending": "قيد الانتظار",
     "title": "تصديرات الامتثال",
     "newRequest": "طلب جديد",
     "type": "النوع",
@@ -1261,6 +1292,14 @@
     "expiresIn": "ينتهي خلال"
   },
   "systemStats": {
+    "apiAvg": "API · المتوسط",
+    "latencyPercentiles": "p95 / p99",
+    "trafficPerHour": "حركة المرور في الساعة",
+    "componentApi": "API",
+    "componentDatabase": "قاعدة البيانات",
+    "componentRedis": "ذاكرة Redis المؤقتة",
+    "componentZatca": "بوابة ZATCA",
+    "componentEfatura": "بوابة e-Fatura",
     "apiResponseTime": "زمن استجابة API",
     "activeSessions": "الجلسات النشطة",
     "dbConnections": "اتصالات قاعدة البيانات",
@@ -1273,6 +1312,10 @@
     "p99": "p99"
   },
   "systemNotifications": {
+    "fieldTitle": "العنوان",
+    "fieldBody": "النص",
+    "bodyPlaceholder": "استخدم {{u}} و {{c}} للتخصيص",
+    "scheduleField": "الجدولة (تاريخ ووقت ISO، اتركه فارغًا للإرسال الآن)",
     "title": "الإعلانات",
     "sendAnnouncement": "إرسال إعلان",
     "audience": "الجمهور",
@@ -1363,6 +1406,13 @@
     "learnMore": "اعرف المزيد"
   },
   "twoFactor": {
+    "setupBodySms": "سنرسل رسالة SMS للتحقق إلى هاتفك في الخطوة التالية.",
+    "setupBodyEmail": "سيتم إرسال بريد إلكتروني للتحقق إلى حسابك.",
+    "setupBodyApp": "امسح رمز QR هذا باستخدام Google Authenticator / Authy / 1Password — أو أدخل المفتاح يدويًا.",
+    "active": "المصادقة الثنائية مُفعّلة",
+    "methodLabel": "الطريقة: {{method}}",
+    "manage": "إدارة",
+    "changeMethod": "تغيير الطريقة",
     "title": "التحقق بخطوتين",
     "chooseMethod": "اختر الطريقة",
     "sms": "رسالة نصية",

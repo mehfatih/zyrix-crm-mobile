@@ -138,14 +138,14 @@ export const AdminDashboardScreen: React.FC = () => {
               },
               {
                 key: 'mrr',
-                label: 'MRR',
+                label: t('companies.mrr'),
                 value: `$${summary.monthlyRecurringRevenue}/mo`,
                 icon: 'cash-outline',
                 tone: darkColors.success,
               },
               {
                 key: 'signups',
-                label: 'New today',
+                label: t('admin.newToday'),
                 value: String(summary.newSignupsToday),
                 icon: 'sparkles-outline',
                 tone: darkColors.warning,
@@ -160,19 +160,19 @@ export const AdminDashboardScreen: React.FC = () => {
               icon="alert-circle-outline"
               tone={darkColors.error}
               count={summary.alerts.overduePayments}
-              label="overdue payments"
+              label={t('admin.overduePayments')}
             />
             <AlertCard
               icon="help-buoy-outline"
               tone={darkColors.warning}
               count={summary.alerts.pendingTickets}
-              label="support tickets"
+              label={t('admin.supportTickets')}
             />
             <AlertCard
               icon="shield-checkmark-outline"
               tone={darkColors.primary}
               count={summary.alerts.pendingCompliance}
-              label="compliance"
+              label={t('admin.complianceAlertsLabel')}
             />
           </View>
         ) : null}
@@ -180,7 +180,7 @@ export const AdminDashboardScreen: React.FC = () => {
         {linePoints.length > 0 ? (
           <LineChart
             data={linePoints}
-            title="Signups · last 14 days"
+            title={t('admin.signupsTrend')}
             height={180}
           />
         ) : null}
@@ -188,7 +188,7 @@ export const AdminDashboardScreen: React.FC = () => {
         {revenuePoints.length > 0 ? (
           <LineChart
             data={revenuePoints}
-            title="Revenue · last 12 months"
+            title={t('admin.revenueTrend')}
             currency
             height={200}
           />
@@ -197,14 +197,14 @@ export const AdminDashboardScreen: React.FC = () => {
         {planDistribution.length > 0 ? (
           <PieChart
             data={planDistribution}
-            title="Companies by plan"
+            title={t('admin.companiesByPlan')}
             size={160}
           />
         ) : null}
 
         {summary && summary.topCompanies.length > 0 ? (
           <View style={styles.topCompaniesCard}>
-            <Text style={styles.sectionTitle}>Top companies by MRR</Text>
+            <Text style={styles.sectionTitle}>{t('admin.topCompaniesByMrr')}</Text>
             {summary.topCompanies.map((company) => (
               <View key={company.id} style={styles.topCompanyRow}>
                 <Text style={styles.topCompanyName} numberOfLines={1}>

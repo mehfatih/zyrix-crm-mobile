@@ -522,6 +522,8 @@
     "redemptions": "Redemptions"
   },
   "loyalty": {
+    "birthday": "Birthday",
+    "anniversary": "Anniversary",
     "bronze": "Bronze",
     "silver": "Silver",
     "gold": "Gold",
@@ -1094,6 +1096,23 @@
     "tamara": "Tamara"
   },
   "admin": {
+    "account": "Account",
+    "newToday": "New today",
+    "overduePayments": "overdue payments",
+    "supportTickets": "support tickets",
+    "complianceAlertsLabel": "compliance",
+    "signupsTrend": "Signups · last 14 days",
+    "revenueTrend": "Revenue · last 12 months",
+    "companiesByPlan": "Companies by plan",
+    "topCompaniesByMrr": "Top companies by MRR",
+    "profileRow": "Profile",
+    "passwordRow": "Password",
+    "twoFactorRow": "Two-factor auth",
+    "editProfile": "Edit profile",
+    "changePassword": "Change password",
+    "enable2FA": "Enable 2FA",
+    "emailNotifications": "Email notifications",
+    "mobilePush": "Mobile push",
     "adminPanel": "Admin Panel",
     "dashboard": "Platform overview",
     "companies": "Companies",
@@ -1151,6 +1170,10 @@
     "actions": "Actions"
   },
   "usersAdmin": {
+    "email": "Email",
+    "created": "Created",
+    "activeSessions_one": "{{count}} active session",
+    "activeSessions_other": "{{count}} active sessions",
     "allUsers": "All users",
     "role": "Role",
     "company": "Company",
@@ -1186,6 +1209,9 @@
     "experience": "Experience"
   },
   "plans": {
+    "name": "Name",
+    "description": "Description",
+    "order": "Order",
     "title": "Plans & Pricing",
     "newPlan": "New plan",
     "editPlan": "Edit plan",
@@ -1216,6 +1242,9 @@
     "savedFilters": "Saved filters"
   },
   "ipAllowlistAdmin": {
+    "recommended": "✓ recommended",
+    "allowManagersAnyIp": "Allow managers from any IP",
+    "allowAllViaMobile": "Allow all via mobile",
     "addRule": "Add rule",
     "cidr": "CIDR",
     "description": "Description",
@@ -1268,6 +1297,9 @@
     "nextPurge": "Next scheduled purge: tomorrow at 03:00 UTC."
   },
   "complianceAdmin": {
+    "requestsPerMonth": "Requests / month",
+    "avgFulfilment": "Avg fulfilment (h)",
+    "pending": "Pending",
     "title": "Compliance Exports",
     "newRequest": "New request",
     "type": "Type",
@@ -1282,6 +1314,14 @@
     "expiresIn": "Expires in"
   },
   "systemStats": {
+    "apiAvg": "API · avg",
+    "latencyPercentiles": "p95 / p99",
+    "trafficPerHour": "Traffic per hour",
+    "componentApi": "API",
+    "componentDatabase": "Database",
+    "componentRedis": "Redis cache",
+    "componentZatca": "ZATCA gateway",
+    "componentEfatura": "e-Fatura gateway",
     "apiResponseTime": "API response time",
     "activeSessions": "Active sessions",
     "dbConnections": "Database connections",
@@ -1294,6 +1334,10 @@
     "p99": "p99"
   },
   "systemNotifications": {
+    "fieldTitle": "Title",
+    "fieldBody": "Body",
+    "bodyPlaceholder": "Use {{u}} and {{c}} for personalisation",
+    "scheduleField": "Schedule (ISO datetime, leave empty for now)",
     "title": "Announcements",
     "sendAnnouncement": "Send announcement",
     "audience": "Audience",
@@ -1384,6 +1428,13 @@
     "learnMore": "Learn more"
   },
   "twoFactor": {
+    "setupBodySms": "We will send a verification SMS to your phone on the next step.",
+    "setupBodyEmail": "A verification email will be sent to your account.",
+    "setupBodyApp": "Scan this QR with Google Authenticator / Authy / 1Password — or enter the manual key.",
+    "active": "2FA is active",
+    "methodLabel": "Method: {{method}}",
+    "manage": "Manage",
+    "changeMethod": "Change method",
     "title": "Two-factor authentication",
     "chooseMethod": "Choose a method",
     "sms": "SMS",
