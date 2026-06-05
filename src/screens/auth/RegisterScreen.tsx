@@ -37,23 +37,20 @@ import { radius, shadows, spacing } from '../../constants/spacing';
 import { textStyles } from '../../constants/typography';
 import { useAuthStore } from '../../store/authStore';
 import { useToastStore } from '../../store/toastStore';
-import { useUiStore } from '../../store/uiStore';
 import { useUserStore } from '../../store/userStore';
 import {
   appleSignIn,
   googleSignIn,
   isAppleSignInSupported,
 } from '../../services/socialAuth';
-import {
-  getPermissionsForRole,
-  type AuthUser,
-  type User,
-} from '../../types/auth';
+import { signupApi } from '../../api/auth';
+import type { ApiError } from '../../api/types';
 import type { AuthStackParamList } from '../../navigation/types';
 
 const buildSchema = (t: (k: string, opts?: Record<string, unknown>) => string) =>
   z
     .object({
+      companyName: z.string().min(2, t('forms.required')),
       fullName: z.string().min(2, t('forms.required')),
       email: z.string().min(1, t('forms.required')).email(t('forms.invalidEmail')),
       password: z
@@ -74,11 +71,6 @@ const buildSchema = (t: (k: string, opts?: Record<string, unknown>) => string) =
 
 type RegisterFormValues = z.infer<ReturnType<typeof buildSchema>>;
 
-const mockTokenFor = (email: string): string => {
-  const slug = email.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
-  return `mock-${slug}-${Date.now()}`;
-};
-
 type Navigation = NativeStackNavigationProp<AuthStackParamList, 'Register'>;
 
 const PAGE_ACCENT = getPageAccent('register');
@@ -86,9 +78,9 @@ const PAGE_ACCENT = getPageAccent('register');
 export const RegisterScreen: React.FC = () => {
   const { t } = useTranslation();
   const navigation = useNavigation<Navigation>();
-  const language = useUiStore((s) => s.language);
   const loginAuth = useAuthStore((s) => s.login);
   const setUser = useUserStore((s) => s.setUser);
+  const pushToast = useToastStore((s) => s.show);
 
   const [submitting, setSubmitting] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
@@ -104,6 +96,7 @@ export const RegisterScreen: React.FC = () => {
   } = useForm<RegisterFormValues>({
     resolver: zodResolver(schema),
     defaultValues: {
+      companyName: '',
       fullName: '',
       email: '',
       password: '',
@@ -119,37 +112,30 @@ export const RegisterScreen: React.FC = () => {
   const onSubmit = async (values: RegisterFormValues): Promise<void> => {
     setSubmitting(true);
     try {
-      // Simulate network so the loading indicator is visible.
-      await new Promise((resolve) => setTimeout(resolve, 450));
+      const session = await signupApi({
+        companyName: values.companyName.trim(),
+        fullName: values.fullName.trim(),
+        email: values.email.trim().toLowerCase(),
+        password: values.password,
+        phone: values.phone || undefined,
+      });
 
-      const email = values.email.trim().toLowerCase();
-      const userId = `mock-merchant_owner-${email}`;
-      const fullUser: User = {
-        id: userId,
-        email,
-        name: values.fullName.trim(),
-        role: 'merchant_owner',
-        companyId: 'comp_new',
-        avatar: null,
-        phone: values.phone || null,
-        country: null,
-        language,
-        permissions: getPermissionsForRole('merchant_owner'),
-      };
-
-      const authUser: AuthUser = {
-        id: userId,
-        email,
-        name: fullUser.name,
-        role: 'merchant_owner',
-        avatarUrl: null,
-        locale: language,
-      };
-
-      await setUser(fullUser);
-      await loginAuth({ user: authUser, token: mockTokenFor(email) });
+      await setUser(session.user);
+      await loginAuth({
+        user: session.authUser,
+        token: session.tokens.accessToken,
+        refreshToken: session.tokens.refreshToken,
+        expiresInSec: session.tokens.expiresIn,
+      });
 
       navigation.navigate('Onboarding');
+    } catch (err) {
+      const message = (err as ApiError)?.message;
+      pushToast({
+        variant: 'error',
+        title: t('common.error'),
+        description: message || t('forms.required'),
+      });
     } finally {
       setSubmitting(false);
     }
@@ -158,8 +144,6 @@ export const RegisterScreen: React.FC = () => {
   const goToLogin = (): void => {
     navigation.navigate('Login');
   };
-
-  const pushToast = useToastStore((s) => s.show);
 
   const onGoogleSignIn = async (): Promise<void> => {
     const result = await googleSignIn();
@@ -206,6 +190,23 @@ export const RegisterScreen: React.FC = () => {
             </View>
 
             <View style={styles.card}>
+              <Controller
+                control={control}
+                name="companyName"
+                render={({ field: { onChange, onBlur, value } }) => (
+                  <Input
+                    label={t('forms.companyName')}
+                    placeholder={t('forms.companyNamePlaceholder')}
+                    value={value}
+                    onChangeText={onChange}
+                    onBlur={onBlur}
+                    autoCapitalize="words"
+                    error={errors.companyName?.message}
+                    required
+                  />
+                )}
+              />
+
               <Controller
                 control={control}
                 name="fullName"

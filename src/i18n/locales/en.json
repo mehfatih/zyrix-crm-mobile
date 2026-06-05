@@ -622,6 +622,8 @@
     "activate": "Active"
   },
   "forms": {
+    "companyName": "Company name",
+    "companyNamePlaceholder": "Your company",
     "required": "This field is required",
     "invalidEmail": "Please enter a valid email address",
     "invalidPhone": "Please enter a valid phone number",

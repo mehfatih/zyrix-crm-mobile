@@ -173,7 +173,11 @@ export const SplashScreen: React.FC = () => {
 
   const currentTagline = TAGLINES[taglineIndex];
 
-  const go = async (route: keyof AuthStackParamList): Promise<void> => {
+  // Splash only routes to param-less auth screens; exclude the ones that
+  // require navigation params (e.g. TwoFactorPrompt) so `navigate` type-checks.
+  const go = async (
+    route: Exclude<keyof AuthStackParamList, 'TwoFactorPrompt'>
+  ): Promise<void> => {
     // Treat the first tap on either CTA as an implicit language confirmation
     // so the welcome screen doesn't reappear on relaunch.
     await markLanguageSelected();

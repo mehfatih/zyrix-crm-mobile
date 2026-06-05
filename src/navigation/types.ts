@@ -16,7 +16,7 @@ export type AuthStackParamList = {
   Register: undefined;
   ForgotPassword: undefined;
   Onboarding: undefined;
-  TwoFactorPrompt: undefined;
+  TwoFactorPrompt: { challengeToken: string };
 };
 
 export type AdminCompaniesStackParamList = {

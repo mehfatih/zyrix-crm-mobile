@@ -49,84 +49,18 @@ import {
   googleSignIn,
   isAppleSignInSupported,
 } from '../../services/socialAuth';
+import { meApi, signinApi } from '../../api/auth';
 import {
-  getPermissionsForRole,
-  type AuthUser,
-  type User,
-  type UserRole,
-} from '../../types/auth';
+  SECURE_KEYS,
+  getToken as getSecure,
+} from '../../utils/secureStorage';
+import type { ApiError } from '../../api/types';
+import type { AuthUser } from '../../types/auth';
 import type { AuthStackParamList } from '../../navigation/types';
 
 type LoginFormValues = {
   email: string;
   password: string;
-};
-
-interface MockIdentity {
-  email: string;
-  password: string;
-  role: UserRole;
-  name: string;
-  companyId: string | null;
-}
-
-const MOCK_USERS: readonly MockIdentity[] = [
-  {
-    email: 'admin@zyrix.co',
-    password: 'password',
-    role: 'super_admin',
-    name: 'Admin User',
-    companyId: null,
-  },
-  {
-    email: 'owner@company.com',
-    password: 'password',
-    role: 'merchant_owner',
-    name: 'Company Owner',
-    companyId: 'comp_123',
-  },
-  {
-    email: 'manager@company.com',
-    password: 'password',
-    role: 'merchant_manager',
-    name: 'Sales Manager',
-    companyId: 'comp_123',
-  },
-  {
-    email: 'employee@company.com',
-    password: 'password',
-    role: 'merchant_employee',
-    name: 'Employee',
-    companyId: 'comp_123',
-  },
-  {
-    email: 'customer@email.com',
-    password: 'password',
-    role: 'customer',
-    name: 'Customer User',
-    companyId: 'comp_123',
-  },
-];
-
-/**
- * Spec §22: unknown emails default to merchant_owner so the app is
- * testable without hard-coded credentials. Name is synthesised from
- * the email local-part for a friendly greeting.
- */
-const fallbackIdentityFor = (email: string): MockIdentity => {
-  const local = email.split('@')[0] ?? 'Owner';
-  const name =
-    local
-      .replace(/[._-]+/g, ' ')
-      .replace(/\b\w/g, (c) => c.toUpperCase())
-      .trim() || 'Test Owner';
-  return {
-    email,
-    password: '',
-    role: 'merchant_owner',
-    name,
-    companyId: 'comp_123',
-  };
 };
 
 const buildSchema = (t: (k: string) => string) =>
@@ -137,11 +71,6 @@ const buildSchema = (t: (k: string) => string) =>
       .min(1, t('auth.required'))
       .min(6, t('auth.passwordTooShort')),
   });
-
-const mockTokenFor = (email: string): string => {
-  const slug = email.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
-  return `mock-${slug}-${Date.now()}`;
-};
 
 type Navigation = NativeStackNavigationProp<AuthStackParamList, 'Login'>;
 
@@ -154,6 +83,7 @@ export const LoginScreen: React.FC = () => {
   const loginAuth = useAuthStore((s) => s.login);
   const setUser = useUserStore((s) => s.setUser);
   const setBiometricEnabled = useUserStore((s) => s.setBiometricEnabled);
+  const pushToast = useToastStore((s) => s.show);
 
   const [showPassword, setShowPassword] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -198,61 +128,54 @@ export const LoginScreen: React.FC = () => {
   const onSubmit = async (values: LoginFormValues): Promise<void> => {
     setSubmitting(true);
     try {
-      // Faux network latency so the loading indicator is visible.
-      await new Promise((resolve) => setTimeout(resolve, 450));
+      const email = values.email.trim().toLowerCase();
+      const outcome = await signinApi(email, values.password);
 
-      const normalizedEmail = values.email.trim().toLowerCase();
-      const matched = MOCK_USERS.find(
-        (mock) =>
-          mock.email === normalizedEmail && mock.password === values.password
-      );
-      const identity = matched ?? fallbackIdentityFor(normalizedEmail);
+      if (outcome.kind === 'twoFactorRequired') {
+        navigation.navigate('TwoFactorPrompt', {
+          challengeToken: outcome.challengeToken,
+        });
+        return;
+      }
 
-      const userId = `mock-${identity.role}-${normalizedEmail}`;
-      const fullUser: User = {
-        id: userId,
-        email: identity.email,
-        name: identity.name,
-        role: identity.role,
-        companyId: identity.companyId,
-        avatar: null,
-        phone: null,
-        country: null,
-        language,
-        permissions: getPermissionsForRole(identity.role),
-      };
-
-      const authUser: AuthUser = {
-        id: userId,
-        email: identity.email,
-        name: identity.name,
-        role: identity.role,
-        avatarUrl: null,
-        locale: language,
-      };
-
-      const issuedToken = mockTokenFor(identity.email);
+      const { authUser, user, tokens } = outcome.session;
+      await logSecurityEvent('login_success', { method: 'password' });
 
       // First-time biometric enrolment: if the device supports biometrics
-      // but the user hasn't opted in yet, defer auth-store login until
-      // after they've answered the prompt — this lets us either save the
-      // token to SecureStore (with biometric requirement) or skip cleanly.
+      // but the user hasn't opted in yet, defer the auth-store login until
+      // after they've answered the prompt — this lets us save the token to
+      // SecureStore (with biometric requirement) or skip cleanly.
       if (
         biometric.isAvailable &&
         !biometric.isEnabled &&
         !biometric.isLoading
       ) {
-        setPendingEnroll({ token: issuedToken, userId });
-        await setUser(fullUser);
-        // Stash the auth credentials in a closure that the modal handlers
-        // can resolve after the user picks an answer.
-        pendingAuthRef.current = { authUser, token: issuedToken };
+        setPendingEnroll({ token: tokens.accessToken, userId: user.id });
+        await setUser(user);
+        pendingAuthRef.current = {
+          authUser,
+          token: tokens.accessToken,
+          refreshToken: tokens.refreshToken,
+          expiresInSec: tokens.expiresIn,
+        };
         setEnrollPromptOpen(true);
         return;
       }
 
-      await setUser(fullUser);
-      await loginAuth({ user: authUser, token: issuedToken });
+      await setUser(user);
+      await loginAuth({
+        user: authUser,
+        token: tokens.accessToken,
+        refreshToken: tokens.refreshToken,
+        expiresInSec: tokens.expiresIn,
+      });
+    } catch (err) {
+      const message = (err as ApiError)?.message;
+      pushToast({
+        variant: 'error',
+        title: t('auth.loginFailedTitle'),
+        description: message || t('auth.loginFailedBody'),
+      });
     } finally {
       setSubmitting(false);
     }
@@ -263,6 +186,8 @@ export const LoginScreen: React.FC = () => {
   const pendingAuthRef = React.useRef<{
     authUser: AuthUser;
     token: string;
+    refreshToken: string | null;
+    expiresInSec: number;
   } | null>(null);
 
   const finishLoginAfterEnroll = async (): Promise<void> => {
@@ -271,7 +196,12 @@ export const LoginScreen: React.FC = () => {
     setEnrollPromptOpen(false);
     setPendingEnroll(null);
     if (!pending) return;
-    await loginAuth({ user: pending.authUser, token: pending.token });
+    await loginAuth({
+      user: pending.authUser,
+      token: pending.token,
+      refreshToken: pending.refreshToken,
+      expiresInSec: pending.expiresInSec,
+    });
   };
 
   const onEnableBiometric = async (): Promise<void> => {
@@ -303,8 +233,6 @@ export const LoginScreen: React.FC = () => {
     navigation.navigate('Register');
   };
 
-  const pushToast = useToastStore((s) => s.show);
-
   const onGoogleSignIn = async (): Promise<void> => {
     const result = await googleSignIn();
     if (!result.ok) {
@@ -332,33 +260,29 @@ export const LoginScreen: React.FC = () => {
     try {
       const result = await biometric.login();
       if (!result) return;
-      await logSecurityEvent('login_success', {
-        method: 'biometric',
-      });
-      const fallback = fallbackIdentityFor('owner@company.com');
-      const userId = result.userId;
-      const fullUser: User = {
-        id: userId,
-        email: fallback.email,
-        name: fallback.name,
-        role: fallback.role,
-        companyId: fallback.companyId,
-        avatar: null,
-        phone: null,
-        country: null,
-        language,
-        permissions: getPermissionsForRole(fallback.role),
-      };
-      const authUser: AuthUser = {
-        id: userId,
-        email: fallback.email,
-        name: fallback.name,
-        role: fallback.role,
-        avatarUrl: null,
-        locale: language,
-      };
-      await setUser(fullUser);
-      await loginAuth({ user: authUser, token: result.token });
+      await logSecurityEvent('login_success', { method: 'biometric' });
+      // Seed the stored access token so `/me` authenticates; if it is stale
+      // the client auto-refreshes via the persisted refresh token. The real
+      // session is rebuilt from the backend — never a fabricated identity.
+      useAuthStore.setState({ token: result.token });
+      const refreshToken = await getSecure(SECURE_KEYS.refreshToken);
+      try {
+        const { authUser, user } = await meApi();
+        await setUser(user);
+        await loginAuth({
+          user: authUser,
+          token: useAuthStore.getState().token ?? result.token,
+          refreshToken,
+        });
+      } catch {
+        // Stored session no longer valid — clear it and fall back to password.
+        useAuthStore.setState({ token: null });
+        pushToast({
+          variant: 'info',
+          title: t('auth.loginFailedTitle'),
+          description: t('auth.loginFailedBody'),
+        });
+      }
     } finally {
       setBiometricBusy(false);
     }

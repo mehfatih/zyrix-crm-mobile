@@ -410,6 +410,8 @@
     "other": "أخرى"
   },
   "forms": {
+    "companyName": "اسم الشركة",
+    "companyNamePlaceholder": "شركتك",
     "required": "هذا الحقل مطلوب",
     "invalidEmail": "يرجى إدخال بريد إلكتروني صالح",
     "invalidPhone": "يرجى إدخال رقم هاتف صالح",
