@@ -295,4 +295,36 @@ export const apiDelete = <T,>(
   config?: AxiosRequestConfig
 ): Promise<T> => client.delete<T>(url, config).then(unwrap);
 
+// ── Envelope-aware helpers ──────────────────────────────────────────────────
+// The backend wraps every payload in `{ success, data }`. These helpers return
+// the inner `data` so resource modules can type the actual entity shape. If a
+// response is not enveloped they fall back to the raw body.
+export interface ApiEnvelope<T> {
+  success?: boolean;
+  data: T;
+  message?: string;
+}
+
+const innerData = <T,>(body: ApiEnvelope<T> | T): T =>
+  body && typeof body === 'object' && 'data' in (body as ApiEnvelope<T>)
+    ? (body as ApiEnvelope<T>).data
+    : (body as T);
+
+export const apiGetData = async <T,>(
+  url: string,
+  config?: AxiosRequestConfig
+): Promise<T> => innerData<T>(await apiGet<ApiEnvelope<T> | T>(url, config));
+
+export const apiPostData = async <T,>(
+  url: string,
+  body?: unknown,
+  config?: AxiosRequestConfig
+): Promise<T> => innerData<T>(await apiPost<ApiEnvelope<T> | T>(url, body, config));
+
+export const apiPatchData = async <T,>(
+  url: string,
+  body?: unknown,
+  config?: AxiosRequestConfig
+): Promise<T> => innerData<T>(await apiPatch<ApiEnvelope<T> | T>(url, body, config));
+
 export { client as axiosClient };
