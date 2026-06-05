@@ -4,7 +4,7 @@
 
 import { getMockQuotes, type MockQuote, type MockQuoteItem } from './mockData';
 import { ENDPOINTS } from './endpoints';
-import { apiGet, apiPatch, apiPost } from './client';
+import { apiGet, apiGetData, apiPatchData, apiPost, apiPostData } from './client';
 import type { ListParams, PaginatedResponse } from './types';
 
 export type Quote = MockQuote;
@@ -19,6 +19,72 @@ export interface QuoteCreateInput {
 }
 
 import { USE_MOCKS } from '../config/runtime';
+
+// ── Backend shape + mapping ─────────────────────────────────────────────────
+// Real /api/quotes returns a {items,pagination} wrapper; monetary + line
+// numerics are Prisma Decimals serialised as strings.
+interface BackendQuoteItem {
+  description?: string | null;
+  name?: string | null;
+  quantity?: number | string | null;
+  unitPrice?: number | string | null;
+}
+interface BackendQuote {
+  id: string;
+  quoteNumber?: string | null;
+  number?: string | null;
+  title?: string | null;
+  customerId?: string | null;
+  customer?: { id: string; fullName?: string | null } | null;
+  subtotal?: number | string | null;
+  taxAmount?: number | string | null;
+  total?: number | string | null;
+  status?: string | null;
+  validUntil?: string | null;
+  sentAt?: string | null;
+  viewedAt?: string | null;
+  acceptedAt?: string | null;
+  items?: BackendQuoteItem[] | null;
+}
+interface BackendQuoteList {
+  items: BackendQuote[];
+  pagination: { page: number; limit: number; total: number; totalPages: number };
+}
+
+const QUOTE_STATUSES: readonly Quote['status'][] = [
+  'draft',
+  'sent',
+  'viewed',
+  'accepted',
+  'expired',
+];
+
+const mapQuoteStatus = (s?: string | null): Quote['status'] => {
+  if (s === 'rejected') return 'expired';
+  return (QUOTE_STATUSES as readonly string[]).includes(s ?? '')
+    ? (s as Quote['status'])
+    : 'draft';
+};
+
+const mapQuote = (b: BackendQuote): Quote => ({
+  id: b.id,
+  quoteNumber: b.quoteNumber ?? b.number ?? `Q-${b.id.slice(0, 6)}`,
+  customerId: b.customer?.id ?? b.customerId ?? '',
+  customerName: b.customer?.fullName ?? b.title ?? '',
+  subtotal: Number(b.subtotal ?? 0) || 0,
+  tax: Number(b.taxAmount ?? 0) || 0,
+  total: Number(b.total ?? 0) || 0,
+  status: mapQuoteStatus(b.status),
+  sentAt: b.sentAt ?? undefined,
+  viewedAt: b.viewedAt ?? undefined,
+  acceptedAt: b.acceptedAt ?? undefined,
+  expiresAt: b.validUntil ?? '',
+  items: (b.items ?? []).map((i) => ({
+    description: i.description ?? i.name ?? '',
+    quantity: Number(i.quantity ?? 0) || 0,
+    unitPrice: Number(i.unitPrice ?? 0) || 0,
+  })),
+});
 
 const sleep = async (): Promise<void> => {
   if (USE_MOCKS) await new Promise((r) => setTimeout(r, 200));
@@ -41,7 +107,20 @@ export const listQuotes = async (
       hasMore: start + pageSize < all.length,
     };
   }
-  return apiGet<PaginatedResponse<Quote>>(ENDPOINTS.quotes.LIST, { params });
+  const res = await apiGetData<BackendQuoteList>(ENDPOINTS.quotes.LIST, {
+    params: {
+      page: params.page ?? 1,
+      limit: params.pageSize ?? 20,
+      ...(params.search ? { search: params.search } : {}),
+    },
+  });
+  return {
+    items: res.items.map(mapQuote),
+    total: res.pagination.total,
+    page: res.pagination.page,
+    pageSize: res.pagination.limit,
+    hasMore: res.pagination.page < res.pagination.totalPages,
+  };
 };
 
 export const getQuote = async (id: string): Promise<Quote> => {
@@ -51,7 +130,7 @@ export const getQuote = async (id: string): Promise<Quote> => {
     if (!found) throw new Error(`Quote ${id} not found`);
     return found;
   }
-  return apiGet<Quote>(ENDPOINTS.quotes.GET(id));
+  return mapQuote(await apiGetData<BackendQuote>(ENDPOINTS.quotes.GET(id)));
 };
 
 export const createQuote = async (data: QuoteCreateInput): Promise<Quote> => {
@@ -75,7 +154,19 @@ export const createQuote = async (data: QuoteCreateInput): Promise<Quote> => {
       expiresAt: data.expiresAt,
     };
   }
-  return apiPost<Quote>(ENDPOINTS.quotes.CREATE, data);
+  return mapQuote(
+    await apiPostData<BackendQuote>(ENDPOINTS.quotes.CREATE, {
+      customerId: data.customerId,
+      title: data.customerName ? `Quote — ${data.customerName}` : 'Quote',
+      validUntil: data.expiresAt,
+      notes: data.notes,
+      items: data.items.map((i) => ({
+        description: i.description,
+        quantity: i.quantity,
+        unitPrice: i.unitPrice,
+      })),
+    })
+  );
 };
 
 export const updateQuote = async (
@@ -87,7 +178,17 @@ export const updateQuote = async (
     const found = await getQuote(id);
     return { ...found, ...data } as Quote;
   }
-  return apiPatch<Quote>(ENDPOINTS.quotes.UPDATE(id), data);
+  const body: Record<string, unknown> = {};
+  if (data.expiresAt !== undefined) body.validUntil = data.expiresAt;
+  if (data.notes !== undefined) body.notes = data.notes;
+  if (data.items !== undefined) {
+    body.items = data.items.map((i) => ({
+      description: i.description,
+      quantity: i.quantity,
+      unitPrice: i.unitPrice,
+    }));
+  }
+  return mapQuote(await apiPatchData<BackendQuote>(ENDPOINTS.quotes.UPDATE(id), body));
 };
 
 export const sendQuote = async (id: string): Promise<Quote> => {
@@ -96,7 +197,7 @@ export const sendQuote = async (id: string): Promise<Quote> => {
     const found = await getQuote(id);
     return { ...found, status: 'sent', sentAt: new Date().toISOString() };
   }
-  return apiPost<Quote>(ENDPOINTS.quotes.SEND(id));
+  return mapQuote(await apiPostData<BackendQuote>(ENDPOINTS.quotes.SEND(id)));
 };
 
 export const convertToInvoice = async (id: string): Promise<{ invoiceId: string }> => {
