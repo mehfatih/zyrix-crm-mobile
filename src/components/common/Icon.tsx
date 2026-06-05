@@ -13,6 +13,7 @@
 
 import React from 'react';
 import type { ComponentProps } from 'react';
+import { I18nManager } from 'react-native';
 import type { StyleProp, TextStyle } from 'react-native';
 import {
   Ionicons,
@@ -21,6 +22,20 @@ import {
 } from '@expo/vector-icons';
 
 import { colors } from '../../constants/colors';
+
+// Horizontal directional icons (disclosure chevrons, "go"/CTA arrows) read in
+// the layout direction, so they must mirror under RTL — a trailing chevron or
+// forward arrow points left in Arabic. Centralising the flip here keeps every
+// call site correct without per-site ternaries; pass `noFlip` for the rare
+// decorative icon that must not turn.
+const RTL_DIRECTIONAL_FLIP: Record<string, string> = {
+  'chevron-forward': 'chevron-back',
+  'chevron-back': 'chevron-forward',
+  'chevron-left': 'chevron-right',
+  'chevron-right': 'chevron-left',
+  'arrow-forward': 'arrow-back',
+  'arrow-back': 'arrow-forward',
+};
 
 export type IconFamily = 'Ionicons' | 'MaterialIcons' | 'MaterialCommunityIcons';
 
@@ -41,6 +56,8 @@ export interface IconProps {
   style?: StyleProp<TextStyle>;
   testID?: string;
   accessibilityLabel?: string;
+  /** Opt out of automatic RTL mirroring of directional icons (rare; decorative). */
+  noFlip?: boolean;
 }
 
 const DEFAULT_SIZE = 24;
@@ -53,6 +70,7 @@ export const Icon: React.FC<IconProps> = ({
   style,
   testID,
   accessibilityLabel,
+  noFlip = false,
 }) => {
   const common = {
     size,
@@ -62,19 +80,24 @@ export const Icon: React.FC<IconProps> = ({
     accessibilityLabel,
   } as const;
 
+  const resolvedName =
+    !noFlip && I18nManager.isRTL && RTL_DIRECTIONAL_FLIP[name as string]
+      ? (RTL_DIRECTIONAL_FLIP[name as string] as AnyIconName)
+      : name;
+
   switch (family) {
     case 'MaterialIcons':
-      return <MaterialIcons name={name as MaterialIconName} {...common} />;
+      return <MaterialIcons name={resolvedName as MaterialIconName} {...common} />;
     case 'MaterialCommunityIcons':
       return (
         <MaterialCommunityIcons
-          name={name as MaterialCommunityIconName}
+          name={resolvedName as MaterialCommunityIconName}
           {...common}
         />
       );
     case 'Ionicons':
     default:
-      return <Ionicons name={name as IoniconName} {...common} />;
+      return <Ionicons name={resolvedName as IoniconName} {...common} />;
   }
 };
 

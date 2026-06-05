@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { Pressable, StyleSheet, Text, View, ViewStyle } from 'react-native';
+import { I18nManager, Pressable, StyleSheet, Text, View, ViewStyle } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { darkColors, spacing, typography, radius } from '../../theme/dark';
 
@@ -62,7 +62,7 @@ export function ListItem({
       {trailingValue && <Text style={styles.trailingValue}>{trailingValue}</Text>}
 
       {showChevronEffective && (
-        <Feather name="chevron-right" size={18} color={darkColors.textMuted} style={styles.chevron} />
+        <Feather name={I18nManager.isRTL ? 'chevron-left' : 'chevron-right'} size={18} color={darkColors.textMuted} style={styles.chevron} />
       )}
     </Pressable>
   );

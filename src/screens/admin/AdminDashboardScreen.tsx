@@ -285,7 +285,7 @@ const styles = StyleSheet.create({
   bellDot: {
     position: 'absolute',
     top: 8,
-    right: 10,
+    insetInlineEnd: 10,
     width: 8,
     height: 8,
     borderRadius: 4,
