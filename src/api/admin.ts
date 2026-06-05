@@ -41,7 +41,7 @@ import type {
   SystemStats,
 } from '../types/admin';
 
-const USE_MOCKS = true;
+import { USE_MOCKS } from '../config/runtime';
 
 const sleep = (ms: number): Promise<void> =>
   new Promise((resolve) => setTimeout(resolve, ms));

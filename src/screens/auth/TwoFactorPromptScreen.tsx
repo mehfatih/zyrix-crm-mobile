@@ -15,7 +15,7 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTranslation } from 'react-i18next';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute, type RouteProp } from '@react-navigation/native';
 
 import { Button } from '../../components/common/Button';
 import { Header } from '../../components/common/Header';
@@ -25,8 +25,12 @@ import { getPageAccent } from '../../theme/dark/accents';
 import { logSecurityEvent } from '../../utils/securityEvents';
 import { radius, shadows, spacing } from '../../constants/spacing';
 import { textStyles } from '../../constants/typography';
+import { twoFactorChallengeApi } from '../../api/auth';
 import { useAuthStore } from '../../store/authStore';
+import { useUserStore } from '../../store/userStore';
 import { useToast } from '../../hooks/useToast';
+import type { ApiError } from '../../api/types';
+import type { AuthStackParamList } from '../../navigation/types';
 
 const COOLDOWN_SECONDS = 30;
 
@@ -35,9 +39,13 @@ const PAGE_ACCENT = getPageAccent('twoFactor');
 export const TwoFactorPromptScreen: React.FC = () => {
   const { t } = useTranslation();
   const navigation = useNavigation();
+  const route = useRoute<RouteProp<AuthStackParamList, 'TwoFactorPrompt'>>();
+  const challengeToken = route.params?.challengeToken ?? '';
   const toast = useToast();
   const verifyTwoFactor = useAuthStore((state) => state.verifyTwoFactor);
   const markTrustedDevice = useAuthStore((state) => state.markTrustedDevice);
+  const loginAuth = useAuthStore((state) => state.login);
+  const setUser = useUserStore((state) => state.setUser);
 
   const [code, setCode] = useState('');
   const [useRecovery, setUseRecovery] = useState(false);
@@ -60,13 +68,31 @@ export const TwoFactorPromptScreen: React.FC = () => {
         toast.error(t('forms.required'));
         return;
       }
-      // Mock verification: accept any code.
-      verifyTwoFactor();
+      // Exchange the challenge token + code for a real token pair. A wrong
+      // code throws (backend 401/400) and is surfaced; login only completes
+      // once the backend returns a session.
+      const { authUser, user, tokens } = await twoFactorChallengeApi(
+        challengeToken,
+        code
+      );
       if (trustDevice) markTrustedDevice();
+      verifyTwoFactor();
       await logSecurityEvent('two_factor_success', {
         method: useRecovery ? 'recovery' : 'totp',
       });
-      navigation.goBack();
+      await setUser(user);
+      await loginAuth({
+        user: authUser,
+        token: tokens.accessToken,
+        refreshToken: tokens.refreshToken,
+        expiresInSec: tokens.expiresIn,
+      });
+      // No navigation needed: completing login flips isAuthenticated and the
+      // root navigator swaps the auth stack for the app.
+    } catch (err) {
+      const message = (err as ApiError)?.message;
+      toast.error(message || t('twoFactor.verifyCode'));
+      setCode('');
     } finally {
       submitting.current = false;
     }

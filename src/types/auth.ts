@@ -76,6 +76,8 @@ export interface User {
   name: string;
   role: UserRole;
   companyId: string | null;
+  companyName?: string | null;
+  plan?: SupportedPlan | null;
   avatar: string | null;
   phone: string | null;
   country: string | null;
@@ -105,6 +107,10 @@ export interface LoginCredentials {
 export interface LoginResult {
   user: AuthUser;
   token: string;
+  /** Backend refresh token; persisted for silent re-auth on 401. */
+  refreshToken?: string | null;
+  /** Access-token lifetime in seconds, used to seed the session timer. */
+  expiresInSec?: number;
 }
 
 /**

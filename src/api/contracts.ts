@@ -4,7 +4,7 @@
 
 import { getMockContracts, type MockContract } from './mockData';
 import { ENDPOINTS } from './endpoints';
-import { apiGet, apiPost } from './client';
+import { apiGetData, apiPatchData, apiPostData } from './client';
 import type { ListParams, PaginatedResponse } from './types';
 
 export type Contract = MockContract;
@@ -19,7 +19,66 @@ export interface ContractCreateInput {
   autoRenew?: boolean;
 }
 
-const USE_MOCKS = true;
+import { USE_MOCKS } from '../config/runtime';
+
+// ── Backend shape + mapping ─────────────────────────────────────────────────
+// Real /api/contracts: {items,pagination}; `value` is a Decimal string; status
+// has more states than the mobile type. Renew/terminate are PATCHes (no
+// dedicated routes exist on the backend).
+interface BackendContract {
+  id: string;
+  contractNumber?: string | null;
+  number?: string | null;
+  title?: string | null;
+  customerId?: string | null;
+  customer?: { id: string; fullName?: string | null } | null;
+  type?: string | null;
+  value?: number | string | null;
+  startDate?: string | null;
+  endDate?: string | null;
+  renewalDate?: string | null;
+  autoRenew?: boolean | null;
+  status?: string | null;
+}
+interface BackendContractList {
+  items: BackendContract[];
+  pagination: { page: number; limit: number; total: number; totalPages: number };
+}
+
+const mapContractStatus = (s?: string | null): Contract['status'] => {
+  switch (s) {
+    case 'active':
+    case 'signed':
+      return 'active';
+    case 'expired':
+      return 'expired';
+    case 'terminated':
+      return 'terminated';
+    default:
+      return 'draft';
+  }
+};
+
+const CONTRACT_TYPES: readonly Contract['type'][] = [
+  'service',
+  'subscription',
+  'one_time',
+];
+
+const mapContract = (b: BackendContract): Contract => ({
+  id: b.id,
+  contractNumber: b.contractNumber ?? b.number ?? `C-${b.id.slice(0, 6)}`,
+  customerId: b.customer?.id ?? b.customerId ?? '',
+  customerName: b.customer?.fullName ?? b.title ?? '',
+  type: (CONTRACT_TYPES as readonly string[]).includes(b.type ?? '')
+    ? (b.type as Contract['type'])
+    : 'service',
+  amount: Number(b.value ?? 0) || 0,
+  startDate: b.startDate ?? '',
+  endDate: b.endDate ?? '',
+  autoRenew: b.autoRenew ?? Boolean(b.renewalDate),
+  status: mapContractStatus(b.status),
+});
 
 const sleep = async (): Promise<void> => {
   if (USE_MOCKS) await new Promise((r) => setTimeout(r, 200));
@@ -42,9 +101,20 @@ export const listContracts = async (
       hasMore: start + pageSize < all.length,
     };
   }
-  return apiGet<PaginatedResponse<Contract>>(ENDPOINTS.contracts.LIST, {
-    params,
+  const res = await apiGetData<BackendContractList>(ENDPOINTS.contracts.LIST, {
+    params: {
+      page: params.page ?? 1,
+      limit: params.pageSize ?? 20,
+      ...(params.search ? { search: params.search } : {}),
+    },
   });
+  return {
+    items: res.items.map(mapContract),
+    total: res.pagination.total,
+    page: res.pagination.page,
+    pageSize: res.pagination.limit,
+    hasMore: res.pagination.page < res.pagination.totalPages,
+  };
 };
 
 export const getContract = async (id: string): Promise<Contract> => {
@@ -54,7 +124,9 @@ export const getContract = async (id: string): Promise<Contract> => {
     if (!found) throw new Error(`Contract ${id} not found`);
     return found;
   }
-  return apiGet<Contract>(ENDPOINTS.contracts.GET(id));
+  return mapContract(
+    await apiGetData<BackendContract>(ENDPOINTS.contracts.GET(id))
+  );
 };
 
 export const createContract = async (
@@ -75,7 +147,15 @@ export const createContract = async (
       status: 'draft',
     };
   }
-  return apiPost<Contract>(ENDPOINTS.contracts.CREATE, data);
+  return mapContract(
+    await apiPostData<BackendContract>(ENDPOINTS.contracts.CREATE, {
+      customerId: data.customerId,
+      title: data.customerName ? `Contract — ${data.customerName}` : 'Contract',
+      value: data.amount,
+      startDate: data.startDate,
+      endDate: data.endDate,
+    })
+  );
 };
 
 export const renewContract = async (id: string): Promise<Contract> => {
@@ -84,7 +164,12 @@ export const renewContract = async (id: string): Promise<Contract> => {
     const found = await getContract(id);
     return { ...found, status: 'active' };
   }
-  return apiPost<Contract>(ENDPOINTS.contracts.RENEW(id));
+  // No /renew route — renewal is a PATCH setting the active status.
+  return mapContract(
+    await apiPatchData<BackendContract>(ENDPOINTS.contracts.GET(id), {
+      status: 'active',
+    })
+  );
 };
 
 export const terminateContract = async (id: string): Promise<Contract> => {
@@ -93,5 +178,10 @@ export const terminateContract = async (id: string): Promise<Contract> => {
     const found = await getContract(id);
     return { ...found, status: 'terminated' };
   }
-  return apiPost<Contract>(ENDPOINTS.contracts.TERMINATE(id));
+  // No /terminate route — termination is a PATCH setting the terminated status.
+  return mapContract(
+    await apiPatchData<BackendContract>(ENDPOINTS.contracts.GET(id), {
+      status: 'terminated',
+    })
+  );
 };

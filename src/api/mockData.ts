@@ -5,6 +5,7 @@
  */
 
 import type { CountryCode } from '../types/country';
+import { USE_MOCKS } from '../config/runtime';
 
 export interface MockCustomer {
   id: string;
@@ -458,7 +459,7 @@ export interface MockRep {
   actual: number;
 }
 
-export const MOCK_REPS: readonly MockRep[] = [
+const RAW_MOCK_REPS: readonly MockRep[] = [
   {
     id: 'rep_001',
     name: 'Fatima H.',
@@ -500,7 +501,7 @@ export interface MockTerritory {
   performance: 'excellent' | 'on_track' | 'at_risk';
 }
 
-export const MOCK_TERRITORIES: readonly MockTerritory[] = [
+const RAW_MOCK_TERRITORIES: readonly MockTerritory[] = [
   {
     id: 'ter_001',
     name: 'Gulf North',
@@ -534,7 +535,7 @@ export interface MockLoyaltyMember {
   points: number;
 }
 
-export const MOCK_LOYALTY_MEMBERS: readonly MockLoyaltyMember[] = [
+const RAW_MOCK_LOYALTY_MEMBERS: readonly MockLoyaltyMember[] = [
   { id: 'lm_001', name: 'Al-Salam Distribution', tier: 'platinum', points: 48200 },
   { id: 'lm_002', name: 'Elma Retail', tier: 'gold', points: 23450 },
   { id: 'lm_003', name: 'Gulf Tech', tier: 'gold', points: 19800 },
@@ -552,7 +553,7 @@ export interface MockCampaign {
   openRate: number;
 }
 
-export const MOCK_CAMPAIGNS: readonly MockCampaign[] = [
+const RAW_MOCK_CAMPAIGNS: readonly MockCampaign[] = [
   {
     id: 'cmp_001',
     name: 'Spring renewals',
@@ -602,7 +603,7 @@ export interface MockAutomation {
   conversions: number;
 }
 
-export const MOCK_AUTOMATIONS: readonly MockAutomation[] = [
+const RAW_MOCK_AUTOMATIONS: readonly MockAutomation[] = [
   {
     id: 'aut_001',
     name: 'Welcome series',
@@ -634,3 +635,22 @@ export const MOCK_AUTOMATIONS: readonly MockAutomation[] = [
     conversions: 0,
   },
 ];
+
+// These datasets are consumed DIRECTLY by growth/sales screens (not behind a
+// per-call mock guard like the resource modules), so they must resolve to
+// empty in a release build — otherwise fabricated campaigns/automations/
+// loyalty/reps/territories would render as if real. Demo mode
+// (EXPO_PUBLIC_USE_MOCKS=true) still gets the sample data.
+export const MOCK_REPS: readonly MockRep[] = USE_MOCKS ? RAW_MOCK_REPS : [];
+export const MOCK_TERRITORIES: readonly MockTerritory[] = USE_MOCKS
+  ? RAW_MOCK_TERRITORIES
+  : [];
+export const MOCK_LOYALTY_MEMBERS: readonly MockLoyaltyMember[] = USE_MOCKS
+  ? RAW_MOCK_LOYALTY_MEMBERS
+  : [];
+export const MOCK_CAMPAIGNS: readonly MockCampaign[] = USE_MOCKS
+  ? RAW_MOCK_CAMPAIGNS
+  : [];
+export const MOCK_AUTOMATIONS: readonly MockAutomation[] = USE_MOCKS
+  ? RAW_MOCK_AUTOMATIONS
+  : [];

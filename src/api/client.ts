@@ -26,6 +26,12 @@ import { Platform } from 'react-native';
 
 import type { ApiError } from './types';
 import i18n from '../i18n';
+import { ENDPOINTS } from './endpoints';
+import {
+  SECURE_KEYS,
+  getToken as getSecure,
+  storeToken as setSecure,
+} from '../utils/secureStorage';
 import { useAuthStore } from '../store/authStore';
 
 const DEFAULT_TIMEOUT_MS = 20_000;
@@ -71,6 +77,7 @@ client.interceptors.request.use((config: InternalAxiosRequestConfig) => {
 
 interface RetryableConfig extends InternalAxiosRequestConfig {
   _retryCount?: number;
+  _retry?: boolean;
 }
 
 type ServerErrorShape = {
@@ -146,6 +153,58 @@ const onServerError = (message: string): void => {
 const sleep = (ms: number): Promise<void> =>
   new Promise((resolve) => setTimeout(resolve, ms));
 
+// ── Silent token refresh (single-flight) ────────────────────────────────────
+// A 401 on a normal request triggers one refresh attempt using the stored
+// refresh token. Concurrent 401s share a single in-flight refresh. The
+// refresh call uses a bare axios post (not `client`) so it can't recurse
+// through this interceptor. Auth endpoints are excluded so a bad-credential
+// 401 surfaces to the screen instead of looping into logout.
+
+const NO_REFRESH_PATHS: readonly string[] = [
+  ENDPOINTS.auth.SIGNIN,
+  ENDPOINTS.auth.SIGNUP,
+  ENDPOINTS.auth.REFRESH,
+  ENDPOINTS.auth.TWO_FACTOR_CHALLENGE,
+];
+
+const isAuthEndpoint = (url?: string): boolean =>
+  !!url && NO_REFRESH_PATHS.some((p) => url.includes(p));
+
+let refreshPromise: Promise<string | null> | null = null;
+
+const performRefresh = async (): Promise<string | null> => {
+  const refreshToken = await getSecure(SECURE_KEYS.refreshToken);
+  if (!refreshToken) return null;
+  try {
+    const res = await axios.post<{ data?: { accessToken?: string; refreshToken?: string } }>(
+      `${resolveBaseUrl()}${ENDPOINTS.auth.REFRESH}`,
+      { refreshToken },
+      {
+        timeout: DEFAULT_TIMEOUT_MS,
+        headers: { 'Content-Type': 'application/json', 'X-Client-Type': 'mobile-app' },
+      }
+    );
+    const data = res.data?.data ?? {};
+    const newAccess = data.accessToken;
+    if (!newAccess) return null;
+    await setSecure(SECURE_KEYS.authToken, newAccess);
+    if (data.refreshToken) await setSecure(SECURE_KEYS.refreshToken, data.refreshToken);
+    useAuthStore.setState({ token: newAccess, isAuthenticated: true });
+    return newAccess;
+  } catch {
+    return null;
+  }
+};
+
+const refreshAccessToken = (): Promise<string | null> => {
+  if (!refreshPromise) {
+    refreshPromise = performRefresh().finally(() => {
+      refreshPromise = null;
+    });
+  }
+  return refreshPromise;
+};
+
 client.interceptors.response.use(
   (response) => response,
   async (error: AxiosError<ServerErrorShape>) => {
@@ -153,12 +212,32 @@ client.interceptors.response.use(
     const status = error.response?.status;
 
     if (status === 401) {
-      try {
-        await useAuthStore.getState().logout();
-      } catch (logoutErr) {
-        console.warn('[api] logout on 401 failed', logoutErr);
+      // Bad credentials on an auth endpoint, or an already-retried request:
+      // surface the error (and log out only if a retried request still 401s).
+      if (isAuthEndpoint(config.url) || config._retry) {
+        if (config._retry) {
+          try {
+            await useAuthStore.getState().logout();
+          } catch (logoutErr) {
+            console.warn('[api] logout after failed refresh', logoutErr);
+          }
+        }
+        return Promise.reject(extractApiError(error));
       }
-      return Promise.reject(extractApiError(error));
+      config._retry = true;
+      const newToken = await refreshAccessToken();
+      if (!newToken) {
+        try {
+          await useAuthStore.getState().logout();
+        } catch (logoutErr) {
+          console.warn('[api] logout on 401 (no refresh) failed', logoutErr);
+        }
+        return Promise.reject(extractApiError(error));
+      }
+      const headers = AxiosHeaders.from(config.headers ?? {});
+      headers.set('Authorization', `Bearer ${newToken}`);
+      config.headers = headers;
+      return client.request(config);
     }
 
     if (status === 403) {
@@ -215,5 +294,37 @@ export const apiDelete = <T,>(
   url: string,
   config?: AxiosRequestConfig
 ): Promise<T> => client.delete<T>(url, config).then(unwrap);
+
+// ── Envelope-aware helpers ──────────────────────────────────────────────────
+// The backend wraps every payload in `{ success, data }`. These helpers return
+// the inner `data` so resource modules can type the actual entity shape. If a
+// response is not enveloped they fall back to the raw body.
+export interface ApiEnvelope<T> {
+  success?: boolean;
+  data: T;
+  message?: string;
+}
+
+const innerData = <T,>(body: ApiEnvelope<T> | T): T =>
+  body && typeof body === 'object' && 'data' in (body as ApiEnvelope<T>)
+    ? (body as ApiEnvelope<T>).data
+    : (body as T);
+
+export const apiGetData = async <T,>(
+  url: string,
+  config?: AxiosRequestConfig
+): Promise<T> => innerData<T>(await apiGet<ApiEnvelope<T> | T>(url, config));
+
+export const apiPostData = async <T,>(
+  url: string,
+  body?: unknown,
+  config?: AxiosRequestConfig
+): Promise<T> => innerData<T>(await apiPost<ApiEnvelope<T> | T>(url, body, config));
+
+export const apiPatchData = async <T,>(
+  url: string,
+  body?: unknown,
+  config?: AxiosRequestConfig
+): Promise<T> => innerData<T>(await apiPatch<ApiEnvelope<T> | T>(url, body, config));
 
 export { client as axiosClient };

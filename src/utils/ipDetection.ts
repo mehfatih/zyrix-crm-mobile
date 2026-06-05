@@ -16,7 +16,7 @@ export interface IPInfo {
 const CACHE_TTL_MS = 5 * 60 * 1000;
 let cache: { value: IPInfo; expiresAt: number } | null = null;
 
-const USE_MOCKS = true;
+import { USE_MOCKS } from '../config/runtime';
 
 const fakeIPInfo = (): IPInfo => ({
   ip: '212.118.45.12',

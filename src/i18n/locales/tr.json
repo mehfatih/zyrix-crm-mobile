@@ -410,6 +410,8 @@
     "other": "Diğer"
   },
   "forms": {
+    "companyName": "Şirket adı",
+    "companyNamePlaceholder": "Şirketiniz",
     "required": "Bu alan zorunludur",
     "invalidEmail": "Lütfen geçerli bir e-posta girin",
     "invalidPhone": "Lütfen geçerli bir telefon numarası girin",

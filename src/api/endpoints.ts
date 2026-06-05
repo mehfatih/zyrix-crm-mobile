@@ -7,15 +7,18 @@
 
 export const ENDPOINTS = {
   auth: {
-    LOGIN: '/api/auth/login',
-    REGISTER: '/api/auth/register',
+    // Real backend routes (verified against the live API + web client).
+    SIGNIN: '/api/auth/signin',
+    SIGNUP: '/api/auth/signup',
+    TWO_FACTOR_CHALLENGE: '/api/auth/2fa-challenge',
     REFRESH: '/api/auth/refresh',
     LOGOUT: '/api/auth/logout',
     PROFILE: '/api/auth/me',
-    FORGOT_PASSWORD: '/api/auth/forgot-password',
+    // Password recovery — backend-confirmed routes.
+    PASSWORD_RESET: '/api/auth/request-password-reset',
     RESET_PASSWORD: '/api/auth/reset-password',
-    // Spec §14.3 — 3 recovery methods.
-    PASSWORD_RESET: '/api/auth/password-reset',
+    // NOTE: magic-link / OTP recovery are not yet confirmed on the backend
+    // (ForgotPasswordScreen offers them; treat as best-effort until shipped).
     MAGIC_LINK: '/api/auth/magic-link',
     OTP_REQUEST: '/api/auth/otp-request',
     OTP_VERIFY: '/api/auth/otp-verify',
@@ -70,13 +73,14 @@ export const ENDPOINTS = {
     REFUND: (id: string) => `/api/payments/${id}/refund`,
   },
   reports: {
-    DASHBOARD: '/api/reports/dashboard',
-    SALES: '/api/reports/sales',
-    CUSTOMERS: '/api/reports/customers',
-    CASH_FLOW: '/api/reports/cash-flow',
-    COMMISSIONS: '/api/reports/commissions',
-    QUOTAS: '/api/reports/quotas',
-    HEALTH: '/api/reports/health',
+    // Real backend surface (verified): dashboard scalars + revenue/pipeline/
+    // summary + cashflow forecast. The legacy sales/commissions/quotas/health
+    // report endpoints below do not exist on the backend yet (M3+).
+    DASHBOARD_STATS: '/api/dashboard/stats',
+    SUMMARY: '/api/reports/summary',
+    REVENUE: '/api/reports/revenue',
+    PIPELINE: '/api/reports/pipeline',
+    CASHFLOW_FORECAST: '/api/cashflow/forecast',
   },
   ai: {
     FORECAST: '/api/ai/forecast',

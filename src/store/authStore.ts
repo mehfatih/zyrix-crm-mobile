@@ -60,15 +60,19 @@ export interface AuthStoreState {
 
 const applyLogin =
   (set: SetState) =>
-  async ({ user, token }: LoginResult): Promise<void> => {
+  async ({ user, token, refreshToken, expiresInSec }: LoginResult): Promise<void> => {
     await writeSecure(SECURE_KEYS.authToken, token);
+    if (refreshToken) {
+      await writeSecure(SECURE_KEYS.refreshToken, refreshToken);
+    }
+    const sessionMs = expiresInSec ? expiresInSec * 1000 : DEFAULT_SESSION_MS;
     set({
       user,
       token,
       isAuthenticated: true,
       isLoading: false,
       lastActivity: Date.now(),
-      sessionExpiry: Date.now() + DEFAULT_SESSION_MS,
+      sessionExpiry: Date.now() + sessionMs,
       twoFactorVerified: false,
       logoutReason: null,
     });

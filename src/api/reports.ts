@@ -15,7 +15,7 @@ import {
   type MockActivity,
 } from './mockData';
 import { ENDPOINTS } from './endpoints';
-import { apiGet } from './client';
+import { apiGetData } from './client';
 
 export interface DashboardStats {
   customersCount: number;
@@ -59,7 +59,7 @@ export interface DateRange {
   to: string;
 }
 
-const USE_MOCKS = true;
+import { USE_MOCKS } from '../config/runtime';
 
 const sleep = async (): Promise<void> => {
   if (USE_MOCKS) await new Promise((r) => setTimeout(r, 220));
@@ -113,7 +113,24 @@ export const getDashboardStats = async (): Promise<DashboardStats> => {
       },
     };
   }
-  return apiGet<DashboardStats>(ENDPOINTS.reports.DASHBOARD);
+  // Real /api/dashboard/stats returns a role-scoped object. We map only the
+  // scalar counts we can rely on; monthly series / activity feed are not in
+  // this payload, so they stay empty until M3 wires the dedicated reports.
+  const d = await apiGetData<{
+    customers?: { total?: number };
+    deals?: { total?: number };
+    tasks?: { open?: number };
+  }>(ENDPOINTS.reports.DASHBOARD_STATS);
+  return {
+    customersCount: d.customers?.total ?? 0,
+    activeDealsCount: d.deals?.total ?? 0,
+    monthRevenue: 0,
+    pendingTasksCount: d.tasks?.open ?? 0,
+    revenueByMonth: [],
+    dealsByStage: [],
+    recentActivities: [],
+    growth: { deals: 0, revenue: 0 },
+  };
 };
 
 export const getSalesReport = async (
@@ -135,7 +152,8 @@ export const getSalesReport = async (
       ],
     };
   }
-  return apiGet<SalesReport>(ENDPOINTS.reports.SALES, { params: dateRange });
+  // No backend sales-report endpoint yet (M3+) — honest empty, never fake.
+  return { totalRevenue: 0, dealsWon: 0, averageDealSize: 0, winRate: 0, byRep: [] };
 };
 
 export const getCustomerReport = async (
@@ -159,9 +177,14 @@ export const getCustomerReport = async (
         .map((c) => ({ name: c.name, revenue: c.totalRevenue })),
     };
   }
-  return apiGet<CustomerReport>(ENDPOINTS.reports.CUSTOMERS, {
-    params: dateRange,
-  });
+  // No backend customer-report endpoint yet (M3+) — honest empty.
+  return {
+    totalCustomers: 0,
+    newCustomers: 0,
+    churnedCustomers: 0,
+    averageHealthScore: 0,
+    topCustomers: [],
+  };
 };
 
 export const getCashFlowReport = async (
@@ -178,7 +201,6 @@ export const getCashFlowReport = async (
     const outflow = months.reduce((sum, m) => sum + m.outflow, 0);
     return { inflow, outflow, net: inflow - outflow, byMonth: months };
   }
-  return apiGet<CashFlowReport>(ENDPOINTS.reports.CASH_FLOW, {
-    params: dateRange,
-  });
+  // No backend cash-flow-report endpoint in this shape yet (M3+) — honest empty.
+  return { inflow: 0, outflow: 0, net: 0, byMonth: [] };
 };

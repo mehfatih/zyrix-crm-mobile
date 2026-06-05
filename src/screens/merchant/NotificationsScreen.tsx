@@ -63,54 +63,9 @@ const ICON_BY_KIND: Record<NotificationKind, { icon: 'trophy-outline' | 'cash-ou
   system: { icon: 'information-circle-outline', tint: darkColors.primary, soft: darkColors.primarySoft },
 };
 
-// Mock seed data — replace with an API-backed list once the endpoint exists.
-const seedNotifications = (): NotificationItem[] => {
-  const now = Date.now();
-  return [
-    {
-      id: 'n1',
-      kind: 'deal_won',
-      title: 'Deal won',
-      body: 'Acme Corp accepted your quote for $12,400',
-      createdAt: new Date(now - 1000 * 60 * 15).toISOString(),
-      read: false,
-      deepLink: 'deal:1234',
-    },
-    {
-      id: 'n2',
-      kind: 'payment_received',
-      title: 'Payment received',
-      body: 'Invoice INV-1042 paid by Globex Ltd',
-      createdAt: new Date(now - 1000 * 60 * 60 * 2).toISOString(),
-      read: false,
-      deepLink: 'invoice:1042',
-    },
-    {
-      id: 'n3',
-      kind: 'task_due',
-      title: 'Follow up with Ibrahim',
-      body: 'Task due tomorrow 10:00',
-      createdAt: new Date(now - 1000 * 60 * 60 * 6).toISOString(),
-      read: true,
-    },
-    {
-      id: 'n4',
-      kind: 'meeting',
-      title: 'Upcoming meeting',
-      body: 'Ayşe Demir · Product demo · 14:30',
-      createdAt: new Date(now - 1000 * 60 * 60 * 20).toISOString(),
-      read: true,
-    },
-    {
-      id: 'n5',
-      kind: 'system',
-      title: 'Welcome to Zyrix',
-      body: 'Finish onboarding in Settings → Profile',
-      createdAt: new Date(now - 1000 * 60 * 60 * 24 * 2).toISOString(),
-      read: true,
-    },
-  ];
-};
+// No backend notifications feed for mobile yet (M3+, see TODOs below). Start
+// empty rather than seeding fabricated notifications.
+const seedNotifications = (): NotificationItem[] => [];
 
 const formatTimeAgo = (
   iso: string,
