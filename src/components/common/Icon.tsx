@@ -23,15 +23,18 @@ import {
 
 import { colors } from '../../constants/colors';
 
-// Horizontal directional chevrons read in the layout direction, so they must
-// mirror under RTL (a trailing disclosure chevron points left in Arabic).
-// Centralising the flip here keeps every call site correct without per-site
-// ternaries; pass `noFlip` for the rare decorative chevron that must not turn.
-const RTL_CHEVRON_FLIP: Record<string, string> = {
+// Horizontal directional icons (disclosure chevrons, "go"/CTA arrows) read in
+// the layout direction, so they must mirror under RTL — a trailing chevron or
+// forward arrow points left in Arabic. Centralising the flip here keeps every
+// call site correct without per-site ternaries; pass `noFlip` for the rare
+// decorative icon that must not turn.
+const RTL_DIRECTIONAL_FLIP: Record<string, string> = {
   'chevron-forward': 'chevron-back',
   'chevron-back': 'chevron-forward',
   'chevron-left': 'chevron-right',
   'chevron-right': 'chevron-left',
+  'arrow-forward': 'arrow-back',
+  'arrow-back': 'arrow-forward',
 };
 
 export type IconFamily = 'Ionicons' | 'MaterialIcons' | 'MaterialCommunityIcons';
@@ -53,7 +56,7 @@ export interface IconProps {
   style?: StyleProp<TextStyle>;
   testID?: string;
   accessibilityLabel?: string;
-  /** Opt out of automatic RTL chevron mirroring (rare; decorative chevrons). */
+  /** Opt out of automatic RTL mirroring of directional icons (rare; decorative). */
   noFlip?: boolean;
 }
 
@@ -78,8 +81,8 @@ export const Icon: React.FC<IconProps> = ({
   } as const;
 
   const resolvedName =
-    !noFlip && I18nManager.isRTL && RTL_CHEVRON_FLIP[name as string]
-      ? (RTL_CHEVRON_FLIP[name as string] as AnyIconName)
+    !noFlip && I18nManager.isRTL && RTL_DIRECTIONAL_FLIP[name as string]
+      ? (RTL_DIRECTIONAL_FLIP[name as string] as AnyIconName)
       : name;
 
   switch (family) {
