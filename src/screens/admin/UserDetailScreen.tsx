@@ -136,28 +136,28 @@ export const UserDetailScreen: React.FC = () => {
               <View style={styles.card}>
                 <InfoLine
                   icon="mail-outline"
-                  label="Email"
+                  label={t('usersAdmin.email')}
                   value={user.email}
                 />
                 <InfoLine
                   icon="person-outline"
-                  label="Role"
+                  label={t('usersAdmin.role')}
                   value={user.role}
                 />
                 <InfoLine
                   icon="business-outline"
-                  label="Company"
+                  label={t('usersAdmin.company')}
                   value={user.companyName ?? '—'}
                 />
                 <InfoLine
                   icon="calendar-outline"
-                  label="Created"
+                  label={t('usersAdmin.created')}
                   value={formatDate(user.createdAt)}
                 />
                 {user.lastLoginAt ? (
                   <InfoLine
                     icon="time-outline"
-                    label="Last login"
+                    label={t('usersAdmin.lastLogin')}
                     value={formatDate(user.lastLoginAt)}
                   />
                 ) : null}
@@ -167,7 +167,7 @@ export const UserDetailScreen: React.FC = () => {
             {tab === 'sessions' ? (
               <View style={styles.card}>
                 <Text style={styles.sectionTitle}>
-                  {`${MOCK_SESSIONS.length} active sessions`}
+                  {t('usersAdmin.activeSessions', { count: MOCK_SESSIONS.length })}
                 </Text>
                 {MOCK_SESSIONS.map((session) => (
                   <View key={session.id} style={styles.sessionRow}>

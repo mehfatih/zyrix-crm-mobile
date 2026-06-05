@@ -25,6 +25,7 @@ import Constants from 'expo-constants';
 import { Platform } from 'react-native';
 
 import type { ApiError } from './types';
+import i18n from '../i18n';
 import { useAuthStore } from '../store/authStore';
 
 const DEFAULT_TIMEOUT_MS = 20_000;
@@ -60,6 +61,10 @@ client.interceptors.request.use((config: InternalAxiosRequestConfig) => {
   headers.set('X-Client-Type', 'mobile-app');
   headers.set('X-App-Version', resolveVersion());
   headers.set('X-App-Platform', Platform.OS);
+  // Tell the backend which language to localise responses in. The active
+  // i18n language tracks the user's in-app choice (persisted in uiStore),
+  // falling back to English when unset.
+  headers.set('Accept-Language', i18n.language || 'en');
   config.headers = headers;
   return config;
 });

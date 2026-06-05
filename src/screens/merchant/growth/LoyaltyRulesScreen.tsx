@@ -91,7 +91,7 @@ export const LoyaltyRulesScreen: React.FC = () => {
         <View style={styles.card}>
           <Text style={styles.title}>{t('loyalty.bonusMultipliers')}</Text>
           <View style={styles.multiplierRow}>
-            <Text style={styles.multiplierLabel}>Birthday</Text>
+            <Text style={styles.multiplierLabel}>{t('loyalty.birthday')}</Text>
             <TextInput
               value={birthdayMultiplier}
               onChangeText={(next) =>
@@ -108,7 +108,7 @@ export const LoyaltyRulesScreen: React.FC = () => {
             />
           </View>
           <View style={styles.multiplierRow}>
-            <Text style={styles.multiplierLabel}>Anniversary</Text>
+            <Text style={styles.multiplierLabel}>{t('loyalty.anniversary')}</Text>
             <TextInput
               value={anniversaryMultiplier}
               onChangeText={(next) =>

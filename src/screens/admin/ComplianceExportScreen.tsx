@@ -137,9 +137,9 @@ export const ComplianceExportScreen: React.FC = () => {
       />
 
       <View style={styles.statsRow}>
-        <Stat label="Requests / month" value={String(summary.monthCount)} />
-        <Stat label="Avg fulfilment (h)" value={String(summary.averageHours)} />
-        <Stat label="Pending" value={String(summary.pendingCount)} tone={darkColors.warning} />
+        <Stat label={t('complianceAdmin.requestsPerMonth')} value={String(summary.monthCount)} />
+        <Stat label={t('complianceAdmin.avgFulfilment')} value={String(summary.averageHours)} />
+        <Stat label={t('complianceAdmin.pending')} value={String(summary.pendingCount)} tone={darkColors.warning} />
       </View>
 
       {exportsQuery.isLoading ? (

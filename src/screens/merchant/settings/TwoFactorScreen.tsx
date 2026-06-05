@@ -101,14 +101,14 @@ export const TwoFactorScreen: React.FC = () => {
   const setupBody = useMemo(() => {
     switch (method) {
       case 'sms':
-        return 'We will send a verification SMS to your phone on the next step.';
+        return t('twoFactor.setupBodySms');
       case 'email':
-        return 'A verification email will be sent to your account.';
+        return t('twoFactor.setupBodyEmail');
       case 'app':
       default:
-        return 'Scan this QR with Google Authenticator / Authy / 1Password — or enter the manual key.';
+        return t('twoFactor.setupBodyApp');
     }
-  }, [method]);
+  }, [method, t]);
 
   return (
     <SafeAreaView edges={['bottom']} style={styles.safe}>
@@ -121,13 +121,19 @@ export const TwoFactorScreen: React.FC = () => {
           <>
             <View style={styles.statusCard}>
               <Icon name="shield-checkmark" size={32} color={darkColors.success} />
-              <Text style={styles.statusTitle}>2FA is active</Text>
-              <Text style={styles.statusBody}>{`Method: ${method}`}</Text>
+              <Text style={styles.statusTitle}>{t('twoFactor.active')}</Text>
+              <Text style={styles.statusBody}>
+                {t('twoFactor.methodLabel', {
+                  method: t(
+                    `twoFactor.${method === 'app' ? 'authenticatorApp' : method}`
+                  ),
+                })}
+              </Text>
             </View>
-            <Section title="Manage">
+            <Section title={t('twoFactor.manage')}>
               <SettingsRow
                 icon="swap-horizontal-outline"
-                label="Change method"
+                label={t('twoFactor.changeMethod')}
                 onPress={startWizard}
               />
               <SettingsRow

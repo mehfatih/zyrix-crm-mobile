@@ -180,9 +180,9 @@
     "customerProfile": "Profil"
   },
   "dashboard": {
-    "welcomeBack": "Tekrar hoş geldin",
-    "welcomeMessage": "Hoş geldin, {{name}}!",
-    "welcomeName": "Hoş geldin, {{name}}!",
+    "welcomeBack": "Tekrar hoş geldiniz",
+    "welcomeMessage": "Hoş geldiniz, {{name}}!",
+    "welcomeName": "Hoş geldiniz, {{name}}!",
     "quickStats": "Hızlı istatistikler",
     "quickActions": "Hızlı işlemler",
     "addCustomer": "Müşteri ekle",
@@ -531,6 +531,8 @@
     "redemptions": "Kullanımlar"
   },
   "loyalty": {
+    "birthday": "Doğum günü",
+    "anniversary": "Yıl dönümü",
     "bronze": "Bronz",
     "silver": "Gümüş",
     "gold": "Altın",
@@ -1073,6 +1075,23 @@
     "tamara": "Tamara"
   },
   "admin": {
+    "account": "Hesap",
+    "newToday": "Bugün yeni",
+    "overduePayments": "geciken ödemeler",
+    "supportTickets": "destek talepleri",
+    "complianceAlertsLabel": "uyumluluk",
+    "signupsTrend": "Kayıtlar · son 14 gün",
+    "revenueTrend": "Gelir · son 12 ay",
+    "companiesByPlan": "Plana göre şirketler",
+    "topCompaniesByMrr": "MRR'ye göre öne çıkan şirketler",
+    "profileRow": "Profil",
+    "passwordRow": "Şifre",
+    "twoFactorRow": "İki faktörlü kimlik doğrulama",
+    "editProfile": "Profili düzenle",
+    "changePassword": "Şifreyi değiştir",
+    "enable2FA": "2FA'yı etkinleştir",
+    "emailNotifications": "E-posta bildirimleri",
+    "mobilePush": "Mobil anlık bildirim",
     "adminPanel": "Yönetim Paneli",
     "dashboard": "Platform genel bakış",
     "companies": "Şirketler",
@@ -1130,6 +1149,9 @@
     "actions": "Eylemler"
   },
   "usersAdmin": {
+    "email": "E-posta",
+    "created": "Oluşturulma",
+    "activeSessions": "{{count}} aktif oturum",
     "allUsers": "Tüm kullanıcılar",
     "role": "Rol",
     "company": "Şirket",
@@ -1165,6 +1187,9 @@
     "experience": "Deneyim"
   },
   "plans": {
+    "name": "Ad",
+    "description": "Açıklama",
+    "order": "Sıra",
     "title": "Planlar ve Fiyatlandırma",
     "newPlan": "Yeni plan",
     "editPlan": "Planı düzenle",
@@ -1195,6 +1220,9 @@
     "savedFilters": "Kaydedilen filtreler"
   },
   "ipAllowlistAdmin": {
+    "recommended": "✓ önerilen",
+    "allowManagersAnyIp": "Yöneticilere her IP'den izin ver",
+    "allowAllViaMobile": "Mobil üzerinden herkese izin ver",
     "addRule": "Kural ekle",
     "cidr": "CIDR",
     "description": "Açıklama",
@@ -1247,6 +1275,9 @@
     "nextPurge": "Sonraki silme: yarın 03:00 UTC."
   },
   "complianceAdmin": {
+    "requestsPerMonth": "Aylık talepler",
+    "avgFulfilment": "Ort. tamamlama (s)",
+    "pending": "Bekliyor",
     "title": "Uyum İhracatı",
     "newRequest": "Yeni talep",
     "type": "Tür",
@@ -1261,6 +1292,14 @@
     "expiresIn": "Sona erme"
   },
   "systemStats": {
+    "apiAvg": "API · ort.",
+    "latencyPercentiles": "p95 / p99",
+    "trafficPerHour": "Saatlik trafik",
+    "componentApi": "API",
+    "componentDatabase": "Veritabanı",
+    "componentRedis": "Redis önbelleği",
+    "componentZatca": "ZATCA ağ geçidi",
+    "componentEfatura": "e-Fatura ağ geçidi",
     "apiResponseTime": "API yanıt süresi",
     "activeSessions": "Aktif oturumlar",
     "dbConnections": "Veritabanı bağlantıları",
@@ -1273,6 +1312,10 @@
     "p99": "p99"
   },
   "systemNotifications": {
+    "fieldTitle": "Başlık",
+    "fieldBody": "Metin",
+    "bodyPlaceholder": "Kişiselleştirme için {{u}} ve {{c}} kullanın",
+    "scheduleField": "Zamanlama (ISO tarih-saat, şimdi göndermek için boş bırakın)",
     "title": "Duyurular",
     "sendAnnouncement": "Duyuru gönder",
     "audience": "Hedef kitle",
@@ -1363,6 +1406,13 @@
     "learnMore": "Daha fazla bilgi"
   },
   "twoFactor": {
+    "setupBodySms": "Bir sonraki adımda telefonunuza bir doğrulama SMS'i göndereceğiz.",
+    "setupBodyEmail": "Hesabınıza bir doğrulama e-postası gönderilecek.",
+    "setupBodyApp": "Bu QR kodunu Google Authenticator / Authy / 1Password ile tarayın — veya anahtarı elle girin.",
+    "active": "2FA etkin",
+    "methodLabel": "Yöntem: {{method}}",
+    "manage": "Yönet",
+    "changeMethod": "Yöntemi değiştir",
     "title": "İki faktörlü doğrulama",
     "chooseMethod": "Yöntem seç",
     "sms": "SMS",

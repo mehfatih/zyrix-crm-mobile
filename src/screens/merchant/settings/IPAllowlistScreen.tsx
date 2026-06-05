@@ -163,7 +163,7 @@ export const IPAllowlistScreen: React.FC = () => {
                       )}
                     </Text>
                     {entry === 'employees_only' ? (
-                      <Text style={styles.recommendBadge}>✓ recommended</Text>
+                      <Text style={styles.recommendBadge}>{t('ipAllowlistAdmin.recommended')}</Text>
                     ) : null}
                   </View>
                 </Pressable>
@@ -180,12 +180,12 @@ export const IPAllowlistScreen: React.FC = () => {
                 onChange={setOwnerMobileBypass}
               />
               <CheckboxRow
-                label="Allow managers from any IP"
+                label={t('ipAllowlistAdmin.allowManagersAnyIp')}
                 value={managerMobileBypass}
                 onChange={setManagerMobileBypass}
               />
               <CheckboxRow
-                label="Allow all via mobile"
+                label={t('ipAllowlistAdmin.allowAllViaMobile')}
                 value={allMobileBypass}
                 onChange={setAllMobileBypass}
               />

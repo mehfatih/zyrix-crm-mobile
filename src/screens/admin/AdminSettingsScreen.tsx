@@ -78,21 +78,21 @@ export const AdminSettingsScreen: React.FC = () => {
         </View>
 
         <View style={styles.section}>
-          <Text style={styles.sectionTitle}>{t('common.welcome')}</Text>
+          <Text style={styles.sectionTitle}>{t('admin.account')}</Text>
           <SettingsRow
             icon="person-outline"
-            label="Profile"
-            onPress={() => Alert.alert('Edit profile')}
+            label={t('admin.profileRow')}
+            onPress={() => Alert.alert(t('admin.editProfile'))}
           />
           <SettingsRow
             icon="lock-closed-outline"
-            label="Password"
-            onPress={() => Alert.alert('Change password')}
+            label={t('admin.passwordRow')}
+            onPress={() => Alert.alert(t('admin.changePassword'))}
           />
           <SettingsRow
             icon="shield-checkmark-outline"
-            label="Two-factor auth"
-            onPress={() => Alert.alert('Enable 2FA')}
+            label={t('admin.twoFactorRow')}
+            onPress={() => Alert.alert(t('admin.enable2FA'))}
             trailing={
               <Switch
                 value
@@ -115,7 +115,7 @@ export const AdminSettingsScreen: React.FC = () => {
           </Text>
           <SettingsRow
             icon="notifications-outline"
-            label="Email notifications"
+            label={t('admin.emailNotifications')}
             trailing={
               <Switch
                 value
@@ -126,7 +126,7 @@ export const AdminSettingsScreen: React.FC = () => {
           />
           <SettingsRow
             icon="phone-portrait-outline"
-            label="Mobile push"
+            label={t('admin.mobilePush')}
             trailing={
               <Switch
                 value

@@ -61,13 +61,13 @@ export const SystemStatsScreen: React.FC = () => {
               items={[
                 {
                   key: 'response',
-                  label: 'API · avg',
+                  label: t('systemStats.apiAvg'),
                   value: `${stats.apiResponseTime.avg} ms`,
                   icon: 'pulse-outline',
                 },
                 {
                   key: 'p95',
-                  label: 'p95 / p99',
+                  label: t('systemStats.latencyPercentiles'),
                   value: `${stats.apiResponseTime.p95} / ${stats.apiResponseTime.p99}`,
                   icon: 'speedometer-outline',
                   tone: darkColors.warning,
@@ -130,7 +130,7 @@ export const SystemStatsScreen: React.FC = () => {
                 label: entry.hour,
                 value: entry.requests,
               }))}
-              title="Traffic per hour"
+              title={t('systemStats.trafficPerHour')}
             />
 
             <View style={styles.incidentsCard}>
@@ -170,11 +170,11 @@ export const SystemStatsScreen: React.FC = () => {
               <Text style={styles.sectionTitle}>
                 {t('systemStats.healthChecks')}
               </Text>
-              <HealthRow label="API" status="ok" />
-              <HealthRow label="Database" status="ok" />
-              <HealthRow label="Redis cache" status="ok" />
-              <HealthRow label="ZATCA gateway" status="warn" />
-              <HealthRow label="e-Fatura gateway" status="ok" />
+              <HealthRow label={t('systemStats.componentApi')} status="ok" />
+              <HealthRow label={t('systemStats.componentDatabase')} status="ok" />
+              <HealthRow label={t('systemStats.componentRedis')} status="ok" />
+              <HealthRow label={t('systemStats.componentZatca')} status="warn" />
+              <HealthRow label={t('systemStats.componentEfatura')} status="ok" />
             </View>
           </>
         )}

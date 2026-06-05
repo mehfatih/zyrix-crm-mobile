@@ -21,6 +21,8 @@
       "bundleIdentifier": "com.zyrix.crm",
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false,
+        "CFBundleDevelopmentRegion": "en",
+        "CFBundleLocalizations": ["en", "ar", "tr"],
         "NSCameraUsageDescription": "Zyrix CRM needs camera access to scan business cards and QR codes.",
         "NSPhotoLibraryUsageDescription": "Zyrix CRM needs photo library access to attach images to customer records.",
         "NSMicrophoneUsageDescription": "Zyrix CRM needs microphone access to record voice notes.",

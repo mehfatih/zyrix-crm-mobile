@@ -146,7 +146,7 @@ export const EditPlanScreen: React.FC = () => {
       />
       <ScrollView contentContainerStyle={styles.scroll}>
         <View style={styles.card}>
-          <Field label="Name" value={name} onChange={setName} />
+          <Field label={t('plans.name')} value={name} onChange={setName} />
           <View style={styles.row}>
             <Field
               label={t('plans.priceMonthly')}
@@ -235,8 +235,8 @@ export const EditPlanScreen: React.FC = () => {
         </View>
 
         <View style={styles.card}>
-          <Field label="Description" value={description} onChange={setDescription} />
-          <Field label="Order" value={order} onChange={setOrder} keyboard="number-pad" />
+          <Field label={t('plans.description')} value={description} onChange={setDescription} />
+          <Field label={t('plans.order')} value={order} onChange={setOrder} keyboard="number-pad" />
           <View style={styles.toggleRow}>
             <Text style={styles.fieldLabel}>{t('plans.activate')}</Text>
             <Switch
