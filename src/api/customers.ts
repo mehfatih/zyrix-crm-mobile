@@ -29,7 +29,7 @@ export interface CustomerCreateInput {
 
 export type CustomerUpdateInput = Partial<CustomerCreateInput>;
 
-const USE_MOCKS = true;
+import { USE_MOCKS } from '../config/runtime';
 
 const simulateLatency = async (): Promise<void> => {
   if (!USE_MOCKS) return;

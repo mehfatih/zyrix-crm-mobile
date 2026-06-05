@@ -26,7 +26,7 @@ import { apiPost } from '../api/client';
 import type { RankedAction } from '../types/ai';
 import { aiMemoryService, type WorkspaceMemory } from './aiMemoryService';
 
-const USE_MOCKS = true;
+import { USE_MOCKS } from '../config/runtime';
 
 const REFINE_ENDPOINT = '/api/ai/decision/refine';
 

@@ -28,7 +28,7 @@ import type {
 } from '../../types/ai';
 import { NEVER_AUTO_EXECUTE } from './registry';
 
-const USE_MOCKS = true;
+import { USE_MOCKS } from '../../config/runtime';
 
 const DRAFT_ENDPOINT = '/api/ai/agents/draft';
 

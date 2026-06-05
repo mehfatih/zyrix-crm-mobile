@@ -32,7 +32,7 @@ export interface DealCreateInput {
 
 export type DealUpdateInput = Partial<DealCreateInput>;
 
-const USE_MOCKS = true;
+import { USE_MOCKS } from '../config/runtime';
 
 const simulateLatency = async (): Promise<void> => {
   if (!USE_MOCKS) return;

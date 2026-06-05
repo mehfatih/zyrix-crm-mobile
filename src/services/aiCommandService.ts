@@ -38,7 +38,7 @@ export interface AICommandResponse extends AIInsight {
   followups?: string[];
 }
 
-const USE_MOCKS = true;
+import { USE_MOCKS } from '../config/runtime';
 
 const COMMAND_ENDPOINT = '/api/ai/command';
 

@@ -19,7 +19,7 @@ export interface ContractCreateInput {
   autoRenew?: boolean;
 }
 
-const USE_MOCKS = true;
+import { USE_MOCKS } from '../config/runtime';
 
 const sleep = async (): Promise<void> => {
   if (USE_MOCKS) await new Promise((r) => setTimeout(r, 200));

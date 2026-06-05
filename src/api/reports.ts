@@ -59,7 +59,7 @@ export interface DateRange {
   to: string;
 }
 
-const USE_MOCKS = true;
+import { USE_MOCKS } from '../config/runtime';
 
 const sleep = async (): Promise<void> => {
   if (USE_MOCKS) await new Promise((r) => setTimeout(r, 220));

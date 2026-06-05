@@ -19,7 +19,7 @@
 import { apiPost } from '../api/client';
 import { aiMemoryService, type WorkspaceMemory } from './aiMemoryService';
 
-const USE_MOCKS = true;
+import { USE_MOCKS } from '../config/runtime';
 
 const FORECAST_ENDPOINT = '/api/ai/revenue/forecast';
 

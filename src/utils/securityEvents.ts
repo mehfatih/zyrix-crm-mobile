@@ -36,7 +36,7 @@ export interface SecurityEventMetadata {
   [key: string]: string | number | boolean | undefined;
 }
 
-const USE_MOCKS = true;
+import { USE_MOCKS } from '../config/runtime';
 
 export const logSecurityEvent = async (
   type: SecurityEventType,

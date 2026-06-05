@@ -30,7 +30,7 @@ import type {
 } from '../types/billing';
 import type { CountryCode, Currency } from '../types/country';
 
-const USE_MOCKS = true;
+import { USE_MOCKS } from '../config/runtime';
 
 const sleep = (ms: number): Promise<void> =>
   new Promise((resolve) => setTimeout(resolve, ms));

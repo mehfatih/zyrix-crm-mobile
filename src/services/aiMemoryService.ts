@@ -37,7 +37,7 @@ export interface RecordOutcomeInput {
   outcome: RecommendationOutcome;
 }
 
-const USE_MOCKS = true;
+import { USE_MOCKS } from '../config/runtime';
 
 const MEMORY_ENDPOINT = '/api/ai/memory';
 

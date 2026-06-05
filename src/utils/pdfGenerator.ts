@@ -12,7 +12,7 @@ import { ENDPOINTS } from '../api/endpoints';
 import type { Contract } from '../api/contracts';
 import type { Quote } from '../api/quotes';
 
-const USE_MOCKS = true;
+import { USE_MOCKS } from '../config/runtime';
 
 const mockUrl = (kind: string, id: string): string =>
   `https://api.crm.zyrix.co/generated/${kind}/${id}.pdf`;
