@@ -105,6 +105,10 @@ export interface LoginCredentials {
 export interface LoginResult {
   user: AuthUser;
   token: string;
+  /** Backend refresh token; persisted for silent re-auth on 401. */
+  refreshToken?: string | null;
+  /** Access-token lifetime in seconds, used to seed the session timer. */
+  expiresInSec?: number;
 }
 
 /**
