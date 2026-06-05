@@ -131,6 +131,8 @@ export const mapBackendUser = (
     name: bu.fullName,
     role,
     companyId: bu.companyId ?? bc.id ?? null,
+    companyName: bc.name ?? null,
+    plan,
     avatar: bu.avatarUrl ?? null,
     phone: bu.phone ?? null,
     country: bc.country ?? null,

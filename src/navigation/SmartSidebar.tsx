@@ -195,11 +195,8 @@ export const SmartSidebar: React.FC<DrawerContentComponentProps> = ({
   }, [pins, t]);
 
   const displayName = currentUser?.name?.trim() || t('common.appName');
-  const companyName =
-    currentUser?.companyId === null
-      ? t('common.appName')
-      : 'Levana Cosmetics';
-  const plan = inferPlan('business');
+  const companyName = currentUser?.companyName?.trim() || t('common.appName');
+  const plan = inferPlan(currentUser?.plan ?? 'free');
   const planLabel = t(`plansBadge.${plan}`);
 
   const renderItem = (

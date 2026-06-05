@@ -41,46 +41,9 @@ interface Event {
   detail?: string;
 }
 
-const EVENTS: readonly Event[] = [
-  {
-    id: 'ev_1',
-    kind: 'login_success',
-    ip: '212.118.45.12',
-    device: 'iPhone 13 Pro',
-    at: '2026-04-23T08:00:00Z',
-  },
-  {
-    id: 'ev_2',
-    kind: 'biometric_used',
-    ip: '212.118.45.12',
-    device: 'iPhone 13 Pro',
-    at: '2026-04-22T09:14:00Z',
-  },
-  {
-    id: 'ev_3',
-    kind: 'permission_denied',
-    ip: '37.123.55.21',
-    device: 'Galaxy Tab S9',
-    at: '2026-04-21T16:00:00Z',
-    detail: 'Tried to delete a customer without privilege.',
-  },
-  {
-    id: 'ev_4',
-    kind: 'login_failure',
-    ip: '85.140.23.99',
-    device: 'Pixel 8',
-    at: '2026-04-20T22:18:00Z',
-    detail: 'Wrong password (3 attempts).',
-  },
-  {
-    id: 'ev_5',
-    kind: 'suspicious_activity',
-    ip: '203.0.113.42',
-    device: 'Unknown',
-    at: '2026-04-19T03:47:00Z',
-    detail: 'Login attempted from a new country.',
-  },
-];
+// No backend security-event feed for mobile yet (M3+). Render an honest empty
+// state instead of fabricated login history.
+const EVENTS: readonly Event[] = [];
 
 const ICON: Record<
   EventKind,

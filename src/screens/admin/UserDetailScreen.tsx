@@ -29,6 +29,7 @@ import { getPageAccent } from '../../theme/dark/accents';
 const PAGE_ACCENT = getPageAccent('settings');
 import { radius, shadows, spacing } from '../../constants/spacing';
 import { textStyles } from '../../constants/typography';
+import { USE_MOCKS } from '../../config/runtime';
 import {
   useAdminUserDetail,
   useDeactivateUser,
@@ -167,9 +168,11 @@ export const UserDetailScreen: React.FC = () => {
             {tab === 'sessions' ? (
               <View style={styles.card}>
                 <Text style={styles.sectionTitle}>
-                  {t('usersAdmin.activeSessions', { count: MOCK_SESSIONS.length })}
+                  {t('usersAdmin.activeSessions', {
+                    count: (USE_MOCKS ? MOCK_SESSIONS : []).length,
+                  })}
                 </Text>
-                {MOCK_SESSIONS.map((session) => (
+                {(USE_MOCKS ? MOCK_SESSIONS : []).map((session) => (
                   <View key={session.id} style={styles.sessionRow}>
                     <View style={styles.sessionBody}>
                       <Text style={styles.sessionDevice}>{session.device}</Text>

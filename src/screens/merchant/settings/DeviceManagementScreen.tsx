@@ -41,41 +41,9 @@ interface Device {
   current: boolean;
 }
 
-const DEVICES: readonly Device[] = [
-  {
-    id: 'dev_1',
-    name: 'iPhone 13 Pro',
-    platform: 'ios',
-    ip: '212.118.45.12',
-    location: 'Riyadh, SA',
-    lastActive: '2026-04-23T08:00:00Z',
-    osVersion: 'iOS 17.4',
-    appVersion: '1.0.0',
-    current: true,
-  },
-  {
-    id: 'dev_2',
-    name: 'Pixel 8',
-    platform: 'android',
-    ip: '85.140.23.99',
-    location: 'Istanbul, TR',
-    lastActive: '2026-04-22T17:10:00Z',
-    osVersion: 'Android 14',
-    appVersion: '1.0.0',
-    current: false,
-  },
-  {
-    id: 'dev_3',
-    name: 'Galaxy Tab S9',
-    platform: 'android',
-    ip: '37.123.55.21',
-    location: 'Dubai, AE',
-    lastActive: '2026-04-20T11:00:00Z',
-    osVersion: 'Android 14',
-    appVersion: '1.0.0',
-    current: false,
-  },
-];
+// No backend device-session feed for mobile yet (M3+). Render an honest empty
+// state instead of fabricated "active devices".
+const DEVICES: readonly Device[] = [];
 
 const ICON: Record<Device['platform'], AnyIconName> = {
   ios: 'logo-apple',

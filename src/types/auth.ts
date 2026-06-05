@@ -76,6 +76,8 @@ export interface User {
   name: string;
   role: UserRole;
   companyId: string | null;
+  companyName?: string | null;
+  plan?: SupportedPlan | null;
   avatar: string | null;
   phone: string | null;
   country: string | null;
