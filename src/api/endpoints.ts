@@ -73,13 +73,14 @@ export const ENDPOINTS = {
     REFUND: (id: string) => `/api/payments/${id}/refund`,
   },
   reports: {
-    DASHBOARD: '/api/reports/dashboard',
-    SALES: '/api/reports/sales',
-    CUSTOMERS: '/api/reports/customers',
-    CASH_FLOW: '/api/reports/cash-flow',
-    COMMISSIONS: '/api/reports/commissions',
-    QUOTAS: '/api/reports/quotas',
-    HEALTH: '/api/reports/health',
+    // Real backend surface (verified): dashboard scalars + revenue/pipeline/
+    // summary + cashflow forecast. The legacy sales/commissions/quotas/health
+    // report endpoints below do not exist on the backend yet (M3+).
+    DASHBOARD_STATS: '/api/dashboard/stats',
+    SUMMARY: '/api/reports/summary',
+    REVENUE: '/api/reports/revenue',
+    PIPELINE: '/api/reports/pipeline',
+    CASHFLOW_FORECAST: '/api/cashflow/forecast',
   },
   ai: {
     FORECAST: '/api/ai/forecast',
