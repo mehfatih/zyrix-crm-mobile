@@ -10,12 +10,69 @@ import {
   type MockDeal,
 } from './mockData';
 import { ENDPOINTS } from './endpoints';
-import { apiGet, apiPatch, apiPost } from './client';
+import { apiGetData, apiPatchData, apiPostData } from './client';
 import type { ListParams, PaginatedResponse } from './types';
 
 export type Deal = MockDeal;
 export type { DealStage } from './mockData';
 export { DEAL_PIPELINE } from './mockData';
+
+// ── Backend shape + mapping ─────────────────────────────────────────────────
+// Real /api/deals: money is `value`, customer/owner are nested objects, and
+// there are no /stage or /close routes — stage changes are a PATCH on the deal.
+interface BackendDeal {
+  id: string;
+  title: string;
+  value?: number | string | null;
+  stage?: string | null;
+  probability?: number | null;
+  expectedCloseDate?: string | null;
+  description?: string | null;
+  createdAt?: string | null;
+  closedAt?: string | null;
+  customerId?: string | null;
+  customer?: { id: string; fullName?: string; companyName?: string | null } | null;
+  owner?: { id: string; fullName?: string } | null;
+}
+
+interface BackendDealList {
+  deals: BackendDeal[];
+  pagination: { page: number; limit: number; total: number; totalPages: number };
+}
+
+const VALID_STAGES: readonly DealStage[] = [
+  'lead',
+  'qualified',
+  'proposal',
+  'negotiation',
+  'won',
+  'lost',
+];
+
+const toStage = (s?: string | null): DealStage =>
+  (VALID_STAGES as readonly string[]).includes(s ?? '')
+    ? (s as DealStage)
+    : 'lead';
+
+const mapDeal = (b: BackendDeal): Deal => {
+  const stage = toStage(b.stage);
+  return {
+    id: b.id,
+    title: b.title,
+    customerId: b.customer?.id ?? b.customerId ?? '',
+    customerName: b.customer?.fullName ?? b.customer?.companyName ?? '',
+    value: Number(b.value ?? 0) || 0,
+    stage,
+    probability: b.probability ?? 0,
+    expectedCloseDate: b.expectedCloseDate ?? '',
+    assignedTo: b.owner?.id ?? '',
+    assignedToName: b.owner?.fullName ?? '',
+    notes: b.description ?? undefined,
+    createdAt: b.createdAt ?? '',
+    closedAt: b.closedAt ?? undefined,
+    closedStatus: stage === 'won' || stage === 'lost' ? stage : undefined,
+  };
+};
 
 export interface DealCreateInput {
   title: string;
@@ -82,7 +139,21 @@ export const listDeals = async (
       hasMore: start + pageSize < all.length,
     };
   }
-  return apiGet<PaginatedResponse<Deal>>(ENDPOINTS.deals.LIST, { params });
+  const status = params.filters?.stage;
+  const res = await apiGetData<BackendDealList>(ENDPOINTS.deals.LIST, {
+    params: {
+      page: params.page ?? 1,
+      limit: params.pageSize ?? 20,
+      ...(typeof status === 'string' && status ? { stage: status } : {}),
+    },
+  });
+  return {
+    items: res.deals.map(mapDeal),
+    total: res.pagination.total,
+    page: res.pagination.page,
+    pageSize: res.pagination.limit,
+    hasMore: res.pagination.page < res.pagination.totalPages,
+  };
 };
 
 export const getDeal = async (id: string): Promise<Deal> => {
@@ -92,7 +163,7 @@ export const getDeal = async (id: string): Promise<Deal> => {
     if (!found) throw new Error(`Deal ${id} not found`);
     return found;
   }
-  return apiGet<Deal>(ENDPOINTS.deals.GET(id));
+  return mapDeal(await apiGetData<BackendDeal>(ENDPOINTS.deals.GET(id)));
 };
 
 export const createDeal = async (data: DealCreateInput): Promise<Deal> => {
@@ -114,7 +185,17 @@ export const createDeal = async (data: DealCreateInput): Promise<Deal> => {
       createdAt: now,
     };
   }
-  return apiPost<Deal>(ENDPOINTS.deals.CREATE, data);
+  return mapDeal(
+    await apiPostData<BackendDeal>(ENDPOINTS.deals.CREATE, {
+      customerId: data.customerId,
+      title: data.title,
+      value: data.value,
+      stage: data.stage,
+      probability: data.probability,
+      expectedCloseDate: data.expectedCloseDate,
+      description: data.notes,
+    })
+  );
 };
 
 export const updateDeal = async (
@@ -126,7 +207,16 @@ export const updateDeal = async (
     const found = await getDeal(id);
     return { ...found, ...data };
   }
-  return apiPatch<Deal>(ENDPOINTS.deals.UPDATE(id), data);
+  const body: Record<string, unknown> = {};
+  if (data.title !== undefined) body.title = data.title;
+  if (data.value !== undefined) body.value = data.value;
+  if (data.stage !== undefined) body.stage = data.stage;
+  if (data.probability !== undefined) body.probability = data.probability;
+  if (data.expectedCloseDate !== undefined)
+    body.expectedCloseDate = data.expectedCloseDate;
+  if (data.notes !== undefined) body.description = data.notes;
+  if (data.customerId !== undefined) body.customerId = data.customerId;
+  return mapDeal(await apiPatchData<BackendDeal>(ENDPOINTS.deals.UPDATE(id), body));
 };
 
 export const moveDealStage = async (
@@ -138,7 +228,10 @@ export const moveDealStage = async (
     const found = await getDeal(id);
     return { ...found, stage };
   }
-  return apiPost<Deal>(ENDPOINTS.deals.MOVE_STAGE(id), { stage });
+  // No /stage route — a stage change is a PATCH on the deal.
+  return mapDeal(
+    await apiPatchData<BackendDeal>(ENDPOINTS.deals.UPDATE(id), { stage })
+  );
 };
 
 export const closeDeal = async (
@@ -156,7 +249,10 @@ export const closeDeal = async (
       probability: status === 'won' ? 100 : 0,
     };
   }
-  return apiPost<Deal>(ENDPOINTS.deals.CLOSE(id), { status });
+  // No /close route — closing is a PATCH that sets the won/lost stage.
+  return mapDeal(
+    await apiPatchData<BackendDeal>(ENDPOINTS.deals.UPDATE(id), { stage: status })
+  );
 };
 
 export const groupDealsByStage = (
